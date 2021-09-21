@@ -1,0 +1,40 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/lib/dist
+/lib/node_modules
+/packages/**/dist
+/packages/**/node_modules
+/packages/**/.next
+/node_modules
+/.pnp
+.pnp.js
+
+sidebar.json
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+.env*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+

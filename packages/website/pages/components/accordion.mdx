@@ -1,0 +1,70 @@
+---
+name: Accordion
+---
+
+import { Playground } from 'dokz'
+import { styles } from '../../styles.ts'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionTrigger,
+  H2,
+  Paragraph4,
+  Link,
+} from '@finetwork/ui'
+
+<div />
+<div>
+  <H2 font="secondary">Accordion</H2>
+</div>
+<div>
+  <Paragraph4>
+    Accordion component admit <i>kind</i> prop to style header
+  </Paragraph4>
+  <Paragraph4>
+    You can customize your button whatever you want, even you can set <i>css</i>
+    property to override styles if you need.
+  </Paragraph4>
+  <Paragraph4>
+    This component is an implementation of{' '}
+    <Link
+      href="https://www.radix-ui.com/docs/primitives/components/accordion"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Accordion component
+    </Link>{' '}
+    from radix-ui.
+  </Paragraph4>
+</div>
+
+<Playground>
+  <div style={{ padding: '1rem' }}>
+    <Accordion type="multiple">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARAI design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it unstyled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It's unstyled by default, giving you freedom over the look and
+          feel. Yes. It's unstyled by default, giving you freedom over the look
+          and feel. Yes. It's unstyled by default, giving you freedom over the
+          look and feel. Yes. It's unstyled by default, giving you freedom over
+          the look and feel. Yes. It's unstyled by default, giving you freedom
+          over the look and feel.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Can it be animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes! You can animate the Accordion with CSS or JavaScript.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  </div>
+</Playground>

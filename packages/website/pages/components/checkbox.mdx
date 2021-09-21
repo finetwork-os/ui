@@ -1,0 +1,79 @@
+---
+name: Checkbox
+---
+
+import { Playground } from 'dokz'
+import { Checkbox, H2, H3, Paragraph4, Link } from '@finetwork/ui'
+
+export const styles = {
+  maxWidth: '1000px',
+  padding: '2em',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+<div />
+<div>
+  <H2 font="secondary">Checkbox</H2>
+</div>
+
+<Paragraph4>
+  This component is an implementation of{' '}
+  <Link
+    href="https://www.radix-ui.com/docs/primitives/components/checkbox"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Checkbox component
+  </Link>{' '}
+  from radix-ui.
+</Paragraph4>
+
+<div>
+  <H3 font="secondary">Kind</H3>
+</div>
+
+<div>
+  <Paragraph4>Possible values primary, secondary, tertiary</Paragraph4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox defaultChecked kind="primary" />
+    <Checkbox defaultChecked kind="secondary" />
+    <Checkbox defaultChecked kind="tertiary" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Label</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox defaultChecked kind="secondary" id="check" />
+    <label htmlFor="check">Label</label>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Disabled</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox kind="secondary" disabled />
+    <Checkbox checked kind="secondary" disabled />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Indeterminate</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox defaultChecked="indeterminate" kind="secondary" />
+  </div>
+</Playground>

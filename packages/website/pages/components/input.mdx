@@ -1,0 +1,155 @@
+---
+name: Input
+---
+
+import { Playground } from 'dokz'
+import { Input, H2, H3, Paragraph4 } from '@finetwork/ui'
+import { SunIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons'
+
+export const styles = {
+  maxWidth: '1000px',
+  padding: '2em',
+  display: 'grid',
+  gap: '1em',
+}
+
+<div />
+<div>
+  <H2 font="secondary">Input</H2>
+</div>
+
+<Paragraph4>
+  Input component admit such props like size, kind, etc. You can customize your
+  input whatever you want, even you can set <i>css</i> property to override
+  styles if you need.
+</Paragraph4>
+
+<div>
+  <H3 font="secondary">Kind</H3>
+</div>
+
+<Paragraph4>
+  String. Possible values <i>primary</i>, <i>secondary</i>, <i>tertiary</i>
+</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Input kind="primary" />
+    <Input kind="secondary" />
+    <Input kind="tertiary" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Size</H3>
+</div>
+
+<div>
+  <Paragraph4>
+    String. Possible values <i>small</i>, <i>medium</i>, <i>large</i>
+  </Paragraph4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input size="small" />
+    <Input size="medium" />
+    <Input size="large" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Label</H3>
+</div>
+
+<div>
+  <Paragraph4>String. Required _id_ to work correctly.</Paragraph4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input label="Email" id="email" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">StartEnhancer</H3>
+</div>
+
+<div>
+  <Paragraph4>ReactNode or String.</Paragraph4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input placeholder="Email" startEnhancer={EnvelopeClosedIcon} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">EndEnhancer</H3>
+</div>
+
+<div>
+  <Paragraph4>ReactNode or String.</Paragraph4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input placeholder="Favorite place" endEnhancer={SunIcon} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Type password</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input type="password" defaultValue="strongpassword" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Disabled</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input label="Email" disabled={true} defaultValue="email" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Info message</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input
+      label="Email"
+      info="Must be valid email"
+      defaultValue="email@test.com"
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Error message</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input label="Email" error="Email exists" defaultValue="email@test.com" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Success</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Input label="Email" success={true} defaultValue="email@test.com" />
+  </div>
+</Playground>

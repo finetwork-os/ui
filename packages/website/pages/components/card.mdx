@@ -1,0 +1,169 @@
+---
+name: Card
+---
+
+import { Playground } from 'dokz'
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Button,
+  H2,
+} from '@finetwork/ui'
+
+export const styles = {
+  maxWidth: '1000px',
+  padding: '2em',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#EFF2FC',
+}
+
+<div />
+<div>
+  <H2 font="secondary">Card hoverAnimation</H2>
+</div>
+
+<div style={styles}>
+  <Card
+    hoverAnimation
+    kind="secondary"
+    css={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      '&:hover': {
+        '.button': {
+          backgroundColor: '#fff',
+          color: '#000',
+        },
+        '[data-fi="typography-highlight"]': {
+          backgroundColor: '#fff',
+        },
+        h2: {
+          color: '#fff',
+        },
+      },
+    }}
+  >
+    <CardHeader>Fibra 600Mb</CardHeader>
+    <CardBody>
+      <H2
+        isHighLight
+        align="center"
+        highLightKind="secondary"
+        css={{ color: '#000' }}
+      >
+        14'90€
+      </H2>
+    </CardBody>
+    <CardFooter>
+      <Button kind="secondary" className="button">
+        La quiero
+      </Button>
+    </CardFooter>
+  </Card>
+</div>
+
+```jsx
+<div style={styles}>
+  <Card
+    hoverAnimation
+    kind="secondary"
+    css={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      '&:hover': {
+        '.button': {
+          backgroundColor: '#fff',
+          color: '#000',
+        },
+        '[data-fi="typography-highlight"]': {
+          backgroundColor: '#fff',
+        },
+        h2: {
+          color: '#fff',
+        },
+      },
+    }}
+  >
+    <CardHeader>Fibra 600Mb</CardHeader>
+    <CardBody>
+      <H2
+        isHighLight
+        align="center"
+        highLightKind="secondary"
+        css={{ color: '#000' }}
+      >
+        14'90€
+      </H2>
+    </CardBody>
+    <CardFooter>
+      <Button kind="secondary" className="button">
+        La quiero
+      </Button>
+    </CardFooter>
+  </Card>
+</div>
+```
+
+<div>
+  <H2 font="secondary">Card without animation</H2>
+</div>
+
+<div style={styles}>
+  <Card
+    kind="secondary"
+    css={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    <CardHeader>Fibra 600Mb</CardHeader>
+    <CardBody>
+      <H2
+        isHighLight
+        align="center"
+        highLightKind="secondary"
+        css={{ color: '#000' }}
+      >
+        14'90€
+      </H2>
+    </CardBody>
+    <CardFooter>
+      <Button kind="secondary">La quiero</Button>
+    </CardFooter>
+  </Card>
+</div>
+
+```jsx
+<div style={styles}>
+  <Card
+    kind="secondary"
+    css={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    <CardHeader>Fibra 600Mb</CardHeader>
+    <CardBody>
+      <H2
+        isHighLight
+        align="center"
+        highLightKind="secondary"
+        css={{ color: '#000' }}
+      >
+        14'90€
+      </H2>
+    </CardBody>
+    <CardFooter>
+      <Button kind="secondary">La quiero</Button>
+    </CardFooter>
+  </Card>
+</div>
+```

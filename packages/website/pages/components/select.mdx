@@ -1,0 +1,118 @@
+---
+name: Select
+---
+
+import { Playground } from 'dokz'
+import { Select, H2, H3, Paragraph4, Link } from '@finetwork/ui'
+import { SelectPlayground } from '../../playgrounds'
+
+export const styles = {
+  maxWidth: '1000px',
+  padding: '2em',
+  height: '20em',
+}
+
+<div />
+<div>
+  <H2 font="secondary">Select</H2>
+</div>
+
+<Paragraph4>
+  Select component is using dropdown Menu from{' '}
+  <Link href="https://reakit.io/docs/menu/" target="_bank">
+    Reakit
+  </Link>{' '}
+  library. There are possibly bugs using searchable option.
+</Paragraph4>
+
+<div>
+  <H3 font="secondary">Playground</H3>
+</div>
+
+<SelectPlayground />
+
+```tsx
+export const SelectPlayground = () => {
+  const [value, setValue] = useState<any>()
+  const [options, setOptions] = useState<any>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const handleChange = async (inputValue: string) => {
+    if (!inputValue || inputValue === '') {
+      return setOptions([])
+    }
+    setIsLoading(true)
+    const newOptions: any = await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(filterOptions(inputValue))
+      }, 1000)
+    )
+    setOptions(newOptions)
+    setIsLoading(false)
+  }
+
+  const filterOptions = (inputValue: string) => {
+    return allOptions.filter(
+      (option: any) =>
+        String(option.id)
+          .toLowerCase()
+          .includes(inputValue.trim().toLowerCase()) ||
+        option.label.toLowerCase().includes(inputValue.trim().toLowerCase())
+    )
+  }
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      Value: {JSON.stringify(value)}
+      <div style={{ zIndex: 2 }}>
+        <Select
+          variant="outline"
+          options={allOptions}
+          value={value}
+          onSelect={(option: any) => setValue(option)}
+          // onInputChange={debounce(handleChange, 1000)}
+          kind="secondary"
+          isLoading={isLoading}
+          getOptionLabel={(option: any) => <H6>{option.label}</H6>}
+          placeholder="Names"
+          searchable={false}
+        />
+      </div>
+      <div style={{ zIndex: 1 }}>
+        <Select
+          label="Names"
+          id="names"
+          variant="outline"
+          options={options}
+          value={value}
+          onSelect={(option: any) => setValue(option)}
+          onInputChange={debounce(handleChange, 1000)}
+          kind="secondary"
+          isLoading={isLoading}
+          getOptionLabel={(option: any) => <H6>{option.label}</H6>}
+          placeholder="Type to search... (Menganito, Miguelito, Agapito, Pepito, Manolito)"
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+<div>
+  <H3 font="secondary">Kind</H3>
+</div>
+
+<Paragraph4>Possible values primary, secondary, tertiary</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      options={[
+        { id: '1', label: 'pepito' },
+        { id: '2', label: 'manolito' },
+      ]}
+      value={{
+        id: '2',
+        label: 'manolito',
+      }}
+    />
+  </div>
+</Playground>
