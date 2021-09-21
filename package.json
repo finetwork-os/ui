@@ -2,6 +2,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "npmClient": "yarn",
   "useWorkspaces": true,
   "repository": "https://github.com/finetwork-os/ui",
