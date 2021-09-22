@@ -5,15 +5,15 @@
 
 version: 2
 updates:
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/packages/@finetwork:ui"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/packages/website"
     schedule:
       interval: "weekly"
