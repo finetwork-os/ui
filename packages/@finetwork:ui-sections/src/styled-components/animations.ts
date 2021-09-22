@@ -16,7 +16,7 @@ export const spin = keyframes({
 })
 
 export const moveModal = keyframes({
-  '0%': { top: '52%' },
+  '0%': { top: '55%' },
   '100%': { top: '50%' },
 })
 

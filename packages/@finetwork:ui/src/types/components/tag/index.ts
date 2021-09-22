@@ -4,7 +4,7 @@ import { KINDS } from '../../kind'
 import { Property } from '@stitches/react/types/css'
 import { StyledTag } from '../../../styled-components/tag'
 
-type TagProps = ComponentProps<typeof StyledTag> & {
+export type TagProps = ComponentProps<typeof StyledTag> & {
   kind?: KINDS
   textTransform?: Property.TextTransform
 }

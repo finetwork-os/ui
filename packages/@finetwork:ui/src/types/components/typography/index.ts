@@ -22,6 +22,7 @@ type TypographyProps = ComponentProps<typeof StyledH1> & {
   highLightAlign?: HIGHLIGHT_ALIGNS
   align?: ALIGNS
   highLightKind?: KINDS
+  font?: 'primary' | 'secondary'
 }
 export type TypographyComponent = FC<
   TypographyProps & {

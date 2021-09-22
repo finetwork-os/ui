@@ -1,29 +1,71 @@
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
 
-export const StyledHeader: StyledComponent<'header'> = styled('header', {
-  paddingTop: '2rem',
-  paddingRight: '2rem',
-  paddingLeft: '2rem',
-  paddingBottom: '1rem',
-})
-
-export const StyledBody: StyledComponent<'main'> = styled('main', {
+const sharedStyles = {
   paddingTop: '1rem',
-  paddingBottom: '2rem',
-  paddingRight: '2rem',
-  paddingLeft: '2rem',
+  paddingBottom: '1rem',
+  paddingRight: '1rem',
+  paddingLeft: '1rem',
+  width: '100%',
+  variants: {
+    font: {
+      primary: {
+        fontFamily: '$primary',
+      },
+      secondary: {
+        fontFamily: '$secondary',
+      },
+    },
+  },
+  defaultVariants: {
+    font: 'primary',
+  },
+}
+
+export const StyledCardHeader = styled('div', {
+  ...sharedStyles,
 })
 
-export const StyledFooter: StyledComponent<'footer'> = styled('footer', {
-  paddingTop: '1.5rem',
-  paddingBottom: '1.5rem',
-  paddingRight: '2rem',
-  paddingLeft: '2rem',
-  textAlign: 'right',
+export const StyledCardBody = styled('div', {
+  ...sharedStyles,
 })
 
-export const StyledCard = styled('section', {
+export const StyledCardFooter = styled('div', {
+  ...sharedStyles,
+})
+
+export const StyledHeader: StyledComponent<typeof StyledCardHeader> = styled(
+  StyledCardHeader,
+  {
+    paddingTop: '2rem',
+    paddingRight: '2rem',
+    paddingLeft: '2rem',
+    paddingBottom: '1rem',
+  }
+)
+
+export const StyledBody: StyledComponent<typeof StyledCardBody> = styled(
+  StyledCardBody,
+  {
+    paddingTop: '1rem',
+    paddingBottom: '2rem',
+    paddingRight: '2rem',
+    paddingLeft: '2rem',
+  }
+)
+
+export const StyledFooter: StyledComponent<typeof StyledCardFooter> = styled(
+  StyledCardFooter,
+  {
+    paddingTop: '1.5rem',
+    paddingBottom: '1.5rem',
+    paddingRight: '2rem',
+    paddingLeft: '2rem',
+    textAlign: 'right',
+  }
+)
+
+export const StyledCard = styled('article', {
   backgroundColor: '#fff',
   color: '#000',
   transition: 'all .3s ease',
@@ -73,37 +115,4 @@ export const StyledCard = styled('section', {
       },
     },
   ],
-})
-
-const sharedStyles = {
-  paddingTop: '1rem',
-  paddingBottom: '1rem',
-  paddingRight: '1rem',
-  paddingLeft: '1rem',
-  width: '100%',
-  variants: {
-    font: {
-      primary: {
-        fontFamily: '$primary',
-      },
-      secondary: {
-        fontFamily: '$secondary',
-      },
-    },
-  },
-  defaultVariants: {
-    font: 'primary',
-  },
-}
-
-export const StyledCardHeader = styled('div', {
-  ...sharedStyles,
-})
-
-export const StyledCardBody = styled('div', {
-  ...sharedStyles,
-})
-
-export const StyledCardFooter = styled('div', {
-  ...sharedStyles,
 })

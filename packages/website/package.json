@@ -2,9 +2,9 @@
   "name": "website",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "./node_modules/.bin/next dev",
+    "build": "./node_modules/.bin/next build",
+    "start": "./node_modules/.bin/next start"
   },
   "dependencies": {
     "@chakra-ui/react": "latest",
@@ -13,6 +13,7 @@
     "@stitches/react": "^1.0.0",
     "dokz": "latest",
     "@finetwork/ui": "0.1.0",
+    "@finetwork/ui-sections": "0.1.0",
     "framer-motion": "latest",
     "next": "latest",
     "next-compose-plugins": "^2.2.1",

@@ -36,7 +36,7 @@ export const StyledLink: StyledComponent<
   width: 'fit-content',
   transition: 'all .3s ease',
   textTransform: 'none',
-  fontWeight: 600,
+  fontWeight: 500,
   cursor: 'pointer',
   fontFamily: 'inherit',
   borderRadius: '2px',

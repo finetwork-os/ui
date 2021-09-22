@@ -1,0 +1,58 @@
+---
+name: PriceCard
+---
+
+import { Playground } from 'dokz'
+import { PriceCard } from '@finetwork/ui-sections'
+import { Link } from '@finetwork/ui'
+
+<Playground>
+  <div style={{ backgroundColor: '#eff2fc', padding: '2rem' }}>
+    <div
+      style={{
+        margin: '2rem',
+      }}
+    >
+      {Array(2)
+        .fill('')
+        .map((el, index) => (
+          <PriceCard
+            key={index}
+            title="Fibra 600"
+            tagOptions={{
+              text: 'AHORA MÁS GB',
+              props: {
+                css: {
+                  backgroundColor: '$secondary',
+                  color: '#fff',
+                },
+              },
+            }}
+            price="24.90€"
+            priceDescription={['/mes', 'IVA incluido']}
+            description="Tu móvil y fibra todo junto al mejor precio. Navega a máxima velocidad en casa y en tu móvil, y habla sin parar con la mejor cobertura del país. Sin cuota de línea ni costes extra."
+            bullets={[
+              {
+                text: 'Acumula y comparte tus GB',
+              },
+              {
+                text: 'Legálitas Protección Médica y Legal incluidos',
+              },
+              {
+                text: 'Rakuten TV Suscripción incluido',
+              },
+            ]}
+            actionButton={{
+              text: 'La quiero',
+              onClick: () => alert('click!'),
+            }}
+            footerLink={{
+              href: '#',
+              label: 'Ver detalles de la tarifa',
+              LinkComponent: Link,
+            }}
+          />
+        ))}
+    </div>
+  </div>
+</Playground>

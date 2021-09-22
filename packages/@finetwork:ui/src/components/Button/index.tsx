@@ -51,7 +51,7 @@ export const Button: ButtonComponent = React.forwardRef(
       ...props,
     }
     return (
-      <StyledButton {...buttonProps}>
+      <StyledButton {...buttonProps} data-fi="button">
         {isLoading ? (
           <>
             <ChildrenLoading>{children}</ChildrenLoading>
