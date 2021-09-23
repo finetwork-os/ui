@@ -2,6 +2,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "name": "@finetwork/ui-root",
   "private": true,
   "npmClient": "yarn",
   "useWorkspaces": true,
