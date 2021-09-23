@@ -6,8 +6,8 @@
 Built on top of Radix-UI primitive components as base components in order to have accessible components, and Stitches for styling.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/finetwork-os/ui/blob/master/LICENSE)
-[![npm latest package]()](https://www.npmjs.com/package/@finetwork/ui)
-[![npm downloads]()](https://www.npmjs.com/package/@finetwork/ui)
+[![NPM Version](https://badge.fury.io/js/esta.svg?style=flat)](https://www.npmjs.com/package/@finetwork/ui)
+[![npm downloads](https://img.shields.io/npm/dt/@finetwork/ui.svg)](https://www.npmjs.com/package/@finetwork/ui)
 
 </div>
 
