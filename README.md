@@ -14,10 +14,10 @@ Built on top of Radix-UI primitive components as base components in order to hav
 
 ```sh
 // with npm
-npm install @mui/material @emotion/react @emotion/styled
+npm install @finetwork/ui react react-dom reakit
 
 // with yarn
-yarn add @mui/material @emotion/react @emotion/styled
+yarn add @finetwork/ui react react-dom reakit
 ```
 
 ## Documentation
