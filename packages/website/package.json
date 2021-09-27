@@ -12,7 +12,7 @@
     "@emotion/styled": "latest",
     "@stitches/react": "^1.0.0",
     "dokz": "latest",
-    "@finetwork/ui": "0.1.4",
+    "@finetwork/ui": "0.2.0",
     "framer-motion": "latest",
     "next": "latest",
     "next-compose-plugins": "^2.2.1",
