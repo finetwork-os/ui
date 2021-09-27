@@ -1,0 +1,66 @@
+---
+name: Dropdown Menu
+---
+
+import { Playground, TableOfContents } from 'dokz'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuCheckboxItem,
+  DropdownMenuItemIndicator,
+  H2,
+  Paragraph4,
+  Link,
+  Button,
+} from '@finetwork/ui'
+import { CheckIcon, HamburgerMenuIcon } from '@radix-ui/react-icons'
+
+<div />
+<div>
+  <H2 font="secondary">Dropdown Menu</H2>
+</div>
+
+<Paragraph4>
+  This component is an implementation of{' '}
+  <Link
+    href="https://www.radix-ui.com/docs/primitives/components/dropdown-menu"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Dropdown Menu component
+  </Link>{' '}
+  from radix-ui.
+</Paragraph4>
+
+<Playground>
+  <div style={{ padding: '1rem' }}>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button aria-label="Customise options" shape="circle">
+          <HamburgerMenuIcon />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent sideOffset={5} side="bottom" withArrow>
+        <DropdownMenuItem>New Tab</DropdownMenuItem>
+        <DropdownMenuItem>New Window</DropdownMenuItem>
+        <DropdownMenuItem disabled>New Private Window</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem checked={true} kind="tertiary">
+          <DropdownMenuItemIndicator>
+            <CheckIcon />
+          </DropdownMenuItemIndicator>
+          Show Bookmarks
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem checked={true}>
+          <DropdownMenuItemIndicator>
+            <CheckIcon />
+          </DropdownMenuItemIndicator>
+          Show Full URLs
+        </DropdownMenuCheckboxItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  </div>
+</Playground>

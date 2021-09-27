@@ -3,7 +3,7 @@ import * as React from 'react'
 import { createTheme, globalStyles } from '../../stitches.config'
 import { deepMerge, recalculateColors } from '../../utils'
 
-import { FiTheme } from '../../types/components/theme'
+import { FiTheme } from './types'
 import { ThemeContext } from './ThemeContext'
 import { initialTheme } from './initial-theme'
 

@@ -1,12 +1,9 @@
 import * as React from 'react'
 
 import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons'
-import {
-  StyledCheckbox,
-  StyledCheckboxIndicator,
-} from '../../styled-components/checkbox'
+import { StyledCheckbox, StyledCheckboxIndicator } from './styled'
 
-import { CheckboxProps } from '../../types/components/checkbox'
+import { CheckboxProps } from './types'
 
 export const Checkbox: React.FC<CheckboxProps> = ({ children, ...props }) => {
   return (

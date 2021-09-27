@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { KIND, SIZE } from '../../types'
-import { StyledSwitch, StyledThumb } from '../../styled-components/switch'
+import { StyledSwitch, StyledThumb } from './styled'
 
-import { SwitchComponent } from '../../types/components/switch'
+import { SwitchComponent } from './types'
 
 export const Switch: SwitchComponent = React.forwardRef(
   ({ kind = KIND.primary, size = SIZE.medium, ...props }, ref) => (

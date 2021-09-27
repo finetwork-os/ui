@@ -1,12 +1,9 @@
 import * as React from 'react'
 
-import {
-  StyledLoading,
-  getComputedStyles,
-} from '../../styled-components/loading'
+import { StyledLoading, getComputedStyles } from './styled'
 
 import { KIND } from '../../types'
-import { LoadingComponent } from '../../types/components/loading'
+import { LoadingComponent } from './types'
 
 export const Loading: LoadingComponent = ({
   size = 24,

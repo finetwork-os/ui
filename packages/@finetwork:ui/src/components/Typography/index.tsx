@@ -14,11 +14,8 @@ import {
   StyledParagraph4,
   StyledParagraph5,
   StyledParagraph6,
-} from '../../styled-components/typography'
-import {
-  TypographyComponent,
-  TypographyImplementationComponent,
-} from '../../types/components/typography'
+} from './styled'
+import { TypographyComponent, TypographyImplementationComponent } from './types'
 
 const Typography: TypographyComponent = React.forwardRef(
   (

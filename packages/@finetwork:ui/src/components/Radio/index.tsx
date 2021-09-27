@@ -6,10 +6,10 @@ import {
   StyledRadio,
   StyledRadioGroup,
   StyledRadioIndicator,
-} from '../../styled-components/radio'
+} from './styled'
 
 import { KIND } from '../../types'
-import { RadioComponent } from '../../types/components/radio'
+import { RadioComponent } from './types'
 
 export const RadioGroup = StyledRadioGroup
 export const Radio: RadioComponent = React.forwardRef(

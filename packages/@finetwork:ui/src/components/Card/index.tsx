@@ -1,13 +1,8 @@
 import * as React from 'react'
 
-import {
-  StyledBody,
-  StyledCard,
-  StyledFooter,
-  StyledHeader,
-} from '../../styled-components/card'
+import { StyledBody, StyledCard, StyledFooter, StyledHeader } from './styled'
 
-import { CardProps } from '../../types/components/card'
+import { CardProps } from './types'
 import { KIND } from '../../types'
 
 export const CardHeader: React.FC<React.ComponentProps<typeof StyledHeader>> =

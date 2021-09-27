@@ -1,16 +1,12 @@
 import * as React from 'react'
 
-import {
-  ButtonComponent,
-  ButtonProps,
-  SHAPE,
-} from '../../types/components/button'
+import { ButtonComponent, ButtonProps, SHAPE } from './types'
 import {
   ChildrenLoading,
   StyledButton,
   StyledEndEnhancer,
   StyledStartEnhancer,
-} from '../../styled-components/button'
+} from './styled'
 import { KIND, SIZE } from '../../types'
 
 import { Loading } from '../Loading'
