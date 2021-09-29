@@ -76,6 +76,7 @@ export const StyledButton: StyledComponent<
   borderRadius: 0,
   transition: 'all .3s ease',
   fontWeight: 500,
+  cursor: 'pointer',
   variants: {
     isSelected: {
       true: {

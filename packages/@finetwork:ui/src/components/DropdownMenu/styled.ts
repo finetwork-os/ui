@@ -52,6 +52,7 @@ export const itemStyles = {
   paddingLeft: 25,
   userSelect: 'none',
   color: mauve.mauve12,
+  cursor: 'pointer',
   '&[data-disabled]': {
     color: mauve.mauve8,
     pointerEvents: 'none',
