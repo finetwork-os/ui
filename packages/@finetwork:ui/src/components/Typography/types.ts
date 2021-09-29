@@ -1,5 +1,5 @@
 import { ComponentProps, FC } from 'react'
-import { KINDS, SIZES } from '../../types'
+import { FONTS, KINDS, SIZES } from '../../types'
 
 import { StyledH1 } from './styled'
 
@@ -22,6 +22,7 @@ type TypographyProps = ComponentProps<typeof StyledH1> & {
   highLightAlign?: HIGHLIGHT_ALIGNS
   align?: ALIGNS
   highLightKind?: KINDS
+  font?: FONTS
 }
 export type TypographyComponent = FC<
   TypographyProps & {
