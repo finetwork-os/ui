@@ -3249,9 +3249,9 @@
     picomatch "^2.2.2"
 
 "@stitches/react@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.0.0.tgz#311413630d96a627ca28f44ebcc9179455cdb73a"
-  integrity sha512-D0/YUbjuZ52Xd/ojT+TjyjZ7p/hBuPlOQ8VBahpMT6ElXriImhsb+RJwr31FP5HeN+y3wuGrRty6/VQjcHjlyA==
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/@stitches/react/-/react-1.2.1.tgz#1e6e5877ccb0151a26f27c731e03efee55e8f7c6"
+  integrity sha512-xVnYuU3ZwvI4ghdM5r21hCb4eejkTZQqxm3q5iRTBnrbiG/8jpbEWTi8gXXjZ9X4+PssjuqBrjvPSqAcPvya6w==
 
 "@tootallnate/once@1":
   version "1.1.2"
