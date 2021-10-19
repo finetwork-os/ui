@@ -1,12 +1,8 @@
 import * as React from 'react'
 
-import {
-  StyledEndEnhancer,
-  StyledLink,
-  StyledStartEnhancer,
-} from '../../styled-components/link'
+import { StyledEndEnhancer, StyledLink, StyledStartEnhancer } from './styled'
 
-import { LinkComponent } from '../../types/components/link'
+import { LinkComponent } from './types'
 import { RenderEnhancer } from '../../utils'
 import { SIZE } from '../../types'
 

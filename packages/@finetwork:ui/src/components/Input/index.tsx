@@ -1,10 +1,7 @@
 import * as React from 'react'
 
 import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
-import {
-  InputComponent,
-  InputPasswordComponent,
-} from '../../types/components/input'
+import { InputComponent, InputPasswordComponent } from './types'
 import { KIND, SIZE } from '../../types'
 import {
   StyledContainer,
@@ -16,7 +13,7 @@ import {
   StyledLabel,
   StyledMessage,
   StyledSuccessIcon,
-} from '../../styled-components/input'
+} from './styled'
 
 import { RenderEnhancer } from '../../utils'
 

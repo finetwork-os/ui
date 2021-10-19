@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { KIND } from '../../types'
-import { StyledTag } from '../../styled-components/tag'
-import { TagComponent } from '../../types/components/tag'
+import { StyledTag } from './styled'
+import { TagComponent } from './types'
 
 export const Tag: TagComponent = ({
   kind = KIND.primary,

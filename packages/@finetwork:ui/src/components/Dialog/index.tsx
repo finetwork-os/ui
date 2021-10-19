@@ -7,8 +7,8 @@ import {
   StyledDescription,
   StyledOverlay,
   StyledTitle,
-} from '../../styled-components/dialog'
-import { DialogContentProps, DialogProps } from '../../types/components/dialog'
+} from './styled'
+import { DialogContentProps, DialogProps } from './types'
 
 import { Cross1Icon } from '@radix-ui/react-icons'
 import { DIALOG_SIZE } from '../../types'

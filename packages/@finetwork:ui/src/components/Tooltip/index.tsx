@@ -1,14 +1,8 @@
 import * as React from 'react'
 
 import { Root, Trigger } from '@radix-ui/react-tooltip'
-import {
-  StyledContent,
-  StyledTooltipArrow,
-} from '../../styled-components/tooltip'
-import {
-  TooltipComponent,
-  TooltipContentComponent,
-} from '../../types/components/tooltip'
+import { StyledContent, StyledTooltipArrow } from './styled'
+import { TooltipComponent, TooltipContentComponent } from './types'
 
 export const Tooltip: TooltipComponent = ({
   children,

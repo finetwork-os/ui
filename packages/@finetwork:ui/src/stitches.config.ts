@@ -1,6 +1,6 @@
 import { deepMerge, recalculateColors } from './utils'
 
-import { FiTheme } from './types/components/theme'
+import { FiTheme } from './components/Theme/types'
 import { createStitches } from '@stitches/react'
 import { initialTheme } from './components/Theme/initial-theme'
 

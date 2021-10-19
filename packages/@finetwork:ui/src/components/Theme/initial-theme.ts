@@ -1,4 +1,4 @@
-import { FiTheme } from '../../types/components/theme'
+import { FiTheme } from './types'
 
 export const initialTheme: FiTheme = {
   colors: {

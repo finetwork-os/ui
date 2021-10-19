@@ -1,12 +1,8 @@
 import * as React from 'react'
 
-import {
-  StyledRoot,
-  StyledRow,
-  getAnimationColor,
-} from '../../styled-components/skeleton'
+import { StyledRoot, StyledRow, getAnimationColor } from './styled'
 
-import { SkeletonComponent } from '../../types/components/skeleton'
+import { SkeletonComponent } from './types'
 
 export const Skeleton: SkeletonComponent = ({
   rows,

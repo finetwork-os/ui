@@ -4,7 +4,7 @@ import {
   AccordionComponent,
   AccordionContentComponent,
   AccordionTriggerComponent,
-} from '../../types/components/accordion'
+} from './types'
 import {
   StyledAccordion,
   StyledChevron,
@@ -13,7 +13,7 @@ import {
   StyledHeader,
   StyledItem,
   StyledTrigger,
-} from '../../styled-components/accordion'
+} from './styled'
 
 export const Accordion: AccordionComponent = ({ children, type, ...props }) => (
   <StyledAccordion type={type} data-fi="accordion" {...props}>

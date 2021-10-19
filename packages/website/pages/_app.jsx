@@ -76,6 +76,7 @@ export default function App(props) {
               'card.mdx': true,
               'checkbox.mdx': true,
               'dialog.mdx': true,
+              'dropdown-menu.mdx': true,
               'input.mdx': true,
               'link.mdx': true,
               'loading.mdx': true,

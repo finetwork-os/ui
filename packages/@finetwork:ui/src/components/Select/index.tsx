@@ -10,13 +10,13 @@ import {
   StyledMenuContainer,
   StyledMenuItem,
   StyledSelectContainer,
-} from '../../styled-components/select'
+} from './styled'
 
 import { Input } from '../Input'
 import { Loading } from '../Loading'
 import { Paragraph6 } from '../Typography'
-import { SelectComponent } from '../../types/components/select'
-import { StyledEnhancer } from '../../styled-components/input'
+import { SelectComponent } from './types'
+import { StyledEnhancer } from '../Input/styled'
 import { useMenuState } from 'reakit/Menu'
 
 export const Select: SelectComponent = React.forwardRef(

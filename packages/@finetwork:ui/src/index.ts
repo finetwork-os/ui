@@ -18,6 +18,20 @@ export {
   DialogTitle,
   DialogTrigger,
 } from './components/Dialog'
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuArrow,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuItemIndicator,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTriggerItem,
+} from './components/DropdownMenu'
 export { Radio, RadioGroup } from './components/Radio'
 export { Select } from './components/Select'
 export { Separator } from './components/Separator'

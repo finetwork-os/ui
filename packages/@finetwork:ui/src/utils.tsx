@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { darken, lighten } from 'polished'
 
-import { Colors } from './types/components/theme'
+import { Colors } from './components/Theme/types'
 import { isValidElementType } from 'react-is'
 
 export const RenderEnhancer: React.FC<{ Enhancer: any }> = ({ Enhancer }) => {

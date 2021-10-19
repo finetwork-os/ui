@@ -1,9 +1,4 @@
-import {
-  StyledContent,
-  StyledList,
-  StyledTabs,
-  StyledTrigger,
-} from '../../styled-components/tabs'
+import { StyledContent, StyledList, StyledTabs, StyledTrigger } from './styled'
 
 export const Tabs = StyledTabs
 export const TabsList = StyledList
