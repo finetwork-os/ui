@@ -39,7 +39,7 @@ export default {
       baseContents: (pkg) => ({
         name: pkg.name,
         version: pkg.version,
-        main: 'index.js',
+        main: 'dist/index.js',
         scripts: pkg.scripts,
         dependencies: pkg.dependencies,
         peerDependencies: pkg.peerDependencies,

@@ -90,6 +90,9 @@ export default function App(props) {
               'tooltip.mdx': true,
               'typography.mdx': true,
             },
+            sections: {
+              'price-card.mdx': true,
+            },
           }}
         >
           <Component {...pageProps} />
