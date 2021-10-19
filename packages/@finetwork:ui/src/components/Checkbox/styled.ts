@@ -113,6 +113,11 @@ export const StyledCheckbox: StyledComponent<
   },
 })
 export const StyledCheckboxIndicator = styled(Indicator, {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   animation: `${fadeIn} .3s ease, ${bounceIn} .3s ease`,
   variants: {
     kind: {
