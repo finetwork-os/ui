@@ -2,5 +2,5 @@
 
 rm -rf ./dist
 echo "Building library..."
-rollup -c
+./node_modules/.bin/rollup -c
 echo "Library built in dist folder!"

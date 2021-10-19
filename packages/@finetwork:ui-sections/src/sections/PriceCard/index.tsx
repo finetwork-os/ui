@@ -20,21 +20,9 @@ import {
   TagText,
   Title,
 } from '../../styled-components/price-card'
-import {
-  Button,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  H4,
-  Link,
-  Paragraph3,
-  Paragraph4,
-  Paragraph5,
-  Paragraph6,
-} from '@finetwork/ui'
 
 import { KINDS } from '@finetwork/ui/src/types'
-import { Tag } from '@finetwork/ui'
+import { Paragraph6 } from '@finetwork/ui'
 import { TagProps } from '@finetwork/ui/src/types/components/tag'
 
 type PriceCardProps = {

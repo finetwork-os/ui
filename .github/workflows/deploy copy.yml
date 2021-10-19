@@ -1,8 +1,11 @@
 name: Node.js Package
 on:
-  push:
-    branches: [master]
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      typeLibrary:
+        description: 'Which library do you want to deploy ?  (ui/sections)'
+        required: true
+        default: 'ui'
 
 jobs:
   build-publish:
@@ -14,7 +17,7 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
-      - run: yarn build-library
-      - run: yarn publish-library $NODE_AUTH_TOKEN
+      - run: yarn build-${{ github.event.inputs.typeLibrary }}-library
+      - run: yarn publish-${{ github.event.inputs.typeLibrary }}-library $NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
