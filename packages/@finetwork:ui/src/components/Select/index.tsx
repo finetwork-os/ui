@@ -97,8 +97,6 @@ export const Select: SelectComponent = React.forwardRef(
               .toLowerCase()
               .includes(String(value[keyValue]).trim().toLowerCase())
         )
-        console.log(filterOptions)
-        console.log(options)
         if (!options || options.length === 0) {
           return console.error(
             'Provided value is not found in options provided. Check prop value.'
