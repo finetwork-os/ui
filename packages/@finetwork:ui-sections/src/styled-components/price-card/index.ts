@@ -21,6 +21,7 @@ export const PriceContainer = styled('div', {
   alignItems: 'flex-end',
   justifyContent: 'center',
   gridAutoFlow: 'column',
+  marginBottom: '3rem',
   '&::before': {
     content: '',
     position: 'absolute',
@@ -182,15 +183,12 @@ export const PriceTabletContainer = styled(PriceContainer, {
 })
 
 export const Description = styled(Paragraph5, {
-  marginTop: '3rem',
-  textAlign: 'center',
+  textAlign: 'center !important',
   '@tablet': {
-    marginTop: 0,
-    textAlign: 'initial',
+    textAlign: 'initial !important',
   },
   '@desktop-xl': {
-    marginTop: '3rem',
-    textAlign: 'center',
+    textAlign: 'center !important',
   },
 })
 
