@@ -180,24 +180,21 @@ export const StyledButton: StyledComponent<
     },
     {
       outline: true,
+      isDisabled: false,
       kind: 'primary',
-      css: {
-        ...getStylesOutline('primary'),
-      },
+      css: getStylesOutline('primary'),
     },
     {
       outline: true,
+      isDisabled: false,
       kind: 'secondary',
-      css: {
-        ...getStylesOutline('secondary'),
-      },
+      css: getStylesOutline('secondary'),
     },
     {
       outline: true,
+      isDisabled: false,
       kind: 'tertiary',
-      css: {
-        ...getStylesOutline('tertiary'),
-      },
+      css: getStylesOutline('tertiary'),
     },
     {
       isSelected: true,
