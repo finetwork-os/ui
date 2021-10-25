@@ -252,6 +252,7 @@ export const StyledButton: StyledComponent<
       css: {
         width: 38,
         height: 38,
+        minWidth: 'unset',
       },
     },
     {
@@ -260,6 +261,7 @@ export const StyledButton: StyledComponent<
       css: {
         width: 48,
         height: 48,
+        minWidth: 'unset',
       },
     },
     {
@@ -268,6 +270,7 @@ export const StyledButton: StyledComponent<
       css: {
         width: 28,
         height: 28,
+        minWidth: 'unset',
       },
     },
     {

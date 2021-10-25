@@ -13,7 +13,7 @@
     "@stitches/react": "^1.0.0",
     "dokz": "latest",
     "@finetwork/ui-sections": "0.1.0",
-    "@finetwork/ui": "0.2.6",
+    "@finetwork/ui": "0.2.7",
     "framer-motion": "latest",
     "next": "latest",
     "next-compose-plugins": "^2.2.1",

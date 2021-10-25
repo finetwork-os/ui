@@ -45,9 +45,9 @@ export type Colors = {
   linkText700?: string
   linkText800?: string
   linkText900?: string
-  disabled: string
-  error: string
-  success: string
+  disabled?: string
+  error?: string
+  success?: string
 }
 
 export type Fonts = {
