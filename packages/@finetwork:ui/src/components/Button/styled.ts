@@ -220,6 +220,7 @@ export const StyledButton: StyledComponent<
     {
       isLoading: true,
       kind: 'primary',
+      outline: false,
       css: {
         ...getStylesSelectedLoading('primary'),
       },
@@ -227,6 +228,7 @@ export const StyledButton: StyledComponent<
     {
       isLoading: true,
       kind: 'secondary',
+      outline: false,
       css: {
         ...getStylesSelectedLoading('secondary'),
       },
@@ -234,6 +236,7 @@ export const StyledButton: StyledComponent<
     {
       isLoading: true,
       kind: 'tertiary',
+      outline: false,
       css: {
         ...getStylesSelectedLoading('tertiary'),
       },
