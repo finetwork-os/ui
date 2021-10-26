@@ -18,12 +18,12 @@ export const StyledCheckbox: StyledComponent<
   borderColor: '#000',
   width: '20px',
   height: '20px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   transition: 'all .3s ease',
   borderStyle: 'solid',
   cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   '&:active': {
     transform: 'scale(0.8)',
   },
@@ -113,11 +113,6 @@ export const StyledCheckbox: StyledComponent<
   },
 })
 export const StyledCheckboxIndicator = styled(Indicator, {
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   animation: `${fadeIn} .3s ease, ${bounceIn} .3s ease`,
   variants: {
     kind: {
