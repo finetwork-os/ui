@@ -1704,6 +1704,30 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@finetwork/ui@0.2.8":
+  version "0.2.8"
+  resolved "https://registry.npmjs.org/@finetwork/ui/-/ui-0.2.8.tgz#821a83b387039d84e99ab47f4452454b3feab6fd"
+  integrity sha512-89mKsZXGR7y5Ce62NQ5+I82tqLjjXPFdXW3Hqiy72OuvMLHQTtby2T+g3onLkhVEf9j5p6T+lwHDfRt/aTeDsg==
+  dependencies:
+    "@radix-ui/colors" "^0.1.7"
+    "@radix-ui/react-accordion" "^0.1.0"
+    "@radix-ui/react-checkbox" "^0.1.0"
+    "@radix-ui/react-dialog" "^0.1.0"
+    "@radix-ui/react-dropdown-menu" "^0.1.0"
+    "@radix-ui/react-icons" "^1.0.3"
+    "@radix-ui/react-id" "^0.1.0"
+    "@radix-ui/react-label" "^0.1.0"
+    "@radix-ui/react-menu" "^0.1.0"
+    "@radix-ui/react-polymorphic" "^0.0.14"
+    "@radix-ui/react-popover" "^0.1.0"
+    "@radix-ui/react-radio-group" "^0.1.0"
+    "@radix-ui/react-separator" "^0.1.0"
+    "@radix-ui/react-switch" "^0.1.0"
+    "@radix-ui/react-tabs" "^0.1.0"
+    "@radix-ui/react-tooltip" "^0.1.0"
+    "@stitches/react" "^1.0.0"
+    polished "^4.1.1"
+
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"
@@ -3344,9 +3368,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^17.0.3":
-  version "17.0.19"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.19.tgz#8f2a85e8180a43b57966b237d26a29481dacc991"
-  integrity sha512-sX1HisdB1/ZESixMTGnMxH9TDe8Sk709734fEQZzCV/4lSu9kJCPbo2PbTRoZM+53Pp0P10hYVyReUueGwUi4A==
+  version "17.0.33"
+  resolved "https://registry.npmjs.org/@types/react/-/react-17.0.33.tgz#e01ae3de7613dac1094569880bb3792732203ad5"
+  integrity sha512-pLWntxXpDPaU+RTAuSGWGSEL2FRTNyRQOjSWDke/rxRg14ncsZvx8AKWMWZqvc1UOaJIAoObdZhAWvRaHFi5rw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
