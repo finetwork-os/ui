@@ -4,15 +4,17 @@ import { styled } from '../../stitches.config'
 export const getComputedStyles = ({
   size,
   kind,
+  disabled,
 }: {
   size: number
   kind: string
+  disabled: boolean
 }) => {
   return {
     width: size,
     height: size,
-    borderColor: `$${kind}200`,
-    borderTopColor: `$${kind}400`,
+    borderColor: disabled ? '#eee' : `$${kind}200`,
+    borderTopColor: disabled ? '#aaa' : `$${kind}400`,
     borderStyle: 'solid',
   }
 }
