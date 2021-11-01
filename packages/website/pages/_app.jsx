@@ -37,6 +37,7 @@ export default function App(props) {
             rel="stylesheet"
             key="google-font-Fira"
           />
+
           <link
             href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap"
             rel="stylesheet"
@@ -48,12 +49,13 @@ export default function App(props) {
               __html: getCss(lightTheme).toString(),
             }}
           />
+          <link rel="icon" type="ico" href="/favicon.ico" />
         </Head>
         <DokzProvider
           headerLogo={
             <Link href="/" passHref>
               <a>
-                <H2 font="secondary">Fi UI</H2>
+                <H2 font="secondary">Finetwork UI</H2>
               </a>
             </Link>
           }

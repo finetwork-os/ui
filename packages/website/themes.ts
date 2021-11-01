@@ -52,17 +52,6 @@ export const lightTheme = {
   },
 }
 
-export const drukStyles = `
-@font-face {
-  font-family: 'Druk';
-  src: url('/fonts/Druk.eot');
-  src: url('/fonts/Druk.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/Druk.woff2') format('woff2'), url('/fonts/Druk-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}`
-
 export const darkTheme = {
   ...sharedStyles,
   colors: {

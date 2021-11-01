@@ -1,4 +1,4 @@
-<h1 align="center">Fi UI</h1>
+<h1 align="center">Finetwork UI</h1>
 
 <div align="center">
 
