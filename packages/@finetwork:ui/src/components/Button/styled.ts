@@ -12,6 +12,7 @@ const getStylesSelectedLoading = (kind: KINDS) => ({
 const getStylesOutline = (kind: KINDS) => ({
   borderColor: `$${kind}300`,
   color: `$${kind}`,
+  backgroundColor: 'unset',
   '&:hover': {
     backgroundColor: `$${kind}100`,
     border: `1px solid $${kind}500`,
@@ -124,7 +125,6 @@ export const StyledButton: StyledComponent<
     },
     outline: {
       true: {
-        backgroundColor: 'unset',
         borderWidth: '1px',
       },
       false: {},
@@ -155,14 +155,12 @@ export const StyledButton: StyledComponent<
         borderRadius: '50%',
       },
       circle: {
-        minWidth: 'unset',
         padding: 0,
         borderRadius: '50%',
         flexDirection: 'row',
         justifyContent: 'center',
       },
       square: {
-        minWidth: 'unset',
         padding: 0,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -176,6 +174,7 @@ export const StyledButton: StyledComponent<
       css: {
         borderColor: '$disabled',
         color: '$disabled',
+        backgroundColor: 'unset',
       },
     },
     {
@@ -198,6 +197,8 @@ export const StyledButton: StyledComponent<
     },
     {
       isSelected: true,
+      outline: false,
+      isDisabled: false,
       kind: 'primary',
       css: {
         ...getStylesSelectedLoading('primary'),
@@ -205,6 +206,8 @@ export const StyledButton: StyledComponent<
     },
     {
       isSelected: true,
+      outline: false,
+      isDisabled: false,
       kind: 'secondary',
       css: {
         ...getStylesSelectedLoading('secondary'),
@@ -212,6 +215,8 @@ export const StyledButton: StyledComponent<
     },
     {
       isSelected: true,
+      outline: false,
+      isDisabled: false,
       kind: 'tertiary',
       css: {
         ...getStylesSelectedLoading('tertiary'),
@@ -219,6 +224,7 @@ export const StyledButton: StyledComponent<
     },
     {
       isLoading: true,
+      isDisabled: false,
       kind: 'primary',
       outline: false,
       css: {
@@ -227,6 +233,7 @@ export const StyledButton: StyledComponent<
     },
     {
       isLoading: true,
+      isDisabled: false,
       kind: 'secondary',
       outline: false,
       css: {
@@ -235,6 +242,7 @@ export const StyledButton: StyledComponent<
     },
     {
       isLoading: true,
+      isDisabled: false,
       kind: 'tertiary',
       outline: false,
       css: {
@@ -247,6 +255,7 @@ export const StyledButton: StyledComponent<
       css: {
         width: 28,
         height: 28,
+        minWidth: 'unset',
       },
     },
     {
@@ -282,6 +291,7 @@ export const StyledButton: StyledComponent<
       css: {
         width: 38,
         height: 38,
+        minWidth: 'unset',
       },
     },
     {
@@ -290,6 +300,7 @@ export const StyledButton: StyledComponent<
       css: {
         width: 48,
         height: 48,
+        minWidth: 'unset',
       },
     },
   ],
@@ -298,5 +309,9 @@ export const StyledButton: StyledComponent<
     shape: 'default',
     size: 'medium',
     font: 'primary',
+    isDisabled: false,
+    isLoading: false,
+    isSelected: false,
+    outline: false,
   },
 })
