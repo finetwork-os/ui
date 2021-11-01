@@ -230,7 +230,6 @@ export const StyledTextarea: StyledComponent<
   'textarea',
   {
     size?: SIZES
-    startEnhancer?: BooleanString
     isDisabled?: BooleanString
     font?: FONTS
   },
@@ -261,6 +260,11 @@ export const StyledTextarea: StyledComponent<
         fontFamily: '$secondary',
       },
     },
+    resize: {
+      false: {
+        resize: 'none',
+      },
+    },
     size: {
       small: {
         paddingTop: '10px',
@@ -274,12 +278,6 @@ export const StyledTextarea: StyledComponent<
         paddingTop: '14px',
         paddingBottom: '14px',
       },
-    },
-    startEnhancer: {
-      true: {
-        paddingLeft: 0,
-      },
-      false: {},
     },
     isDisabled: {
       true: {

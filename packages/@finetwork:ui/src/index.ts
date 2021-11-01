@@ -39,6 +39,7 @@ export { Skeleton } from './components/Skeleton'
 export { Switch } from './components/Switch'
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './components/Tabs'
 export { Tag } from './components/Tag'
+export { Textarea } from './components/Textarea'
 export { ThemeProvider, useTheme } from './components/Theme'
 export { Tooltip, TooltipContent, TooltipTrigger } from './components/Tooltip'
 export {

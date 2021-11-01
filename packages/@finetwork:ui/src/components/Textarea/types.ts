@@ -20,13 +20,4 @@ type TextareaProps = Omit<ComponentProps<typeof StyledTextarea>, 'size'> & {
   labelProps?: ComponentProps<typeof StyledLabel>
 }
 
-type InputPasswordProps = Omit<
-  React.ComponentProps<typeof StyledTextarea>,
-  'size'
-> & {
-  size?: SIZES
-  isDisabled?: boolean
-}
-
-export type InputComponent = FC<TextareaProps>
-export type InputPasswordComponent = FC<InputPasswordProps>
+export type TextareaComponent = FC<TextareaProps>

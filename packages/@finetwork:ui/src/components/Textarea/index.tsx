@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
-import { InputComponent, InputPasswordComponent } from './types'
 import { KIND, SIZE } from '../../types'
 import {
   StyledContainer,
@@ -9,58 +8,27 @@ import {
   StyledContainerInputPassword,
   StyledEnhancer,
   StyledEyeButton,
-  StyledTextarea,
   StyledLabel,
   StyledMessage,
   StyledSuccessIcon,
+  StyledTextarea,
 } from './styled'
 
 import { RenderEnhancer } from '../../utils'
+import { TextareaComponent } from './types'
 
-const InputPassword: InputPasswordComponent = React.forwardRef(
-  ({ size, ...props }, ref) => {
-    const [visiblePassword, setVisiblePassword] = React.useState(false)
-    return (
-      <StyledContainerInputPassword>
-        <StyledInput
-          {...props}
-          type={visiblePassword ? 'text' : 'password'}
-          size={size}
-          ref={ref}
-        />
-        <StyledEyeButton
-          onClick={() => setVisiblePassword(!visiblePassword)}
-          type="button"
-        >
-          <RenderEnhancer
-            Enhancer={
-              visiblePassword ? (
-                <EyeOpenIcon width={20} />
-              ) : (
-                <EyeClosedIcon width={20} />
-              )
-            }
-          />
-        </StyledEyeButton>
-      </StyledContainerInputPassword>
-    )
-  }
-)
-
-export const Input: InputComponent = React.forwardRef(
+export const Textarea: TextareaComponent = React.forwardRef(
   (
     {
       size = SIZE.medium,
       kind = KIND.primary,
       label,
-      startEnhancer,
-      endEnhancer,
+      rows = 4,
       inputContainerProps = {},
       containerProps = {},
       css,
       error,
       info,
-      type = 'text',
       success = false,
       id,
       labelProps = {},
@@ -97,39 +65,17 @@ export const Input: InputComponent = React.forwardRef(
           disabled={props.disabled}
           success={success}
         >
-          {startEnhancer && (
-            <StyledEnhancer>
-              <RenderEnhancer Enhancer={startEnhancer} />
-            </StyledEnhancer>
-          )}
-          {type === 'password' ? (
-            <InputPassword
-              {...props}
-              size={size}
-              ref={ref}
-              id={id}
-              startEnhancer={!!startEnhancer}
-              isDisabled={props.disabled}
-            />
-          ) : (
-            <StyledInput
-              {...props}
-              size={size}
-              ref={ref}
-              id={id}
-              startEnhancer={!!startEnhancer}
-              type={type}
-              isDisabled={props.disabled}
-            />
-          )}
+          <StyledTextarea
+            {...props}
+            size={size}
+            ref={ref}
+            id={id}
+            rows={rows}
+            isDisabled={props.disabled}
+          />
           {success && !error && (
             <StyledEnhancer success={success}>
               <RenderEnhancer Enhancer={<StyledSuccessIcon />} />
-            </StyledEnhancer>
-          )}
-          {endEnhancer && (
-            <StyledEnhancer>
-              <RenderEnhancer Enhancer={endEnhancer} />
             </StyledEnhancer>
           )}
         </StyledContainerInput>
