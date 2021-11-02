@@ -11,6 +11,7 @@ type TextareaProps = Omit<ComponentProps<typeof StyledTextarea>, 'size'> & {
   containerProps?: ComponentProps<typeof StyledContainer>
   inputContainerProps?: ComponentProps<typeof StyledContainerInput>
   size?: SIZES
+  resize?: boolean
   kind?: KINDS
   label?: ReactNode | string
   isDisabled?: boolean
