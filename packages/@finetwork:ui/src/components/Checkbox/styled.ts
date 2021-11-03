@@ -114,6 +114,8 @@ export const StyledCheckbox: StyledComponent<
 })
 export const StyledCheckboxIndicator = styled(Indicator, {
   animation: `${fadeIn} .3s ease, ${bounceIn} .3s ease`,
+  width: 15,
+  height: 15,
   variants: {
     kind: {
       primary: {
