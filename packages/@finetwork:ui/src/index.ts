@@ -58,3 +58,4 @@ export {
 } from './components/Typography'
 export { IdProvider } from '@radix-ui/react-id'
 export { getCss } from './stitches.config'
+export * from './types'
