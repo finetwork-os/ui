@@ -12,7 +12,19 @@ export const StyledTabs = styled(TabsPrimitive.Root, {
 export const StyledList = styled(TabsPrimitive.List, {
   flexShrink: 0,
   display: 'flex',
-  borderBottom: `2px solid ${mauve.mauve6}`,
+  variants: {
+    align: {
+      bottom: {
+        borderBottom: `2px solid ${mauve.mauve6}`,
+      },
+      top: {
+        borderTop: `2px solid ${mauve.mauve6}`,
+      },
+    },
+  },
+  defaultVariants: {
+    align: 'bottom',
+  },
 })
 
 export const StyledTrigger = styled(TabsPrimitive.Trigger, {
@@ -28,12 +40,19 @@ export const StyledTrigger = styled(TabsPrimitive.Trigger, {
   lineHeight: 1,
   userSelect: 'none',
   cursor: 'pointer',
-  '&:first-child': { borderTopLeftRadius: 6 },
-  '&:last-child': { borderTopRightRadius: 6 },
-  '&[data-state="active"]': {
-    boxShadow: '0 2px 0 0 currentColor',
-  },
   variants: {
+    align: {
+      bottom: {
+        '&[data-state="active"]': {
+          boxShadow: '0 2px 0 0 currentColor',
+        },
+      },
+      top: {
+        '&[data-state="active"]': {
+          boxShadow: '0 -2px 0 0 currentColor',
+        },
+      },
+    },
     kind: {
       primary: {
         '&:hover': { color: '$primary' },
@@ -41,7 +60,7 @@ export const StyledTrigger = styled(TabsPrimitive.Trigger, {
           color: '$primary',
         },
         '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300',
+          boxShadow: '0 0 0 2px $colors$primary300 !important',
         },
       },
       secondary: {
@@ -50,7 +69,7 @@ export const StyledTrigger = styled(TabsPrimitive.Trigger, {
           color: '$secondary',
         },
         '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300',
+          boxShadow: '0 0 0 2px $colors$primary300 !important',
         },
       },
       tertiary: {
@@ -59,13 +78,14 @@ export const StyledTrigger = styled(TabsPrimitive.Trigger, {
           color: '$tertiary',
         },
         '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300',
+          boxShadow: '0 0 0 2px $colors$primary300 !important',
         },
       },
     },
   },
   defaultVariants: {
     kind: 'primary',
+    align: 'bottom',
   },
 })
 
