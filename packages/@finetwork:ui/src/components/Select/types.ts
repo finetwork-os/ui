@@ -1,11 +1,6 @@
+import { BaseMenu, StyledSelectContainer } from './styled'
 import { ComponentProps, FC, RefObject } from 'react'
 import { Enhancer, KINDS, SIZES } from '../../types'
-import {
-  StyledInputMenuContainer,
-  StyledMenu,
-  StyledMenuContainer,
-  StyledSelectContainer,
-} from './styled'
 
 export enum VARIANT {
   outline = 'outline',
@@ -17,20 +12,16 @@ type SelectProps = ComponentProps<typeof StyledSelectContainer> & {
   searchable?: boolean
   label?: string
   options: Record<string, any>[]
-  keyValue?: string
-  keyLabel?: string
   value?: Record<string, any>
+  initialValue?: Record<string, any>
   onInputChange?: (inputText: string) => void
   kind?: KINDS
   size?: SIZES
-  getOptionLabel?: (option: Record<string, any>) => Enhancer
   onSelect?: (option: Record<string, any>) => void
   isLoading?: boolean
   placeholder?: string
   emptyText?: string
-  optionsContainerProps?: ComponentProps<typeof StyledMenuContainer>
-  inputMenuProps?: ComponentProps<typeof StyledInputMenuContainer>
-  menuProps?: ComponentProps<typeof StyledMenu>
+  menuContainerProps?: ComponentProps<typeof BaseMenu>
   inputRef?: RefObject<HTMLInputElement>
 }
 export type SelectComponent = FC<SelectProps>

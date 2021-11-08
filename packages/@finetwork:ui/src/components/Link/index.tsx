@@ -17,6 +17,7 @@ export const Link: LinkComponent = React.forwardRef(
       startEnhancer,
       endEnhancer,
       onClick,
+      animation = true,
       ...props
     },
     ref
@@ -29,6 +30,7 @@ export const Link: LinkComponent = React.forwardRef(
         size={size}
         data-fi="link"
         disabled={disabled}
+        animation={animation}
         textTransform={textTransform}
         startEnhancer={!!startEnhancer}
         endEnhancer={!!endEnhancer}

@@ -14,10 +14,10 @@ Built on top of Radix-UI primitive components as base components in order to hav
 
 ```sh
 // with npm
-npm install @finetwork/ui react react-dom reakit
+npm install @finetwork/ui react
 
 // with yarn
-yarn add @finetwork/ui react react-dom reakit
+yarn add @finetwork/ui react
 ```
 
 ## Documentation

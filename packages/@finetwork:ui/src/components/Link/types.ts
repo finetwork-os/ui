@@ -15,5 +15,6 @@ type LinkProps = Omit<
   size?: SIZES
   textTransform?: string
   as?: string
+  animation?: boolean
 }
 export type LinkComponent = FC<LinkProps>

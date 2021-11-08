@@ -64,6 +64,7 @@ export const Input: InputComponent = React.forwardRef(
       success = false,
       id,
       labelProps = {},
+      enhancerProps = {},
       ...props
     },
     ref
@@ -98,7 +99,7 @@ export const Input: InputComponent = React.forwardRef(
           success={success}
         >
           {startEnhancer && (
-            <StyledEnhancer>
+            <StyledEnhancer {...enhancerProps}>
               <RenderEnhancer Enhancer={startEnhancer} />
             </StyledEnhancer>
           )}
@@ -123,12 +124,12 @@ export const Input: InputComponent = React.forwardRef(
             />
           )}
           {success && !error && (
-            <StyledEnhancer success={success}>
+            <StyledEnhancer success={success} {...enhancerProps}>
               <RenderEnhancer Enhancer={<StyledSuccessIcon />} />
             </StyledEnhancer>
           )}
           {endEnhancer && (
-            <StyledEnhancer>
+            <StyledEnhancer {...enhancerProps}>
               <RenderEnhancer Enhancer={endEnhancer} />
             </StyledEnhancer>
           )}

@@ -3,6 +3,7 @@ import { Enhancer, KINDS, SIZES } from '../../types'
 import {
   StyledContainer,
   StyledContainerInput,
+  StyledEnhancer,
   StyledInput,
   StyledLabel,
 } from './styled'
@@ -23,6 +24,7 @@ type InputProps = Omit<
   info?: ReactNode | string
   success?: boolean
   labelProps?: ComponentProps<typeof StyledLabel>
+  enhancerProps?: ComponentProps<typeof StyledEnhancer>
 }
 
 type InputPasswordProps = Omit<

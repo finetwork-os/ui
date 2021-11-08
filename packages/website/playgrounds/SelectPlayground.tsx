@@ -71,9 +71,6 @@ export const SelectPlayground = () => {
           // onInputChange={debounce(handleChange, 1000)}
           kind="secondary"
           isLoading={isLoading}
-          getOptionLabel={(option: any) => (
-            <H6 css={{ color: '#000' }}>{option.label}</H6>
-          )}
           placeholder="Names"
           searchable={false}
         />
@@ -88,7 +85,6 @@ export const SelectPlayground = () => {
           onInputChange={debounce(handleChange, 1000)}
           kind="secondary"
           isLoading={isLoading}
-          getOptionLabel={(option: any) => <H6>{option.label}</H6>}
           placeholder="Type to search... (Menganito, Miguelito, Agapito, Pepito, Manolito)"
         />
       </div>

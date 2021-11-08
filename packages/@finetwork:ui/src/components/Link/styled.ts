@@ -29,6 +29,7 @@ export const StyledLink: StyledComponent<
     size?: SIZES
     disabled?: BooleanString
     font?: FONTS
+    animation?: BooleanString
   },
   any,
   any
@@ -42,6 +43,10 @@ export const StyledLink: StyledComponent<
   borderRadius: '2px',
   padding: '2px',
   variants: {
+    animation: {
+      true: {},
+      false: {},
+    },
     font: {
       primary: {
         fontFamily: '$primary',
@@ -55,11 +60,6 @@ export const StyledLink: StyledComponent<
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'row',
-        '&:hover': {
-          '& > *:last-child': {
-            left: '.5rem',
-          },
-        },
       },
       false: {},
     },
@@ -68,11 +68,6 @@ export const StyledLink: StyledComponent<
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'row',
-        '&:hover': {
-          '& > *:first-child': {
-            right: '.5rem',
-          },
-        },
       },
       false: {},
     },
@@ -164,9 +159,32 @@ export const StyledLink: StyledComponent<
     {
       endEnhancer: false,
       startEnhancer: false,
+      animation: true,
       css: {
         '&:hover': {
           transform: 'translateY(3px)',
+        },
+      },
+    },
+    {
+      endEnhancer: true,
+      animation: true,
+      css: {
+        '&:hover': {
+          '& > *:last-child': {
+            left: '.5rem',
+          },
+        },
+      },
+    },
+    {
+      startEnhancer: true,
+      animation: true,
+      css: {
+        '&:hover': {
+          '& > *:first-child': {
+            right: '.5rem',
+          },
         },
       },
     },
@@ -174,5 +192,6 @@ export const StyledLink: StyledComponent<
   defaultVariants: {
     kind: 'primary',
     size: 'medium',
+    animation: true,
   },
 })

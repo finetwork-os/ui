@@ -18,18 +18,16 @@ export const styles = {
 </div>
 
 <Paragraph4>
-  Select component is using dropdown Menu from{' '}
-  <Link href="https://reakit.io/docs/menu/" target="_bank">
-    Reakit
+  Select component is using{' '}
+  <Link href="https://www.downshift-js.com/" target="_bank">
+    Downshift-js
   </Link>{' '}
-  library. There are possibly bugs using searchable option.
+  library
 </Paragraph4>
 
 <div>
   <H3 font="secondary">Playground</H3>
 </div>
-
-<SelectPlayground />
 
 ```tsx
 export const SelectPlayground = () => {
@@ -71,7 +69,6 @@ export const SelectPlayground = () => {
           // onInputChange={debounce(handleChange, 1000)}
           kind="secondary"
           isLoading={isLoading}
-          getOptionLabel={(option: any) => <H6>{option.label}</H6>}
           placeholder="Names"
           searchable={false}
         />
@@ -87,7 +84,6 @@ export const SelectPlayground = () => {
           onInputChange={debounce(handleChange, 1000)}
           kind="secondary"
           isLoading={isLoading}
-          getOptionLabel={(option: any) => <H6>{option.label}</H6>}
           placeholder="Type to search... (Menganito, Miguelito, Agapito, Pepito, Manolito)"
         />
       </div>
@@ -105,12 +101,26 @@ export const SelectPlayground = () => {
 <Playground>
   <div style={styles}>
     <Select
+      label="Value"
+      onSelect={(option) => console.log(option)}
       options={[
         { id: '1', label: 'pepito' },
         { id: '2', label: 'manolito' },
       ]}
       value={{
         id: '2',
+        label: 'manolito',
+      }}
+    />
+    <Select
+      label="Initial value"
+      onSelect={(option) => console.log(option)}
+      options={[
+        { id: '3', label: 'pepito' },
+        { id: '4', label: 'manolito' },
+      ]}
+      initialValue={{
+        id: '4',
         label: 'manolito',
       }}
     />
