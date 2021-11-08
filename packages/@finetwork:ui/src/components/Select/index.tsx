@@ -36,6 +36,7 @@ const renderItems = ({
   isOpen,
   searchable,
   emptyText,
+  itemProps: nativeItemProps,
 }) => {
   const items = React.useMemo(
     () => getItems(options, searchable ? inputValue : undefined),
@@ -46,6 +47,7 @@ const renderItems = ({
     return <Item css={{ color: '#aaa', cursor: 'default' }}>{emptyText}</Item>
   return items.map((item, index) => {
     const itemProps = getItemProps({
+      ...nativeItemProps,
       item,
       index,
       key: index,
@@ -76,6 +78,8 @@ export const Select: SelectComponent = React.forwardRef(
       inputRef = null,
       initialValue,
       id,
+      inputProps: nativeInputProps = {},
+      itemProps = {},
       ...props
     },
     ref
@@ -133,6 +137,7 @@ export const Select: SelectComponent = React.forwardRef(
 
     const inputProps = {
       ...getInputProps({
+        ...nativeInputProps,
         placeholder,
         ref: inputRef,
         label,
@@ -170,6 +175,7 @@ export const Select: SelectComponent = React.forwardRef(
             isOpen,
             searchable,
             emptyText,
+            itemProps,
           })}
         </BaseMenu>
       </StyledSelectContainer>
