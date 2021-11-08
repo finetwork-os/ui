@@ -1,0 +1,17 @@
+const esbuild = require('esbuild')
+
+const { nodeExternalsPlugin } = require('esbuild-node-externals')
+const pkg = require('./package.json')
+
+esbuild
+  .build({
+    entryPoints: ['./src/index.ts'],
+    outfile: 'dist/index.js',
+    bundle: true,
+    minify: true,
+    platform: 'node',
+    sourcemap: true,
+    target: 'node14',
+    plugins: [nodeExternalsPlugin()],
+  })
+  .catch(() => process.exit(1))
