@@ -1,11 +1,10 @@
 import * as React from 'react'
 
-import { KIND } from '../../types'
 import { StyledTag } from './styled'
 import { TagComponent } from './types'
 
 export const Tag: TagComponent = ({
-  kind = KIND.primary,
+  kind,
   children,
   textTransform = 'uppercase',
   css,

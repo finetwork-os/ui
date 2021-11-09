@@ -1,7 +1,6 @@
-import { BooleanString, KIND } from '../../types'
 import { ChevronDownIcon, Cross1Icon } from '@radix-ui/react-icons'
 
-import { StyledComponent } from '@stitches/react/types/styled-component'
+import { KIND } from '../../types'
 import { styled } from '../../stitches.config'
 
 const isActiveStyles = (kind) => {
@@ -85,6 +84,9 @@ export const BaseMenu = styled('ul', {
       },
     },
   },
+  defaultVariants: {
+    open: false,
+  },
 })
 
 export const Item = styled('li', {
@@ -126,6 +128,11 @@ export const Item = styled('li', {
         fontWeight: '700',
       },
     },
+  },
+  defaultVariants: {
+    kind: 'primary',
+    isActive: false,
+    isSelected: false,
   },
   compoundVariants: [
     {

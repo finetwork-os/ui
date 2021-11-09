@@ -3,7 +3,7 @@ import { styled } from '../../stitches.config'
 
 export const getComputedStyles = ({
   size,
-  kind,
+  kind = 'primary',
   disabled,
 }: {
   size: number

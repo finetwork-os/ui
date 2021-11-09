@@ -4,20 +4,19 @@ import { StyledEndEnhancer, StyledLink, StyledStartEnhancer } from './styled'
 
 import { LinkComponent } from './types'
 import { RenderEnhancer } from '../../utils'
-import { SIZE } from '../../types'
 
 export const Link: LinkComponent = React.forwardRef(
   (
     {
       children,
-      kind = 'linkText',
-      disabled = false,
-      size = SIZE.medium,
+      kind,
+      disabled,
+      size,
       textTransform,
       startEnhancer,
       endEnhancer,
       onClick,
-      animation = true,
+      animation,
       ...props
     },
     ref

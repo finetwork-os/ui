@@ -104,6 +104,7 @@ export const StyledRadioIndicator: StyledComponent<
   },
   defaultVariants: {
     kind: 'primary',
+    disabled: false,
   },
 })
 

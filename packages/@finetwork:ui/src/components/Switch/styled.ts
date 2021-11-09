@@ -62,6 +62,10 @@ export const StyledSwitch: StyledComponent<
       },
     },
   },
+  defaultVariants: {
+    size: 'medium',
+    kind: 'primary',
+  },
 })
 
 export const StyledThumb = styled(Thumb, {
@@ -97,5 +101,8 @@ export const StyledThumb = styled(Thumb, {
         },
       },
     },
+  },
+  defaultVariants: {
+    size: 'medium',
   },
 })

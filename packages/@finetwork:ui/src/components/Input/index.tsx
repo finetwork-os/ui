@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
 import { InputComponent, InputPasswordComponent } from './types'
-import { KIND, SIZE } from '../../types'
 import {
   StyledContainer,
   StyledContainerInput,
@@ -50,8 +49,8 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
 export const Input: InputComponent = React.forwardRef(
   (
     {
-      size = SIZE.medium,
-      kind = KIND.primary,
+      size,
+      kind,
       label,
       startEnhancer,
       endEnhancer,
@@ -61,7 +60,7 @@ export const Input: InputComponent = React.forwardRef(
       error,
       info,
       type = 'text',
-      success = false,
+      success,
       id,
       labelProps = {},
       enhancerProps = {},

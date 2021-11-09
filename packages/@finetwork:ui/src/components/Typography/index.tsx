@@ -22,12 +22,12 @@ const Typography: TypographyComponent = React.forwardRef(
     {
       Component,
       children,
-      isHighLight = false,
-      highLightAlign = 'bottom',
-      align = 'left',
-      kind = 'primary',
-      highLightSize = 'medium',
-      highLightKind = 'primary',
+      isHighLight,
+      highLightAlign,
+      align,
+      kind,
+      highLightSize,
+      highLightKind,
       ...props
     },
     ref

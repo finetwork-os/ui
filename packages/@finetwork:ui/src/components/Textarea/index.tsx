@@ -1,13 +1,9 @@
 import * as React from 'react'
 
-import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
-import { KIND, SIZE } from '../../types'
 import {
   StyledContainer,
   StyledContainerInput,
-  StyledContainerInputPassword,
   StyledEnhancer,
-  StyledEyeButton,
   StyledLabel,
   StyledMessage,
   StyledSuccessIcon,
@@ -20,8 +16,8 @@ import { TextareaComponent } from './types'
 export const Textarea: TextareaComponent = React.forwardRef(
   (
     {
-      size = SIZE.medium,
-      kind = KIND.primary,
+      size,
+      kind,
       label,
       rows = 4,
       inputContainerProps = {},
@@ -29,7 +25,7 @@ export const Textarea: TextareaComponent = React.forwardRef(
       css,
       error,
       info,
-      success = false,
+      success,
       id,
       labelProps = {},
       ...props

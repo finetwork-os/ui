@@ -29,7 +29,7 @@ export const DropdownMenu: DropdownMenuComponent = ({ children, ...props }) => (
 )
 export const DropdownMenuContent: DropdownMenuContentComponent = ({
   children,
-  withArrow = false,
+  withArrow,
   side = 'top',
   ...props
 }) => (

@@ -7,11 +7,9 @@ import {
   StyledCrossIcon,
   StyledSelectContainer,
 } from './styled'
-import { KIND, SIZE } from '../../types'
 
 import { Input } from '../Input'
 import { Loading } from '../Loading'
-import { Paragraph3 } from '../Typography'
 import { SelectComponent } from './types'
 import { matchSorter } from 'match-sorter'
 import { useCombobox } from 'downshift'
@@ -63,14 +61,14 @@ export const Select: SelectComponent = React.forwardRef(
   (
     {
       emptyText = 'No records found',
-      disabled = false,
+      disabled,
       searchable = true,
       options = [],
-      size = SIZE.medium,
+      size,
       label,
       value,
       onInputChange,
-      kind = KIND.primary,
+      kind,
       onSelect,
       isLoading,
       placeholder,

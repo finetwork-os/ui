@@ -290,5 +290,6 @@ export const StyledTextarea: StyledComponent<
   defaultVariants: {
     font: 'primary',
     size: 'medium',
+    isDisabled: false,
   },
 })

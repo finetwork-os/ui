@@ -8,15 +8,11 @@ import {
   StyledRadioIndicator,
 } from './styled'
 
-import { KIND } from '../../types'
 import { RadioComponent } from './types'
 
 export const RadioGroup = StyledRadioGroup
 export const Radio: RadioComponent = React.forwardRef(
-  (
-    { kind = KIND.primary, label, disabled, indicatorProps = {}, ...props },
-    ref
-  ) => {
+  ({ kind, label, disabled, indicatorProps = {}, ...props }, ref) => {
     const Radio = () => (
       <StyledRadio
         {...props}

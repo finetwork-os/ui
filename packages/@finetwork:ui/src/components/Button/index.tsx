@@ -1,31 +1,31 @@
 import * as React from 'react'
 
-import { ButtonComponent, ButtonProps, SHAPE } from './types'
+import { ButtonComponent, ButtonProps } from './types'
 import {
   ChildrenLoading,
   StyledButton,
   StyledEndEnhancer,
   StyledStartEnhancer,
 } from './styled'
-import { KIND, SIZE } from '../../types'
 
 import { Loading } from '../Loading'
 import { RenderEnhancer } from '../../utils'
+import { SIZE } from '../../types'
 
 export const Button: ButtonComponent = React.forwardRef(
   (
     {
       children,
-      size = SIZE.medium,
-      shape = SHAPE.default,
-      kind = KIND.primary,
-      isSelected = false,
-      isLoading = false,
+      size,
+      shape,
+      kind,
+      isSelected,
+      isLoading,
       loadingProps = {},
-      disabled = false,
+      disabled,
       startEnhancer,
       endEnhancer,
-      outline = false,
+      outline,
       ...props
     },
     ref

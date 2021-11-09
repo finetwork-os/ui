@@ -193,5 +193,8 @@ export const StyledLink: StyledComponent<
     kind: 'primary',
     size: 'medium',
     animation: true,
+    startEnhancer: false,
+    endEnhancer: false,
+    textTransform: 'none',
   },
 })
