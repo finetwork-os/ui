@@ -1,8 +1,18 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "rootDir": "./",
+    "composite": true,
     "isolatedModules": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "references": [
+    {
+      "path": "../@finetwork:ui/tsconfig.json"
+    },
+    {
+      "path": "../@finetwork:ui-sections/tsconfig.json"
+    }
+  ]
 }
