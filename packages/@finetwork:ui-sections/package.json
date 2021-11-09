@@ -28,6 +28,6 @@
   },
   "peerDependencies": {
     "react": ">=17.0.0",
-    "@finetwork/ui": "0.4.1"
+    "@finetwork/ui": "0.4.2"
   }
 }
