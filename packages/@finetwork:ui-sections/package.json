@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "sh ../../scripts/build.sh",
+    "prebuild": "cd .. && cd .. && yarn build-ui-library",
     "build-types": "./node_modules/.bin/tsc",
     "build-lib": "node ../../scripts/esbuild.config.js",
     "publish-library": "sh ../../scripts/deploy.sh"
