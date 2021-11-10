@@ -6,6 +6,11 @@
     "composite": true,
     "outDir": "dist"
   },
+  "references": [
+    {
+      "path": "../@finetwork:ui/tsconfig.json"
+    }
+  ],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
 }

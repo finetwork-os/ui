@@ -21,8 +21,7 @@ import {
   Title,
 } from '../../styled-components/price-card'
 
-import { KINDS } from '@finetwork/ui/src/types'
-import { Paragraph6 } from '@finetwork/ui'
+import { KINDS, Paragraph6 } from '@finetwork/ui'
 import { TagProps } from '@finetwork/ui/src/components/Tag/types'
 
 type PriceCardProps = {

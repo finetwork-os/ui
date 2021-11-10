@@ -1,15 +1,15 @@
 {
   "name": "@finetwork/ui-sections",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "source": "src/index.ts",
-  "typings": "dist/index.d.ts",
-  "main": "dist/index.js",
+  "typings": "src/index.ts",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "sh ./scripts/build.sh",
+    "build": "sh ../../scripts/build.sh",
     "build-types": "./node_modules/.bin/tsc",
-    "build-lib": "node ./scripts/esbuild.config.js",
-    "publish-library": "sh ./scripts/deploy.sh"
+    "build-lib": "node ../../scripts/esbuild.config.js",
+    "publish-library": "sh ../../scripts/deploy.sh"
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.7",
@@ -30,6 +30,6 @@
   },
   "peerDependencies": {
     "react": ">=17.0.0",
-    "@finetwork/ui": "0.4.2"
+    "@finetwork/ui": "0.4.3"
   }
 }
