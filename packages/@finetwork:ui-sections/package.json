@@ -1,13 +1,13 @@
 {
   "name": "@finetwork/ui-sections",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "source": "src/index.ts",
   "typings": "src/index.ts",
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "sh ../../scripts/build.sh",
-    "prebuild": "cd .. && cd .. && yarn build-ui-library",
+    "build": "yarn build-ui && sh ../../scripts/build.sh",
+    "build-ui": "cd .. && cd .. && yarn build-ui-library",
     "build-types": "./node_modules/.bin/tsc",
     "build-lib": "node ../../scripts/esbuild.config.js",
     "publish-library": "sh ../../scripts/deploy.sh"
