@@ -1,6 +1,6 @@
 {
   "name": "@finetwork/ui-sections",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "source": "src/index.ts",
   "typings": "dist/index.d.ts",
   "main": "dist/index.js",
