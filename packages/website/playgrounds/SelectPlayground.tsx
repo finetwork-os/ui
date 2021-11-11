@@ -34,7 +34,10 @@ function debounce(fn: any, delay: number) {
 }
 
 export const SelectPlayground = () => {
-  const [value, setValue] = useState<any>()
+  const [value, setValue] = useState<any>({
+    id: 1,
+    label: 'pepito',
+  })
   const [options, setOptions] = useState<any>([])
   const [isLoading, setIsLoading] = useState(false)
   const handleChange = async (inputValue: string) => {
@@ -60,6 +63,7 @@ export const SelectPlayground = () => {
         option.label.toLowerCase().includes(inputValue.trim().toLowerCase())
     )
   }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       Value: {JSON.stringify(value)}

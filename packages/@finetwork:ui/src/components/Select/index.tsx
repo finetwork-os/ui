@@ -42,7 +42,17 @@ const renderItems = ({
   )
   if (!isOpen) return null
   if (items.length === 0)
-    return <Item css={{ color: '#aaa', cursor: 'default' }}>{emptyText}</Item>
+    return (
+      <Item
+        css={{
+          color: '#aaa',
+          cursor: 'default',
+          ...(nativeItemProps?.css ?? {}),
+        }}
+      >
+        {emptyText}
+      </Item>
+    )
   return items.map((item, index) => {
     const itemProps = getItemProps({
       ...nativeItemProps,
@@ -73,7 +83,7 @@ export const Select: SelectComponent = React.forwardRef(
       isLoading,
       placeholder,
       menuContainerProps = {},
-      inputRef = null,
+      inputRef = React.useRef(),
       initialValue,
       id,
       inputProps: nativeInputProps = {},
@@ -101,18 +111,16 @@ export const Select: SelectComponent = React.forwardRef(
       selectedItem: value,
     })
 
-    const clear = React.useCallback(
-      (selectedItem) => {
-        reset()
-        onSelect(selectedItem)
-      },
-      [selectedItem, reset, onSelect]
-    )
-    const onInputClick = React.useCallback(() => {
+    const clear = React.useCallback(() => {
+      reset()
+      onSelect(null)
+    }, [selectedItem, reset, onSelect])
+    const onEnhancerClick = React.useCallback(() => {
       if (selectedItem) {
-        return clear(selectedItem)
+        return clear()
       }
-      return toggleMenu()
+      inputRef?.current?.focus()
+      return openMenu()
     }, [selectedItem, clear])
     const onInputChangeHandler = React.useCallback(
       (e) => {
@@ -144,7 +152,7 @@ export const Select: SelectComponent = React.forwardRef(
         disabled,
         readOnly: !searchable,
         enhancerProps: {
-          onClick: onInputClick,
+          onClick: onEnhancerClick,
           css: {
             cursor: 'pointer',
           },
