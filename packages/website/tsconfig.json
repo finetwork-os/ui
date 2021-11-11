@@ -15,12 +15,6 @@
       "path": "../@finetwork:ui-sections/tsconfig.json"
     }
   ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "../@finetwork:ui/src/**/*.tsx",
-    "../@finetwork:ui/src/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
