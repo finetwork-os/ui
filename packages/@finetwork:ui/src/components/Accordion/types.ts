@@ -8,7 +8,6 @@ import { KINDS } from '../../types'
 export type AccordionComponent = FC<
   ComponentProps<typeof StyledAccordion> & {
     kind?: KINDS
-    with
   }
 >
 export type AccordionContentComponent = FC<ComponentProps<typeof StyledContent>>
