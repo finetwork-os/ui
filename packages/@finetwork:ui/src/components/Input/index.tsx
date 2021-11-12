@@ -56,7 +56,6 @@ export const Input: InputComponent = React.forwardRef(
       endEnhancer,
       inputContainerProps = {},
       containerProps = {},
-      css,
       error,
       info,
       type = 'text',

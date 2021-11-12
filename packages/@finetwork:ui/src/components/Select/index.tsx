@@ -73,6 +73,7 @@ export const Select: SelectComponent = React.forwardRef(
       emptyText = 'No records found',
       disabled,
       searchable = true,
+      clearable = true,
       options = [],
       size,
       label,
@@ -116,12 +117,12 @@ export const Select: SelectComponent = React.forwardRef(
       onSelect(null)
     }, [selectedItem, reset, onSelect])
     const onEnhancerClick = React.useCallback(() => {
-      if (selectedItem) {
+      if (selectedItem && clearable) {
         return clear()
       }
       inputRef?.current?.focus()
       return openMenu()
-    }, [selectedItem, clear])
+    }, [selectedItem, clear, clearable])
     const onInputChangeHandler = React.useCallback(
       (e) => {
         if (onInputChange) {
@@ -132,14 +133,14 @@ export const Select: SelectComponent = React.forwardRef(
     )
 
     const Enhancer = React.useMemo(() => {
-      if (selectedItem) {
+      if (selectedItem && clearable) {
         return <StyledCrossIcon kind={kind} />
       }
       if (isLoading) {
         return <Loading size={15} />
       }
       return <StyledChevron rotate={isOpen ? 'open' : 'close'} kind={kind} />
-    }, [selectedItem, isOpen, kind, isLoading])
+    }, [selectedItem, isOpen, kind, isLoading, clearable])
 
     const inputProps = {
       ...getInputProps({
@@ -157,11 +158,16 @@ export const Select: SelectComponent = React.forwardRef(
             cursor: 'pointer',
           },
         },
+        css: {
+          ...(nativeInputProps?.css ?? {}),
+          ...(searchable ? {} : { cursor: 'pointer' }),
+        },
         kind,
         endEnhancer: Enhancer,
         onChange: onInputChangeHandler,
       } as any),
     }
+    console.log(inputProps)
     const menuProps = getMenuProps({
       open: isOpen && options.length > 0,
       ...menuContainerProps,

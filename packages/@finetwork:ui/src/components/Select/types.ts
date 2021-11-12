@@ -27,5 +27,6 @@ type SelectProps = ComponentProps<typeof StyledSelectContainer> & {
   menuContainerProps?: ComponentProps<typeof BaseMenu>
   itemProps?: ComponentProps<typeof Item>
   inputProps?: ComponentProps<typeof Input>
+  clearable?: boolean
 }
 export type SelectComponent = FC<SelectProps>
