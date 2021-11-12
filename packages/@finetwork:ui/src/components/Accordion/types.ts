@@ -8,11 +8,12 @@ import { KINDS } from '../../types'
 export type AccordionComponent = FC<
   ComponentProps<typeof StyledAccordion> & {
     kind?: KINDS
+    with
   }
 >
 export type AccordionContentComponent = FC<ComponentProps<typeof StyledContent>>
 
-type AccordionTriggerCSSProp = { css?: CSS }
+type AccordionTriggerCSSProp = { css?: CSS; withIcon?: boolean }
 export type AccordionTriggerComponent = ForwardRefComponent<
   typeof StyledTrigger,
   AccordionTriggerCSSProp

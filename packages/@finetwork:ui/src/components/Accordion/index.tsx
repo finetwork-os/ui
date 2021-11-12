@@ -21,11 +21,11 @@ export const Accordion: AccordionComponent = ({ children, type, ...props }) => (
   </StyledAccordion>
 )
 export const AccordionTrigger: AccordionTriggerComponent = React.forwardRef(
-  ({ children, ...props }, forwardedRef) => (
+  ({ children, withIcon = true, ...props }, forwardedRef) => (
     <StyledHeader>
       <StyledTrigger {...props} ref={forwardedRef}>
         {children}
-        <StyledChevron aria-hidden />
+        {withIcon && <StyledChevron aria-hidden />}
       </StyledTrigger>
     </StyledHeader>
   )
