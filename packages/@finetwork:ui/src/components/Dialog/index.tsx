@@ -28,7 +28,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   dialogRef,
   ...props
 }) => (
-  <StyledContent size={size} ref={dialogRef} fi-data="dialog" {...props}>
+  <StyledContent size={size} ref={dialogRef} data-fi="dialog" {...props}>
     {children}
     <DialogPrimitive.Close asChild>
       <CloseButton>
