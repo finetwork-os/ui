@@ -167,7 +167,6 @@ export const Select: SelectComponent = React.forwardRef(
         onChange: onInputChangeHandler,
       } as any),
     }
-    console.log(inputProps)
     const menuProps = getMenuProps({
       open: isOpen && options.length > 0,
       ...menuContainerProps,
