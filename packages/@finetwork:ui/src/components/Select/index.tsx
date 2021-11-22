@@ -87,6 +87,7 @@ export const Select: SelectComponent = React.forwardRef(
       inputRef = React.useRef(),
       initialValue,
       id,
+      onClear,
       inputProps: nativeInputProps = {},
       itemProps = {},
       ...props
@@ -115,6 +116,7 @@ export const Select: SelectComponent = React.forwardRef(
     const clear = React.useCallback(() => {
       reset()
       onSelect(null)
+      if (onClear) onClear()
     }, [selectedItem, reset, onSelect])
     const onEnhancerClick = React.useCallback(() => {
       if (selectedItem && clearable) {
@@ -147,6 +149,7 @@ export const Select: SelectComponent = React.forwardRef(
         ...nativeInputProps,
         placeholder,
         ref: inputRef,
+        id: label,
         label,
         size,
         onClick: openMenu,

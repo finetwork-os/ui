@@ -28,5 +28,6 @@ type SelectProps = ComponentProps<typeof StyledSelectContainer> & {
   itemProps?: ComponentProps<typeof Item>
   inputProps?: ComponentProps<typeof Input>
   clearable?: boolean
+  onClear?: () => void
 }
 export type SelectComponent = FC<SelectProps>
