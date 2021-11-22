@@ -73,6 +73,7 @@ export const Select: SelectComponent = React.forwardRef(
       emptyText = 'No records found',
       disabled,
       searchable = true,
+      writable = true,
       clearable = true,
       options = [],
       size,
@@ -154,7 +155,7 @@ export const Select: SelectComponent = React.forwardRef(
         size,
         onClick: openMenu,
         disabled,
-        readOnly: !searchable,
+        readOnly: !searchable && !writable,
         enhancerProps: {
           onClick: onEnhancerClick,
           css: {
@@ -163,7 +164,7 @@ export const Select: SelectComponent = React.forwardRef(
         },
         css: {
           ...(nativeInputProps?.css ?? {}),
-          ...(searchable ? {} : { cursor: 'pointer' }),
+          ...(searchable || writable ? {} : { cursor: 'pointer' }),
         },
         kind,
         endEnhancer: Enhancer,

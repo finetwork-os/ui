@@ -29,5 +29,6 @@ type SelectProps = ComponentProps<typeof StyledSelectContainer> & {
   inputProps?: ComponentProps<typeof Input>
   clearable?: boolean
   onClear?: () => void
+  writable?: boolean
 }
 export type SelectComponent = FC<SelectProps>
