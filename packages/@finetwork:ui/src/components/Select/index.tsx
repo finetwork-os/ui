@@ -177,7 +177,10 @@ export const Select: SelectComponent = React.forwardRef(
     } as any)
 
     return (
-      <StyledSelectContainer {...getComboboxProps({ ref, ...props })}>
+      <StyledSelectContainer
+        {...getComboboxProps({ ref, ...props })}
+        data-fi="select"
+      >
         <Input {...inputProps} />
         <BaseMenu {...menuProps}>
           {renderItems({
