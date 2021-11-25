@@ -17,7 +17,7 @@ import { styled } from '../../stitches.config'
 export const PriceContainer = styled('div', {
   position: 'relative',
   display: 'flex',
-  alignItems: 'flex-end',
+  alignItems: 'center',
   justifyContent: 'center',
   gridAutoFlow: 'column',
   marginBottom: '3rem',
