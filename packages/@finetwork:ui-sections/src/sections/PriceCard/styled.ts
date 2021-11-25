@@ -86,22 +86,6 @@ export const StyledCard = styled(Card, {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  '&:hover': {
-    '[data-fi="button"]': {
-      backgroundColor: '#fff',
-      color: '#000',
-      borderColor: '#fff',
-    },
-    '[data-fi="typography-highlight"]': {
-      backgroundColor: '#fff',
-    },
-    '& h2, h4, p, a, svg': {
-      color: '#fff',
-    },
-    [`${PriceContainer.toString()}::before`]: {
-      background: '#fff',
-    },
-  },
   '@tablet': {
     display: 'grid',
     gridAutoFlow: 'column',
@@ -110,6 +94,33 @@ export const StyledCard = styled(Card, {
   '@desktop-xl': {
     display: 'flex',
     justifyContent: 'start',
+  },
+  variants: {
+    hoverAnimationPriceCard: {
+      true: {
+        '@desktop-xl': {
+          '&:hover': {
+            '[data-fi="button"]': {
+              backgroundColor: '#fff',
+              color: '#000',
+              borderColor: '#fff',
+            },
+            '[data-fi="typography-highlight"]': {
+              backgroundColor: '#fff',
+            },
+            '& h2, h4, p, a, svg': {
+              color: '#fff',
+            },
+            [`${PriceContainer.toString()}::before`]: {
+              background: '#fff',
+            },
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    hoverAnimationPriceCard: false,
   },
 })
 
