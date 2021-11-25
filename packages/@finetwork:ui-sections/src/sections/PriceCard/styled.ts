@@ -35,7 +35,7 @@ export const PriceContainer = styled('div', {
   '@tablet': {
     display: 'none',
   },
-  '@desktop-xl': {
+  '@desktop-2xl': {
     display: 'flex',
   },
   variants: {
@@ -125,12 +125,10 @@ export const StyledCard = styled(Card, {
 })
 
 const headerStyles = {
-  paddingTop: '2rem',
   paddingRight: '2rem',
   paddingLeft: '2rem',
   paddingBottom: '1rem',
   justifyContent: 'center',
-  marginTop: '1.5rem',
 }
 
 export const StyledCardHeader = styled('div', {
@@ -146,6 +144,16 @@ export const StyledCardHeader = styled('div', {
   },
   '@desktop-xl': {
     ...headerStyles,
+  },
+  variants: {
+    hasTag: {
+      true: {
+        marginTop: '2rem',
+      },
+      false: {
+        marginTop: '1rem',
+      },
+    },
   },
 })
 
@@ -186,6 +194,9 @@ export const PriceTabletContainer = styled(PriceContainer, {
   marginBottom: '1rem',
   '@tablet': {
     display: 'flex',
+    '&::before': {
+      display: 'none',
+    },
   },
   '@desktop-xl': {
     display: 'none',

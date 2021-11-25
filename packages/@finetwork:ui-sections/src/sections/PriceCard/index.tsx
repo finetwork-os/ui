@@ -76,7 +76,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         </StyledTag>
       )}
       <StyledCardBody>
-        <StyledCardHeader>
+        <StyledCardHeader hasTag={!!tagOptions}>
           <Title>{title}</Title>
         </StyledCardHeader>
         <PriceContainer>
