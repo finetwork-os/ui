@@ -991,15 +991,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@finetwork/ui-sections@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@finetwork/ui-sections/-/ui-sections-0.1.0.tgz#ed6e23d6c702e54606f0f2846426842a4afd114b"
-  integrity sha512-QL37g0LEvamLup20DJdeop2Qjlv8z1VKTjTCzJOzvSEsK4F4gqKpg+xse7Z0ddjsEhsCExgx0a4KAxwnuyYehQ==
-  dependencies:
-    "@radix-ui/colors" "^0.1.7"
-    "@radix-ui/react-icons" "^1.0.3"
-    "@stitches/react" "^1.0.0"
-
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"
@@ -2575,9 +2566,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^17.0.3":
-  version "17.0.19"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.19.tgz#8f2a85e8180a43b57966b237d26a29481dacc991"
-  integrity sha512-sX1HisdB1/ZESixMTGnMxH9TDe8Sk709734fEQZzCV/4lSu9kJCPbo2PbTRoZM+53Pp0P10hYVyReUueGwUi4A==
+  version "17.0.37"
+  resolved "https://registry.npmjs.org/@types/react/-/react-17.0.37.tgz#6884d0aa402605935c397ae689deed115caad959"
+  integrity sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
