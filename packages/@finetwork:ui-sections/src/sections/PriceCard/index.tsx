@@ -21,9 +21,8 @@ import {
   Title,
 } from './styled'
 
-import { KINDS, Paragraph6 } from '@finetwork/ui'
+import { KINDS, Paragraph6, KIND } from '@finetwork/ui'
 import { TagProps } from '@finetwork/ui/src/components/Tag/types'
-import { KIND } from '@finetwork/ui/src/types'
 
 type PriceCardProps = React.ComponentProps<typeof StyledCard> & {
   tagOptions?: {
