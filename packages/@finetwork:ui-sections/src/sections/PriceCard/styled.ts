@@ -35,7 +35,7 @@ export const PriceContainer = styled('div', {
   '@tablet': {
     display: 'none',
   },
-  '@desktop-2xl': {
+  '@desktop-xl': {
     display: 'flex',
   },
   variants: {
