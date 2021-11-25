@@ -19,12 +19,13 @@ import {
   StyledTag,
   TagText,
   Title,
-} from '../../styled-components/price-card'
+} from './styled'
 
 import { KINDS, Paragraph6 } from '@finetwork/ui'
 import { TagProps } from '@finetwork/ui/src/components/Tag/types'
+import { KIND } from '@finetwork/ui/src/types'
 
-type PriceCardProps = {
+type PriceCardProps = React.ComponentProps<typeof StyledCard> & {
   tagOptions?: {
     text?: string
     props?: TagProps
@@ -51,7 +52,7 @@ type PriceCardProps = {
 
 export const PriceCard: React.FC<PriceCardProps> = ({
   tagOptions,
-  kind = 'primary',
+  kind = KIND.primary,
   title,
   price,
   priceDescription,
@@ -59,9 +60,11 @@ export const PriceCard: React.FC<PriceCardProps> = ({
   bullets,
   footerLink,
   actionButton,
+  hoverAnimation,
+  ...props
 }) => {
   return (
-    <StyledCard hoverAnimation kind={kind}>
+    <StyledCard hoverAnimation={hoverAnimation} kind={kind} {...props}>
       {tagOptions && (
         <StyledTag {...tagOptions.props}>
           <TagText css={{ color: 'inherit', textAlign: 'inherit' }}>
