@@ -1,0 +1,39 @@
+---
+name: PriceCardHorizontal
+---
+
+import { Playground } from 'dokz'
+import { PriceCardHorizontal } from '@finetwork/ui-sections'
+import { Link } from '@finetwork/ui'
+
+<Playground>
+  <div style={{ backgroundColor: '#eff2fc', padding: '2rem' }}>
+    <div
+      style={{
+        margin: '2rem',
+      }}
+    >
+      {Array(2)
+        .fill('')
+        .map((el, index) => (
+          <PriceCardHorizontal
+            key={index}
+            title="Fibra 600"
+            price="24.90€"
+            priceDescription={['/mes', 'IVA incluido']}
+            bullets={[
+              {
+                text: 'Acumula y comparte tus GB',
+              },
+              {
+                text: 'Legálitas Protección Médica y Legal incluidos',
+              },
+              {
+                text: 'Rakuten TV Suscripción incluido',
+              },
+            ]}
+          />
+        ))}
+    </div>
+  </div>
+</Playground>
