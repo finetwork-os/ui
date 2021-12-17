@@ -15,8 +15,8 @@ import {
   StyledTrigger,
 } from './styled'
 
-export const Accordion: AccordionComponent = ({ children, type, ...props }) => (
-  <StyledAccordion type={type} data-fi="accordion" {...props}>
+export const Accordion: AccordionComponent = ({ children, ...props }) => (
+  <StyledAccordion data-fi="accordion" {...props}>
     {children}
   </StyledAccordion>
 )
