@@ -36,6 +36,7 @@ const Typography: TypographyComponent = React.forwardRef(
       <Component
         kind={kind}
         variant={isHighLight && 'highLight'}
+        highLightAlign={highLightAlign}
         align={align}
         data-fi="typography"
         ref={ref}

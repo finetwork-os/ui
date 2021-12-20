@@ -137,17 +137,35 @@ const getTypographyStyles = (
         textAlign: 'center',
       },
     },
+    highLightAlign: {
+      top: {},
+      bottom: {},
+    },
     variant: {
-      highLight: {
+      highLight: {},
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'highLight',
+      highLightAlign: 'top',
+      css: {
         paddingTop: '1rem',
+      },
+    },
+    {
+      variant: 'highLight',
+      highLightAlign: 'bottom',
+      css: {
         paddingBottom: '1rem',
       },
     },
-  },
+  ],
   defaultVariants: {
     kind: 'primary',
     font: 'primary',
     align: 'left',
+    highLightAlign: 'bottom',
   },
 })
 
