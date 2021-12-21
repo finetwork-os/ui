@@ -13,10 +13,14 @@ import { DialogContentProps, DialogProps } from './types'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import { DIALOG_SIZE } from '../../types'
 
-export const Dialog: React.FC<DialogProps> = ({ children, ...props }) => {
+export const Dialog: React.FC<DialogProps> = ({
+  children,
+  overlayProps,
+  ...props
+}) => {
   return (
     <DialogPrimitive.Root {...props}>
-      <StyledOverlay />
+      <StyledOverlay {...overlayProps} />
       {children}
     </DialogPrimitive.Root>
   )
