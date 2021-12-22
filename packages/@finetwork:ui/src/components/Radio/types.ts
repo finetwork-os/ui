@@ -16,4 +16,4 @@ type RadioComponentProps = Omit<
   disabled?: boolean
   indicatorProps?: Polymorphic.OwnProps<typeof StyledRadioIndicator>
 }
-export type RadioComponent = Omit<FC<RadioComponentProps>, 'children'>
+export type RadioComponent = FC<Omit<RadioComponentProps, 'children'>>
