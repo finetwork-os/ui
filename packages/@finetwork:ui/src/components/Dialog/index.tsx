@@ -15,7 +15,7 @@ import { DIALOG_SIZE } from '../../types'
 
 export const Dialog: React.FC<DialogProps> = ({
   children,
-  overlayProps,
+  overlayProps = {},
   ...props
 }) => {
   return (
