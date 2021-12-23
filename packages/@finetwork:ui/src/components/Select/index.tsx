@@ -156,7 +156,7 @@ export const Select: SelectComponent = React.forwardRef(
         onClick: openMenu,
         disabled,
         readOnly: !searchable && !writable,
-        enhancerProps: {
+        enhancerProps: !disabled && {
           onClick: onEnhancerClick,
           css: {
             cursor: 'pointer',

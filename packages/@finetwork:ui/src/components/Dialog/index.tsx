@@ -34,15 +34,18 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 }) => (
   <StyledContent size={size} ref={dialogRef} data-fi="dialog" {...props}>
     {children}
-    <DialogPrimitive.Close asChild>
-      <CloseButton>
-        <Cross1Icon />
-      </CloseButton>
-    </DialogPrimitive.Close>
   </StyledContent>
 )
 
 export const DialogTrigger = DialogPrimitive.Trigger
 export const DialogTitle = StyledTitle
 export const DialogDescription = StyledDescription
-export const DialogClose = DialogPrimitive.Close
+export const DialogClose: React.FC<React.ComponentProps<typeof CloseButton>> = (
+  props
+) => (
+  <DialogPrimitive.Close asChild>
+    <CloseButton {...props}>
+      <Cross1Icon />
+    </CloseButton>
+  </DialogPrimitive.Close>
+)

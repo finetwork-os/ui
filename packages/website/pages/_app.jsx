@@ -60,7 +60,7 @@ export default function App(props) {
             </Link>
           }
           headerItems={[
-            <GithubLink key="0" url="https://github.com/finetwork-os/fi-ui" />,
+            <GithubLink key="0" url="https://github.com/finetwork-os/ui" />,
             <div
               onClick={() =>
                 setModeTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
