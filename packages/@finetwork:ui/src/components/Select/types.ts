@@ -1,6 +1,6 @@
 import { BaseMenu, Item, StyledSelectContainer } from './styled'
 import { ComponentProps, FC, RefObject } from 'react'
-import { Enhancer, KINDS, SIZES } from '../../types'
+import { KINDS, SIZES } from '../../types'
 
 import { Input } from '../Input'
 
@@ -13,8 +13,8 @@ type SelectProps = ComponentProps<typeof StyledSelectContainer> & {
   disabled?: boolean
   searchable?: boolean
   label?: string
-  options: Record<string, any>[]
-  value?: Record<string, any>
+  options: any[]
+  value?: any
   initialValue?: Record<string, any>
   onInputChange?: (inputText: string) => void
   kind?: KINDS
