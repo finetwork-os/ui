@@ -62,6 +62,7 @@ export const StyledContent: StyledComponent<
   left: '50%',
   transform: 'translate(-50%, -50%)',
   padding: '1.5rem',
+  zIndex: 9999,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1), ${moveModal} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
     willChange: 'transform',
@@ -92,6 +93,7 @@ export const StyledOverlay = styled(DialogPrimitive.Overlay, {
   backgroundColor: blackA.blackA9,
   position: 'fixed',
   inset: 0,
+  zIndex: 999,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
   },
