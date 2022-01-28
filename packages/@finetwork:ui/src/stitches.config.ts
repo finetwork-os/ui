@@ -11,6 +11,8 @@ const media = {
   'desktop-xl': '(min-width: 1280px)',
 }
 
+const prefix = 'fi-ui'
+
 export const {
   styled,
   css,
@@ -20,6 +22,15 @@ export const {
   createTheme,
   getCssText,
 } = createStitches({
-  prefix: 'fi-ui',
   media,
 })
+
+// export const getCssText = (t: FiTheme = initialTheme) => {
+//   const mergedTheme = deepMerge(initialTheme, t)
+//   mergedTheme.colors = recalculateColors(mergedTheme.colors || {})
+//   const stitches = createStitches({
+//     theme: mergedTheme,
+//     media,
+//   })
+//   return stitches.getCssText
+// }
