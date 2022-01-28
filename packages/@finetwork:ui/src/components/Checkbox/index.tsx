@@ -18,7 +18,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ children, ...props }) => {
         props.checked === 'indeterminate' ? (
           <DividerHorizontalIcon />
         ) : (
-          (props.defaultChecked || props.checked === true) && <CheckIcon />
+          <CheckIcon />
         )}
       </StyledCheckboxIndicator>
     </StyledCheckbox>
