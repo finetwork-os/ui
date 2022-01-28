@@ -1,7 +1,11 @@
 import * as React from 'react'
 import { CheckIcon, DividerHorizontalIcon } from '../icons'
 
-import { StyledCheckbox, StyledCheckboxIndicator } from './styled'
+import {
+  StyledCheckbox,
+  StyledCheckboxIndicator,
+  StyledCheckIcon,
+} from './styled'
 
 import { CheckboxProps } from './types'
 
@@ -18,7 +22,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ children, ...props }) => {
         props.checked === 'indeterminate' ? (
           <DividerHorizontalIcon />
         ) : (
-          <CheckIcon />
+          <StyledCheckIcon />
         )}
       </StyledCheckboxIndicator>
     </StyledCheckbox>

@@ -4,6 +4,7 @@ import { bounceIn, fadeIn } from '../../animations'
 
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
+import { CheckIcon } from '../icons'
 
 export const StyledCheckbox: StyledComponent<
   typeof Root,
@@ -114,8 +115,11 @@ export const StyledCheckbox: StyledComponent<
 })
 export const StyledCheckboxIndicator = styled(Indicator, {
   animation: `${fadeIn} .3s ease, ${bounceIn} .3s ease`,
-  width: 15,
-  height: 15,
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   variants: {
     kind: {
       primary: {
@@ -138,4 +142,9 @@ export const StyledCheckboxIndicator = styled(Indicator, {
   defaultVariants: {
     kind: 'primary',
   },
+})
+
+export const StyledCheckIcon = styled(CheckIcon, {
+  width: '80%',
+  height: '80%',
 })
