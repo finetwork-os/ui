@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   CardFooter,
+  CheckIcon,
   H2,
   H4,
   Paragraph4,
@@ -11,7 +12,6 @@ import {
   Tag,
 } from '@finetwork/ui'
 
-import { CheckIcon } from '@radix-ui/react-icons'
 import { styled } from '../../stitches.config'
 
 export const PriceContainer = styled('div', {

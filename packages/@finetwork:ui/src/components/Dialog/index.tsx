@@ -10,8 +10,8 @@ import {
 } from './styled'
 import { DialogContentProps, DialogProps } from './types'
 
-import { Cross1Icon } from '@radix-ui/react-icons'
 import { DIALOG_SIZE } from '../../types'
+import { Cross1Icon } from '../icons'
 
 export const Dialog: React.FC<DialogProps> = ({
   children,

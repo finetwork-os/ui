@@ -1,7 +1,6 @@
-import { ChevronDownIcon, Cross1Icon } from '@radix-ui/react-icons'
-
 import { KIND } from '../../types'
 import { styled } from '../../stitches.config'
+import { ChevronDownIcon, Cross1Icon } from '../icons'
 
 const isActiveStyles = (kind) => {
   return {

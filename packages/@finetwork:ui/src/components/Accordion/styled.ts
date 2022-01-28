@@ -6,9 +6,9 @@ import {
   slideUpAccordion,
 } from '../../animations'
 
-import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
+import { ChevronDownIcon } from '../icons'
 
 export const StyledAccordion = styled(Root, {
   variants: {

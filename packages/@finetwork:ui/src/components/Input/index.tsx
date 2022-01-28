@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons'
 import { InputComponent, InputPasswordComponent } from './types'
 import {
   StyledContainer,
@@ -15,6 +14,7 @@ import {
 } from './styled'
 
 import { RenderEnhancer } from '../../utils'
+import { EyeClosedIcon, EyeOpenIcon } from '../icons'
 
 const InputPassword: InputPasswordComponent = React.forwardRef(
   ({ size, ...props }, ref) => {

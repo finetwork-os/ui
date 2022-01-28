@@ -1,8 +1,8 @@
 import { BooleanString, FONTS, SIZES } from '../../types'
 
-import { CheckIcon } from '@radix-ui/react-icons'
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
+import { CheckIcon } from '../icons'
 
 const stylesMessage = {
   fontWeight: 500,

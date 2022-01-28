@@ -60,3 +60,4 @@ export {
 export { IdProvider } from '@radix-ui/react-id'
 export { getCss } from './stitches.config'
 export * from './types'
+export * from './components/icons'
