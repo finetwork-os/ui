@@ -35,6 +35,13 @@ const sharedStyles = {
     tertiary900: '#7A420B',
   },
   space: {},
+  sizes: {
+    mobile: '360px',
+    tablet: '768px',
+    desktop: '1024px',
+    'desktop-xl': '1280px',
+    'desktop-2xl': '1680px',
+  },
   fonts: {
     primary: 'Nunito Sans, apple-system, sans-serif',
     secondary: 'Druk, monospace',

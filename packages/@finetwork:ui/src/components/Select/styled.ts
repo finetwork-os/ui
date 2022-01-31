@@ -127,6 +127,14 @@ export const Item = styled('li', {
         fontWeight: '700',
       },
     },
+    isDisabled: {
+      false: {},
+      true: {
+        color: '$disabled',
+        cursor: 'not-allowed',
+        pointerEvents: 'none',
+      },
+    },
   },
   defaultVariants: {
     kind: 'primary',

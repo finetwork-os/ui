@@ -54,14 +54,21 @@ const renderItems = ({
       </Item>
     )
   return items.map((item, index) => {
-    const itemProps = getItemProps({
-      ...nativeItemProps,
-      item,
+    const sharedProps = {
       index,
-      key: index,
-      isSelected: selectedItem === item,
-      isActive: highlightedIndex === index,
-      kind: kind,
+      key: item.id,
+    }
+    const itemProps = getItemProps({
+      ...(item.disabled
+        ? { isDisabled: true, ...sharedProps }
+        : {
+            ...nativeItemProps,
+            ...sharedProps,
+            item,
+            isSelected: selectedItem === item,
+            isActive: highlightedIndex === index,
+            kind: kind,
+          }),
     } as any)
     return <Item {...itemProps}>{item.label}</Item>
   })

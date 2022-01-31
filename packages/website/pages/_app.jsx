@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 
 import { ColorModeSwitch, DokzProvider, GithubLink } from 'dokz'
-import { H2, IdProvider, getCss } from '@finetwork/ui'
+import { H2, IdProvider, getCssText as getCssTextFiUi } from '@finetwork/ui'
 import { darkTheme, lightTheme } from '../themes'
 import { useEffect, useState } from 'react'
 
@@ -9,6 +9,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { createStitches } from '@stitches/react'
+import { getCssText } from '../styles/stitches.config'
 
 const { createTheme } = createStitches()
 const darkThemeStitches = createTheme('fi-ui-dark-theme', darkTheme)
@@ -44,10 +45,12 @@ export default function App(props) {
             key="nunito"
           />
           <style
-            id="fi-ui"
-            dangerouslySetInnerHTML={{
-              __html: getCss(lightTheme).toString(),
-            }}
+            id="finetwork-ui"
+            dangerouslySetInnerHTML={{ __html: getCssTextFiUi() }}
+          />
+          <style
+            id="stitches"
+            dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
           <link rel="icon" type="ico" href="/favicon.ico" />
         </Head>
