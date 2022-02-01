@@ -1,7 +1,7 @@
 import { deepMerge, recalculateColors } from './utils'
 
 import { FiTheme } from './components/Theme/types'
-import { createStitches } from '@stitches/react'
+import * as Stitches from '@stitches/react'
 import { initialTheme } from './components/Theme/initial-theme'
 
 const media = {
@@ -21,9 +21,12 @@ export const {
   globalCss: globalStyles,
   createTheme,
   getCssText,
-} = createStitches({
+  config,
+} = Stitches.createStitches({
   media,
 })
+
+export type CSS = Stitches.CSS<typeof config>
 
 // export const getCssText = (t: FiTheme = initialTheme) => {
 //   const mergedTheme = deepMerge(initialTheme, t)

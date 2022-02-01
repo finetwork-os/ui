@@ -1,9 +1,11 @@
-import { ComponentProps, FC } from 'react'
+import { CSS } from '../../stitches.config'
+import { VariantProps } from '@stitches/react'
+import { AnchorHTMLAttributes, ComponentProps } from 'react'
 import { Enhancer, SIZES } from '../../types'
 
 import { StyledLink } from './styled'
 
-type LinkProps = Omit<
+type Props = Omit<
   ComponentProps<typeof StyledLink>,
   'endEnhancer' | 'startEnhancer'
 > & {
@@ -14,7 +16,11 @@ type LinkProps = Omit<
   endEnhancer?: Enhancer
   size?: SIZES
   textTransform?: string
-  as?: any
   animation?: boolean
+  as?: any
+  [key: string]: any
 }
-export type LinkComponent = FC<LinkProps>
+type NativeAttrs = Omit<AnchorHTMLAttributes<unknown>, keyof Props>
+type LinkVariantsProps = VariantProps<typeof StyledLink>
+
+export type LinkProps = Props & NativeAttrs & LinkVariantsProps & { css?: CSS }

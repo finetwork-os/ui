@@ -1,13 +1,16 @@
 import { BooleanString, KINDS } from '../../types'
-import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
+import {
+  Indicator,
+  Item,
+  Root as RadioGroupRoot,
+} from '@radix-ui/react-radio-group'
 import { fadeIn, radioCheck } from '../../animations'
 
-import { Label } from '@radix-ui/react-label'
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { grayA } from '@radix-ui/colors'
 import { styled } from '../../stitches.config'
 
-export const StyledRadioGroup = styled(Root, {
+export const StyledRadioGroup = styled(RadioGroupRoot, {
   display: 'flex',
   gap: '1rem',
   variants: {
@@ -109,7 +112,10 @@ export const StyledRadioIndicator: StyledComponent<
 })
 
 export const ContainerRadioLabel = styled('div', {
-  display: 'flex',
+  display: 'grid',
+  gridAutoFlow: 'column',
+  gap: '1rem',
+  justifyContent: 'start',
   alignItems: 'center',
   variants: {
     disabled: {
@@ -127,6 +133,6 @@ export const ContainerRadioLabel = styled('div', {
   },
 })
 
-export const StyledLabel = styled(Label, {
+export const StyledLabel = styled('label', {
   paddingLeft: '1rem',
 })

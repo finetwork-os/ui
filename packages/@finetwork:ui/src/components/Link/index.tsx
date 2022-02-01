@@ -2,10 +2,13 @@ import * as React from 'react'
 
 import { StyledEndEnhancer, StyledLink, StyledStartEnhancer } from './styled'
 
-import { LinkComponent } from './types'
+import { LinkProps } from './types'
 import { RenderEnhancer } from '../../utils'
 
-export const Link: LinkComponent = React.forwardRef(
+export const Link = React.forwardRef<
+  React.ElementRef<typeof StyledLink>,
+  LinkProps
+>(
   (
     {
       children,

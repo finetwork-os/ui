@@ -19,21 +19,7 @@ export const StyledEndEnhancer = styled('div', {
   display: 'flex',
 })
 
-export const StyledLink: StyledComponent<
-  'a',
-  {
-    endEnhancer?: BooleanString
-    startEnhancer?: BooleanString
-    kind?: 'linkText' | KINDS
-    textTransform?: Property.TextTransform
-    size?: SIZES
-    disabled?: BooleanString
-    font?: FONTS
-    animation?: BooleanString
-  },
-  any,
-  any
-> = styled('a', {
+export const StyledLink = styled('a', {
   width: 'fit-content',
   transition: 'all .3s ease',
   textTransform: 'none',
