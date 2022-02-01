@@ -14,7 +14,7 @@ type LinkProps = Omit<
   endEnhancer?: Enhancer
   size?: SIZES
   textTransform?: string
-  as?: string
+  as?: any
   animation?: boolean
 }
 export type LinkComponent = FC<LinkProps>
