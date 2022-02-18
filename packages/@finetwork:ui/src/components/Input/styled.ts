@@ -239,7 +239,7 @@ export const StyledInput: StyledComponent<
 > = styled('input', {
   border: 0,
   backgroundColor: 'transparent',
-  fontWeight: 600,
+  fontWeight: 300,
   width: '100%',
   height: '100%',
   paddingRight: '14px',
