@@ -1,18 +1,32 @@
+import * as SelectPrimitive from '@radix-ui/react-select'
 import * as React from 'react'
 
-import {
-  BaseMenu,
-  Item,
-  StyledChevron,
-  StyledCrossIcon,
-  StyledSelectContainer,
-} from './styled'
+// import {
+//   BaseMenu,
+//   Item,
+//   StyledChevron,
+//   StyledCrossIcon,
+//   StyledSelect,
+//   StyledSelectContainer,
+// } from './styled'
 
 import { Input } from '../Input'
 import { Loading } from '../Loading'
 import { SelectComponent } from './types'
 import { matchSorter } from 'match-sorter'
 import { useCombobox } from 'downshift'
+import {
+  StyledContent,
+  StyledItem,
+  StyledItemIndicator,
+  StyledLabel,
+  StyledScrollDownButton,
+  StyledScrollUpButton,
+  StyledSelect,
+  StyledSeparator,
+  StyledTrigger,
+  StyledViewport,
+} from './styled'
 
 const itemToString = (i) => (i ? i.label : '')
 
@@ -74,136 +88,17 @@ const renderItems = ({
   })
 }
 
-export const Select: SelectComponent = React.forwardRef(
-  (
-    {
-      emptyText = 'No records found',
-      disabled,
-      searchable = true,
-      writable = true,
-      clearable = true,
-      options = [],
-      size,
-      label,
-      value,
-      onInputChange,
-      kind,
-      onSelect,
-      isLoading,
-      placeholder,
-      menuContainerProps = {},
-      inputRef = React.useRef(),
-      initialValue,
-      id,
-      onClear,
-      inputProps: nativeInputProps = {},
-      itemProps = {},
-      ...props
-    },
-    ref
-  ) => {
-    const {
-      getInputProps,
-      getComboboxProps,
-      getMenuProps,
-      getItemProps,
-      isOpen,
-      toggleMenu,
-      reset,
-      selectedItem,
-      inputValue,
-      highlightedIndex,
-      openMenu,
-    } = useCombobox({
-      items: options,
-      itemToString,
-      onSelectedItemChange: ({ selectedItem }) => onSelect(selectedItem),
-      selectedItem: value,
-    })
-
-    const clear = React.useCallback(() => {
-      reset()
-      onSelect(null)
-      if (onClear) onClear()
-    }, [selectedItem, reset, onSelect])
-    const onEnhancerClick = React.useCallback(() => {
-      if (selectedItem && clearable) {
-        return clear()
-      }
-      inputRef?.current?.focus()
-      return openMenu()
-    }, [selectedItem, clear, clearable])
-    const onInputChangeHandler = React.useCallback(
-      (e) => {
-        if (onInputChange) {
-          onInputChange(e.target.value)
-        }
-      },
-      [onInputChange, toggleMenu]
-    )
-
-    const Enhancer = React.useMemo(() => {
-      if (selectedItem && clearable) {
-        return <StyledCrossIcon kind={kind} />
-      }
-      if (isLoading) {
-        return <Loading size={15} />
-      }
-      return <StyledChevron rotate={isOpen ? 'open' : 'close'} kind={kind} />
-    }, [selectedItem, isOpen, kind, isLoading, clearable])
-
-    const inputProps = {
-      ...getInputProps({
-        ...nativeInputProps,
-        placeholder,
-        ref: inputRef,
-        id: label,
-        label,
-        size,
-        onClick: openMenu,
-        disabled,
-        readOnly: !searchable && !writable,
-        enhancerProps: !disabled && {
-          onClick: onEnhancerClick,
-          css: {
-            cursor: 'pointer',
-          },
-        },
-        css: {
-          ...(nativeInputProps?.css ?? {}),
-          ...(searchable || writable ? {} : { cursor: 'pointer' }),
-        },
-        kind,
-        endEnhancer: Enhancer,
-        onChange: onInputChangeHandler,
-      } as any),
-    }
-    const menuProps = getMenuProps({
-      open: isOpen && options.length > 0,
-      ...menuContainerProps,
-    } as any)
-
-    return (
-      <StyledSelectContainer
-        {...getComboboxProps({ ref, ...props })}
-        data-fi="select"
-      >
-        <Input {...inputProps} />
-        <BaseMenu {...menuProps}>
-          {renderItems({
-            options,
-            inputValue,
-            getItemProps,
-            selectedItem,
-            kind,
-            highlightedIndex,
-            isOpen,
-            searchable,
-            emptyText,
-            itemProps,
-          })}
-        </BaseMenu>
-      </StyledSelectContainer>
-    )
-  }
-)
+export const Select = SelectPrimitive.Root
+export const SelectTrigger = StyledTrigger
+export const SelectValue = SelectPrimitive.Value
+export const SelectIcon = SelectPrimitive.Icon
+export const SelectContent = StyledContent
+export const SelectViewport = StyledViewport
+export const SelectGroup = SelectPrimitive.Group
+export const SelectItem = StyledItem
+export const SelectItemText = SelectPrimitive.ItemText
+export const SelectItemIndicator = StyledItemIndicator
+export const SelectLabel = StyledLabel
+export const SelectSeparator = StyledSeparator
+export const SelectScrollUpButton = StyledScrollUpButton
+export const SelectScrollDownButton = StyledScrollDownButton

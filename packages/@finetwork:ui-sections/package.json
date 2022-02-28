@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",
-    "@stitches/react": "^1.2.6"
+    "@stitches/react": "^1.2.7"
   },
   "devDependencies": {
     "@types/react": "^17.0.3",

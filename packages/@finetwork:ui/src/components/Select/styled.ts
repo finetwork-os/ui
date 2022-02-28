@@ -1,185 +1,168 @@
-import { KIND } from '../../types'
+import { blackA } from '@radix-ui/colors'
+import * as SelectPrimitive from '@radix-ui/react-select'
 import { styled } from '../../stitches.config'
-import { ChevronDownIcon, Cross1Icon } from '../icons'
 
-const isActiveStyles = (kind) => {
-  return {
-    borderTopColor: `$${kind}300`,
-    borderBottomColor: `$${kind}300`,
-  }
+export const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
+  all: 'unset',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 4,
+  padding: '0 15px',
+  fontSize: 13,
+  lineHeight: 1,
+  height: 35,
+  gap: 5,
+  backgroundColor: 'white',
+  // color: violet.violet11,
+  boxShadow: `0 2px 10px ${blackA.blackA7}`,
+  '&:focus': { boxShadow: `0 0 0 2px black` },
+  variants: {
+    kind: {
+      primary: {
+        '&:hover': { backgroundColor: '$primary300' },
+        color: '$primary',
+      },
+      secondary: {
+        '&:hover': { backgroundColor: '$secondary300' },
+        color: '$secondary',
+      },
+      tertiary: {
+        '&:hover': { backgroundColor: '$tertiary300' },
+        color: '$tertiary',
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
+  },
+})
+
+export const StyledContent = styled(SelectPrimitive.Content, {
+  overflow: 'hidden',
+  backgroundColor: 'white',
+  borderRadius: 6,
+  boxShadow:
+    '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
+})
+
+export const StyledViewport = styled(SelectPrimitive.Viewport, {
+  padding: 5,
+})
+
+export const StyledItem = styled(SelectPrimitive.Item, {
+  all: 'unset',
+  fontSize: 13,
+  lineHeight: 1,
+  borderRadius: 3,
+  display: 'flex',
+  alignItems: 'center',
+  height: 25,
+  padding: '0 35px 0 25px',
+  position: 'relative',
+  userSelect: 'none',
+
+  '&[data-disabled]': {
+    // color: mauve.mauve8,
+    pointerEvents: 'none',
+  },
+
+  variants: {
+    kind: {
+      primary: {
+        color: '$primary',
+        '&:focus': {
+          backgroundColor: '$primary',
+          color: '$primary200',
+        },
+      },
+      secondary: {
+        color: '$secondary',
+        '&:focus': {
+          backgroundColor: '$secondary',
+          color: '$secondary200',
+        },
+      },
+      tertiary: {
+        color: '$tertiary',
+        '&:focus': {
+          backgroundColor: '$tertiary',
+          color: '$tertiary200',
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
+  },
+})
+
+export const StyledLabel = styled(SelectPrimitive.Label, {
+  padding: '0 25px',
+  fontSize: 12,
+  lineHeight: '25px',
+})
+
+export const StyledSeparator = styled(SelectPrimitive.Separator, {
+  height: 1,
+  margin: 5,
+  variants: {
+    kind: {
+      primary: {
+        backgroundColor: '$primary600',
+      },
+      secondary: {
+        backgroundColor: '$secondary600',
+      },
+      tertiary: {
+        backgroundColor: '$tertiary600',
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
+  },
+})
+
+export const StyledItemIndicator = styled(SelectPrimitive.ItemIndicator, {
+  position: 'absolute',
+  left: 0,
+  width: 25,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+})
+
+const scrollButtonStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: 25,
+  backgroundColor: 'white',
+  variants: {
+    kind: {
+      primary: {
+        color: '$primary600',
+      },
+      secondary: {
+        color: '$secondary600',
+      },
+      tertiary: {
+        color: '$tertiary600',
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
+  },
 }
 
-export const StyledChevron = styled(ChevronDownIcon, {
-  transition: 'all .3s ease',
-  variants: {
-    rotate: {
-      open: {
-        transform: 'rotate(180deg) scale(1.1)',
-      },
-      close: {
-        transform: 'rotate(0deg) scale(1.1)',
-      },
-    },
-    kind: {
-      primary: {
-        color: '$primary',
-      },
-      secondary: {
-        color: '$secondary',
-      },
-      tertiary: {
-        color: '$tertiary',
-      },
-    },
-  },
-  defaultVariants: {
-    kind: 'primary',
-  },
-})
-export const StyledCrossIcon = styled(Cross1Icon, {
-  variants: {
-    kind: {
-      primary: {
-        color: '$primary',
-      },
-      secondary: {
-        color: '$secondary',
-      },
-      tertiary: {
-        color: '$tertiary',
-      },
-    },
-  },
-  defaultVariants: {
-    kind: 'primary',
-  },
-})
-export const StyledSelectContainer = styled('div', {
-  position: 'relative',
-})
-export const BaseMenu = styled('ul', {
-  padding: 0,
-  marginTop: 0,
-  position: 'absolute',
-  backgroundColor: 'white',
-  zIndex: 1,
-  width: '100%',
-  maxHeight: '20rem',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-  outline: '0',
-  transition: 'opacity .1s ease',
-  borderColor: '#000',
-  borderStyle: 'solid',
-  borderTopWidth: 0,
-  borderRightWidth: 1,
-  borderBottomWidth: 1,
-  borderLeftWidth: 1,
-  variants: {
-    open: {
-      true: {},
-      false: {
-        border: 0,
-      },
-    },
-  },
-  defaultVariants: {
-    open: false,
-  },
-})
+export const StyledScrollUpButton = styled(
+  SelectPrimitive.ScrollUpButton,
+  scrollButtonStyles
+)
 
-export const Item = styled('li', {
-  position: 'relative',
-  cursor: 'pointer',
-  display: 'block',
-  border: 'none',
-  height: 'auto',
-  textAlign: 'left',
-  borderTop: 'none',
-  lineHeight: '1em',
-  color: 'rgba(0,0,0,.87)',
-  fontSize: '1rem',
-  textTransform: 'none',
-  fontWeight: '400',
-  boxShadow: 'none',
-  padding: '.8rem 1.1rem',
-  whiteSpace: 'normal',
-  wordWrap: 'normal',
-  listStyle: 'none',
-  transition: 'all .3s ease',
-  borderBottomWidth: 1,
-  borderTopWidth: 1,
-  borderStyle: 'solid',
-  borderColor: 'transparent',
-  variants: {
-    kind: {
-      [KIND.primary]: {},
-      [KIND.secondary]: {},
-      [KIND.tertiary]: {},
-    },
-    isActive: {
-      true: {},
-      false: {},
-    },
-    isSelected: {
-      false: {},
-      true: {
-        fontWeight: '700',
-      },
-    },
-    isDisabled: {
-      false: {},
-      true: {
-        color: '$disabled',
-        cursor: 'not-allowed',
-        pointerEvents: 'none',
-      },
-    },
-  },
-  defaultVariants: {
-    kind: 'primary',
-    isActive: false,
-    isSelected: false,
-  },
-  compoundVariants: [
-    {
-      kind: 'primary',
-      isActive: true,
-      css: {
-        color: '$primary',
-        '&:not(:last-child)': {
-          ...isActiveStyles(KIND.primary),
-        },
-        '&:not(:first-child)': {
-          ...isActiveStyles(KIND.primary),
-        },
-      },
-    },
-    {
-      kind: 'secondary',
-      isActive: true,
-      css: {
-        color: '$secondary',
-        '&:not(:last-child)': {
-          ...isActiveStyles(KIND.secondary),
-        },
-        '&:not(:first-child)': {
-          ...isActiveStyles(KIND.secondary),
-        },
-      },
-    },
-    {
-      kind: 'tertiary',
-      isActive: true,
-      css: {
-        color: '$tertiary',
-        '&:not(:last-child)': {
-          ...isActiveStyles(KIND.tertiary),
-        },
-        '&:not(:first-child)': {
-          ...isActiveStyles(KIND.tertiary),
-        },
-      },
-    },
-  ],
-})
+export const StyledScrollDownButton = styled(
+  SelectPrimitive.ScrollDownButton,
+  scrollButtonStyles
+)
