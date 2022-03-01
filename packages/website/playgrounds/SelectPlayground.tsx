@@ -1,7 +1,9 @@
 import {
   CheckIcon,
   ChevronDownIcon,
+  H3,
   H6,
+  Input,
   Select,
   SelectContent,
   SelectGroup,
@@ -84,9 +86,8 @@ export const SelectPlayground = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      Value: {JSON.stringify(value)}
       <div style={{ zIndex: 2 }}>
-        <Select>
+        <Select defaultValue="apple">
           <SelectTrigger aria-label="Food">
             <SelectValue />
             <SelectIcon>
@@ -204,19 +205,6 @@ export const SelectPlayground = () => {
           </SelectContent>
         </Select>
       </div>
-      {/* <div style={{ zIndex: 1 }}>
-        Names
-        <Select
-          id="names"
-          options={options}
-          value={value} 
-          onSelect={(option: any) => setValue(option)}
-          onInputChange={debounce(handleChange, 1000)}
-          kind="secondary"
-          isLoading={isLoading}
-          placeholder="Type to search... (Menganito, Miguelito, Agapito, Pepito, Manolito)"
-        />
-      </div> */}
     </div>
   )
 }
