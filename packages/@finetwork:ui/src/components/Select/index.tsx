@@ -1,209 +1,88 @@
+import * as SelectPrimitive from '@radix-ui/react-select'
 import * as React from 'react'
-
 import {
-  BaseMenu,
-  Item,
-  StyledChevron,
-  StyledCrossIcon,
-  StyledSelectContainer,
+  StyledContent,
+  StyledItem,
+  StyledItemIndicator,
+  StyledLabel,
+  StyledScrollDownButton,
+  StyledScrollUpButton,
+  StyledSeparator,
+  StyledTrigger,
+  StyledViewport,
 } from './styled'
+import { RenderEnhancer } from '../../utils'
+import { SIZE } from '../../types'
+import { CheckIcon, ChevronDownIcon } from '../icons'
+import {
+  SelectComponent,
+  SelectContentComponent,
+  SelectItemIndicatorComponent,
+  SelectTriggerComponent,
+} from './types'
 
-import { Input } from '../Input'
-import { Loading } from '../Loading'
-import { SelectComponent } from './types'
-import { matchSorter } from 'match-sorter'
-import { useCombobox } from 'downshift'
-
-const itemToString = (i) => (i ? i.label : '')
-
-const getItems = (allItems, filter) => {
-  return filter
-    ? matchSorter(allItems, filter, {
-        keys: ['label'],
-      })
-    : allItems
+const sizeIcon = {
+  [SIZE.small]: 15,
+  [SIZE.medium]: 18,
+  [SIZE.large]: 21,
 }
 
-const renderItems = ({
-  options = [],
-  inputValue = '',
-  getItemProps,
-  selectedItem,
-  kind,
-  highlightedIndex,
-  isOpen,
-  searchable,
-  emptyText,
-  itemProps: nativeItemProps,
-}) => {
-  const items = React.useMemo(
-    () => getItems(options, searchable ? inputValue : undefined),
-    [options, inputValue, searchable]
+export const SelectValue = SelectPrimitive.Value
+export const SelectGroup = SelectPrimitive.Group
+export const SelectItem = StyledItem
+export const SelectItemText = SelectPrimitive.ItemText
+export const SelectLabel = StyledLabel
+export const SelectSeparator = StyledSeparator
+
+export const Select: SelectComponent = ({
+  children,
+  kind = 'primary',
+  size = 'medium',
+  ...props
+}) => (
+  <SelectPrimitive.Root {...props}>
+    <SelectTrigger kind={kind} size={size} data-fi="select">
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent kind={kind} size={size}>
+      {children}
+    </SelectContent>
+  </SelectPrimitive.Root>
+)
+export const SelectTrigger: SelectTriggerComponent = React.forwardRef(
+  ({ children, kind, size, ...props }, ref) => (
+    <StyledTrigger {...props} kind={kind} size={size} ref={ref}>
+      {children}
+      <SelectPrimitive.Icon>
+        <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
+      </SelectPrimitive.Icon>
+    </StyledTrigger>
   )
-  if (!isOpen) return null
-  if (items.length === 0)
-    return (
-      <Item
-        css={{
-          color: '#aaa',
-          cursor: 'default',
-          ...(nativeItemProps?.css ?? {}),
-        }}
-      >
-        {emptyText}
-      </Item>
-    )
-  return items.map((item, index) => {
-    const sharedProps = {
-      index,
-      key: item.id,
+)
+export const SelectItemIndicator: SelectItemIndicatorComponent =
+  React.forwardRef(
+    ({ Icon = CheckIcon, size = 'medium' }, ref): JSX.Element => {
+      return (
+        <StyledItemIndicator ref={ref}>
+          <RenderEnhancer
+            Enhancer={<Icon width={sizeIcon[size]} height={sizeIcon[size]} />}
+          />
+        </StyledItemIndicator>
+      )
     }
-    const itemProps = getItemProps({
-      ...(item.disabled
-        ? { isDisabled: true, ...sharedProps }
-        : {
-            ...nativeItemProps,
-            ...sharedProps,
-            item,
-            isSelected: selectedItem === item,
-            isActive: highlightedIndex === index,
-            kind: kind,
-          }),
-    } as any)
-    return <Item {...itemProps}>{item.label}</Item>
-  })
-}
-
-export const Select: SelectComponent = React.forwardRef(
-  (
-    {
-      emptyText = 'No records found',
-      disabled,
-      searchable = true,
-      writable = true,
-      clearable = true,
-      options = [],
-      size,
-      label,
-      value,
-      onInputChange,
-      kind,
-      onSelect,
-      isLoading,
-      placeholder,
-      menuContainerProps = {},
-      inputRef = React.useRef(),
-      initialValue,
-      id,
-      onClear,
-      inputProps: nativeInputProps = {},
-      itemProps = {},
-      ...props
-    },
-    ref
-  ) => {
-    const {
-      getInputProps,
-      getComboboxProps,
-      getMenuProps,
-      getItemProps,
-      isOpen,
-      toggleMenu,
-      reset,
-      selectedItem,
-      inputValue,
-      highlightedIndex,
-      openMenu,
-    } = useCombobox({
-      items: options,
-      itemToString,
-      onSelectedItemChange: ({ selectedItem }) => onSelect(selectedItem),
-      selectedItem: value,
-    })
-
-    const clear = React.useCallback(() => {
-      reset()
-      onSelect(null)
-      if (onClear) onClear()
-    }, [selectedItem, reset, onSelect])
-    const onEnhancerClick = React.useCallback(() => {
-      if (selectedItem && clearable) {
-        return clear()
-      }
-      inputRef?.current?.focus()
-      return openMenu()
-    }, [selectedItem, clear, clearable])
-    const onInputChangeHandler = React.useCallback(
-      (e) => {
-        if (onInputChange) {
-          onInputChange(e.target.value)
-        }
-      },
-      [onInputChange, toggleMenu]
-    )
-
-    const Enhancer = React.useMemo(() => {
-      if (selectedItem && clearable) {
-        return <StyledCrossIcon kind={kind} />
-      }
-      if (isLoading) {
-        return <Loading size={15} />
-      }
-      return <StyledChevron rotate={isOpen ? 'open' : 'close'} kind={kind} />
-    }, [selectedItem, isOpen, kind, isLoading, clearable])
-
-    const inputProps = {
-      ...getInputProps({
-        ...nativeInputProps,
-        placeholder,
-        ref: inputRef,
-        id: label,
-        label,
-        size,
-        onClick: openMenu,
-        disabled,
-        readOnly: !searchable && !writable,
-        enhancerProps: !disabled && {
-          onClick: onEnhancerClick,
-          css: {
-            cursor: 'pointer',
-          },
-        },
-        css: {
-          ...(nativeInputProps?.css ?? {}),
-          ...(searchable || writable ? {} : { cursor: 'pointer' }),
-        },
-        kind,
-        endEnhancer: Enhancer,
-        onChange: onInputChangeHandler,
-      } as any),
-    }
-    const menuProps = getMenuProps({
-      open: isOpen && options.length > 0,
-      ...menuContainerProps,
-    } as any)
-
+  )
+export const SelectContent: SelectContentComponent = React.forwardRef(
+  ({ children, kind, size, ...props }, ref) => {
     return (
-      <StyledSelectContainer
-        {...getComboboxProps({ ref, ...props })}
-        data-fi="select"
-      >
-        <Input {...inputProps} />
-        <BaseMenu {...menuProps}>
-          {renderItems({
-            options,
-            inputValue,
-            getItemProps,
-            selectedItem,
-            kind,
-            highlightedIndex,
-            isOpen,
-            searchable,
-            emptyText,
-            itemProps,
-          })}
-        </BaseMenu>
-      </StyledSelectContainer>
+      <StyledContent {...props} kind={kind} ref={ref}>
+        <StyledScrollUpButton>
+          <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
+        </StyledScrollUpButton>
+        <StyledViewport>{children}</StyledViewport>
+        <StyledScrollDownButton>
+          <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
+        </StyledScrollDownButton>
+      </StyledContent>
     )
   }
 )

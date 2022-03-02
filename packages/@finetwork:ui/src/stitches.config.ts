@@ -1,8 +1,4 @@
-import { deepMerge, recalculateColors } from './utils'
-
-import { FiTheme } from './components/Theme/types'
 import * as Stitches from '@stitches/react'
-import { initialTheme } from './components/Theme/initial-theme'
 
 const media = {
   mobile: '(min-width: 360px)',

@@ -55,7 +55,6 @@ export const StyledItem = styled(Item, {
   paddingRight: '1.2rem',
   borderBottom: '1px solid #EFF2FC',
   '&:focus-within': {
-    borderRadius: '5px',
     position: 'relative',
     zIndex: 1,
     boxShadow: `0 0 0 2px currentColor`,

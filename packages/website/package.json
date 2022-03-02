@@ -10,7 +10,7 @@
     "@chakra-ui/react": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@stitches/react": "^1.0.0",
+    "@stitches/react": "^1.2.7",
     "dokz": "2.0.7",
     "@finetwork/ui-sections": "0.2.0",
     "@finetwork/ui": "0.6.15",

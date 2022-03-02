@@ -33,7 +33,15 @@ export {
   DropdownMenuTriggerItem,
 } from './components/DropdownMenu'
 export { Radio, RadioGroup } from './components/Radio'
-export { Select } from './components/Select'
+export {
+  Select,
+  SelectGroup,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectLabel,
+  SelectSeparator,
+} from './components/Select'
 export { Separator } from './components/Separator'
 export { Skeleton } from './components/Skeleton'
 export { Switch } from './components/Switch'

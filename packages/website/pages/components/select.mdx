@@ -3,8 +3,21 @@ name: Select
 ---
 
 import { Playground } from 'dokz'
-import { Select, H2, H3, Paragraph4, Link } from '@finetwork/ui'
-import { SelectPlayground } from '../../playgrounds'
+import {
+  H2,
+  H3,
+  Paragraph4,
+  Link,
+  Select,
+  SelectGroup,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectLabel,
+  SelectSeparator,
+  CheckIcon,
+} from '@finetwork/ui'
+import { Fragment } from 'react'
 
 export const styles = {
   maxWidth: '1000px',
@@ -12,119 +25,93 @@ export const styles = {
   height: '20em',
 }
 
+export const allOptions = [
+  {
+    title: 'Fruits',
+    options: [
+      {
+        id: 'apple',
+        name: 'Apple',
+      },
+      {
+        id: 'banana',
+        name: 'Banana',
+      },
+      {
+        id: 'blueberry',
+        name: 'Blueberry',
+      },
+    ],
+  },
+  {
+    title: 'Vegetables',
+    options: [
+      {
+        id: 'aubergine',
+        name: 'Aubergine',
+      },
+      {
+        id: 'broccoli',
+        name: 'Broccoli',
+      },
+      {
+        id: 'leek',
+        name: 'Leek',
+      },
+    ],
+  },
+  {
+    title: 'Meat',
+    options: [
+      {
+        id: 'beef',
+        name: 'Beef',
+      },
+      {
+        id: 'chicken',
+        name: 'Chicken',
+      },
+      {
+        id: 'lamb',
+        name: 'Lamb',
+      },
+    ],
+  },
+]
+
 <div />
 <div>
   <H2 font="secondary">Select</H2>
 </div>
 
 <Paragraph4>
-  Select component is using{' '}
-  <Link href="https://www.downshift-js.com/" target="_bank">
-    Downshift-js
+  This component is an implementation of{' '}
+  <Link
+    href="https://www.radix-ui.com/docs/primitives/components/select"
+    target="_bank"
+  >
+    Select
   </Link>{' '}
-  library
+  component from radix-ui.
 </Paragraph4>
 
-<div>
-  <H3 font="secondary">Playground</H3>
-</div>
-
-<SelectPlayground />
-
-```tsx
-export const SelectPlayground = () => {
-  const [value, setValue] = useState<any>()
-  const [options, setOptions] = useState<any>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const handleChange = async (inputValue: string) => {
-    if (!inputValue || inputValue === '') {
-      return setOptions([])
-    }
-    setIsLoading(true)
-    const newOptions: any = await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve(filterOptions(inputValue))
-      }, 1000)
-    )
-    setOptions(newOptions)
-    setIsLoading(false)
-  }
-
-  const filterOptions = (inputValue: string) => {
-    return allOptions.filter(
-      (option: any) =>
-        String(option.id)
-          .toLowerCase()
-          .includes(inputValue.trim().toLowerCase()) ||
-        option.label.toLowerCase().includes(inputValue.trim().toLowerCase())
-    )
-  }
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      Value: {JSON.stringify(value)}
-      <div style={{ zIndex: 2 }}>
-        <Select
-          variant="outline"
-          options={allOptions}
-          value={value}
-          onSelect={(option: any) => setValue(option)}
-          // onInputChange={debounce(handleChange, 1000)}
-          kind="secondary"
-          isLoading={isLoading}
-          placeholder="Names"
-          searchable={false}
-        />
-      </div>
-      <div style={{ zIndex: 1 }}>
-        <Select
-          label="Names"
-          id="names"
-          variant="outline"
-          options={options}
-          value={value}
-          onSelect={(option: any) => setValue(option)}
-          onInputChange={debounce(handleChange, 1000)}
-          kind="secondary"
-          isLoading={isLoading}
-          placeholder="Type to search... (Menganito, Miguelito, Agapito, Pepito, Manolito)"
-        />
-      </div>
-    </div>
-  )
-}
-```
-
-<div>
-  <H3 font="secondary">Kind</H3>
-</div>
-
-<Paragraph4>Possible values primary, secondary, tertiary</Paragraph4>
-
 <Playground>
-  <div style={styles}>
-    <Select
-      label="Value"
-      onSelect={(option) => console.log(option)}
-      options={[
-        { id: '1', label: 'pepito' },
-        { id: '2', label: 'manolito' },
-      ]}
-      value={{
-        id: '2',
-        label: 'manolito',
-      }}
-    />
-    <Select
-      label="Initial value"
-      onSelect={(option) => console.log(option)}
-      options={[
-        { id: '3', label: 'pepito' },
-        { id: '4', label: 'manolito' },
-      ]}
-      initialValue={{
-        id: '4',
-        label: 'manolito',
-      }}
-    />
+  <div style={{ padding: '2rem' }}>
+    <Select defaultValue="apple">
+      {allOptions.map(({ title, options }, index) => (
+        <Fragment key={title}>
+          <SelectGroup>
+            <SelectLabel>{title}</SelectLabel>
+            {options.map(({ id, name }) => (
+              <SelectItem value={id} key={id}>
+                <SelectItemText>{name}</SelectItemText>
+                <SelectItemIndicator Icon={CheckIcon} />
+              </SelectItem>
+            ))}
+          </SelectGroup>
+          {index < allOptions.length - 1 && <SelectSeparator />}
+        </Fragment>
+      ))}
+    </Select>
   </div>
 </Playground>
