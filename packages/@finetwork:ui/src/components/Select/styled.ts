@@ -1,12 +1,13 @@
+import { mauve } from '@radix-ui/colors'
 import * as SelectPrimitive from '@radix-ui/react-select'
-import { styled } from '../../stitches.config'
+import { keyframes, styled } from '../../stitches.config'
 
 export const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
   all: 'unset',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: 5,
+  gap: 10,
   backgroundColor: '#fff',
   transition: 'all .3s ease',
   cursor: 'pointer',
@@ -41,30 +42,63 @@ export const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
     size: {
       small: {
         fontSize: 15,
-        padding: '5px 15px',
+        padding: '5px 10px',
       },
       medium: {
         fontSize: 18,
-        padding: '8px 18px',
+        padding: '8px 13px',
       },
       large: {
         fontSize: 25,
-        padding: '11px 21px',
+        padding: '11px 16px',
       },
     },
   },
   defaultVariants: {
     kind: 'primary',
-    size: 'small',
+    size: 'medium',
   },
 })
 
 export const StyledContent = styled(SelectPrimitive.Content, {
   overflow: 'hidden',
   backgroundColor: 'white',
-  border: '1px solid #000',
-  // boxShadow:
-  //   '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  position: 'relative',
+
+  animation: `${keyframes({
+    '0%': {
+      opacity: 0,
+      bottom: '-1rem',
+    },
+    '100%': {
+      opacity: 1,
+      bottom: 0,
+    },
+  })} .3s ease`,
+  variants: {
+    kind: {
+      primary: {
+        borderColor: '$primary',
+        boxShadow:
+          '0 0 5px $colors$primary100, 0 0 10px $colors$primary100, 0 0 15px $colors$primary100',
+      },
+      secondary: {
+        borderColor: '$secondary',
+        boxShadow:
+          '0 0 5px $colors$secondary100, 0 0 10px $colors$secondary100, 0 0 15px $colors$secondary100',
+      },
+      tertiary: {
+        borderColor: '$tertiary',
+        boxShadow:
+          '0 0 5px $colors$tertiary100, 0 0 10px $colors$tertiary100, 0 0 15px $colors$tertiary100',
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
+  },
 })
 
 export const StyledViewport = styled(SelectPrimitive.Viewport, {
@@ -73,20 +107,16 @@ export const StyledViewport = styled(SelectPrimitive.Viewport, {
 
 export const StyledItem = styled(SelectPrimitive.Item, {
   all: 'unset',
-  fontSize: 13,
   lineHeight: 1,
   display: 'flex',
   alignItems: 'center',
-  height: 25,
-  padding: '0 35px 0 25px',
   position: 'relative',
   userSelect: 'none',
-
+  cursor: 'pointer',
   '&[data-disabled]': {
-    // color: mauve.mauve8,
+    color: mauve.mauve8,
     pointerEvents: 'none',
   },
-
   variants: {
     kind: {
       primary: {
@@ -111,21 +141,53 @@ export const StyledItem = styled(SelectPrimitive.Item, {
         },
       },
     },
+    size: {
+      small: {
+        fontSize: 15,
+        padding: '5px 20px 5px 25px',
+      },
+      medium: {
+        fontSize: 18,
+        padding: '7px 25px 7px 25px',
+      },
+      large: {
+        fontSize: 25,
+        padding: '9px 30px 9px 30px',
+      },
+    },
   },
   defaultVariants: {
     kind: 'primary',
+    size: 'medium',
   },
 })
 
 export const StyledLabel = styled(SelectPrimitive.Label, {
-  padding: '0 25px',
   fontSize: 12,
   lineHeight: '25px',
+  variants: {
+    size: {
+      small: {
+        fontSize: 13,
+        padding: '3px 25px',
+      },
+      medium: {
+        fontSize: 16,
+        padding: '5px 25px',
+      },
+      large: {
+        fontSize: 23,
+        padding: '7px 30px',
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'medium',
+  },
 })
 
 export const StyledSeparator = styled(SelectPrimitive.Separator, {
   height: 1,
-  margin: 5,
   variants: {
     kind: {
       primary: {
@@ -138,9 +200,21 @@ export const StyledSeparator = styled(SelectPrimitive.Separator, {
         backgroundColor: '$tertiary100',
       },
     },
+    size: {
+      small: {
+        margin: 5,
+      },
+      medium: {
+        margin: 7,
+      },
+      large: {
+        margin: 9,
+      },
+    },
   },
   defaultVariants: {
     kind: 'primary',
+    size: 'medium',
   },
 })
 
@@ -171,9 +245,15 @@ const scrollButtonStyles = {
         color: '$tertiary600',
       },
     },
+    size: {
+      small: {},
+      medium: {},
+      large: {},
+    },
   },
   defaultVariants: {
     kind: 'primary',
+    size: 'medium',
   },
 }
 

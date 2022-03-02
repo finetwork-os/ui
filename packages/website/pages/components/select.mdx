@@ -3,8 +3,21 @@ name: Select
 ---
 
 import { Playground } from 'dokz'
-import { Select, H2, H3, Paragraph4, Link } from '@finetwork/ui'
-import { SelectPlayground } from '../../playgrounds'
+import {
+  H2,
+  H3,
+  Paragraph4,
+  Link,
+  Select,
+  SelectGroup,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectLabel,
+  SelectSeparator,
+  CheckIcon,
+} from '@finetwork/ui'
+import { Fragment } from 'react'
 
 export const styles = {
   maxWidth: '1000px',
@@ -12,21 +25,93 @@ export const styles = {
   height: '20em',
 }
 
+export const allOptions = [
+  {
+    title: 'Fruits',
+    options: [
+      {
+        id: 'apple',
+        name: 'Apple',
+      },
+      {
+        id: 'banana',
+        name: 'Banana',
+      },
+      {
+        id: 'blueberry',
+        name: 'Blueberry',
+      },
+    ],
+  },
+  {
+    title: 'Vegetables',
+    options: [
+      {
+        id: 'aubergine',
+        name: 'Aubergine',
+      },
+      {
+        id: 'broccoli',
+        name: 'Broccoli',
+      },
+      {
+        id: 'leek',
+        name: 'Leek',
+      },
+    ],
+  },
+  {
+    title: 'Meat',
+    options: [
+      {
+        id: 'beef',
+        name: 'Beef',
+      },
+      {
+        id: 'chicken',
+        name: 'Chicken',
+      },
+      {
+        id: 'lamb',
+        name: 'Lamb',
+      },
+    ],
+  },
+]
+
 <div />
 <div>
   <H2 font="secondary">Select</H2>
 </div>
 
 <Paragraph4>
-  Select component is using{' '}
-  <Link href="https://www.downshift-js.com/" target="_bank">
-    Downshift-js
+  This component is an implementation of{' '}
+  <Link
+    href="https://www.radix-ui.com/docs/primitives/components/select"
+    target="_bank"
+  >
+    Select
   </Link>{' '}
-  library
+  component from radix-ui.
 </Paragraph4>
 
-<div>
-  <H3 font="secondary">Playground</H3>
-</div>
-
-<SelectPlayground />
+<Playground>
+  <div style={{ padding: '2rem' }}>
+    <Select defaultValue="apple">
+      {allOptions.map(({ title, options }, index) => (
+        <Fragment key={title}>
+          <SelectGroup>
+            <SelectLabel>{title}</SelectLabel>
+            {options.map(({ id, name }) => (
+              <SelectItem value={id} key={id}>
+                <SelectItemText>{name}</SelectItemText>
+                <SelectItemIndicator Icon={CheckIcon} />
+              </SelectItem>
+            ))}
+          </SelectGroup>
+          {index < allOptions.length - 1 && <SelectSeparator />}
+        </Fragment>
+      ))}
+    </Select>
+  </div>
+</Playground>

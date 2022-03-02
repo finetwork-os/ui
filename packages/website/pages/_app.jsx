@@ -1,34 +1,14 @@
 import '../styles/globals.css'
 
 import { ColorModeSwitch, DokzProvider, GithubLink } from 'dokz'
-import { H2, IdProvider, getCssText as getCssTextFiUi } from '@finetwork/ui'
-import { darkTheme, lightTheme } from '../themes'
-import { useEffect, useState } from 'react'
+import { H2 } from '@finetwork/ui'
 
 import { ChakraProvider } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { createStitches } from '@stitches/react'
-import { getCssText } from '../styles/stitches.config'
-
-// const { createTheme } = createStitches()
-// const darkThemeStitches = createTheme('fi-ui-dark-theme', darkTheme)
 
 export default function App(props) {
-  // const isServer = typeof window === 'undefined'
-  // const [modeTheme, setModeTheme] = useState(() =>
-  //   !isServer ? localStorage.getItem('fi-ui-theme') || 'light' : 'light'
-  // )
   const { Component, pageProps } = props
-  // useEffect(() => {
-  //   const htmlTag = document.querySelector('html')
-  //   if (modeTheme === 'dark') {
-  //     htmlTag.classList.add(darkThemeStitches)
-  //   } else {
-  //     htmlTag.classList.remove(darkThemeStitches.toString())
-  //   }
-  //   localStorage.setItem('fi-ui-theme', modeTheme === 'dark' ? 'dark' : 'light')
-  // }, [modeTheme])
   return (
     <ChakraProvider resetCSS>
       <Head>
