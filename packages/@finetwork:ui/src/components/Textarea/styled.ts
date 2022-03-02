@@ -251,6 +251,9 @@ export const StyledTextarea: StyledComponent<
   '@tablet': {
     fontSize: 'unset',
   },
+  '&:focus': {
+    outline: 'none',
+  },
   variants: {
     font: {
       primary: {
