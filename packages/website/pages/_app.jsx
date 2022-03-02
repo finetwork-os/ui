@@ -93,6 +93,7 @@ export default function App(props) {
               'tabs.mdx': true,
               'tag.mdx': true,
               'textarea.mdx': true,
+              'toast.mdx': true,
               'tooltip.mdx': true,
               'typography.mdx': true,
             },
