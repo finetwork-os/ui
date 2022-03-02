@@ -6,26 +6,55 @@ import {
   ToastProvider,
   ToastTitle,
 } from '@finetwork/ui'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 
 export const ToastPlayground = () => {
-  const [open, setOpen] = useState(false)
+  const [notifications, setNotifications] = useState([])
   return (
-    <ToastProvider direction="top-right">
+    <ToastProvider direction="bottom-right">
       <div>
-        <Button onClick={() => setOpen(true)} size="small">
+        <Button
+          onClick={() =>
+            setNotifications((prev) => [
+              ...prev,
+              {
+                id: prev.length + 1,
+                show: true,
+              },
+            ])
+          }
+          size="small"
+        >
           Open toast
         </Button>
       </div>
-      <Toast open={open} onOpenChange={setOpen}>
-        <ToastTitle>Scheduled: Catch up</ToastTitle>
-        <ToastDescription>Description</ToastDescription>
-        <ToastAction asChild altText="Goto schedule to undo">
-          <Button size="small" outline>
-            Undo
-          </Button>
-        </ToastAction>
-      </Toast>
+      {notifications.map((notification, index) => (
+        <Toast
+          key={notification.id}
+          open={notification.show}
+          css={{
+            zIndex: index,
+          }}
+          onOpenChange={() =>
+            setNotifications((prev) =>
+              prev.map((n) =>
+                n.id === notification.id
+                  ? {
+                      id: n.id,
+                      show: false,
+                    }
+                  : n
+              )
+            )
+          }
+        >
+          <ToastTitle>Scheduled: Catch up</ToastTitle>
+          <ToastDescription>
+            Description: notification number {notification.id}
+          </ToastDescription>
+          <ToastAction altText="Goto schedule to undo"></ToastAction>
+        </Toast>
+      ))}
     </ToastProvider>
   )
 }

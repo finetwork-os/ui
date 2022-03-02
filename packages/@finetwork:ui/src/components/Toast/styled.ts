@@ -47,15 +47,29 @@ const swipeOutLeft = keyframes({
   },
   '100%': { transform: `translateX(calc(-100% + ${VIEWPORT_PADDING}px))` },
 })
+const swipeOutBottom = keyframes({
+  '0%': { transform: 'translateY(var(--radix-toast-swipe-end-y))' },
+  '50%': {
+    transform: 'translateY(-30px)',
+  },
+  '100%': { transform: `translateY(calc(100% + ${VIEWPORT_PADDING}px))` },
+})
+const swipeOutTop = keyframes({
+  '0%': { transform: 'translateY(var(--radix-toast-swipe-end-y))' },
+  '50%': {
+    transform: 'translateY(30px)',
+  },
+  '100%': { transform: `translateY(calc(-100% + ${VIEWPORT_PADDING}px))` },
+})
 
 export const StyledViewport = styled(ToastPrimitive.Viewport, {
   position: 'fixed',
   display: 'flex',
   flexDirection: 'column',
   padding: VIEWPORT_PADDING,
-  gap: 10,
   maxWidth: '100vw',
   margin: 0,
+  gap: 10,
   listStyle: 'none',
   zIndex: 2147483647,
   variants: {
@@ -94,6 +108,7 @@ export const StyledViewport = styled(ToastPrimitive.Viewport, {
 })
 
 export const StyledToast = styled(ToastPrimitive.Root, {
+  position: 'relative',
   backgroundColor: 'white',
   border: '1px solid black',
   padding: 15,
@@ -102,13 +117,16 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   gridTemplateColumns: 'auto max-content',
   columnGap: 15,
   alignItems: 'center',
-  boxShadow:
-    '0 0 5px $colors$primary100, 0 0 10px $colors$primary100, 0 0 15px $colors$primary100',
-  '&[data-swipe="move"]': {
-    transform: 'translateX(var(--radix-toast-swipe-move-x))',
-  },
+  '&[data-swipe-direction="left"], &[data-swipe-direction="right"], &[data-swipe="move"]':
+    {
+      transform: 'translateX(var(--radix-toast-swipe-move-x))',
+    },
+  '&[data-swipe-direction="up"], &[data-swipe-direction="down"], &[data-swipe="move"]':
+    {
+      transform: 'translateY(var(--radix-toast-swipe-move-y))',
+    },
   '&[data-swipe="cancel"]': {
-    transform: 'translateX(0)',
+    transform: 'translate(0)',
     transition: 'transform 200ms ease-out',
   },
   '&[data-swipe-direction="left"]': {
@@ -117,10 +135,36 @@ export const StyledToast = styled(ToastPrimitive.Root, {
         animation: `${slideInLeft} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
       },
       '&[data-state="closed"]': {
-        animation: `${swipeOutLeft} 300ms ease-in forwards`,
+        animation: `${swipeOutLeft} 300ms ease-out forwards`,
       },
       '&[data-swipe="end"]': {
         animation: `${swipeOutLeft} 300ms ease-out forwards`,
+      },
+    },
+  },
+  '&[data-swipe-direction="up"]': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      '&[data-state="open"]': {
+        animation: `${slideInBottom} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+      },
+      '&[data-state="closed"]': {
+        animation: `${swipeOutBottom} 300ms ease-out forwards`,
+      },
+      '&[data-swipe="end"]': {
+        animation: `${swipeOutBottom} 300ms ease-out forwards`,
+      },
+    },
+  },
+  '&[data-swipe-direction="down"]': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      '&[data-state="open"]': {
+        animation: `${slideInTop} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+      },
+      '&[data-state="closed"]': {
+        animation: `${swipeOutTop} 300ms ease-out forwards`,
+      },
+      '&[data-swipe="end"]': {
+        animation: `${swipeOutTop} 300ms ease-out forwards`,
       },
     },
   },
@@ -130,12 +174,31 @@ export const StyledToast = styled(ToastPrimitive.Root, {
         animation: `${slideInRight} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
       },
       '&[data-state="closed"]': {
-        animation: `${swipeOutRight} 300ms ease-in forwards`,
+        animation: `${swipeOutRight} 300ms ease-out forwards`,
       },
       '&[data-swipe="end"]': {
         animation: `${swipeOutRight} 300ms ease-out forwards`,
       },
     },
+  },
+  variants: {
+    kind: {
+      primary: {
+        boxShadow:
+          '0 0 5px $colors$primary100, 0 0 10px $colors$primary100, 0 0 15px $colors$primary100',
+      },
+      secondary: {
+        boxShadow:
+          '0 0 5px $colors$secondary100, 0 0 10px $colors$secondary100, 0 0 15px $colors$secondary100',
+      },
+      tertiary: {
+        boxShadow:
+          '0 0 5px $colors$tertiary100, 0 0 10px $colors$tertiary100, 0 0 15px $colors$tertiary100',
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
   },
 })
 
@@ -157,4 +220,28 @@ export const StyledDescription = styled(ToastPrimitive.Description, {
 
 export const StyledAction = styled(ToastPrimitive.Action, {
   gridArea: 'action',
+})
+
+export const ProgressBar = styled('span', {
+  position: 'absolute',
+  top: 0,
+  backgroundColor: 'red',
+  height: '5px',
+  transition: 'all .3s ease',
+  variants: {
+    kind: {
+      primary: {
+        backgroundColor: '$primary',
+      },
+      secondary: {
+        backgroundColor: '$secondary',
+      },
+      tertiary: {
+        backgroundColor: '$tertiary',
+      },
+    },
+  },
+  defaultVariants: {
+    kind: 'primary',
+  },
 })
