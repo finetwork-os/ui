@@ -1,6 +1,16 @@
 import { mauve } from '@radix-ui/colors'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import { keyframes, styled } from '../../stitches.config'
+import { fadeIn } from '../../animations'
+
+const animationContent = keyframes({
+  '0%': {
+    bottom: '-1rem',
+  },
+  '100%': {
+    bottom: 0,
+  },
+})
 
 export const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
   all: 'unset',
@@ -11,7 +21,7 @@ export const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
   backgroundColor: '#fff',
   transition: 'all .3s ease',
   cursor: 'pointer',
-  border: '1px  solid black',
+  border: '1px solid black',
   variants: {
     kind: {
       primary: {
@@ -66,17 +76,7 @@ export const StyledContent = styled(SelectPrimitive.Content, {
   borderWidth: '1px',
   borderStyle: 'solid',
   position: 'relative',
-
-  animation: `${keyframes({
-    '0%': {
-      opacity: 0,
-      bottom: '-1rem',
-    },
-    '100%': {
-      opacity: 1,
-      bottom: 0,
-    },
-  })} .3s ease`,
+  animation: `${fadeIn} .3s ease, ${animationContent} .3s ease`,
   variants: {
     kind: {
       primary: {

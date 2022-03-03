@@ -12,7 +12,7 @@ import {
   StyledViewport,
 } from './styled'
 import { RenderEnhancer } from '../../utils'
-import { SIZE } from '../../types'
+import { KIND, SIZE } from '../../types'
 import { CheckIcon, ChevronDownIcon } from '../icons'
 import {
   SelectComponent,
@@ -36,8 +36,8 @@ export const SelectSeparator = StyledSeparator
 
 export const Select: SelectComponent = ({
   children,
-  kind = 'primary',
-  size = 'medium',
+  kind = KIND.primary,
+  size = SIZE.medium,
   ...props
 }) => (
   <SelectPrimitive.Root {...props}>
@@ -61,7 +61,7 @@ export const SelectTrigger: SelectTriggerComponent = React.forwardRef(
 )
 export const SelectItemIndicator: SelectItemIndicatorComponent =
   React.forwardRef(
-    ({ Icon = CheckIcon, size = 'medium' }, ref): JSX.Element => {
+    ({ Icon = CheckIcon, size = SIZE.medium }, ref): JSX.Element => {
       return (
         <StyledItemIndicator ref={ref}>
           <RenderEnhancer
