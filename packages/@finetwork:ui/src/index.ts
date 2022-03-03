@@ -50,6 +50,14 @@ export { Tag } from './components/Tag'
 export type { TagProps } from './components/Tag/types'
 export { Textarea } from './components/Textarea'
 export { ThemeProvider, useTheme } from './components/Theme'
+export {
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+} from './components/Toast'
 export { Tooltip, TooltipContent, TooltipTrigger } from './components/Tooltip'
 export {
   H1,
