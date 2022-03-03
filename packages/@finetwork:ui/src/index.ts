@@ -33,7 +33,15 @@ export {
   DropdownMenuTriggerItem,
 } from './components/DropdownMenu'
 export { Radio, RadioGroup } from './components/Radio'
-export { Select } from './components/Select'
+export {
+  Select,
+  SelectGroup,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectLabel,
+  SelectSeparator,
+} from './components/Select'
 export { Separator } from './components/Separator'
 export { Skeleton } from './components/Skeleton'
 export { Switch } from './components/Switch'
@@ -42,6 +50,14 @@ export { Tag } from './components/Tag'
 export type { TagProps } from './components/Tag/types'
 export { Textarea } from './components/Textarea'
 export { ThemeProvider, useTheme } from './components/Theme'
+export {
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+} from './components/Toast'
 export { Tooltip, TooltipContent, TooltipTrigger } from './components/Tooltip'
 export {
   H1,

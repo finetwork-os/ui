@@ -1,34 +1,28 @@
-import { BaseMenu, Item, StyledSelectContainer } from './styled'
-import { ComponentProps, FC, RefObject } from 'react'
+import { SelectProps } from '@radix-ui/react-select'
+import { FC } from 'react'
 import { KINDS, SIZES } from '../../types'
 
-import { Input } from '../Input'
+import { StyledContent, StyledItemIndicator, StyledTrigger } from './styled'
 
-export enum VARIANT {
-  outline = 'outline',
-  default = 'default',
-}
-export type VARIANTS = keyof typeof VARIANT
-type SelectProps = ComponentProps<typeof StyledSelectContainer> & {
-  disabled?: boolean
-  searchable?: boolean
-  label?: string
-  options: any[]
-  value?: any
-  initialValue?: Record<string, any>
-  onInputChange?: (inputText: string) => void
-  kind?: KINDS
+type SelectItemIndicatorProps = React.ComponentProps<
+  typeof StyledItemIndicator
+> & {
+  Icon?: any
   size?: SIZES
-  onSelect?: (option: Record<string, any>) => void
-  isLoading?: boolean
-  placeholder?: string
-  emptyText?: string
-  inputRef?: RefObject<HTMLInputElement>
-  menuContainerProps?: ComponentProps<typeof BaseMenu>
-  itemProps?: ComponentProps<typeof Item>
-  inputProps?: ComponentProps<typeof Input>
-  clearable?: boolean
-  onClear?: () => void
-  writable?: boolean
 }
-export type SelectComponent = FC<SelectProps>
+type SelectTriggerProps = React.ComponentProps<typeof StyledTrigger> & {
+  size?: SIZES
+}
+type SelectContentProps = React.ComponentProps<typeof StyledContent> & {
+  size?: SIZES
+}
+
+export type SelectContentComponent = FC<SelectContentProps>
+export type SelectTriggerComponent = FC<SelectTriggerProps>
+export type SelectItemIndicatorComponent = FC<SelectItemIndicatorProps>
+export type SelectComponent = FC<
+  SelectProps & {
+    size?: SIZES
+    kind?: KINDS
+  }
+>

@@ -1,7 +1,12 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import { blackA, mauve } from '@radix-ui/colors'
-import { fadeIn, moveModal } from '../../animations'
+import {
+  fadeIn,
+  fadeOut,
+  moveModalToBottom,
+  moveModalToTop,
+} from '../../animations'
 
 import { DIALOG_SIZES } from '../../types'
 import { StyledComponent } from '@stitches/react/types/styled-component'
@@ -63,9 +68,17 @@ export const StyledContent: StyledComponent<
   transform: 'translate(-50%, -50%)',
   padding: '1.5rem',
   zIndex: 9999,
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1), ${moveModal} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
-    willChange: 'transform',
+  '&[data-state="open"]': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1), ${moveModalToTop} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+      willChange: 'transform',
+    },
+  },
+  '&[data-state="closed"]': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      animation: `${fadeOut} 300ms cubic-bezier(0.16, 1, 0.3, 1), ${moveModalToBottom} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+      willChange: 'transform',
+    },
   },
   '&:focus': { outline: 'none' },
   variants: {
@@ -94,7 +107,14 @@ export const StyledOverlay = styled(DialogPrimitive.Overlay, {
   position: 'fixed',
   inset: 0,
   zIndex: 999,
-  '@media (prefers-reduced-motion: no-preference)': {
-    animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+  '&[data-state="open"]': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+    },
+  },
+  '&[data-state="closed"]': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      animation: `${fadeOut} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+    },
   },
 })
