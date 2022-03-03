@@ -1,6 +1,5 @@
-import { Provider, Close, ToastProviderProps } from '@radix-ui/react-toast'
-import { css } from '@stitches/react'
 import * as React from 'react'
+import { Provider, Close, ToastProviderProps } from '@radix-ui/react-toast'
 import {
   ProgressBar,
   StyledAction,
@@ -9,17 +8,11 @@ import {
   StyledToast,
   StyledViewport,
 } from './styled'
-
-type Direction =
-  | 'top-left'
-  | 'top-right'
-  | 'top-center'
-  | 'bottom-left'
-  | 'bottom-right'
-  | 'bottom-center'
+import { DIRECTION, ToastComponent, ToastProviderComponent } from './types'
+import { KIND } from '../../types'
 
 const swipeDirectionByDirection: Record<
-  Direction,
+  DIRECTION,
   ToastProviderProps['swipeDirection']
 > = {
   'top-left': 'left',
@@ -34,43 +27,51 @@ export const ToastTitle = StyledTitle
 export const ToastDescription = StyledDescription
 export const ToastAction = StyledAction
 export const ToastClose = Close
-const timerFn = (fn, timer) => () => {
-  fn((prev) => {
-    const finalDuration = prev - 100
-    if (finalDuration === 0 && timer?.current) {
-      clearInterval(timer.current)
-    }
-    return finalDuration
-  })
+
+const getTimerFn = (fn, timer) => () => {
+  return setInterval(
+    () =>
+      fn((prev) => {
+        const finalDuration = prev - 100
+        if (finalDuration === 0 && timer?.current) {
+          clearInterval(timer.current)
+        }
+        return finalDuration
+      }),
+    100
+  )
 }
-export const Toast = ({
+export const Toast: ToastComponent = ({
   duration = 5000,
-  type = 'background',
-  kind = 'primary',
+  kind = KIND.primary,
+  withProgressBar = true,
   children,
+  ...props
 }) => {
-  let timer = React.useRef<NodeJS.Timer>(null)
+  const timer = React.useRef<NodeJS.Timer>(null)
   const [durationLeft, setDurationLeft] = React.useState(duration)
   React.useEffect(() => {
-    timer.current = setInterval(timerFn(setDurationLeft, timer.current), 100)
+    if (withProgressBar) {
+      timer.current = getTimerFn(setDurationLeft, timer)()
+    }
     return () => clearInterval(timer.current)
-  }, [type])
-  const percentage = (durationLeft * 100) / duration
+  }, [])
+  const percentage = withProgressBar ? (durationLeft * 100) / duration : 0
+  const handlers = {
+    ...(withProgressBar && {
+      onMouseOver: () => clearTimeout(timer.current),
+      onMouseLeave: () => {
+        timer.current = getTimerFn(setDurationLeft, timer)()
+      },
+    }),
+  }
   return (
-    <StyledToast
-      type="background"
-      onMouseOver={() => clearTimeout(timer.current)}
-      onMouseLeave={() => {
-        timer.current = setInterval(
-          timerFn(setDurationLeft, timer.current),
-          100
-        )
-      }}
-    >
-      {type === 'background' && (
+    <StyledToast {...handlers} {...props} kind={kind}>
+      {withProgressBar && (
         <ProgressBar
+          kind={kind}
           css={{
-            width: percentage + '%',
+            width: `${percentage}%`,
           }}
         />
       )}
@@ -79,11 +80,11 @@ export const Toast = ({
   )
 }
 
-export const ToastProvider: React.FC<
-  Omit<ToastProviderProps, 'swipeDirection'> & {
-    direction?: Direction
-  }
-> = ({ direction = 'bottom-right', children, ...props }) => (
+export const ToastProvider: ToastProviderComponent = ({
+  direction = DIRECTION['bottom-right'],
+  children,
+  ...props
+}) => (
   <Provider {...props} swipeDirection={swipeDirectionByDirection[direction]}>
     {children}
     <StyledViewport direction={direction} />

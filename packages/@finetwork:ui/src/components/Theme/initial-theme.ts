@@ -1,3 +1,4 @@
+import { amber, blue, green, red } from '@radix-ui/colors'
 import { FiTheme } from './types'
 
 export const initialTheme: FiTheme = {
@@ -13,8 +14,10 @@ export const initialTheme: FiTheme = {
     tertiaryText: '#000',
     tertiaryButtonText: '#000',
     disabled: '#ddd',
-    error: '#FF2323',
-    success: '#44C889',
+    error: red.red10,
+    success: green.green10,
+    info: blue.blue10,
+    warning: amber.amber10,
   },
   space: {},
   fonts: {

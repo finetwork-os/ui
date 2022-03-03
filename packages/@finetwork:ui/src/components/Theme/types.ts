@@ -48,6 +48,8 @@ export type Colors = {
   disabled?: string
   error?: string
   success?: string
+  info?: string
+  warning?: string
 }
 
 export type Fonts = {

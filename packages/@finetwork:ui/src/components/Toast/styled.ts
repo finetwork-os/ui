@@ -1,6 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { styled, keyframes } from '../../stitches.config'
-import { slate } from '@radix-ui/colors'
+import { blue, green, red, slate, amber } from '@radix-ui/colors'
 import { fadeOut } from '../../animations'
 
 const VIEWPORT_PADDING = 25
@@ -117,11 +117,17 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   gridTemplateColumns: 'auto max-content',
   columnGap: 15,
   alignItems: 'center',
-  '&[data-swipe-direction="left"], &[data-swipe-direction="right"], &[data-swipe="move"]':
+  '&:hover': {
+    cursor: 'grab',
+  },
+  '&:active': {
+    cursor: 'grabbing',
+  },
+  '&[data-swipe-direction="left"]&[data-swipe="move"], &[data-swipe-direction="right"]&[data-swipe="move"]':
     {
       transform: 'translateX(var(--radix-toast-swipe-move-x))',
     },
-  '&[data-swipe-direction="up"], &[data-swipe-direction="down"], &[data-swipe="move"]':
+  '&[data-swipe-direction="up"]&[data-swipe="move"], &[data-swipe-direction="down"]&[data-swipe="move"]':
     {
       transform: 'translateY(var(--radix-toast-swipe-move-y))',
     },
@@ -184,16 +190,25 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   variants: {
     kind: {
       primary: {
-        boxShadow:
-          '0 0 5px $colors$primary100, 0 0 10px $colors$primary100, 0 0 15px $colors$primary100',
+        borderColor: '$primary',
       },
       secondary: {
-        boxShadow:
-          '0 0 5px $colors$secondary100, 0 0 10px $colors$secondary100, 0 0 15px $colors$secondary100',
+        borderColor: '$secondary',
       },
       tertiary: {
-        boxShadow:
-          '0 0 5px $colors$tertiary100, 0 0 10px $colors$tertiary100, 0 0 15px $colors$tertiary100',
+        borderColor: '$tertiary',
+      },
+      info: {
+        borderColor: '$info',
+      },
+      error: {
+        borderColor: '$error',
+      },
+      success: {
+        borderColor: '$success',
+      },
+      warning: {
+        borderColor: '$warning',
       },
     },
   },
@@ -225,7 +240,6 @@ export const StyledAction = styled(ToastPrimitive.Action, {
 export const ProgressBar = styled('span', {
   position: 'absolute',
   top: 0,
-  backgroundColor: 'red',
   height: '5px',
   transition: 'all .3s ease',
   variants: {
@@ -238,6 +252,18 @@ export const ProgressBar = styled('span', {
       },
       tertiary: {
         backgroundColor: '$tertiary',
+      },
+      info: {
+        backgroundColor: '$info',
+      },
+      error: {
+        backgroundColor: '$error',
+      },
+      success: {
+        backgroundColor: '$success',
+      },
+      warning: {
+        backgroundColor: '$warning',
       },
     },
   },
