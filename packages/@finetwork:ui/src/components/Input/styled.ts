@@ -237,6 +237,7 @@ export const StyledInput: StyledComponent<
   any,
   any
 > = styled('input', {
+  outline: 'none',
   border: 0,
   backgroundColor: 'transparent',
   fontWeight: 300,

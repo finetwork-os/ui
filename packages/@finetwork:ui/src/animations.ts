@@ -15,9 +15,13 @@ export const spin = keyframes({
   '100%': { transform: 'rotate(360deg)' },
 })
 
-export const moveModal = keyframes({
+export const moveModalToTop = keyframes({
   '0%': { top: '52%' },
   '100%': { top: '50%' },
+})
+export const moveModalToBottom = keyframes({
+  '0%': { top: '50%' },
+  '100%': { top: '52%' },
 })
 
 export const bounceIn = keyframes({

@@ -14,7 +14,7 @@ export const ThemeProvider: React.FC<{ theme: FiTheme }> = ({
   const [computedTheme, fiUiTheme] = React.useMemo(() => {
     const mergedTheme = deepMerge(initialTheme, theme)
     mergedTheme.colors = recalculateColors(mergedTheme.colors || {})
-    return [mergedTheme, createTheme('fi-ui', mergedTheme)]
+    return [mergedTheme, createTheme('finetwork-ui', mergedTheme)]
   }, [theme, initialTheme])
   React.useEffect(() => {
     globalStyles({

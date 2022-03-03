@@ -8,18 +8,18 @@
   "useWorkspaces": true,
   "repository": "https://github.com/finetwork-os/ui",
   "scripts": {
-    "postinstall": "lerna bootstrap",
-    "dev": "lerna exec --scope=website yarn dev",
-    "build-website": "lerna exec --scope=website yarn build",
-    "start-website": "lerna exec --scope=website yarn start",
-    "build-ui-library": "lerna exec --scope=@finetwork/ui yarn build",
-    "publish-ui-library": "lerna exec --scope=@finetwork/ui yarn publish-library",
-    "build-sections-library": "lerna exec --scope=@finetwork/ui-sections yarn build",
-    "publish-sections-library": "lerna exec --scope=@finetwork/ui-sections yarn publish-library"
+    "postinstall": "node_modules/.bin/lerna bootstrap",
+    "dev": "node_modules/.bin/lerna exec --scope=website yarn dev",
+    "build-website": "node_modules/.bin/lerna exec --scope=website yarn build",
+    "start-website": "node_modules/.bin/lerna exec --scope=website yarn start",
+    "build-ui-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui yarn build",
+    "publish-ui-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui yarn publish-library",
+    "build-sections-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui-sections yarn build",
+    "publish-sections-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui-sections yarn publish-library"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
     "prettier": "^2.2.1",
-    "typescript": "^4.3.5"
+    "typescript": "latest"
   }
 }
