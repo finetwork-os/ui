@@ -71,7 +71,7 @@ export const StyledSwitch: StyledComponent<
 export const StyledThumb = styled(Thumb, {
   display: 'block',
   backgroundColor: 'white',
-  borderRadius: '$round',
+  borderRadius: '50%',
   height: '100%',
   boxShadow: 'rgba(0, 0, 0, 0.3) 0px 0px 2px',
   transition: 'transform .3s ease',
