@@ -108,6 +108,7 @@ export const StyledViewport = styled(ToastPrimitive.Viewport, {
 })
 
 export const StyledToast = styled(ToastPrimitive.Root, {
+  width: '100%',
   position: 'relative',
   backgroundColor: 'white',
   border: '1px solid black',
@@ -115,7 +116,6 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
-  columnGap: 15,
   alignItems: 'center',
   '&:hover': {
     cursor: 'grab',
@@ -270,4 +270,27 @@ export const ProgressBar = styled('span', {
   defaultVariants: {
     kind: 'primary',
   },
+})
+
+export const StyledCloseButton = styled(ToastPrimitive.Close, {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  '& svg': {
+    color: '#aaa',
+    transition: '.3s',
+    '&:hover': {
+      color: '#000'
+    }
+  },
+  variants: {
+    kind: {
+      closePadding: {
+        padding: '8px 5px',
+      },
+      noClosePadding: {
+        padding: '5px',
+      }
+    }
+  }
 })

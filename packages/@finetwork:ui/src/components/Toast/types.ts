@@ -21,7 +21,8 @@ export type TOAST_KINDS = keyof typeof TOAST_KIND
 
 type ToastProps = React.ComponentProps<typeof StyledToast> & {
   kind?: KINDS | TOAST_KINDS
-  withProgressBar?: boolean
+  withProgressBar?: boolean,
+  withCloseButton?: boolean,
 }
 type ToastProviderProps = Omit<
   ToastProviderPrimitiveProps,

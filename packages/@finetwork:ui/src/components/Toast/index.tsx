@@ -7,9 +7,12 @@ import {
   StyledTitle,
   StyledToast,
   StyledViewport,
+  StyledCloseButton,
 } from './styled'
 import { DIRECTION, ToastComponent, ToastProviderComponent } from './types'
 import { KIND } from '../../types'
+
+import { Cross1Icon } from '../icons'
 
 const swipeDirectionByDirection: Record<
   DIRECTION,
@@ -46,6 +49,7 @@ export const Toast: ToastComponent = ({
   kind = KIND.primary,
   withProgressBar = true,
   children,
+  withCloseButton = false,
   ...props
 }) => {
   const timer = React.useRef<NodeJS.Timer>(null)
@@ -57,6 +61,7 @@ export const Toast: ToastComponent = ({
     return () => clearInterval(timer.current)
   }, [])
   const percentage = withProgressBar ? (durationLeft * 100) / duration : 0
+  const withProgressAndClose = withProgressBar ? 'closePadding' : 'noClosePadding'
   const handlers = {
     ...(withProgressBar && {
       onMouseOver: () => clearTimeout(timer.current),
@@ -66,7 +71,7 @@ export const Toast: ToastComponent = ({
     }),
   }
   return (
-    <StyledToast {...handlers} {...props} kind={kind}>
+    <StyledToast {...handlers} {...props} kind={kind} duration={duration}>
       {withProgressBar && (
         <ProgressBar
           kind={kind}
@@ -75,6 +80,14 @@ export const Toast: ToastComponent = ({
           }}
         />
       )}
+      {
+        withCloseButton && (
+          <StyledCloseButton kind={withProgressAndClose}>
+            <Cross1Icon />
+          </StyledCloseButton>
+        )
+      }
+      
       {children}
     </StyledToast>
   )

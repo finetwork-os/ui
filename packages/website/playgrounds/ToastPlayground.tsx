@@ -1,5 +1,9 @@
 import {
   Button,
+  CheckIcon,
+  H3,
+  H4,
+  H5,
   Toast,
   ToastAction,
   ToastDescription,
@@ -7,6 +11,7 @@ import {
   ToastTitle,
 } from '@finetwork/ui'
 import { useState } from 'react'
+import { styled } from '@finetwork:ui/src/stitches.config'
 
 const kinds = [
   'primary',
@@ -17,6 +22,20 @@ const kinds = [
   'error',
   'info',
 ]
+
+const StyledDiv = styled('div', {
+  display: 'grid',
+  gridAutoFlow: 'column',
+  alignItems: 'center',
+  gap: '50px',
+  '& div': {
+    display: 'inline-block',
+  },
+  '& svg': {
+    transition: '0.3s',
+    color: '#5F3DFF',
+  },
+})
 
 export const ToastPlayground = () => {
   const [notifications, setNotifications] = useState([])
@@ -32,7 +51,7 @@ export const ToastPlayground = () => {
 
   // }, [notifications])
   return (
-    <ToastProvider direction="bottom-right">
+    <ToastProvider direction="top-center">
       <div>
         <Button
           onClick={() =>
@@ -41,7 +60,7 @@ export const ToastPlayground = () => {
               {
                 id: prev.length + 1,
                 show: true,
-                kind: kinds[Math.floor(Math.random() * kinds.length)],
+                kind: 'primary',
               },
             ])
           }
@@ -52,10 +71,13 @@ export const ToastPlayground = () => {
       </div>
       {notifications.map((notification) => (
         <Toast
+          withProgressBar={false}
+          withCloseButton={true}
+          duration={15000}
           key={notification.id}
           open={notification.show}
           kind={notification.kind}
-          onOpenChange={() =>
+          onOpenChange={() => {
             setNotifications((prev) =>
               prev.map((n) =>
                 n.id === notification.id
@@ -67,10 +89,31 @@ export const ToastPlayground = () => {
                   : n
               )
             )
-          }
+          }}
         >
-          <ToastTitle>Notification number {notification.id}</ToastTitle>
-          <ToastDescription>{notification.kind.toUpperCase()}</ToastDescription>
+          <ToastTitle>
+            <H5>PUK: </H5>
+          </ToastTitle>
+          <ToastDescription>
+            <StyledDiv>
+              <H4 css={{ color: '#5F3DFF' }}>77777777</H4>
+              <Button
+                kind="primary"
+                shape="circle"
+                css={{
+                  backgroundColor: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#5F3DFF',
+                    '& svg': {
+                      color: '#fff',
+                    },
+                  },
+                }}
+              >
+                <CheckIcon />
+              </Button>
+            </StyledDiv>
+          </ToastDescription>
           <ToastAction altText="Goto schedule to undo"></ToastAction>
         </Toast>
       ))}
