@@ -10,7 +10,7 @@ import {
   ToastTitle,
 } from '@finetwork/ui'
 import { useState } from 'react'
-import { styled } from '@finetwork:ui/src/stitches.config'
+import { styled } from '../styles/stitches.config'
 
 const kinds = [
   'primary',
@@ -84,10 +84,10 @@ export const ToastPlayground = () => {
               prev.map((n) =>
                 n.id === notification.id
                   ? {
-                    id: n.id,
-                    show: false,
-                    kind: n.kind,
-                  }
+                      id: n.id,
+                      show: false,
+                      kind: n.kind,
+                    }
                   : n
               )
             )
@@ -102,10 +102,7 @@ export const ToastPlayground = () => {
             </StyledDiv>
           </ToastDescription>
           <ToastAction altText="Goto schedule to undo">
-            <StyledButton
-              kind="primary"
-              shape="circle"
-            >
+            <StyledButton kind="primary" shape="circle">
               <CheckIcon />
             </StyledButton>
           </ToastAction>
