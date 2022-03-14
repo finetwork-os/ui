@@ -1,10 +1,7 @@
 import {
   Button,
   CheckIcon,
-  H4,
-  H5,
   H6,
-  Paragraph4,
   Paragraph5,
   Toast,
   ToastAction,
@@ -77,7 +74,7 @@ export const ToastPlayground = () => {
       {notifications.map((notification) => (
         <Toast
           withProgressBar={false}
-          clousable={true}
+          closeable={true}
           duration={15000}
           key={notification.id}
           open={notification.show}

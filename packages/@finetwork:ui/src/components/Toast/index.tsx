@@ -49,7 +49,7 @@ export const Toast: ToastComponent = ({
   kind = KIND.primary,
   withProgressBar = false,
   children,
-  clousable = true,
+  closeable = true,
   ...props
 }) => {
   const timer = React.useRef<NodeJS.Timer>(null)
@@ -79,7 +79,7 @@ export const Toast: ToastComponent = ({
           }}
         />
       )}
-      {clousable && (
+      {closeable && (
         <StyledCloseButton withProgressBar={withProgressBar}>
           <Cross1Icon />
         </StyledCloseButton>
