@@ -7,9 +7,12 @@ import {
   StyledTitle,
   StyledToast,
   StyledViewport,
+  StyledCloseButton,
 } from './styled'
 import { DIRECTION, ToastComponent, ToastProviderComponent } from './types'
 import { KIND } from '../../types'
+
+import { Cross1Icon } from '../icons'
 
 const swipeDirectionByDirection: Record<
   DIRECTION,
@@ -44,8 +47,9 @@ const getTimerFn = (fn, timer) => () => {
 export const Toast: ToastComponent = ({
   duration = 5000,
   kind = KIND.primary,
-  withProgressBar = true,
+  withProgressBar = false,
   children,
+  closeable = true,
   ...props
 }) => {
   const timer = React.useRef<NodeJS.Timer>(null)
@@ -66,7 +70,7 @@ export const Toast: ToastComponent = ({
     }),
   }
   return (
-    <StyledToast {...handlers} {...props} kind={kind}>
+    <StyledToast {...handlers} {...props} kind={kind} duration={duration}>
       {withProgressBar && (
         <ProgressBar
           kind={kind}
@@ -74,6 +78,11 @@ export const Toast: ToastComponent = ({
             width: `${percentage}%`,
           }}
         />
+      )}
+      {closeable && (
+        <StyledCloseButton withProgressBar={withProgressBar}>
+          <Cross1Icon />
+        </StyledCloseButton>
       )}
       {children}
     </StyledToast>
