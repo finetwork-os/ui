@@ -1,9 +1,11 @@
 import {
   Button,
   CheckIcon,
-  H3,
   H4,
   H5,
+  H6,
+  Paragraph4,
+  Paragraph5,
   Toast,
   ToastAction,
   ToastDescription,
@@ -25,25 +27,28 @@ const kinds = [
 
 const StyledDiv = styled('div', {
   display: 'grid',
-  gridAutoFlow: 'column',
-  alignItems: 'center',
-  gap: '50px',
   '& div': {
     display: 'inline-block',
   },
-  '& svg': {
-    transition: '0.3s',
-    color: '#5F3DFF',
+})
+
+const StyledButton = styled(Button, {
+  marginLeft: '1rem',
+  '&:hover': {
+    backgroundColor: '#fff !important',
+    '& svg': {
+      color: '$primary',
+    },
   },
 })
 
 export const ToastPlayground = () => {
   const [notifications, setNotifications] = useState([])
-  // If you want to remove notifications from tree components
+  // // If you want to remove notifications from tree components
   // useEffect(() => {
   //   if (notifications.length > 0) {
 
-  // setTimeout to not remove animation
+  //     // setTimeout to not remove animation
   //     setTimeout(() => {
   //       setNotifications((prev) => prev.filter((n) => n.show))
   //     }, 2000)
@@ -60,7 +65,7 @@ export const ToastPlayground = () => {
               {
                 id: prev.length + 1,
                 show: true,
-                kind: 'primary',
+                kind: kinds[Math.floor(Math.random() * kinds.length)],
               },
             ])
           }
@@ -72,7 +77,7 @@ export const ToastPlayground = () => {
       {notifications.map((notification) => (
         <Toast
           withProgressBar={false}
-          withCloseButton={true}
+          clousable={true}
           duration={15000}
           key={notification.id}
           open={notification.show}
@@ -82,39 +87,31 @@ export const ToastPlayground = () => {
               prev.map((n) =>
                 n.id === notification.id
                   ? {
-                      id: n.id,
-                      show: false,
-                      kind: n.kind,
-                    }
+                    id: n.id,
+                    show: false,
+                    kind: n.kind,
+                  }
                   : n
               )
             )
           }}
         >
           <ToastTitle>
-            <H5>PUK: </H5>
+            <H6>SAMPLE TITLE: </H6>
           </ToastTitle>
           <ToastDescription>
             <StyledDiv>
-              <H4 css={{ color: '#5F3DFF' }}>77777777</H4>
-              <Button
-                kind="primary"
-                shape="circle"
-                css={{
-                  backgroundColor: '#fff',
-                  '&:hover': {
-                    backgroundColor: '#5F3DFF',
-                    '& svg': {
-                      color: '#fff',
-                    },
-                  },
-                }}
-              >
-                <CheckIcon />
-              </Button>
+              <Paragraph5>Sample description {`${notification.id}`}</Paragraph5>
             </StyledDiv>
           </ToastDescription>
-          <ToastAction altText="Goto schedule to undo"></ToastAction>
+          <ToastAction altText="Goto schedule to undo">
+            <StyledButton
+              kind="primary"
+              shape="circle"
+            >
+              <CheckIcon />
+            </StyledButton>
+          </ToastAction>
         </Toast>
       ))}
     </ToastProvider>

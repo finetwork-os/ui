@@ -284,11 +284,11 @@ export const StyledCloseButton = styled(ToastPrimitive.Close, {
     }
   },
   variants: {
-    kind: {
-      closePadding: {
+    withProgressBar: {
+      true: {
         padding: '8px 5px',
       },
-      noClosePadding: {
+      false: {
         padding: '5px',
       }
     }

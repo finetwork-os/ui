@@ -47,9 +47,9 @@ const getTimerFn = (fn, timer) => () => {
 export const Toast: ToastComponent = ({
   duration = 5000,
   kind = KIND.primary,
-  withProgressBar = true,
+  withProgressBar = false,
   children,
-  withCloseButton = false,
+  clousable = true,
   ...props
 }) => {
   const timer = React.useRef<NodeJS.Timer>(null)
@@ -61,7 +61,6 @@ export const Toast: ToastComponent = ({
     return () => clearInterval(timer.current)
   }, [])
   const percentage = withProgressBar ? (durationLeft * 100) / duration : 0
-  const withProgressAndClose = withProgressBar ? 'closePadding' : 'noClosePadding'
   const handlers = {
     ...(withProgressBar && {
       onMouseOver: () => clearTimeout(timer.current),
@@ -80,14 +79,11 @@ export const Toast: ToastComponent = ({
           }}
         />
       )}
-      {
-        withCloseButton && (
-          <StyledCloseButton kind={withProgressAndClose}>
-            <Cross1Icon />
-          </StyledCloseButton>
-        )
-      }
-      
+      {clousable && (
+        <StyledCloseButton withProgressBar={withProgressBar}>
+          <Cross1Icon />
+        </StyledCloseButton>
+      )}
       {children}
     </StyledToast>
   )
