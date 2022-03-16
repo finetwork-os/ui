@@ -73,12 +73,12 @@ export const ToastPlayground = () => {
       </div>
       {notifications.map((notification) => (
         <Toast
-          withProgressBar={false}
+          withProgressBar={true}
           closeable={true}
           duration={15000}
           key={notification.id}
           open={notification.show}
-          kind={notification.kind}
+          kind={'default'}
           onOpenChange={() => {
             setNotifications((prev) =>
               prev.map((n) =>

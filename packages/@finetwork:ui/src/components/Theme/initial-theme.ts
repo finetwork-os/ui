@@ -18,6 +18,7 @@ export const initialTheme: FiTheme = {
     success: green.green10,
     info: blue.blue10,
     warning: amber.amber10,
+    default: 'hsl(206 22% 7% / 35%)',
   },
   space: {},
   fonts: {

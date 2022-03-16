@@ -49,7 +49,8 @@ export type Colors = {
   error?: string
   success?: string
   info?: string
-  warning?: string
+  warning?: string,
+  default?: string,
 }
 
 export type Fonts = {

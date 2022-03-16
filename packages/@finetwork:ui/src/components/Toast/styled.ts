@@ -111,14 +111,12 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   width: '100%',
   position: 'relative',
   backgroundColor: 'white',
-  border: '1px solid black',
+  border: '0',
   padding: 15,
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
   alignItems: 'center',
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
   '&:hover': {
     cursor: 'grab',
   },
@@ -191,31 +189,33 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   },
   variants: {
     kind: {
+      default: {
+        boxShadow:'$colors$default 0px 10px 38px -10px, $colors$default 0px 10px 20px -15px',
+      },
       primary: {
-        borderColor: '$primary',
+        boxShadow: '$colors$primary 0px 0px 20px -10px, $colors$primary 0px 0px 20px -15px',
       },
       secondary: {
-        borderColor: '$secondary',
+        borderColor: '$colors$secondary 0px 0px 20px -10px, $colors$secondary 0px 0px 20px -15px',
       },
       tertiary: {
-        borderColor: '$tertiary',
+        boxShadow: '$colors$tertiary 0px 0px 20px -10px, $colors$tertiary 0px 0px 20px -15px',
       },
       info: {
-        borderColor: '$info',
+        boxShadow: '$colors$info 0px 0px 20px -10px, $colors$info 0px 0px 20px -15px',
       },
       error: {
-        borderColor: '$error',
+        boxShadow: '$colors$error 0px 0px 20px -10px, $colors$error 0px 0px 20px -15px',
       },
       success: {
-        borderColor: '$success',
+        boxShadow: '$colors$success 0px 0px 20px -10px, $colors$success 0px 0px 20px -15px',
       },
       warning: {
-        borderColor: '$warning',
+        boxShadow: '$colors$warning 0px 0px 20px -10px, $colors$warning 0px 0px 20px -15px',
       },
     },
-  },
-  defaultVariants: {
-    kind: 'primary',
+  },defaultVariants: {
+    kind: 'default',
   },
 })
 
@@ -246,6 +246,9 @@ export const ProgressBar = styled('span', {
   transition: 'all .3s ease',
   variants: {
     kind: {
+      default: {
+        backgroundColor: '$default',
+      },
       primary: {
         backgroundColor: '$primary',
       },
@@ -270,7 +273,7 @@ export const ProgressBar = styled('span', {
     },
   },
   defaultVariants: {
-    kind: 'primary',
+    kind: 'default',
   },
 })
 

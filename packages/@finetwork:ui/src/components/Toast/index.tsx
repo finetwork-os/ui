@@ -46,7 +46,7 @@ const getTimerFn = (fn, timer) => () => {
 }
 export const Toast: ToastComponent = ({
   duration = 5000,
-  kind = KIND.primary,
+  kind = KIND.default,
   withProgressBar = false,
   children,
   closeable = true,
