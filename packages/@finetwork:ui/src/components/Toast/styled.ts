@@ -112,11 +112,13 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   position: 'relative',
   backgroundColor: 'white',
   border: '0',
-  padding: 15,
+  padding: 10,
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
   alignItems: 'center',
+  boxShadow:
+    '$colors$default 0px 10px 38px -10px, $colors$default 0px 10px 20px -15px',
   '&:hover': {
     cursor: 'grab',
   },
@@ -187,36 +189,6 @@ export const StyledToast = styled(ToastPrimitive.Root, {
       },
     },
   },
-  variants: {
-    kind: {
-      default: {
-        boxShadow:'$colors$default 0px 10px 38px -10px, $colors$default 0px 10px 20px -15px',
-      },
-      primary: {
-        boxShadow: '$colors$primary 0px 0px 20px -10px, $colors$primary 0px 0px 20px -15px',
-      },
-      secondary: {
-        borderColor: '$colors$secondary 0px 0px 20px -10px, $colors$secondary 0px 0px 20px -15px',
-      },
-      tertiary: {
-        boxShadow: '$colors$tertiary 0px 0px 20px -10px, $colors$tertiary 0px 0px 20px -15px',
-      },
-      info: {
-        boxShadow: '$colors$info 0px 0px 20px -10px, $colors$info 0px 0px 20px -15px',
-      },
-      error: {
-        boxShadow: '$colors$error 0px 0px 20px -10px, $colors$error 0px 0px 20px -15px',
-      },
-      success: {
-        boxShadow: '$colors$success 0px 0px 20px -10px, $colors$success 0px 0px 20px -15px',
-      },
-      warning: {
-        boxShadow: '$colors$warning 0px 0px 20px -10px, $colors$warning 0px 0px 20px -15px',
-      },
-    },
-  },defaultVariants: {
-    kind: 'default',
-  },
 })
 
 export const StyledTitle = styled(ToastPrimitive.Title, {
@@ -246,9 +218,6 @@ export const ProgressBar = styled('span', {
   transition: 'all .3s ease',
   variants: {
     kind: {
-      default: {
-        backgroundColor: '$default',
-      },
       primary: {
         backgroundColor: '$primary',
       },
@@ -273,29 +242,19 @@ export const ProgressBar = styled('span', {
     },
   },
   defaultVariants: {
-    kind: 'default',
+    kind: 'primary',
   },
 })
 
 export const StyledCloseButton = styled(ToastPrimitive.Close, {
   position: 'absolute',
-  top: 0,
-  right: 0,
+  top: 8,
+  right: 8,
   '& svg': {
     color: '#aaa',
     transition: '.3s',
     '&:hover': {
-      color: '#000'
-    }
+      color: '#000',
+    },
   },
-  variants: {
-    withProgressBar: {
-      true: {
-        padding: '8px 5px',
-      },
-      false: {
-        padding: '5px',
-      }
-    }
-  }
 })

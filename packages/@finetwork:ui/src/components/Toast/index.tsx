@@ -80,7 +80,7 @@ export const Toast: ToastComponent = ({
         />
       )}
       {closeable && (
-        <StyledCloseButton withProgressBar={withProgressBar}>
+        <StyledCloseButton>
           <Cross1Icon />
         </StyledCloseButton>
       )}
