@@ -46,19 +46,19 @@ export const StyledButton = styled(Button, {
       },
     },
   ],
-});
+})
 
 export const StyledCheckIcon = styled(CheckIcon, {
   color: '$primary',
   width: 20,
   height: 20,
-});
+})
 
 export const StyledCopyIcon = styled(EyeClosedIcon, {
   color: '$primary',
   width: 20,
   height: 20,
-});
+})
 
 export const ToastPlayground = () => {
   const [notifications, setNotifications] = useState([])
@@ -84,7 +84,7 @@ export const ToastPlayground = () => {
                 id: prev.length + 1,
                 show: true,
                 kind: kinds[Math.floor(Math.random() * kinds.length)],
-                copied: false
+                copied: false,
               },
             ])
           }
@@ -95,7 +95,10 @@ export const ToastPlayground = () => {
       </div>
       {notifications.map((notification) => (
         <Toast
-          duration={15000}
+          withProgressBar
+          pauseOnFocusLoss={false}
+          pauseOnHover={false}
+          duration={5000}
           key={notification.id}
           kind={notification.kind}
           open={notification.show}
@@ -104,9 +107,9 @@ export const ToastPlayground = () => {
               prev.map((n) =>
                 n.id === notification.id
                   ? {
-                    ...n,
-                    show: false,
-                  }
+                      ...n,
+                      show: false,
+                    }
                   : n
               )
             )
@@ -122,9 +125,9 @@ export const ToastPlayground = () => {
                   prev.map((n) =>
                     n.id === notification.id
                       ? {
-                        ...n,
-                        copied: true
-                      }
+                          ...n,
+                          copied: true,
+                        }
                       : n
                   )
                 )
