@@ -46,7 +46,7 @@ const getTimerFn = (fn, timer) => () => {
 }
 export const Toast: ToastComponent = ({
   duration = 5000,
-  kind = KIND.default,
+  kind = KIND.primary,
   withProgressBar = false,
   children,
   closeable = true,
@@ -124,7 +124,6 @@ export const Toast: ToastComponent = ({
   return (
     <StyledToast
       {...props}
-      kind={kind}
       duration={durationLeft}
       onOpenChange={handleChange}
       open={isOpen}
