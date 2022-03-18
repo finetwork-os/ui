@@ -113,6 +113,7 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   backgroundColor: 'white',
   border: '0',
   padding: 10,
+  borderRadius: 4,
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
