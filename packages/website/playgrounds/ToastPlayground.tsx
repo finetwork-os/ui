@@ -96,7 +96,7 @@ export const ToastPlayground = () => {
       {notifications.map((notification) => (
         <Toast
           withProgressBar
-          pauseOnFocusLoss={false}
+          pauseOnFocusLoss={true}
           pauseOnHover={false}
           duration={5000}
           key={notification.id}

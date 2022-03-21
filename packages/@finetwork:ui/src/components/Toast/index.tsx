@@ -26,24 +26,49 @@ const swipeDirectionByDirection: Record<
   'bottom-right': 'right',
 }
 
+enum Actions {
+  RESET = 'reset',
+  DURATION_LEFT = 'durationLeft',
+  IS_OPEN = 'isOpen',
+  IS_RUNNING = 'isRunning',
+}
+
 export const ToastTitle = StyledTitle
 export const ToastDescription = StyledDescription
 export const ToastAction = StyledAction
 export const ToastClose = Close
 
-const getTimerFn = (fn, timer) => () => {
-  return setInterval(
-    () =>
-      fn((prev) => {
-        const finalDuration = prev - 100
-        if (finalDuration === 0 && timer?.current) {
-          clearInterval(timer.current)
-        }
-        return finalDuration
-      }),
-    100
-  )
+const getFinalDuratiuon = (durationLeft, timer) => {
+  const finalDuration = durationLeft - 100
+  if (finalDuration === 0 && timer?.current) {
+    clearInterval(timer.current)
+  }
+  return finalDuration
 }
+
+const getTimerFn = (fn, timer, durationLeft) => () => {
+  return setInterval(() => {
+    const currentDuration = getFinalDuratiuon(durationLeft, timer)
+    fn({ type: 'durationLeft', payload: currentDuration })
+  }, 100)
+}
+
+const toastReducer = (state, action) => {
+  console.log({ state, action })
+  switch (action.type) {
+    case Actions.RESET:
+      return { ...state, isRunning: false, durationLeft: 0 }
+    case Actions.DURATION_LEFT:
+      return { ...state, durationLeft: action.payload }
+    case Actions.IS_OPEN:
+      return { ...state, isOpen: action.payload }
+    case Actions.IS_RUNNING:
+      return { ...state, isRunning: action.payload }
+    default:
+      return { ...state }
+  }
+}
+
 export const Toast: ToastComponent = ({
   duration = 5000,
   kind = KIND.primary,
@@ -56,14 +81,18 @@ export const Toast: ToastComponent = ({
   open,
   ...props
 }) => {
-  const [isRunning, setIsRunning] = React.useState(true)
-  const [isOpen, setIsOpen] = React.useState(open)
-  const [durationLeft, setDurationLeft] = React.useState(duration)
+  const [toastState, dispatch] = React.useReducer(toastReducer, {
+    isRunning: true,
+    isOpen: open,
+    durationLeft: duration,
+  })
   const timer = React.useRef<NodeJS.Timer>(null)
 
-  const playToast = () => setIsRunning(true)
-  const pauseToast = () => setIsRunning(false)
-  const closeToast = () => setIsOpen(false)
+  const playToast = () => dispatch({ type: Actions.IS_RUNNING, payload: true })
+  const pauseToast = () =>
+    dispatch({ type: Actions.IS_RUNNING, payload: false })
+  const closeToast = () => dispatch({ type: Actions.IS_OPEN, payload: false })
+
   const bindFocusEvents = () => {
     if (!document.hasFocus()) pauseToast()
     window.addEventListener('focus', playToast)
@@ -74,40 +103,44 @@ export const Toast: ToastComponent = ({
     window.removeEventListener('blur', pauseToast)
   }
   const handleChange = (open: boolean) => {
-    setIsOpen(open)
+    dispatch({ type: Actions.IS_OPEN, payload: open })
     onOpenChange?.(open)
   }
   const reset = () => {
     pauseToast()
     setTimeout(() => {
-      setDurationLeft(0)
+      dispatch({ type: Actions.DURATION_LEFT, payload: 0 })
     }, 300)
   }
 
   React.useEffect(() => {
-    if (!isOpen) {
+    if (!toastState.isOpen) {
       reset()
     }
-  }, [isOpen])
+  }, [toastState.isOpen])
   React.useEffect(() => {
-    if (withProgressBar && isRunning && durationLeft > 0) {
-      timer.current = getTimerFn(setDurationLeft, timer)()
+    if (
+      withProgressBar &&
+      toastState.isRunning &&
+      toastState.durationLeft > 0
+    ) {
+      timer.current = getTimerFn(dispatch, timer, toastState.durationLeft)()
     }
     return () => clearInterval(timer.current)
-  }, [withProgressBar, isRunning, durationLeft])
+  }, [withProgressBar, toastState.isRunning, toastState.durationLeft])
   React.useEffect(() => {
     if (!pauseOnFocusLoss) {
-      if (durationLeft > 0) return
+      if (toastState.durationLeft > 0) return
       return closeToast()
     }
-    if (durationLeft > 0) {
+    if (toastState.durationLeft > 0) {
       bindFocusEvents()
       return () => unbindFocusEvents()
     }
     unbindFocusEvents()
     pauseToast()
     closeToast()
-  }, [pauseOnFocusLoss, durationLeft])
+  }, [pauseOnFocusLoss, toastState.durationLeft])
 
   const handlers = {
     ...(pauseOnHover && {
@@ -117,16 +150,16 @@ export const Toast: ToastComponent = ({
   }
 
   const percentage = React.useMemo(
-    () => (withProgressBar ? (durationLeft * 100) / duration : 0),
-    [withProgressBar, durationLeft, duration]
+    () => (withProgressBar ? (toastState.durationLeft * 100) / duration : 0),
+    [withProgressBar, toastState.durationLeft, duration]
   )
 
   return (
     <StyledToast
       {...props}
-      duration={durationLeft}
+      duration={toastState.durationLeft}
       onOpenChange={handleChange}
-      open={isOpen}
+      open={toastState.isOpen}
       {...handlers}
     >
       {withProgressBar && (
