@@ -111,8 +111,9 @@ export const StyledToast = styled(ToastPrimitive.Root, {
   width: '100%',
   position: 'relative',
   backgroundColor: 'white',
-  border: '1px solid black',
-  padding: 15,
+  border: '0',
+  padding: 10,
+  borderRadius: 4,
   display: 'grid',
   gridTemplateAreas: '"title action" "description action"',
   gridTemplateColumns: 'auto max-content',
@@ -189,34 +190,6 @@ export const StyledToast = styled(ToastPrimitive.Root, {
       },
     },
   },
-  variants: {
-    kind: {
-      primary: {
-        borderColor: '$primary',
-      },
-      secondary: {
-        borderColor: '$secondary',
-      },
-      tertiary: {
-        borderColor: '$tertiary',
-      },
-      info: {
-        borderColor: '$info',
-      },
-      error: {
-        borderColor: '$error',
-      },
-      success: {
-        borderColor: '$success',
-      },
-      warning: {
-        borderColor: '$warning',
-      },
-    },
-  },
-  defaultVariants: {
-    kind: 'primary',
-  },
 })
 
 export const StyledTitle = styled(ToastPrimitive.Title, {
@@ -276,23 +249,13 @@ export const ProgressBar = styled('span', {
 
 export const StyledCloseButton = styled(ToastPrimitive.Close, {
   position: 'absolute',
-  top: 0,
-  right: 0,
+  top: 8,
+  right: 8,
   '& svg': {
     color: '#aaa',
     transition: '.3s',
     '&:hover': {
-      color: '#000'
-    }
+      color: '#000',
+    },
   },
-  variants: {
-    withProgressBar: {
-      true: {
-        padding: '8px 5px',
-      },
-      false: {
-        padding: '5px',
-      }
-    }
-  }
 })

@@ -1,13 +1,10 @@
 import {
   Button,
-  CheckIcon,
-  H6,
-  Paragraph5,
+  H4,
   Toast,
-  ToastAction,
-  ToastDescription,
   ToastProvider,
-  ToastTitle,
+  CheckIcon,
+  EyeClosedIcon,
 } from '@finetwork/ui'
 import { useState } from 'react'
 import { styled } from '../styles/stitches.config'
@@ -22,21 +19,45 @@ const kinds = [
   'info',
 ]
 
-const StyledDiv = styled('div', {
+const StyledContainer = styled('div', {
   display: 'grid',
-  '& div': {
-    display: 'inline-block',
-  },
+  gridAutoFlow: 'column',
+  alignItems: 'center',
+  gap: '70px',
+  justifyContent: 'space-around',
+  padding: '0px 30px',
 })
 
-const StyledButton = styled(Button, {
-  marginLeft: '1rem',
-  '&:hover': {
-    backgroundColor: '#fff !important',
-    '& svg': {
-      color: '$primary',
+export const StyledButton = styled(Button, {
+  margin: '0.1rem 1rem',
+  variants: {
+    button: {
+      primary: {},
     },
   },
+  compoundVariants: [
+    {
+      button: 'primary',
+      css: {
+        backgroundColor: '#fff',
+        '&:hover': {
+          backgroundColor: '$primary100',
+        },
+      },
+    },
+  ],
+})
+
+export const StyledCheckIcon = styled(CheckIcon, {
+  color: '$primary',
+  width: 20,
+  height: 20,
+})
+
+export const StyledCopyIcon = styled(EyeClosedIcon, {
+  color: '$primary',
+  width: 20,
+  height: 20,
 })
 
 export const ToastPlayground = () => {
@@ -63,6 +84,7 @@ export const ToastPlayground = () => {
                 id: prev.length + 1,
                 show: true,
                 kind: kinds[Math.floor(Math.random() * kinds.length)],
+                copied: false,
               },
             ])
           }
@@ -73,39 +95,47 @@ export const ToastPlayground = () => {
       </div>
       {notifications.map((notification) => (
         <Toast
-          withProgressBar={false}
-          closeable={true}
-          duration={15000}
+          withProgressBar
+          pauseOnFocusLoss={true}
+          pauseOnHover={false}
+          duration={5000}
           key={notification.id}
-          open={notification.show}
           kind={notification.kind}
+          open={notification.show}
           onOpenChange={() => {
             setNotifications((prev) =>
               prev.map((n) =>
                 n.id === notification.id
                   ? {
-                      id: n.id,
+                      ...n,
                       show: false,
-                      kind: n.kind,
                     }
                   : n
               )
             )
           }}
         >
-          <ToastTitle>
-            <H6>SAMPLE TITLE: </H6>
-          </ToastTitle>
-          <ToastDescription>
-            <StyledDiv>
-              <Paragraph5>Sample description {`${notification.id}`}</Paragraph5>
-            </StyledDiv>
-          </ToastDescription>
-          <ToastAction altText="Goto schedule to undo">
-            <StyledButton kind="primary" shape="circle">
-              <CheckIcon />
+          <StyledContainer>
+            <H4 kind="primary">Hello world!</H4>
+            <StyledButton
+              button="primary"
+              shape="circle"
+              onClick={() => {
+                setNotifications((prev) =>
+                  prev.map((n) =>
+                    n.id === notification.id
+                      ? {
+                          ...n,
+                          copied: true,
+                        }
+                      : n
+                  )
+                )
+              }}
+            >
+              {notification.copied ? <StyledCheckIcon /> : <StyledCopyIcon />}
             </StyledButton>
-          </ToastAction>
+          </StyledContainer>
         </Toast>
       ))}
     </ToastProvider>

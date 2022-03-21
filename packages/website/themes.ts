@@ -37,6 +37,7 @@ const sharedStyles = {
     success: 'hsl(152, 57.5%, 37.6%)',
     info: 'hsl(208, 100%, 47.3%)',
     warning: 'hsl(35, 100%, 55.5%)',
+    default: 'hsl(206 22% 7% / 35%)',
   },
   space: {},
   sizes: {
