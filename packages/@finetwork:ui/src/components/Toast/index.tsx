@@ -90,6 +90,7 @@ export const Toast: ToastComponent = ({
   const playToast = () => dispatch({ type: ACTIONS.IS_RUNNING, payload: true })
   const pauseToast = () =>
     dispatch({ type: ACTIONS.IS_RUNNING, payload: false })
+  const openToast = () => dispatch({ type: ACTIONS.IS_OPEN, payload: true })
   const closeToast = () => dispatch({ type: ACTIONS.IS_OPEN, payload: false })
 
   const bindFocusEvents = () => {
@@ -117,6 +118,13 @@ export const Toast: ToastComponent = ({
       reset()
     }
   }, [state.isOpen])
+  React.useEffect(() => {
+    if (open) return openToast()
+    closeToast()
+  }, [open])
+  React.useEffect(() => {
+    dispatch({ type: ACTIONS.DURATION_LEFT, payload: duration })
+  }, [duration])
   React.useEffect(() => {
     if (withProgressBar && state.isRunning && state.durationLeft > 0) {
       timer.current = getTimerFn(dispatch, timer, state.durationLeft)()
