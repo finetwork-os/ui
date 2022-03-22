@@ -29,7 +29,7 @@
     "typescript": "latest"
   },
   "peerDependencies": {
-    "@finetwork/ui": "0.7.3",
+    "@finetwork/ui": "0.7.5",
     "react": ">=17.0.0"
   }
 }

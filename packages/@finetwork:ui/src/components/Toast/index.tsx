@@ -64,7 +64,7 @@ const reducer = (state, action) => {
     case ACTIONS.IS_RUNNING:
       return { ...state, isRunning: action.payload }
     default:
-      return { ...state }
+      return state
   }
 }
 
