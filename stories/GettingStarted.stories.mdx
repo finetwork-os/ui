@@ -1,0 +1,102 @@
+import { H2, Paragraph4, Link, H3 } from '@finetwork/ui'
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Introduction/Getting started" />
+
+<div />
+<div>
+  <H2 font="secondary">Getting started</H2>
+</div>
+<div>
+  <H3 font="secondary">Install</H3>
+</div>
+
+<Paragraph4>Using npm</Paragraph4>
+
+```
+npm i @finetwork/ui react
+```
+
+<Paragraph4>Or yarn</Paragraph4>
+
+```
+yarn add @finetwork/ui react
+```
+
+<Paragraph4>
+  First declare your theme, then you need to follow the next steps to add styles
+  to your app
+</Paragraph4>
+
+```js
+const theme = {
+  colors: {
+    linkText: '#5F3DFF',
+    primary: '#bf3fa1',
+    primaryText: '#000',
+    primaryButtonText: '#fff',
+    primary100: '...',
+    .
+    .
+    secondary: '#5F3DFF',
+    secondaryText: '#fff',
+    secondaryButtonText: '#fff',
+    secondary100: '#F4F2FF',
+    .
+    .
+    tertiary: '#FA9A1D',
+    tertiaryText: '#000',
+    tertiaryButtonText: '#000',
+    tertiary100: '#FFF8F0',
+    .
+    .
+  },
+  fonts: {
+    primary: 'Nunito Sans, apple-system, sans-serif',
+    secondary: 'Druk, monospace',
+  },
+}
+```
+
+<div>
+  <H3 font="secondary">Client side</H3>
+</div>
+
+<Paragraph4>
+  Wrap your application with <i>ThemeProvider</i> component from @finetwork/ui
+</Paragraph4>
+
+```jsx
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <YourApp />
+    </ThemeProvider>
+  )
+}
+```
+
+<div>
+  <H3 font="secondary">Server side</H3>
+</div>
+
+<Paragraph4>
+  Get css string with method <i>getCssString</i> passing your theme and set css
+  string in your style tag
+</Paragraph4>
+
+```jsx
+export default function App = () => {
+  return (
+    <>
+      <Head>
+        <style
+          id="fi-ui"
+          dangerouslySetInnerHTML={{ __html: getCssString(theme) }}
+        />
+      </Head>
+      <YourApp />
+    </>
+  )
+}
+```
