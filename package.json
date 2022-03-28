@@ -16,7 +16,7 @@
     "publish-ui-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui yarn publish-library",
     "build-sections-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui-sections yarn build",
     "publish-sections-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui-sections yarn publish-library",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -c .storybook watch-css -s ./stories/src/styles",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {

@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'Druk';
+  src: url('./Druk-Bold.eot');
+  src: url('./Druk-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./Druk-Bold.woff2') format('woff2'),
+    url('./Druk-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
