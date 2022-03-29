@@ -32,5 +32,6 @@ type ButtonOwnProps = ButtonCSSProp & {
   endEnhancer?: Enhancer
 }
 
-export type ButtonProps = ComponentProps<typeof StyledButton> & ButtonOwnProps
+export type ButtonProps = Omit<ComponentProps<typeof StyledButton>, 'kind'> &
+  ButtonOwnProps
 export type ButtonComponent = FC<ButtonProps>

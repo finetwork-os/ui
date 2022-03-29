@@ -27,7 +27,7 @@ export const theme = {
     primary700: '#412CBA',
     primary800: '#2C218C',
     primary900: '#18165E',
-    tertiary: '#fff',
+    tertiary: '#FA9A1D',
     tertiaryText: '#fff',
     tertiaryButtonText: '#000',
     // tertiary100: '#FFF8F0',
