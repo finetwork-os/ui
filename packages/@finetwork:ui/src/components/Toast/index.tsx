@@ -60,7 +60,7 @@ const reducer = (state, action) => {
     case ACTIONS.DURATION_LEFT:
       return { ...state, durationLeft: action.payload }
     case ACTIONS.IS_OPEN:
-      return { ...state, isOpen: action.payload }
+      return { ...state, isOpen: action.payload, isRunning: action.payload }
     case ACTIONS.IS_RUNNING:
       return { ...state, isRunning: action.payload }
     default:
@@ -121,7 +121,6 @@ export const Toast: ToastComponent = ({
   React.useEffect(() => {
     if (!open) return closeToast()
     openToast()
-    playToast()
   }, [open])
   React.useEffect(() => {
     dispatch({ type: ACTIONS.DURATION_LEFT, payload: duration })
