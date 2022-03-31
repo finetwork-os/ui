@@ -14,6 +14,7 @@ export type DIRECTIONS = keyof typeof DIRECTION
 
 export enum TOAST_KIND {
   info = 'info',
+  error = 'error',
   success = 'success',
   warning = 'warning',
 }
