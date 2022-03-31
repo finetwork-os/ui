@@ -119,8 +119,9 @@ export const Toast: ToastComponent = ({
     }
   }, [state.isOpen])
   React.useEffect(() => {
-    if (open) return openToast()
-    closeToast()
+    if (!open) return closeToast()
+    openToast()
+    playToast()
   }, [open])
   React.useEffect(() => {
     dispatch({ type: ACTIONS.DURATION_LEFT, payload: duration })
