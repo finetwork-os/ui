@@ -1,0 +1,110 @@
+---
+name: Title section
+---
+
+import { Playground } from 'dokz'
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Paragraph1,
+  Paragraph2,
+  Paragraph3,
+  Paragraph4,
+  Paragraph5,
+  Paragraph6,
+} from '@finetwork/ui'
+import { styles } from '../../styles.ts'
+
+<div>
+  <H2 font="secondary">Title Section</H2>
+</div>
+
+<Paragraph4>
+  Title section component is used to add styled lines into the typography components.
+</Paragraph4>
+
+<Paragraph4>
+  To use it is necessary to add the prop <i><b>isHighLight</b></i>.
+</Paragraph4>
+
+<div>
+  <H3 font="secondary">Props</H3>
+  <div style={{ marginTop: '1rem' }}>
+    <ul> 
+      <li><i><b>isHighLight</b></i>: 'true' | 'false' </li>
+      <li>
+        <i><b>highLightSize</b></i>: 'small' | 'medium' | 'large'
+      </li>
+      <li>
+       <i><b>highLightAlign</b></i>: 'bottom' | 'top'
+      </li>
+      <li>
+      <i><b>align</b></i>: 'right' | 'left' | 'center'
+      </li>
+      <li><i><b>highLightKind</b></i>: 'primary' | 'secondary' | 'tertiary  </li>
+    </ul>
+  </div>
+</div>
+
+
+<div>
+  <H3 font="secondary">isHighLight</H3>
+</div>
+
+<Playground>
+  <div style={styles} >  
+    <H3 isHighLight>Is high light </H3>
+  </div>
+</Playground>
+
+
+<div>
+  <H3 font="secondary">highLightSize</H3>
+</div>
+
+<Playground>
+  <div  style={styles}>
+    <H3 isHighLight highLightSize="small">Small</H3>
+    <H3 isHighLight highLightSize="medium">Medium</H3>
+    <H3 isHighLight highLightSize="large">Large</H3>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">align</H3>
+</div>
+
+<Playground>
+  <div  style={styles}>
+    <H3 isHighLight highLightAlign="top" align="left">Left</H3>
+    <H3 isHighLight highLightAlign="top" align="center">Center</H3>
+    <H3 isHighLight highLightAlign="top" align="right">Right</H3>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">highLightAlign</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <H3 isHighLight highLightAlign="bottom">Bottom</H3>
+    <H3 isHighLight highLightAlign="top">Top</H3>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">highLightKind</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <H3 isHighLight highLightAlign="top" highLightKind="primary">Primary</H3>
+    <H3 isHighLight highLightAlign="top" highLightKind="secondary">Secondary</H3>
+    <H3 isHighLight highLightAlign="top" highLightKind="tertiary">Tertiary</H3>
+  </div>
+</Playground>
