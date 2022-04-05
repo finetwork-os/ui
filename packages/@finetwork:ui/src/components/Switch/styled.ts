@@ -93,11 +93,13 @@ export const StyledThumb = styled(Thumb, {
         },
       },
       large: {
-        width: 'calc(100% - 26px)',
+        position: 'absolute',
+        top: '2.5px',
+        height: '19px',
+        width: '19px',
         transform: 'translateY(0.5px)',
-        height: '96%',
         '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 5px), 0.5px)',
+          transform: 'translate(calc(100% + 8px), 0.5px)',
         },
       },
     },
