@@ -86,18 +86,14 @@ export const StyledThumb = styled(Thumb, {
       },
       medium: {
         width: 'calc(100% - 20px)',
-        transform: 'translateY(0.5px)',
-        height: '96%',
         '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 3px), 0.5px)',
+          transform: 'translate(calc(100% + 4px))',
         },
       },
       large: {
         width: 'calc(100% - 26px)',
-        transform: 'translateY(0.5px)',
-        height: '96%',
         '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 5px), 0.5px)',
+          transform: 'translate(calc(100% + 5px))',
         },
       },
     },
