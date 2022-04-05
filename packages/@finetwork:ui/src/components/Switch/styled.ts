@@ -85,23 +85,15 @@ export const StyledThumb = styled(Thumb, {
         },
       },
       medium: {
-        position: 'absolute',
-        top: '2px',
-        height: '15px',
-        width: '15px',
-        transform: 'translateY(0.5px)',
+        width: 'calc(100% - 20px)',
         '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 6px), 0.5px)',
+          transform: 'translate(calc(100% + 4px))',
         },
       },
       large: {
-        position: 'absolute',
-        top: '2.5px',
-        height: '19px',
-        width: '19px',
-        transform: 'translateY(0.5px)',
+        width: 'calc(100% - 26px)',
         '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 8px), 0.5px)',
+          transform: 'translate(calc(100% + 5px))',
         },
       },
     },
