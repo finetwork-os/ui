@@ -23,7 +23,7 @@ const stylesMessage = {
     },
     error: {
       true: {
-        color: '$error',
+        color: '$error !important',
       },
       false: {},
     },
@@ -72,7 +72,7 @@ export const StyledLabel: StyledComponent<
       disabled: true,
       error: true,
       css: {
-        color: '$disabled',
+        color: '$disabled !important',
       },
     },
   ],
@@ -105,7 +105,7 @@ export const StyledMessage = styled('span', {
       disabled: true,
       error: true,
       css: {
-        color: '$disabled',
+        color: '$disabled !important',
       },
     },
   ],
@@ -151,7 +151,7 @@ export const StyledContainerInput = styled('div', {
     },
     error: {
       true: {
-        borderColor: '$error',
+        borderColor: '$error !important',
       },
     },
     success: {
@@ -191,7 +191,7 @@ export const StyledContainerInput = styled('div', {
       error: true,
       success: true,
       css: {
-        borderColor: '$error',
+        borderColor: '$error !important',
       },
     },
   ],
