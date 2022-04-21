@@ -29,7 +29,17 @@ export const bounceIn = keyframes({
   '100%': { transform: 'scale(1)' },
 })
 
-export const radioCheck = keyframes({
+export const smallRadioCheck = keyframes({
+  '0%': {
+    width: 0,
+    height: 0,
+  },
+  '100%': {
+    width: 8,
+    height: 8,
+  },
+})
+export const mediumRadioCheck = keyframes({
   '0%': {
     width: 0,
     height: 0,
@@ -37,6 +47,16 @@ export const radioCheck = keyframes({
   '100%': {
     width: 10,
     height: 10,
+  },
+})
+export const largeRadioCheck = keyframes({
+  '0%': {
+    width: 0,
+    height: 0,
+  },
+  '100%': {
+    width: 12,
+    height: 12,
   },
 })
 
