@@ -1675,7 +1675,7 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@mdx-js/loader@^1.5.8":
+"@mdx-js/loader@^1.6.22":
   version "1.6.22"
   resolved "https://registry.npmjs.org/@mdx-js/loader/-/loader-1.6.22.tgz#d9e8fe7f8185ff13c9c8639c048b123e30d322c4"
   integrity sha512-9CjGwy595NaxAYp0hF9B/A0lH6C8Rms97e2JS9d3jVUtILn6pT5i5IV965ra3lIWc7Rs1GG1tBdVF7dCowYe6Q==
@@ -1709,7 +1709,7 @@
     unist-builder "2.0.3"
     unist-util-visit "2.0.3"
 
-"@mdx-js/react@1.6.22", "@mdx-js/react@^1.5.8":
+"@mdx-js/react@1.6.22", "@mdx-js/react@^1.6.22":
   version "1.6.22"
   resolved "https://registry.npmjs.org/@mdx-js/react/-/react-1.6.22.tgz#ae09b4744fddc74714ee9f9d6f17a66e77c43573"
   integrity sha512-TDoPum4SHdfPiGSAaRBw7ECyI8VaHpK8GJugbJIJuqyh6kzw9ZLJZW3HGL3NNrJGxcAixUvqROm+YuQOo5eXtg==
@@ -4013,17 +4013,17 @@ directory-tree@^2.2.4:
   resolved "https://registry.npmjs.org/directory-tree/-/directory-tree-2.4.0.tgz#66113ef8c2e19f906cf73d2402fc60c2eff0fad5"
   integrity sha512-AM03Th+ypDAHefyB6SP3uezaWkTbol1P43CS5yFU7wePTuHnR4YoHgY6KbGHLr/a065ocN26l9lXOoFBzzM31w==
 
-dokz@2.0.7:
-  version "2.0.7"
-  resolved "https://registry.npmjs.org/dokz/-/dokz-2.0.7.tgz#a2fecca5cd21ac57274d678321191425dde732e0"
-  integrity sha512-K4GuNcD6o6U/GEWGUEwi86QIs6evWAo1puTaXlV+xhoGxebCANYr843N4mUivoqX+D4c/4eXOoBItQoMQZdUYA==
+dokz@2.0.16:
+  version "2.0.16"
+  resolved "https://registry.npmjs.org/dokz/-/dokz-2.0.16.tgz#ebd863df726e7d8122f87e3cf2e85a53a33ed2ff"
+  integrity sha512-HAgt9hliIvwAhQvXm0OxMzcCTbai57tJNwXe9mJtlD19iEDOpDU6MZPc1TpkxZyfpmpLgBA2fwyRHX7Ke6qfFQ==
   dependencies:
     "@babel/generator" "^7.10.2"
     "@babel/parser" "^7.10.2"
     "@babel/traverse" "^7.10.1"
     "@emotion/styled" "^11.0.0"
-    "@mdx-js/loader" "^1.5.8"
-    "@mdx-js/react" "^1.5.8"
+    "@mdx-js/loader" "^1.6.22"
+    "@mdx-js/react" "^1.6.22"
     "@philpl/buble" "^0.19.7"
     await-to-js "^2.1.1"
     baby-i-am-faded "^2.0.1"
