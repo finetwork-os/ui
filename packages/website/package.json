@@ -13,7 +13,7 @@
     "@stitches/react": "^1.2.7",
     "dokz": "2.0.7",
     "@finetwork/ui-sections": "0.2.0",
-    "@finetwork/ui": "0.7.8",
+    "@finetwork/ui": "0.7.9",
     "framer-motion": "latest",
     "next": "latest",
     "next-compose-plugins": "^2.2.1",
@@ -24,7 +24,7 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.3",
+    "@types/react": "^18.0.7",
     "compose-function": "^3.0.3",
     "typescript": "latest"
   }
