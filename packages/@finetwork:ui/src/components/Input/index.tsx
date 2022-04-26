@@ -17,7 +17,7 @@ import { RenderEnhancer } from '../../utils'
 import { EyeClosedIcon, EyeOpenIcon } from '../icons'
 
 const InputPassword: InputPasswordComponent = React.forwardRef(
-  ({ size, ...props }, ref) => {
+  ({ size, kind, ...props }, ref) => {
     const [visiblePassword, setVisiblePassword] = React.useState(false)
     return (
       <StyledContainerInputPassword>
@@ -25,6 +25,7 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
           {...props}
           type={visiblePassword ? 'text' : 'password'}
           size={size}
+          kind={kind}
           ref={ref}
         />
         <StyledEyeButton
@@ -80,6 +81,7 @@ export const Input: InputComponent = React.forwardRef(
           <StyledLabel
             htmlFor={id}
             size={size}
+            kind={kind}
             error={!!error}
             disabled={props.disabled}
             font={props.font}
@@ -106,6 +108,7 @@ export const Input: InputComponent = React.forwardRef(
               {...props}
               size={size}
               ref={ref}
+              kind={kind}
               id={id}
               startEnhancer={!!startEnhancer}
               isDisabled={props.disabled}
@@ -116,6 +119,7 @@ export const Input: InputComponent = React.forwardRef(
               size={size}
               ref={ref}
               id={id}
+              kind={kind}
               startEnhancer={!!startEnhancer}
               type={type}
               isDisabled={props.disabled}

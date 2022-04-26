@@ -32,6 +32,7 @@ type InputPasswordProps = Omit<
   'size'
 > & {
   size?: SIZES
+  kind?: KINDS
   isDisabled?: boolean
 }
 

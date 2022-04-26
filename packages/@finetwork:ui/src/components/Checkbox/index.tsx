@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { CheckIcon, DividerHorizontalIcon } from '../icons'
+import { DividerHorizontalIcon } from '../icons'
 
 import {
   StyledCheckbox,

@@ -1,4 +1,4 @@
-import { BooleanString, FONTS, SIZES } from '../../types'
+import { BooleanString, FONTS, KINDS, SIZES } from '../../types'
 
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
@@ -48,6 +48,7 @@ export const StyledLabel: StyledComponent<
   'label',
   {
     size?: SIZES
+    kind?: KINDS
     error?: BooleanString
     disabled?: BooleanString
     font?: FONTS
@@ -64,6 +65,17 @@ export const StyledLabel: StyledComponent<
       },
       secondary: {
         fontFamily: '$secondary',
+      },
+    },
+    kind: {
+      primary: {
+        color: '$primaryText',
+      },
+      secondary: {
+        color: '$secondaryText',
+      },
+      tertiary: {
+        color: '$tertiaryText',
       },
     },
   },
@@ -117,7 +129,6 @@ export const StyledContainerInput = styled('div', {
   display: 'flex',
   borderWidth: '1px',
   borderStyle: 'solid',
-  borderColor: '$primaryText',
   width: '100%',
   transition: 'all .3s ease',
   variants: {
@@ -134,16 +145,19 @@ export const StyledContainerInput = styled('div', {
     },
     kind: {
       primary: {
+        borderColor: '$primaryText',
         '&:focus-within': {
           borderColor: '$primary',
         },
       },
       secondary: {
+        borderColor: '$secondaryText',
         '&:focus-within': {
           borderColor: '$secondary',
         },
       },
       tertiary: {
+        borderColor: '$tertiaryText',
         '&:focus-within': {
           borderColor: '$tertiary',
         },
@@ -230,6 +244,7 @@ export const StyledInput: StyledComponent<
   'input',
   {
     size?: SIZES
+    kind?: KINDS
     startEnhancer?: BooleanString
     isDisabled?: BooleanString
     font?: FONTS
@@ -246,7 +261,6 @@ export const StyledInput: StyledComponent<
   paddingRight: '14px',
   paddingLeft: '14px',
   fontSize: '16px',
-  color: '$primaryText',
   '&::placeholder': {
     color: '#A7A7A7',
   },
@@ -260,6 +274,17 @@ export const StyledInput: StyledComponent<
       },
       secondary: {
         fontFamily: '$secondary',
+      },
+    },
+    kind: {
+      primary: {
+        color: '$primaryText',
+      },
+      secondary: {
+        color: '$secondaryText',
+      },
+      tertiary: {
+        color: '$tertiaryText',
       },
     },
     size: {

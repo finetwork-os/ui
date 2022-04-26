@@ -24,5 +24,7 @@ export type SelectComponent = FC<
   SelectProps & {
     size?: SIZES
     kind?: KINDS
+    contentProps?: SelectContentProps
+    triggerProps?: SelectTriggerProps
   }
 >

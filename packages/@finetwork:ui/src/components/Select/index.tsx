@@ -38,13 +38,15 @@ export const Select: SelectComponent = ({
   children,
   kind = KIND.primary,
   size = SIZE.medium,
+  contentProps,
+  triggerProps,
   ...props
 }) => (
   <SelectPrimitive.Root {...props}>
-    <SelectTrigger kind={kind} size={size} data-fi="select">
+    <SelectTrigger {...triggerProps} kind={kind} size={size} data-fi="select">
       <SelectValue />
     </SelectTrigger>
-    <SelectContent kind={kind} size={size}>
+    <SelectContent {...contentProps} kind={kind} size={size}>
       {children}
     </SelectContent>
   </SelectPrimitive.Root>
