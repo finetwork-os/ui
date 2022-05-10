@@ -8,6 +8,13 @@ export { Checkbox } from './components/Checkbox'
 export { Button } from './components/Button'
 export { Card, CardBody, CardFooter, CardHeader } from './components/Card'
 export { Input } from './components/Input'
+export {
+  InputFile,
+  InputFileTitle,
+  InputFileButton,
+  InputFileDescription,
+  InputFileLoaded,
+} from './components/InputFile'
 export { Link } from './components/Link'
 export { Loading } from './components/Loading'
 export {

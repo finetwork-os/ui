@@ -55,6 +55,7 @@ export default function App(props) {
             'dialog.mdx': true,
             'dropdown-menu.mdx': true,
             'input.mdx': true,
+            'input-file.mdx': true,
             'link.mdx': true,
             'loading.mdx': true,
             'radio.mdx': true,
