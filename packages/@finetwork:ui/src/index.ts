@@ -14,6 +14,10 @@ export {
   InputFileButton,
   InputFileDescription,
   InputFileLoaded,
+  InputFileContent,
+  InputFileData,
+  InputFileImagePreview,
+  InputFileDraggableZone,
 } from './components/InputFile'
 export { Link } from './components/Link'
 export { Loading } from './components/Loading'

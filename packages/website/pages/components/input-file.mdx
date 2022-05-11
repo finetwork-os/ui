@@ -10,6 +10,13 @@ import {
   InputFileButton,
   InputFileDescription,
   InputFileLoaded,
+  InputFileContent,
+  InputFileData,
+  InputFileImagePreview,
+  Paragraph4,
+  PlusIcon,
+  InputFileDraggableZone,
+  H4,
 } from '@finetwork/ui'
 
 <div />
@@ -19,22 +26,28 @@ import {
 
 <Playground>
   <div style={{ margin: '1rem' }}>
-    <InputFile>
-      <div
-        style={{
-          display: 'grid',
-          alignItems: 'center',
-          gridAutoFlow: 'column',
-          gap: '1rem',
-        }}
-      >
-        <InputFileButton />
+    <InputFile isImage={true} multiple>
+      <InputFileContent>
+        <InputFileButton>
+          <PlusIcon />
+        </InputFileButton>
         <div>
           <InputFileTitle>Añade tu currículum</InputFileTitle>
           <InputFileDescription>Máximo 4MB</InputFileDescription>
         </div>
-        <InputFileLoaded>Cargado correctamente</InputFileLoaded>
-      </div>
+      </InputFileContent>
+      <InputFileImagePreview>
+        <InputFileButton>
+          <PlusIcon />
+        </InputFileButton>
+      </InputFileImagePreview>
+      <InputFileDraggableZone>
+        <H4
+          css={{ color: '$primary700', textShadow: '0 0 2px $colors$primary' }}
+        >
+          Suelta aquí tu archivo
+        </H4>
+      </InputFileDraggableZone>
     </InputFile>
   </div>
 </Playground>
