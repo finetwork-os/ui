@@ -1,6 +1,6 @@
 import { CSS } from '../../stitches.config'
 import { VariantProps } from '@stitches/react'
-import { AnchorHTMLAttributes, ComponentProps } from 'react'
+import { AnchorHTMLAttributes, ComponentProps, FC } from 'react'
 import { Enhancer, SIZES } from '../../types'
 
 import { StyledLink } from './styled'
@@ -24,3 +24,4 @@ type NativeAttrs = Omit<AnchorHTMLAttributes<unknown>, keyof Props>
 type LinkVariantsProps = VariantProps<typeof StyledLink>
 
 export type LinkProps = Props & NativeAttrs & LinkVariantsProps & { css?: CSS }
+export type LinkComponent = FC<LinkProps>

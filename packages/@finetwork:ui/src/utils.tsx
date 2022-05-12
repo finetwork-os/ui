@@ -10,7 +10,8 @@ export const RenderEnhancer: React.FC<{ Enhancer: any }> = ({ Enhancer }) => {
     return Enhancer
   }
   if (isValidElementType(Enhancer)) {
-    return <Enhancer />
+    const RenderEnhancer = Enhancer as any
+    return <RenderEnhancer />
   }
   return Enhancer
 }

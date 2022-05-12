@@ -9,7 +9,7 @@
   "repository": "https://github.com/finetwork-os/ui",
   "scripts": {
     "postinstall": "node_modules/.bin/lerna bootstrap",
-    "dev": "node_modules/.bin/lerna exec --scope=website yarn dev",
+    "dev": "node_modules/.bin/lerna exec --scope=storybook yarn storybook",
     "build-website": "node_modules/.bin/lerna exec --scope=website yarn build",
     "start-website": "node_modules/.bin/lerna exec --scope=website yarn start",
     "build-ui-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui yarn build",

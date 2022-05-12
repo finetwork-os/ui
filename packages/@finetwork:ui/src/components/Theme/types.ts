@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export type Colors = {
   primary?: string
   primaryText?: string
@@ -49,8 +51,8 @@ export type Colors = {
   error?: string
   success?: string
   info?: string
-  warning?: string,
-  default?: string,
+  warning?: string
+  default?: string
 }
 
 export type Fonts = {
@@ -66,4 +68,9 @@ export type FiTheme = {
   className?: string
   selector?: string
   toString?: () => string
+}
+
+export type ThemeProviderProps = {
+  theme: FiTheme
+  children: ReactNode
 }

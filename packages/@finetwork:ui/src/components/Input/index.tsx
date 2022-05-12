@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import { InputComponent, InputPasswordComponent } from './types'
 import {
@@ -18,6 +18,7 @@ import { EyeClosedIcon, EyeOpenIcon } from '../icons'
 
 const InputPassword: InputPasswordComponent = React.forwardRef(
   ({ size, kind, ...props }, ref) => {
+    console.log(React)
     const [visiblePassword, setVisiblePassword] = React.useState(false)
     return (
       <StyledContainerInputPassword>

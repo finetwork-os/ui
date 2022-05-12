@@ -3,11 +3,11 @@ import * as React from 'react'
 import { createTheme, globalStyles } from '../../stitches.config'
 import { deepMerge, recalculateColors } from '../../utils'
 
-import { FiTheme } from './types'
+import { FiTheme, ThemeProviderProps } from './types'
 import { ThemeContext } from './ThemeContext'
 import { initialTheme } from './initial-theme'
 
-export const ThemeProvider: React.FC<{ theme: FiTheme }> = ({
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   theme = initialTheme,
 }) => {
