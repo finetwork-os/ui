@@ -1,12 +1,12 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Button, ThemeProvider } from '@finetwork/ui'
+import { Input, ThemeProvider } from '@finetwork/ui'
 import { lightTheme } from '../theme'
 
 export default {
-  title: 'Button',
-  component: Button,
+  title: 'Input',
+  component: Input,
   argTypes: {
     kind: {
       defaultValue: 'primary',
@@ -22,35 +22,33 @@ export default {
         type: 'radio',
       },
     },
-    shape: {
-      defaultValue: 'default',
-      control: {
-        options: ['default', 'pill', 'round', 'circle', 'square'],
-        type: 'radio',
-      },
-    },
-    outline: {
+    isDisabled: {
       defaultValue: false,
       control: 'boolean',
     },
-    isSelected: {
+    success: {
       defaultValue: false,
       control: 'boolean',
     },
-    isLoading: {
-      defaultValue: false,
-      control: 'boolean',
+    error: {
+      defaultValue: undefined,
+      control: 'text',
+    },
+    label: {
+      defaultValue: 'Label',
+      control: 'text',
+    },
+    info: {
+      defaultValue: undefined,
+      control: 'text',
     },
   },
-} as ComponentMeta<typeof Button>
+} as ComponentMeta<typeof Input>
 
-const Template: ComponentStory<typeof Button> = (args) => (
+const Template: ComponentStory<typeof Input> = (args) => (
   <ThemeProvider theme={lightTheme}>
-    <Button {...args} />
+    <Input {...args} />
   </ThemeProvider>
 )
 
 export const Playground = Template.bind({})
-Playground.args = {
-  children: 'Button',
-}

@@ -6,12 +6,14 @@
     "build-storybook": "./node_modules/.bin/build-storybook"
   },
   "dependencies": {
+    "@finetwork/ui": "0.8.0-canary",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-interactions": "^6.4.22",
     "@storybook/addon-links": "^6.4.22",
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "^0.0.11",
-    "@finetwork/ui": "0.8.0-canary"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }
