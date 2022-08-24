@@ -76,7 +76,6 @@ export const Input: InputComponent = React.forwardRef(
         )
       }
     }, [])
-    console.log({ ...props })
     return (
       <StyledContainer data-fi="input" {...containerProps}>
         {label && (
