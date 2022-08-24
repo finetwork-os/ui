@@ -59,6 +59,7 @@ export const Input: InputComponent = React.forwardRef(
       containerProps = {},
       error,
       info,
+      borderColor = '#000',
       type = 'text',
       success,
       id,
@@ -75,6 +76,7 @@ export const Input: InputComponent = React.forwardRef(
         )
       }
     }, [])
+    console.log({ ...props })
     return (
       <StyledContainer data-fi="input" {...containerProps}>
         {label && (
@@ -97,6 +99,7 @@ export const Input: InputComponent = React.forwardRef(
           error={!!error}
           disabled={props.disabled}
           success={success}
+          css={!error && !success && { borderColor }}
         >
           {startEnhancer && (
             <StyledEnhancer {...enhancerProps}>

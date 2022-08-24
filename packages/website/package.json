@@ -10,10 +10,10 @@
     "@chakra-ui/react": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@stitches/react": "^1.2.7",
+    "@stitches/react": "1.2.8",
     "dokz": "2.0.7",
     "@finetwork/ui-sections": "0.2.0",
-    "@finetwork/ui": "0.7.9",
+    "@finetwork/ui": "0.8.0",
     "framer-motion": "latest",
     "next": "latest",
     "next-compose-plugins": "^2.2.1",
@@ -26,6 +26,6 @@
   "devDependencies": {
     "@types/react": "^17.0.3",
     "compose-function": "^3.0.3",
-    "typescript": "latest"
+    "typescript": "4.7.4"
   }
 }

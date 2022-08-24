@@ -17,6 +17,7 @@ type InputProps = Omit<
   size?: SIZES
   kind?: KINDS
   label?: ReactNode | string
+  borderColor?: string
   isDisabled?: boolean
   startEnhancer?: Enhancer
   endEnhancer?: Enhancer
