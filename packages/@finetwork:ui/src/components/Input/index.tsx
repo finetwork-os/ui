@@ -98,7 +98,9 @@ export const Input: InputComponent = React.forwardRef(
           error={!!error}
           disabled={props.disabled}
           success={success}
-          css={!error && !success && { borderColor }}
+          css={
+            !error && !success && { borderColor, ...inputContainerProps.css }
+          }
         >
           {startEnhancer && (
             <StyledEnhancer {...enhancerProps}>
