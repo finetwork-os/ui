@@ -632,7 +632,7 @@
   dependencies:
     "@chakra-ui/utils" "^1.9.1"
 
-"@chakra-ui/react@latest":
+"@chakra-ui/react@1.7.3":
   version "1.7.3"
   resolved "https://registry.npmjs.org/@chakra-ui/react/-/react-1.7.3.tgz#358a3ff9847b78a798384db5c64cc222c9a48ae8"
   integrity sha512-6mrfDUOa9MoQ44Xvi7xgdDq48jTTTjW9BupCGf2R3DI+z6RbUKIHzbcoDJZt2HGY6j9EarMVNRoQJzvzGUKpoQ==
@@ -919,7 +919,7 @@
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.5.tgz#2c40f81449a4e554e9fc6396910ed4843ec2be50"
   integrity sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ==
 
-"@emotion/react@latest":
+"@emotion/react@11.7.1":
   version "11.7.1"
   resolved "https://registry.npmjs.org/@emotion/react/-/react-11.7.1.tgz#3f800ce9b20317c13e77b8489ac4a0b922b2fe07"
   integrity sha512-DV2Xe3yhkF1yT4uAUoJcYL1AmrnO5SVsdfvu+fBuS7IbByDeTVx9+wFmvx9Idzv7/78+9Mgx2Hcmr7Fex3tIyw==
@@ -948,7 +948,7 @@
   resolved "https://registry.npmjs.org/@emotion/sheet/-/sheet-1.1.0.tgz#56d99c41f0a1cda2726a05aa6a20afd4c63e58d2"
   integrity sha512-u0AX4aSo25sMAygCuQTzS+HsImZFuS8llY8O7b9MDRzbJM0kVJlAz6KNDqcG7pOuQZJmj/8X/rAW+66kMnMW+g==
 
-"@emotion/styled@^11", "@emotion/styled@^11.0.0", "@emotion/styled@latest":
+"@emotion/styled@11.6.0", "@emotion/styled@^11", "@emotion/styled@^11.0.0":
   version "11.6.0"
   resolved "https://registry.npmjs.org/@emotion/styled/-/styled-11.6.0.tgz#9230d1a7bcb2ebf83c6a579f4c80e0664132d81d"
   integrity sha512-mxVtVyIOTmCAkFbwIp+nCjTXJNgcz4VWkOYQro87jE2QBTydnkiYusMrRGFtzuruiGK4dDaNORk4gH049iiQuw==
@@ -2656,6 +2656,11 @@
     prop-types "^15.7.2"
     tslib "^2.1.0"
 
+"@stitches/react@1.2.8":
+  version "1.2.8"
+  resolved "https://registry.npmjs.org/@stitches/react/-/react-1.2.8.tgz#954f8008be8d9c65c4e58efa0937f32388ce3a38"
+  integrity sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==
+
 "@stitches/react@^1.2.7":
   version "1.2.7"
   resolved "https://registry.npmjs.org/@stitches/react/-/react-1.2.7.tgz#aea2403fac726db66d1740d29557e3910b1a1dc7"
@@ -2745,6 +2750,15 @@
   version "17.0.37"
   resolved "https://registry.npmjs.org/@types/react/-/react-17.0.37.tgz#6884d0aa402605935c397ae689deed115caad959"
   integrity sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@17.0.3":
+  version "17.0.3"
+  resolved "https://registry.npmjs.org/@types/react/-/react-17.0.3.tgz#ba6e215368501ac3826951eef2904574c262cc79"
+  integrity sha512-wYOUxIgs2HZZ0ACNiIayItyluADNbONl7kt8lkLjVK8IitMH5QMyAh75Fwhmo37r1m7L2JaFj03sIfxBVDvRAg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4547,7 +4561,7 @@ format@^0.2.0:
   resolved "https://registry.npmjs.org/format/-/format-0.2.2.tgz#d6170107e9efdc4ed30c9dc39016df942b5cb58b"
   integrity sha1-1hcBB+nv3E7TDJ3DkBbflCtctYs=
 
-framer-motion@latest:
+framer-motion@5.5.5:
   version "5.5.5"
   resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-5.5.5.tgz#2cc9345e720ec1b93189ee76423799c72a3224b4"
   integrity sha512-+LPAF5ddo02qKh+MK4h1ChwqUFvrLkK1NDWwrHy+MuCVmQDGgiFNHvwqOSklTDGkEtbio3dCOEDy23+ZyNAa9g==
@@ -6240,7 +6254,7 @@ next-transpile-modules@^8.0.0:
     enhanced-resolve "^5.7.0"
     escalade "^3.1.1"
 
-next@latest:
+next@12.0.7:
   version "12.0.7"
   resolved "https://registry.npmjs.org/next/-/next-12.0.7.tgz#33ebf229b81b06e583ab5ae7613cffe1ca2103fc"
   integrity sha512-sKO8GJJYfuk9c+q+zHSNumvff+wP7ufmOlwT6BuzwiYfFJ61VTTkfTcDLSJ+95ErQJiC54uS4Yg5JEE8H6jXRA==
@@ -8458,6 +8472,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@4.7.4:
+  version "4.7.4"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 typescript@latest:
   version "4.5.4"

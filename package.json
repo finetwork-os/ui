@@ -18,6 +18,7 @@
     "publish-sections-library": "node_modules/.bin/lerna exec --scope=@finetwork/ui-sections yarn publish-library"
   },
   "devDependencies": {
+    "@types/react": "17.0.3",
     "lerna": "^4.0.0",
     "prettier": "^2.2.1",
     "typescript": "latest"

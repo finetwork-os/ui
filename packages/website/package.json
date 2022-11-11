@@ -7,15 +7,15 @@
     "start": "./node_modules/.bin/next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "latest",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@stitches/react": "^1.2.7",
+    "@chakra-ui/react": "1.7.3",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@stitches/react": "1.2.8",
     "dokz": "2.0.7",
     "@finetwork/ui-sections": "0.2.0",
     "@finetwork/ui": "0.7.9",
-    "framer-motion": "latest",
-    "next": "latest",
+    "framer-motion": "5.5.5",
+    "next": "12.0.7",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^8.0.0",
     "polished": "^4.1.1",
@@ -26,6 +26,6 @@
   "devDependencies": {
     "@types/react": "^17.0.3",
     "compose-function": "^3.0.3",
-    "typescript": "latest"
+    "typescript": "4.7.4"
   }
 }
