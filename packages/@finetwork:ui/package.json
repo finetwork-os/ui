@@ -29,7 +29,7 @@
     "@radix-ui/react-tabs": "^0.1.4",
     "@radix-ui/react-toast": "^0.1.1",
     "@radix-ui/react-tooltip": "^0.1.6",
-    "@stitches/react": "^1.2.7",
+    "@stitches/react": "1.2.8",
     "downshift": "^6.1.7",
     "match-sorter": "^6.3.1",
     "polished": "^4.1.1"
@@ -45,7 +45,7 @@
     "react-is": "^17.0.2",
     "rimraf": "^3.0.2",
     "tslib": "^2.2.0",
-    "typescript": "latest"
+    "typescript": "4.8.4"
   },
   "peerDependencies": {
     "react": ">=17.0.0"
