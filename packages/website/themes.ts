@@ -38,6 +38,8 @@ const sharedStyles = {
     info: 'hsl(208, 100%, 47.3%)',
     warning: 'hsl(35, 100%, 55.5%)',
     default: 'hsl(206 22% 7% / 35%)',
+    disabled: '#EBEBE4',
+    disabled100: '#DDD',
   },
   space: {},
   sizes: {

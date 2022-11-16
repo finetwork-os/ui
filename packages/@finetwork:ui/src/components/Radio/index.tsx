@@ -30,7 +30,17 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
   ({ kind, size, label, disabled, value, name, ...props }, ref) => {
     const Radio = () => (
       <Label size={size}>
-        <Input ref={ref} type="radio" value={value} {...props} name={name} />
+        <Input
+          ref={ref}
+          type="radio"
+          value={value}
+          {...props}
+          name={name}
+          size={size}
+          kind={kind}
+          isDisabled={disabled}
+          disabled={disabled}
+        />
         <Span>{label}</Span>
       </Label>
     )

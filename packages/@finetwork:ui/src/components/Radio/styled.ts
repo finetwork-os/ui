@@ -65,6 +65,66 @@ export const Input = styled('input', {
   '&:checked::before': {
     transform: 'scale(1)',
   },
+  variants: {
+    size: {
+      small: {
+        '&:before': {
+          width: '8px',
+          height: '8px',
+        },
+      },
+      medium: {
+        '&:before': {
+          width: '10px',
+          height: '10px',
+        },
+      },
+      large: {
+        '&:before': {
+          width: '15px',
+          height: '15px',
+        },
+      },
+    },
+    kind: {
+      primary: {
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$primary',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$secondary200',
+        },
+      },
+      secondary: {
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$secondary',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$secondary200',
+        },
+      },
+      tertiary: {
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$tertiary',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$tertiary200',
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        border: '1px solid $disabled !important',
+        '&:hover': {
+          cursor: 'not-allowed',
+          backgroundColor: '$disabled100',
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'medium',
+  },
 })
 
 export const StyledRadioGroup = styled('div', {
