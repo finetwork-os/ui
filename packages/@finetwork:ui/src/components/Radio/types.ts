@@ -22,5 +22,3 @@ export type RadioComponentProps = {
   dotHover?: string
   textColor?: string
 }
-
-export type RadioComponent = FC<RadioComponentProps>
