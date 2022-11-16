@@ -67,7 +67,7 @@ export const Input = styled('input', {
   },
 })
 
-export const StyledRadioGroup = styled(RadioGroupRoot, {
+export const StyledRadioGroup = styled('div', {
   display: 'flex',
   gap: '1rem',
   variants: {

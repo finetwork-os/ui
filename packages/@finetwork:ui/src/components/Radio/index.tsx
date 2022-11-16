@@ -1,24 +1,36 @@
 import * as React from 'react'
 
 import {
-  ContainerRadioLabel,
   Input,
   Label,
   Span,
-  StyledLabel,
-  StyledRadio,
   StyledRadioGroup,
   StyledRadioIndicator,
 } from './styled'
 
-import { RadioComponent } from './types'
+import { RadioComponentProps, RadioGroupComponentProps } from './types'
 
-export const RadioGroup = StyledRadioGroup
-export const Radio: RadioComponent = React.forwardRef(
-  ({ kind, size, label, disabled, value, ...props }, ref) => {
+export const RadioGroup = React.forwardRef<
+  HTMLDivElement,
+  RadioGroupComponentProps
+>(({ children, direction, name }, ref) => {
+  return (
+    <StyledRadioGroup direction={direction} ref={ref}>
+      {React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) return null
+        return React.cloneElement(child, {
+          ...child.props,
+          name,
+        })
+      })}
+    </StyledRadioGroup>
+  )
+})
+export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
+  ({ kind, size, label, disabled, value, name, ...props }, ref) => {
     const Radio = () => (
-      <Label>
-        <Input ref={ref} type="radio" value={value} {...props} />
+      <Label size={size}>
+        <Input ref={ref} type="radio" value={value} {...props} name={name} />
         <Span>{label}</Span>
       </Label>
     )

@@ -35,9 +35,9 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup>
-      <Radio value="default" id="def" label="default" name="first" />
-      <Radio value="next" id="next" label="next" name="first" />
+    <RadioGroup name="first">
+      <Radio value="default" id="def" label="default" />
+      <Radio value="next" id="next" label="next" />
     </RadioGroup>
   </div>
 </Playground>
@@ -48,7 +48,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup direction="vertical">
+    <RadioGroup direction="vertical" name="second">
       <Radio value="default" id="def9" label="default" />
       <Radio value="next" id="next9" label="next" />
     </RadioGroup>
