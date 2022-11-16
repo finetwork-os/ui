@@ -17,6 +17,8 @@ export type RadioComponentProps = {
   disabled?: boolean
   value: string | number
   name: string
+  dotColor?: string
+  dotSize?: string
 }
 
 export type RadioComponent = FC<RadioComponentProps>

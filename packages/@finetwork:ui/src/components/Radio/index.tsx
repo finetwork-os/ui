@@ -27,7 +27,48 @@ export const RadioGroup = React.forwardRef<
   )
 })
 export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
-  ({ kind, size, label, disabled, value, name, ...props }, ref) => {
+  (
+    { kind, size, label, disabled, value, name, dotColor, dotSize, ...props },
+    ref
+  ) => {
+    const [customStyle, setCustomStyle] = React.useState({})
+
+    function changeDotColor() {
+      return { boxShadow: `inset 14px 14px ${dotColor}` }
+    }
+    function changeDotSize() {
+      return { width: dotSize, height: dotSize }
+    }
+
+    React.useEffect(() => {
+      let css = {}
+
+      if (dotColor && dotSize) {
+        css = {
+          '&:before': {
+            ...changeDotColor(),
+            ...changeDotSize(),
+          },
+        }
+      }
+      if (dotColor && !dotSize) {
+        css = {
+          '&:before': {
+            ...changeDotColor(),
+          },
+        }
+      }
+
+      if (dotSize && !dotColor) {
+        css = {
+          '&:before': {
+            ...changeDotSize(),
+          },
+        }
+      }
+
+      setCustomStyle(css)
+    }, [])
     const Radio = () => (
       <Label size={size}>
         <Input
@@ -40,6 +81,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
           kind={kind}
           isDisabled={disabled}
           disabled={disabled}
+          css={customStyle}
         />
         <Span>{label}</Span>
       </Label>
