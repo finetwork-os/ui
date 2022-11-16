@@ -19,6 +19,8 @@ export type RadioComponentProps = {
   name: string
   dotColor?: string
   dotSize?: string
+  dotHover?: string
+  textColor?: string
 }
 
 export type RadioComponent = FC<RadioComponentProps>

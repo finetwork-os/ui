@@ -28,10 +28,25 @@ export const RadioGroup = React.forwardRef<
 })
 export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
   (
-    { kind, size, label, disabled, value, name, dotColor, dotSize, ...props },
+    {
+      kind,
+      size,
+      label,
+      disabled,
+      value,
+      name,
+      dotColor,
+      dotSize,
+      textColor,
+      dotHover,
+      ...props
+    },
     ref
   ) => {
-    const [customStyle, setCustomStyle] = React.useState({})
+    const [customStyle, setCustomStyle] = React.useState({
+      input: {},
+      span: {},
+    })
 
     function changeDotColor() {
       return { boxShadow: `inset 14px 14px ${dotColor}` }
@@ -41,28 +56,59 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
     }
 
     React.useEffect(() => {
-      let css = {}
-
+      let css = {
+        input: {},
+        span: {},
+      }
       if (dotColor && dotSize) {
         css = {
-          '&:before': {
-            ...changeDotColor(),
-            ...changeDotSize(),
+          ...css,
+          input: {
+            '&:before': {
+              ...changeDotColor(),
+              ...changeDotSize(),
+            },
           },
         }
       }
       if (dotColor && !dotSize) {
         css = {
-          '&:before': {
-            ...changeDotColor(),
+          ...css,
+          input: {
+            '&:before': {
+              ...changeDotColor(),
+            },
+          },
+        }
+      }
+      if (dotSize && !dotColor) {
+        css = {
+          ...css,
+          input: {
+            '&:before': {
+              ...changeDotSize(),
+            },
           },
         }
       }
 
-      if (dotSize && !dotColor) {
+      if (dotHover) {
         css = {
-          '&:before': {
-            ...changeDotSize(),
+          ...css,
+          input: {
+            ...css.input,
+            '&:hover': {
+              backgroundColor: dotHover,
+            },
+          },
+        }
+      }
+
+      if (textColor) {
+        css = {
+          ...css,
+          span: {
+            color: textColor,
           },
         }
       }
@@ -81,9 +127,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
           kind={kind}
           isDisabled={disabled}
           disabled={disabled}
-          css={customStyle}
+          css={customStyle.input}
         />
-        <Span>{label}</Span>
+        <Span css={customStyle.span}>{label}</Span>
       </Label>
     )
     return <Radio />
