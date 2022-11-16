@@ -10,6 +10,78 @@ import { StyledComponent } from '@stitches/react/types/styled-component'
 import { grayA } from '@radix-ui/colors'
 import { styled } from '../../stitches.config'
 
+export const Label = styled('label', {
+  display: 'flex',
+  cursor: 'pointer',
+  fontWeight: 500,
+  position: 'relative',
+  overflow: 'hidden',
+  marginBottom: '0.375em',
+})
+
+export const Span = styled('span', {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0.375em 0.75em 0.375em 0.375em',
+  transition: '0.25s ease',
+
+  '&:hover': {
+    backgroundColor: '#fff',
+  },
+  '&:before': {
+    display: 'flex',
+    flexShrink: 0,
+    content: '',
+    backgroundColor: '#fff',
+    width: '1.5em',
+    height: '1.5em',
+    borderRadius: '50%',
+    marginRight: '0.375em',
+    transition: '0.25s ease',
+    outline: '1px solid #000',
+  },
+})
+
+export const Input = styled('input', {
+  position: 'absolute',
+  visibility: 'hidden',
+  variants: {
+    isChecked: {
+      true: {
+        '&:hover': {
+          [`&:hover + ${Span}`]: {
+            '&:before': {
+              backgroundColor: '$colors$primary',
+              boxShadow: 'inset 0 0 0 0.4em #EFE6FF',
+            },
+          },
+        },
+        [`&:checked + ${Span}`]: {
+          '&:before': {
+            boxShadow: 'inset 0 0 0 0.4em #fff',
+            borderColor: '1px solid $colors$primary',
+            backgroundColor: '$colors$primary',
+          },
+        },
+      },
+      false: {
+        '&:hover': {
+          [`&:hover + ${Span}`]: {
+            '&:before': { backgroundColor: '#EFE6FF' },
+          },
+        },
+        [`&:checked + ${Span}`]: {
+          '&:before': {
+            boxShadow: 'inset 0 0 0 0.4em #fff',
+            borderColor: '1px solid $colors$primary',
+            backgroundColor: '$colors$primary',
+          },
+        },
+      },
+    },
+  },
+})
+
 export const StyledRadioGroup = styled(RadioGroupRoot, {
   display: 'flex',
   gap: '1rem',
