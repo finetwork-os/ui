@@ -34,29 +34,12 @@ import { styles } from '../../styles.ts'
 </div>
 
 <Playground>
-  {() => {
-    const [selectedItemValue, setSelectedItemValue] = React.useState('')
-    return (
-      <>
-        <RadioGroup>
-          <Radio
-            value="default"
-            id="def"
-            label="default"
-            selectedItemValue={selectedItemValue}
-            onChange={setSelectedItemValue}
-          />
-          <Radio
-            value="next"
-            id="next"
-            label="next"
-            selectedItemValue={selectedItemValue}
-            onChange={setSelectedItemValue}
-          />
-        </RadioGroup>
-      </>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup>
+      <Radio value="default" id="def" label="default" name="first" />
+      <Radio value="next" id="next" label="next" name="first" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>

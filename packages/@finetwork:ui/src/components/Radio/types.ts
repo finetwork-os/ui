@@ -4,7 +4,7 @@ import { ComponentProps, FC, ReactNode } from 'react'
 import { StyledRadio, StyledRadioIndicator, Input } from './styled'
 
 import { CSS } from '@stitches/react/types/css-util'
-import { KINDS } from '../../types'
+import { KINDS, SIZES } from '../../types'
 
 type RadioComponentProps = Omit<
   Omit<ComponentProps<typeof Input>, 'label'>,
@@ -12,10 +12,9 @@ type RadioComponentProps = Omit<
 > & {
   css?: CSS
   kind?: KINDS
+  size?: SIZES
   label?: string | ReactNode
   disabled?: boolean
   indicatorProps?: Polymorphic.OwnProps<typeof StyledRadioIndicator>
-  selectedItemValue: string | number
-  onChange: any
 }
 export type RadioComponent = FC<Omit<RadioComponentProps, 'children'>>

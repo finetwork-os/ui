@@ -15,30 +15,10 @@ import { RadioComponent } from './types'
 
 export const RadioGroup = StyledRadioGroup
 export const Radio: RadioComponent = React.forwardRef(
-  (
-    {
-      kind,
-      label,
-      disabled,
-      value,
-      selectedItemValue,
-      onChange,
-      indicatorProps = {},
-      ...props
-    },
-    ref
-  ) => {
+  ({ kind, size, label, disabled, value, ...props }, ref) => {
     const Radio = () => (
       <Label>
-        <Input
-          ref={ref}
-          type="radio"
-          isChecked={selectedItemValue === value}
-          checked={selectedItemValue === value}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          {...props}
-        />
+        <Input ref={ref} type="radio" value={value} {...props} />
         <Span>{label}</Span>
       </Label>
     )

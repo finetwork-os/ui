@@ -11,74 +11,59 @@ import { grayA } from '@radix-ui/colors'
 import { styled } from '../../stitches.config'
 
 export const Label = styled('label', {
-  display: 'flex',
-  cursor: 'pointer',
-  fontWeight: 500,
-  position: 'relative',
-  overflow: 'hidden',
-  marginBottom: '0.375em',
+  lineHeight: 1.1,
+  display: 'grid',
+  gridTemplateColumns: '1em auto',
+  alignItems: 'center',
+  gap: '0.5em',
+  variants: {
+    size: {
+      small: {
+        fontSize: '18px',
+      },
+      medium: {
+        fontSize: '25px',
+      },
+      large: {
+        fontSize: '32px',
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'medium',
+  },
 })
 
 export const Span = styled('span', {
-  display: 'flex',
-  alignItems: 'center',
-  padding: '0.375em 0.75em 0.375em 0.375em',
-  transition: '0.25s ease',
-
-  '&:hover': {
-    backgroundColor: '#fff',
-  },
-  '&:before': {
-    display: 'flex',
-    flexShrink: 0,
-    content: '',
-    backgroundColor: '#fff',
-    width: '1.5em',
-    height: '1.5em',
-    borderRadius: '50%',
-    marginRight: '0.375em',
-    transition: '0.25s ease',
-    outline: '1px solid #000',
-  },
+  fontSize: '16px',
 })
 
 export const Input = styled('input', {
-  position: 'absolute',
-  visibility: 'hidden',
-  variants: {
-    isChecked: {
-      true: {
-        '&:hover': {
-          [`&:hover + ${Span}`]: {
-            '&:before': {
-              backgroundColor: '$colors$primary',
-              boxShadow: 'inset 0 0 0 0.4em #EFE6FF',
-            },
-          },
-        },
-        [`&:checked + ${Span}`]: {
-          '&:before': {
-            boxShadow: 'inset 0 0 0 0.4em #fff',
-            borderColor: '1px solid $colors$primary',
-            backgroundColor: '$colors$primary',
-          },
-        },
-      },
-      false: {
-        '&:hover': {
-          [`&:hover + ${Span}`]: {
-            '&:before': { backgroundColor: '#EFE6FF' },
-          },
-        },
-        [`&:checked + ${Span}`]: {
-          '&:before': {
-            boxShadow: 'inset 0 0 0 0.4em #fff',
-            borderColor: '1px solid $colors$primary',
-            backgroundColor: '$colors$primary',
-          },
-        },
-      },
-    },
+  '-webkit-apapparance': 'none',
+  appearance: 'none',
+  margin: 0,
+  font: 'inherit',
+  width: '1em',
+  height: '1em',
+  border: '1px solid #000',
+  borderRadius: '50%',
+  display: 'grid',
+  placeContent: 'center',
+  transform: 'translateY(0em)',
+  '&:hover': {
+    backgroundColor: '$colors$secondary200',
+  },
+  '&:before': {
+    content: '',
+    width: '10px',
+    height: '10px',
+    borderRadius: '50%',
+    transform: 'scale(0)',
+    transition: '115ms transform ease-in-out',
+    boxShadow: 'inset 14px 14px $colors$primary',
+  },
+  '&:checked::before': {
+    transform: 'scale(1)',
   },
 })
 
