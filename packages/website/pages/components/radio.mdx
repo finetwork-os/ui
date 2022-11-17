@@ -3,7 +3,15 @@ name: Radio
 ---
 
 import { Playground } from 'dokz'
-import { RadioGroup, Radio, H2, H3, Paragraph4, Link } from '@finetwork/ui'
+import {
+  RadioGroup,
+  Radio,
+  H2,
+  H3,
+  Paragraph4,
+  Paragraph1,
+  Link,
+} from '@finetwork/ui'
 import { styles } from '../../styles.ts'
 
 <div />
@@ -12,21 +20,7 @@ import { styles } from '../../styles.ts'
 </div>
 
 <Paragraph4>
-  Radio component admit such props like label, defaultValue, options etc. You
-  can customize your radio whatever you want, even you can set <i>css </i>
-  property to override styles if you need.
-</Paragraph4>
-
-<Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/radio-group"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Radio component
-  </Link>{' '}
-  from radix-ui.
+  Radio component admit such props like label, size, kind etc.
 </Paragraph4>
 
 <div>
@@ -35,9 +29,22 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first">
-      <Radio value="default" id="def" label="default" />
-      <Radio value="next" id="next" label="next" />
+    <RadioGroup name="first" title={'Radio example title'}>
+      <Radio value="option1" id="opt1" label="Option 1" />
+      <Radio value="option2" id="opt2" label="Option 2" />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Custom Title</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="first" title={<H3>Custom example title</H3>}>
+      <Radio value="option1" id="opt3" label="Option 1" />
+      <Radio value="option2" id="opt4" label="Option 2" />
     </RadioGroup>
   </div>
 </Playground>
@@ -48,9 +55,31 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup direction="vertical" name="second">
-      <Radio value="default" id="def9" label="default" />
-      <Radio value="next" id="next9" label="next" />
+    <RadioGroup
+      direction="vertical"
+      name="second"
+      title={'Radio example title'}
+    >
+      <Radio value="option1" id="opt5" label="Option 1" />
+      <Radio value="option2" id="opt6" label="Option 2" />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Error</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup
+      direction="vertical"
+      name="second"
+      title={'Radio example title'}
+      error={'Select one option'}
+    >
+      <Radio value="option1" id="opt7" label="Option 1" />
+      <Radio value="option2" id="opt8" label="Option 2" />
     </RadioGroup>
   </div>
 </Playground>
@@ -62,30 +91,34 @@ import { styles } from '../../styles.ts'
 <Playground>
   <div style={styles}>
     <RadioGroup>
-      <Radio value="default" id="def1" label="default" disabled />
-      <Radio value="next" id="next1" label="next" />
+      <Radio value="default" id="def1" label="Disabled" disabled />
     </RadioGroup>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Overrides</H3>
+  <H3 font="secondary">Kind</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <RadioGroup>
-      <Radio
-        value="default"
-        id="def2"
-        label="default"
-        indicatorProps={{
-          css: {
-            backgroundColor: 'red',
-          },
-        }}
-      />
-      <Radio value="next" id="next2" label="next" />
+    <RadioGroup name="first" title={'Radio example title'} direction="vertical">
+      <Radio value="option1" id="opt10" label="Primary" kind="primary" />
+      <Radio value="option1" id="opt11" label="Secondary" kind="secondary" />
+      <Radio value="option1" id="opt12" label="Tertiary" kind="tertiary" />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Sizes</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="first" title={'Radio example title'} direction="vertical">
+      <Radio value="option1" id="opt13" label="Small" size="small" />
+      <Radio value="option1" id="opt14" label="Medium" size="medium" />
     </RadioGroup>
   </div>
 </Playground>
@@ -96,35 +129,188 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup>
-      <Radio value="default" id="def3" />
-      <Radio value="next" id="next3" />
+    <RadioGroup name="example" title="No label">
+      <Radio value="default" id="def31" />
+      <Radio value="next" id="next32" />
     </RadioGroup>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Secondary</H3>
+  <H3 font="secondary">Dot color</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <RadioGroup>
-      <Radio value="default" id="def3" kind="secondary" />
-      <Radio value="next" id="next3" kind="secondary" />
+    <RadioGroup name="first" title={'Dot color'} direction="vertical">
+      <Radio value="option1" id="opt20" label="Blue" dotColor="blue" />
+      <Radio value="option1" id="opt21" label="Green" dotColor="green" />
+      <Radio value="option1" id="opt22" label="Red" dotColor="red" />
     </RadioGroup>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Tertiary</H3>
+  <H3 font="secondary">Dot size</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <RadioGroup>
-      <Radio value="default" id="def4" kind="tertiary" />
-      <Radio value="next" id="next4" kind="tertiary" />
+    <RadioGroup name="first" title={'Dot size'} direction="vertical">
+      <Radio value="option1" id="opt40" label="5px" dotSize="5px" />
+      <Radio value="option1" id="opt41" label="10px" dotSize="10px" />
+      <Radio value="option1" id="opt42" label="17px" dotSize="17px" />
     </RadioGroup>
   </div>
 </Playground>
+
+<div>
+  <H3 font="secondary">Dot hover</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="first" title={'Dot hover'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt50"
+        label="lightblue"
+        dotHover="lightblue"
+      />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="first" title={'Border color'} direction="vertical">
+      <Radio value="option1" id="opt51" label="lightblue" borderColor="green" />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Text color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="first" title={'Text color'} direction="vertical">
+      <Radio value="option1" id="opt52" label="green" textColor="green" />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<h2>RadioGroup Props</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string</td>
+    <td></td>
+    <td>Define a group of options</td>
+  </tr>
+  <tr>
+    <td>title</td>
+    <td>string</td>
+    <td></td>
+    <td>Option group title</td>
+  </tr>
+  <tr>
+    <td>direction</td>
+    <td>vertical | horizontal</td>
+    <td>horizontal</td>
+    <td>Set options in the direction you want</td>
+  </tr>
+</table>
+
+<h2>Radio Props</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>string</td>
+    <td></td>
+    <td>ID of the element</td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>string | number</td>
+    <td></td>
+    <td>Value of the option</td>
+  </tr>
+  <tr>
+    <td>label</td>
+    <td>string | ReactNode</td>
+    <td></td>
+    <td>Description of the option</td>
+  </tr>
+  <tr>
+    <td>error</td>
+    <td>string</td>
+    <td></td>
+    <td>Error texts of the component</td>
+  </tr>
+  <tr>
+    <td>disabled</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Set input to disabled mode</td>
+  </tr>
+  <tr>
+    <td>kind</td>
+    <td>primary | secondary | tertiary</td>
+    <td>primary</td>
+    <td>Set defined styles of the component</td>
+  </tr>
+  <tr>
+    <td>sizes</td>
+    <td>small | medium</td>
+    <td>medium</td>
+    <td>Input and text size of the component</td>
+  </tr>
+  <tr>
+    <td>dotColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set dot color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>dotSize</td>
+    <td>string</td>
+    <td></td>
+    <td>Set dot size to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>dotHover</td>
+    <td>string</td>
+    <td></td>
+    <td>Set dot hover color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>borderColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set input border color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>textColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set text label color to the one specified in this option</td>
+  </tr>
+</table>

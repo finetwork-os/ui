@@ -1,32 +1,59 @@
-import * as React from 'react'
+import {
+  forwardRef,
+  Children,
+  isValidElement,
+  cloneElement,
+  useState,
+  useEffect,
+} from 'react'
 
 import {
-  Input,
-  Label,
-  Span,
-  StyledRadioGroup,
-  StyledRadioIndicator,
+  StyledInput,
+  StyledInputContainer,
+  StyledRadioContainer,
+  StyledContainer,
+  StyledRadioGroupContainer,
+  StyledText,
 } from './styled'
 
-import { RadioComponentProps, RadioGroupComponentProps } from './types'
+import { Paragraph5 } from '../Typography'
 
-export const RadioGroup = React.forwardRef<
-  HTMLDivElement,
-  RadioGroupComponentProps
->(({ children, direction, name }, ref) => {
-  return (
-    <StyledRadioGroup direction={direction} ref={ref}>
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return null
-        return React.cloneElement(child, {
-          ...child.props,
-          name,
-        })
-      })}
-    </StyledRadioGroup>
-  )
-})
-export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
+import { RadioComponentProps, RadioGroupComponentProps } from './types'
+import { RenderEnhancer } from '../../utils'
+
+export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupComponentProps>(
+  ({ children, direction, name, title, error }, ref) => {
+    return (
+      <StyledContainer>
+        {title && (
+          <>
+            {typeof title === 'string' && (
+              <Paragraph5 css={{ color: '#333333' }}>{title}</Paragraph5>
+            )}
+            {isValidElement(title) && <RenderEnhancer Enhancer={title} />}
+          </>
+        )}
+
+        <StyledRadioGroupContainer direction={direction} ref={ref}>
+          {Children.map(children, (child) => {
+            if (!isValidElement(child)) return null
+            if (name) {
+              return cloneElement(child, {
+                ...child.props,
+                name,
+              })
+            }
+            return cloneElement(child, {
+              ...child.props,
+            })
+          })}
+        </StyledRadioGroupContainer>
+        <Paragraph5 css={{ color: '$error' }}>{error}</Paragraph5>
+      </StyledContainer>
+    )
+  }
+)
+export const Radio = forwardRef<HTMLInputElement, RadioComponentProps>(
   (
     {
       kind,
@@ -39,13 +66,16 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
       dotSize,
       textColor,
       dotHover,
+      borderColor,
+      id,
       ...props
     },
     ref
   ) => {
-    const [customStyle, setCustomStyle] = React.useState({
+    const [customStyle, setCustomStyle] = useState({
+      inputContainer: {},
       input: {},
-      span: {},
+      text: {},
     })
 
     function changeDotColor() {
@@ -55,10 +85,11 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
       return { width: dotSize, height: dotSize }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
       let css = {
+        inputContainer: {},
         input: {},
-        span: {},
+        text: {},
       }
       if (dotColor && dotSize) {
         css = {
@@ -91,12 +122,20 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
           },
         }
       }
-
-      if (dotHover) {
+      if (borderColor) {
         css = {
           ...css,
           input: {
             ...css.input,
+            borderColor,
+          },
+        }
+      }
+
+      if (dotHover) {
+        css = {
+          ...css,
+          inputContainer: {
             '&:hover': {
               backgroundColor: dotHover,
             },
@@ -107,7 +146,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
       if (textColor) {
         css = {
           ...css,
-          span: {
+          text: {
             color: textColor,
           },
         }
@@ -116,21 +155,36 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
       setCustomStyle(css)
     }, [])
     const Radio = () => (
-      <Label size={size}>
-        <Input
-          ref={ref}
-          type="radio"
-          value={value}
-          {...props}
-          name={name}
-          size={size}
+      <StyledRadioContainer size={size} isDisabled={disabled}>
+        <StyledInputContainer
           kind={kind}
+          size={size}
           isDisabled={disabled}
-          disabled={disabled}
-          css={customStyle.input}
-        />
-        <Span css={customStyle.span}>{label}</Span>
-      </Label>
+          css={customStyle.inputContainer}
+        >
+          <StyledInput
+            css={customStyle.input}
+            disabled={disabled}
+            id={id}
+            isDisabled={disabled}
+            kind={kind}
+            name={name}
+            ref={ref}
+            size={size}
+            type="radio"
+            value={value}
+            {...props}
+          />
+        </StyledInputContainer>
+        <StyledText
+          css={customStyle.text}
+          size={size}
+          htmlFor={id}
+          isDisabled={disabled}
+        >
+          {label}
+        </StyledText>
+      </StyledRadioContainer>
     )
     return <Radio />
   }
