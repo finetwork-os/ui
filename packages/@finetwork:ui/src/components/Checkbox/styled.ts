@@ -6,14 +6,31 @@ import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
 import { CheckIcon } from '../icons'
 
-export const StyledCheckbox: StyledComponent<
-  typeof Root,
-  {
-    isChecked?: CheckedState | 'true' | 'false'
-    kind?: KINDS
-    isDisabled?: BooleanString
-  }
-> = styled(Root, {
+export const CheckboxContainer = styled('div', {
+  lineHeight: 1.1,
+  display: 'grid',
+  gridTemplateColumns: '1em auto',
+  alignItems: 'center',
+  variants: {
+    size: {
+      small: {
+        fontSize: '18px',
+      },
+      medium: {
+        fontSize: '25px',
+      },
+      large: {
+        fontSize: '32px',
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'medium',
+  },
+})
+
+export const StyledInput = styled('input', {
+  '-webkit-apapparance': 'none',
   all: 'unset',
   borderWidth: 1,
   borderColor: '#000',
@@ -25,126 +42,166 @@ export const StyledCheckbox: StyledComponent<
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  '&:active': {
-    transform: 'scale(0.8)',
+  '&:focus': {
+    outline: '1px solid $colors$secondary',
+  },
+  '&:before': {
+    transformOrigin: 'bottom left',
+    clipPath: 'polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)',
+    content: '',
+    width: '10px',
+    height: '10px',
+    borderRadius: '50%',
+    transform: 'scale(0)',
+    transition: '115ms transform ease-in-out',
+    boxShadow: 'inset 14px 14px $colors$primary',
+  },
+  '&:checked::before': {
+    transform: 'scale(1)',
+  },
+  '&:hover': {
+    backgroundColor: '$colors$secondary200',
   },
   variants: {
-    isChecked: {
-      true: {},
-      false: {},
-      indeterminate: {},
+    size: {
+      small: {
+        width: '16px',
+        height: '16px',
+        '&:before': {
+          width: '8px',
+          height: '8px',
+        },
+      },
+      medium: {
+        width: '20px',
+        height: '20px',
+        '&:before': {
+          width: '10px',
+          height: '10px',
+        },
+      },
+      large: {
+        width: '30px',
+        height: '30px',
+        '&:before': {
+          width: '15px',
+          height: '15px',
+        },
+      },
+    },
+    checkSize: {
+      small: {
+        '&:before': {
+          width: '8px',
+          height: '8px',
+        },
+      },
+      medium: {
+        '&:before': {
+          width: '10px',
+          height: '10px',
+        },
+      },
+      large: {
+        '&:before': {
+          width: '15px',
+          height: '15px',
+        },
+      },
     },
     kind: {
       primary: {
         '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300',
+          outline: '1px solid $colors$primary',
+        },
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$primary',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$primary200',
         },
       },
       secondary: {
         '&:focus': {
-          boxShadow: '0 0 0 2px $colors$secondary300',
+          outline: '1px solid $colors$secondary',
+        },
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$secondary',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$secondary200',
         },
       },
       tertiary: {
         '&:focus': {
-          boxShadow: '0 0 0 2px $colors$tertiary',
+          outline: '1px solid $colors$tertiary',
+        },
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$tertiary',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$tertiary200',
         },
       },
     },
     isDisabled: {
       true: {
-        borderColor: '$disabled',
-        pointerEvents: 'none',
-      },
-      false: {},
-    },
-  },
-  compoundVariants: [
-    {
-      isDisabled: false || undefined,
-      isChecked: true,
-      kind: 'primary',
-      css: {
-        borderColor: '$primary',
+        border: '1px solid $disabled !important',
+        '&:hover': {
+          cursor: 'not-allowed',
+          backgroundColor: '$disabled100',
+        },
       },
     },
-    {
-      isDisabled: false || undefined,
-      isChecked: true,
-      kind: 'secondary',
-      css: {
-        borderColor: '$secondary',
-      },
-    },
-    {
-      isDisabled: false || undefined,
-      isChecked: true,
-      kind: 'tertiary',
-      css: {
-        borderColor: '$tertiary',
-      },
-    },
-    {
-      isDisabled: false || undefined,
-      isChecked: 'indeterminate',
-      kind: 'primary',
-      css: {
-        borderColor: '$primary',
-      },
-    },
-    {
-      isDisabled: false || undefined,
-      isChecked: 'indeterminate',
-      kind: 'secondary',
-      css: {
-        borderColor: '$secondary',
-      },
-    },
-    {
-      isDisabled: false || undefined,
-      isChecked: 'indeterminate',
-      kind: 'tertiary',
-      css: {
-        borderColor: '$tertiary',
-      },
-    },
-  ],
-  defaultVariants: {
-    kind: 'primary',
-  },
-})
-export const StyledCheckboxIndicator = styled(Indicator, {
-  animation: `${fadeIn} .3s ease, ${bounceIn} .3s ease`,
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  variants: {
-    kind: {
-      primary: {
-        color: '$primary',
-      },
-      secondary: {
-        color: '$secondary',
-      },
-      tertiary: {
-        color: '$tertiary',
-      },
-    },
-    disabled: {
-      false: {},
+    error: {
       true: {
-        color: '$disabled',
+        border: '1px solid $error !important',
+        '&:focus': {
+          outline: '1px solid $error !important',
+        },
+        '&:hover': {
+          backgroundColor: '$colors$error100 !important',
+        },
       },
     },
   },
   defaultVariants: {
-    kind: 'primary',
+    size: 'medium',
   },
 })
 
-export const StyledCheckIcon = styled(CheckIcon, {
-  width: '80%',
-  height: '80%',
+export const StyledLabel = styled('label', {
+  fontSize: '16px',
+  variants: {
+    isDisabled: {
+      true: {
+        cursor: 'not-allowed',
+        color: '$disabled100',
+      },
+    },
+    size: {
+      small: {
+        fontSize: '12px',
+      },
+      medium: {
+        fontSize: '16px',
+      },
+      large: {
+        fontSize: '25px',
+      },
+    },
+  },
+})
+
+export const StyledInputContainer = styled('div', {
+  display: 'grid',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '.4rem',
+  borderRadius: '100%',
+  width: 'min-content',
+  transition: '100ms background ease-in',
+  '&:hover': {
+    backgroundColor: '$colors$secondary200',
+  },
 })

@@ -34,6 +34,7 @@ const sharedStyles = {
     tertiary800: '#8D4F0E',
     tertiary900: '#7A420B',
     error: 'hsl(358, 69.4%, 55.2%)',
+    error100: 'hsl(358, 69.4%, 95.2%)',
     success: 'hsl(152, 57.5%, 37.6%)',
     info: 'hsl(208, 100%, 47.3%)',
     warning: 'hsl(35, 100%, 55.5%)',

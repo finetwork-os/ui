@@ -3,7 +3,7 @@ name: Checkbox
 ---
 
 import { Playground } from 'dokz'
-import { Checkbox, H2, H3, Paragraph4, Link } from '@finetwork/ui'
+import { Checkbox, H2, H3, Paragraph4, Link, CheckboxNew } from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
@@ -40,9 +40,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Checkbox defaultChecked kind="primary" />
-    <Checkbox defaultChecked kind="secondary" />
-    <Checkbox defaultChecked kind="tertiary" />
+    <CheckboxNew defaultChecked kind="primary" />
+    <CheckboxNew defaultChecked kind="secondary" />
+    <CheckboxNew defaultChecked kind="tertiary" />
   </div>
 </Playground>
 
@@ -52,8 +52,39 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Checkbox defaultChecked kind="secondary" id="check" />
-    <label htmlFor="check">Label</label>
+    <CheckboxNew defaultChecked kind="secondary" id="check" label="Label" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Text Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew
+      defaultChecked
+      kind="secondary"
+      id="check"
+      label="Label"
+      textColor="$colors$primary"
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Text Size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew
+      defaultChecked
+      kind="secondary"
+      id="check"
+      label="Label"
+      textSize="20px"
+    />
   </div>
 </Playground>
 
@@ -63,17 +94,90 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Checkbox kind="secondary" disabled />
-    <Checkbox checked kind="secondary" disabled />
+    <CheckboxNew id="unCheckExample" kind="secondary" disabled />
+    <CheckboxNew id="checkedExample" checked kind="secondary" disabled />
+    <CheckboxNew id="checkedExample" kind="secondary" label="label" disabled />
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Indeterminate</H3>
+  <H3 font="secondary">Size</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Checkbox defaultChecked="indeterminate" kind="secondary" />
+    <CheckboxNew defaultChecked size="small" label="Label" />
+    <CheckboxNew defaultChecked size="medium" label="Label" />
+    <CheckboxNew defaultChecked size="large" label="Label" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Check Size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew defaultChecked checkSize="small" />
+    <CheckboxNew defaultChecked checkSize="medium" />
+    <CheckboxNew defaultChecked checkSize="large" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Check Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew defaultChecked checkColor="red" />
+    <CheckboxNew defaultChecked checkColor="green" />
+    <CheckboxNew defaultChecked checkColor="blue" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew defaultChecked borderColor="red" />
+    <CheckboxNew defaultChecked borderColor="green" />
+    <CheckboxNew defaultChecked borderColor="blue" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Hover Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew defaultChecked hoverColor="coral" />
+    <CheckboxNew defaultChecked hoverColor="lightgreen" />
+    <CheckboxNew defaultChecked hoverColor="lightblue" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew defaultChecked borderRadius="3px" />
+    <CheckboxNew defaultChecked borderRadius="5px" />
+    <CheckboxNew defaultChecked borderRadius="10px" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Error</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <CheckboxNew error={true} />
   </div>
 </Playground>
