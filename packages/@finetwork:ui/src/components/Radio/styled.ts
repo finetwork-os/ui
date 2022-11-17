@@ -1,4 +1,5 @@
 import { styled } from '../../stitches.config'
+import { Paragraph4, Paragraph5 } from '../Typography'
 
 export const StyledContainer = styled('div', {
   display: 'flex',
@@ -55,6 +56,10 @@ export const StyledRadioContainer = styled('div', {
   },
 })
 
+export const StyledTitle = styled(Paragraph4, {
+  color: '#333333 !important',
+})
+
 export const StyledText = styled('label', {
   fontSize: '16px',
   cursor: 'pointer',
@@ -71,6 +76,7 @@ export const StyledText = styled('label', {
     },
     isDisabled: {
       true: {
+        color: '$disabled100',
         cursor: 'not-allowed',
       },
     },
@@ -78,6 +84,10 @@ export const StyledText = styled('label', {
   defaultVariants: {
     size: 'medium',
   },
+})
+
+export const StyledErrorText = styled(Paragraph5, {
+  color: '$error',
 })
 
 export const StyledInputContainer = styled('div', {

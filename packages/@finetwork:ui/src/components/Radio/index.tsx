@@ -14,9 +14,9 @@ import {
   StyledContainer,
   StyledRadioGroupContainer,
   StyledText,
+  StyledTitle,
+  StyledErrorText,
 } from './styled'
-
-import { Paragraph5 } from '../Typography'
 
 import { RadioComponentProps, RadioGroupComponentProps } from './types'
 import { RenderEnhancer } from '../../utils'
@@ -27,9 +27,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupComponentProps>(
       <StyledContainer>
         {title && (
           <>
-            {typeof title === 'string' && (
-              <Paragraph5 css={{ color: '#333333' }}>{title}</Paragraph5>
-            )}
+            {typeof title === 'string' && <StyledTitle>{title}</StyledTitle>}
             {isValidElement(title) && <RenderEnhancer Enhancer={title} />}
           </>
         )}
@@ -48,7 +46,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupComponentProps>(
             })
           })}
         </StyledRadioGroupContainer>
-        <Paragraph5 css={{ color: '$error' }}>{error}</Paragraph5>
+        <StyledErrorText>{error}</StyledErrorText>
       </StyledContainer>
     )
   }
