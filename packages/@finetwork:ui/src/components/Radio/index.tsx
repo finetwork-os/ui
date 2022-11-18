@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  Children,
-  isValidElement,
-  cloneElement,
-  useState,
-  useEffect,
-} from 'react'
+import * as React from 'react'
 
 import {
   StyledInput,
@@ -21,37 +14,38 @@ import {
 import { RadioComponentProps, RadioGroupComponentProps } from './types'
 import { RenderEnhancer } from '../../utils'
 
-export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupComponentProps>(
-  ({ children, direction, name, title, error }, ref) => {
-    return (
-      <StyledContainer>
-        {title && (
-          <>
-            {typeof title === 'string' && <StyledTitle>{title}</StyledTitle>}
-            {isValidElement(title) && <RenderEnhancer Enhancer={title} />}
-          </>
-        )}
+export const RadioGroup = React.forwardRef<
+  HTMLDivElement,
+  RadioGroupComponentProps
+>(({ children, direction, name, title, error }, ref) => {
+  return (
+    <StyledContainer>
+      {title && (
+        <>
+          {typeof title === 'string' && <StyledTitle>{title}</StyledTitle>}
+          {React.isValidElement(title) && <RenderEnhancer Enhancer={title} />}
+        </>
+      )}
 
-        <StyledRadioGroupContainer direction={direction} ref={ref}>
-          {Children.map(children, (child) => {
-            if (!isValidElement(child)) return null
-            if (name) {
-              return cloneElement(child, {
-                ...child.props,
-                name,
-              })
-            }
-            return cloneElement(child, {
+      <StyledRadioGroupContainer direction={direction} ref={ref}>
+        {React.Children.map(children, (child) => {
+          if (!React.isValidElement(child)) return null
+          if (name) {
+            return React.cloneElement(child, {
               ...child.props,
+              name,
             })
-          })}
-        </StyledRadioGroupContainer>
-        <StyledErrorText>{error}</StyledErrorText>
-      </StyledContainer>
-    )
-  }
-)
-export const Radio = forwardRef<HTMLInputElement, RadioComponentProps>(
+          }
+          return React.cloneElement(child, {
+            ...child.props,
+          })
+        })}
+      </StyledRadioGroupContainer>
+      <StyledErrorText>{error}</StyledErrorText>
+    </StyledContainer>
+  )
+})
+export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
   (
     {
       kind,
@@ -70,7 +64,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioComponentProps>(
     },
     ref
   ) => {
-    const [customStyle, setCustomStyle] = useState({
+    const [customStyle, setCustomStyle] = React.useState({
       inputContainer: {},
       input: {},
       text: {},
@@ -83,7 +77,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioComponentProps>(
       return { width: dotSize, height: dotSize }
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
       let css = {
         inputContainer: {},
         input: {},

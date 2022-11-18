@@ -8,7 +8,7 @@ export type RadioGroupComponentProps = {
   name: string
   title: Enhancer
   children: ReactNode
-  error: string
+  error?: string
 }
 
 export type RadioComponentProps = {
@@ -18,7 +18,7 @@ export type RadioComponentProps = {
   label?: string | ReactNode
   disabled?: boolean
   value: string | number
-  name: string
+  name?: string
   dotColor?: string
   dotSize?: string
   dotHover?: string
