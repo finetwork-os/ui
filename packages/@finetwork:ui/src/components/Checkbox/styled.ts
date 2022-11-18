@@ -8,8 +8,7 @@ import { CheckIcon } from '../icons'
 
 export const CheckboxContainer = styled('div', {
   lineHeight: 1.1,
-  display: 'grid',
-  gridTemplateColumns: '1em auto',
+  display: 'flex',
   alignItems: 'center',
   variants: {
     size: {
@@ -58,9 +57,6 @@ export const StyledInput = styled('input', {
   },
   '&:checked::before': {
     transform: 'scale(1)',
-  },
-  '&:hover': {
-    backgroundColor: '$colors$secondary200',
   },
   variants: {
     size: {
@@ -117,9 +113,6 @@ export const StyledInput = styled('input', {
         '&:before': {
           boxShadow: 'inset 14px 14px $colors$primary',
         },
-        '&:hover': {
-          backgroundColor: '$colors$primary200',
-        },
       },
       secondary: {
         '&:focus': {
@@ -127,9 +120,6 @@ export const StyledInput = styled('input', {
         },
         '&:before': {
           boxShadow: 'inset 14px 14px $colors$secondary',
-        },
-        '&:hover': {
-          backgroundColor: '$colors$secondary200',
         },
       },
       tertiary: {
@@ -139,9 +129,6 @@ export const StyledInput = styled('input', {
         '&:before': {
           boxShadow: 'inset 14px 14px $colors$tertiary',
         },
-        '&:hover': {
-          backgroundColor: '$colors$tertiary200',
-        },
       },
     },
     isDisabled: {
@@ -149,7 +136,6 @@ export const StyledInput = styled('input', {
         border: '1px solid $disabled !important',
         '&:hover': {
           cursor: 'not-allowed',
-          backgroundColor: '$disabled100',
         },
       },
     },
@@ -158,9 +144,6 @@ export const StyledInput = styled('input', {
         border: '1px solid $error !important',
         '&:focus': {
           outline: '1px solid $error !important',
-        },
-        '&:hover': {
-          backgroundColor: '$colors$error100 !important',
         },
       },
     },
@@ -172,22 +155,26 @@ export const StyledInput = styled('input', {
 
 export const StyledLabel = styled('label', {
   fontSize: '16px',
+  paddingLeft: '.3rem',
+  '&:hover': {
+    cursor: 'pointer',
+  },
   variants: {
     isDisabled: {
       true: {
-        cursor: 'not-allowed',
+        cursor: 'not-allowed !important',
         color: '$disabled100',
       },
     },
     size: {
       small: {
-        fontSize: '12px',
+        fontSize: '13px',
       },
       medium: {
         fontSize: '16px',
       },
       large: {
-        fontSize: '25px',
+        fontSize: '30px',
       },
     },
   },
@@ -203,5 +190,38 @@ export const StyledInputContainer = styled('div', {
   transition: '100ms background ease-in',
   '&:hover': {
     backgroundColor: '$colors$secondary200',
+  },
+  variants: {
+    kind: {
+      primary: {
+        '&:hover': {
+          backgroundColor: '$colors$primary200',
+        },
+      },
+      secondary: {
+        '&:hover': {
+          backgroundColor: '$colors$secondary200',
+        },
+      },
+      tertiary: {
+        '&:hover': {
+          backgroundColor: '$colors$tertiary200',
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        '&:hover': {
+          backgroundColor: '$disabled100',
+        },
+      },
+    },
+    error: {
+      true: {
+        '&:hover': {
+          backgroundColor: '$colors$error100 !important',
+        },
+      },
+    },
   },
 })

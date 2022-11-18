@@ -34,20 +34,22 @@ export const CheckboxNew = forwardRef<HTMLInputElement, CheckboxComponentProps>(
     const [customStyle, setCustomStyle] = useState({
       input: {},
       label: {},
+      hover: {},
     })
     useEffect(() => {
       let css = {
         input: {},
         label: {},
+        hover: {},
       }
 
       if (hoverColor) {
         css = {
           ...css,
-          input: {
-            ...css.input,
+          hover: {
+            ...css.hover,
             '&:hover': {
-              backgroundColor: `${hoverColor}`,
+              backgroundColor: `${hoverColor} !important`,
             },
           },
         }
@@ -110,7 +112,12 @@ export const CheckboxNew = forwardRef<HTMLInputElement, CheckboxComponentProps>(
     }, [])
     const CheckboxNew = () => (
       <CheckboxContainer size={size}>
-        <StyledInputContainer>
+        <StyledInputContainer
+          error={error}
+          kind={kind}
+          isDisabled={disabled}
+          css={customStyle.hover}
+        >
           <StyledInput
             ref={ref}
             type="checkbox"
