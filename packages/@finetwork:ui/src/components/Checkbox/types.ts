@@ -6,7 +6,7 @@ export type CheckboxComponentProps = {
   css?: CSS
   kind?: KINDS
   size?: SIZES
-  label?: string | ReactNode
+  label?: string
   disabled?: boolean
   value: string | number
   name: string

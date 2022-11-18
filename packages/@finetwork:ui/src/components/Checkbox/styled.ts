@@ -10,6 +10,7 @@ export const CheckboxContainer = styled('div', {
   lineHeight: 1.1,
   display: 'flex',
   alignItems: 'center',
+  gap: '.5rem',
   variants: {
     size: {
       small: {
@@ -134,6 +135,9 @@ export const StyledInput = styled('input', {
     isDisabled: {
       true: {
         border: '1px solid $disabled !important',
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$disabled',
+        },
         '&:hover': {
           cursor: 'not-allowed',
         },
@@ -155,7 +159,6 @@ export const StyledInput = styled('input', {
 
 export const StyledLabel = styled('label', {
   fontSize: '16px',
-  paddingLeft: '.3rem',
   '&:hover': {
     cursor: 'pointer',
   },
@@ -163,7 +166,7 @@ export const StyledLabel = styled('label', {
     isDisabled: {
       true: {
         cursor: 'not-allowed !important',
-        color: '$disabled100',
+        color: '$disabled',
       },
     },
     size: {

@@ -27,19 +27,22 @@ export const StyledRadioGroupContainer = styled('div', {
 
 export const StyledRadioContainer = styled('div', {
   lineHeight: 1.1,
-  display: 'flex',
+  display: 'grid',
+  gridTemplateColumns: '1em auto',
   alignItems: 'center',
   gap: '0.5em',
   padding: '0.3rem 0.5rem',
   borderRadius: '10px',
-  marginLeft: '-12px',
+  cursor: 'pointer',
   variants: {
     size: {
       small: {
         fontSize: '20px',
+        marginLeft: '-12px',
       },
       medium: {
         fontSize: '25px',
+        marginLeft: '-12px',
       },
     },
     isDisabled: {
@@ -64,16 +67,16 @@ export const StyledText = styled('label', {
     size: {
       small: {
         fontSize: '12px',
-        marginTop: '2px',
+        marginTop: '3px',
       },
       medium: {
         fontSize: '16px',
-        marginTop: '1px',
+        marginTop: '5px',
       },
     },
     isDisabled: {
       true: {
-        color: '$disabled',
+        color: '$disabled100',
         cursor: 'not-allowed',
       },
     },
@@ -84,7 +87,7 @@ export const StyledText = styled('label', {
 })
 
 export const StyledErrorText = styled(Paragraph5, {
-  color: '$error !important',
+  color: '$error',
 })
 
 export const StyledInputContainer = styled('div', {
@@ -128,7 +131,7 @@ export const StyledInputContainer = styled('div', {
     isDisabled: {
       true: {
         '&:hover': {
-          backgroundColor: 'unset',
+          backgroundColor: '$disabled',
         },
       },
     },
@@ -200,10 +203,7 @@ export const StyledInput = styled('input', {
     isDisabled: {
       true: {
         cursor: 'not-allowed',
-        border: '1px solid $disabled',
-        '&:before': {
-          boxShadow: 'inset 14px 14px $colors$disabled',
-        },
+        border: '1px solid $disabled100',
       },
     },
   },
