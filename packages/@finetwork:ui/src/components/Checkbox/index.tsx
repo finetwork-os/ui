@@ -6,12 +6,9 @@ import {
   StyledLabel,
 } from './styled'
 
-import { CheckboxComponentProps } from './types'
+import { CheckboxProps } from './types'
 
-export const Checkbox = React.forwardRef<
-  HTMLInputElement,
-  CheckboxComponentProps
->(
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       kind,
@@ -29,6 +26,7 @@ export const Checkbox = React.forwardRef<
       borderRadius,
       error,
       borderColor,
+      onCheckedChange,
       ...props
     },
     ref
