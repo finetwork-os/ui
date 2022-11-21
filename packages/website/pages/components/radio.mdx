@@ -29,7 +29,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Radio example title'}>
+    <RadioGroup name="default" title={'Radio example title'}>
       <Radio value="option1" id="opt1" label="Option 1" />
       <Radio value="option2" id="opt2" label="Option 2" />
     </RadioGroup>
@@ -42,7 +42,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={<H3>Custom example title</H3>}>
+    <RadioGroup name="custom-title" title={<H3>Custom example title</H3>}>
       <Radio value="option1" id="opt3" label="Option 1" />
       <Radio value="option2" id="opt4" label="Option 2" />
     </RadioGroup>
@@ -57,7 +57,7 @@ import { styles } from '../../styles.ts'
   <div style={styles}>
     <RadioGroup
       direction="vertical"
-      name="second"
+      name="vertical"
       title={'Radio example title'}
     >
       <Radio value="option1" id="opt5" label="Option 1" />
@@ -74,7 +74,7 @@ import { styles } from '../../styles.ts'
   <div style={styles}>
     <RadioGroup
       direction="vertical"
-      name="second"
+      name="error"
       title={'Radio example title'}
       error={'Select one option'}
     >
@@ -90,7 +90,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup>
+    <RadioGroup name="disabled">
       <Radio value="default" id="def1" label="Disabled" disabled checked />
     </RadioGroup>
   </div>
@@ -102,7 +102,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Radio example title'} direction="vertical">
+    <RadioGroup name="kind" title={'Radio example title'} direction="vertical">
       <Radio value="option1" id="opt10" label="Primary" kind="primary" />
       <Radio value="option1" id="opt11" label="Secondary" kind="secondary" />
       <Radio value="option1" id="opt12" label="Tertiary" kind="tertiary" />
@@ -116,7 +116,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Radio example title'} direction="vertical">
+    <RadioGroup name="sizes" title={'Radio example title'} direction="vertical">
       <Radio value="option1" id="opt13" label="Small" size="small" />
       <Radio value="option1" id="opt14" label="Medium" size="medium" />
     </RadioGroup>
@@ -129,7 +129,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="example" title="No label">
+    <RadioGroup name="no-label" title="No label">
       <Radio value="default" id="def31" />
       <Radio value="next" id="next32" />
     </RadioGroup>
@@ -142,7 +142,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Dot color'} direction="vertical">
+    <RadioGroup name="dot-color" title={'Dot color'} direction="vertical">
       <Radio value="option1" id="opt20" label="Blue" dotColor="blue" />
       <Radio value="option1" id="opt21" label="Green" dotColor="green" />
       <Radio value="option1" id="opt22" label="Red" dotColor="red" />
@@ -156,7 +156,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Dot size'} direction="vertical">
+    <RadioGroup name="dot-size" title={'Dot size'} direction="vertical">
       <Radio value="option1" id="opt40" label="5px" dotSize="5px" />
       <Radio value="option1" id="opt41" label="10px" dotSize="10px" />
       <Radio value="option1" id="opt42" label="17px" dotSize="17px" />
@@ -170,7 +170,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Dot hover'} direction="vertical">
+    <RadioGroup name="dot-hover" title={'Dot hover'} direction="vertical">
       <Radio
         value="option1"
         id="opt50"
@@ -187,7 +187,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Border color'} direction="vertical">
+    <RadioGroup name="border-color" title={'Border color'} direction="vertical">
       <Radio value="option1" id="opt51" label="lightblue" borderColor="green" />
     </RadioGroup>
   </div>
@@ -199,7 +199,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <RadioGroup name="first" title={'Text color'} direction="vertical">
+    <RadioGroup name="text-color" title={'Text color'} direction="vertical">
       <Radio value="option1" id="opt52" label="green" textColor="green" />
     </RadioGroup>
   </div>

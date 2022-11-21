@@ -1,5 +1,5 @@
 import { CSS } from '@stitches/react/types/css-util'
-import { ComponentProps, ReactNode } from 'react'
+import { ComponentProps } from 'react'
 import { KINDS, SIZES } from '../../types'
 import { StyledInput } from './styled'
 
@@ -7,7 +7,7 @@ type CheckboxComponentOwnProps = {
   css?: CSS
   kind?: KINDS
   size?: SIZES
-  label?: string
+  label?: string | number
   disabled?: boolean
   value?: string | number
   name: string

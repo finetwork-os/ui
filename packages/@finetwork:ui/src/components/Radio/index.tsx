@@ -11,7 +11,7 @@ import {
   StyledErrorText,
 } from './styled'
 
-import { RadioComponentProps, RadioGroupComponentProps } from './types'
+import { RadioProps, RadioGroupComponentProps } from './types'
 import { RenderEnhancer } from '../../utils'
 
 export const RadioGroup = React.forwardRef<
@@ -45,7 +45,7 @@ export const RadioGroup = React.forwardRef<
     </StyledContainer>
   )
 })
-export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (
     {
       kind,

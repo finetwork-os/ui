@@ -1,7 +1,7 @@
-import { FC, ReactNode } from 'react'
-
+import { ComponentProps, ReactNode } from 'react'
 import { CSS } from '@stitches/react/types/css-util'
-import { Enhancer, KINDS, SIZES } from '../../types'
+import { Enhancer, KINDS } from '../../types'
+import { StyledInput } from './styled'
 
 export type RadioGroupComponentProps = {
   direction: 'vertical' | 'horizontal'
@@ -11,7 +11,7 @@ export type RadioGroupComponentProps = {
   error?: string
 }
 
-export type RadioComponentProps = {
+type RadioComponentOwnProps = {
   css?: CSS
   kind?: KINDS
   size?: 'small' | 'medium'
@@ -26,3 +26,5 @@ export type RadioComponentProps = {
   borderColor?: string
   id: string
 }
+export type RadioProps = ComponentProps<typeof StyledInput> &
+  RadioComponentOwnProps
