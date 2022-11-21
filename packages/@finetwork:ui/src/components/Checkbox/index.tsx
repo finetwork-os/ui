@@ -1,5 +1,4 @@
-import { forwardRef, useEffect, useState } from 'react'
-
+import * as React from 'react'
 import {
   CheckboxContainer,
   StyledInput,
@@ -9,7 +8,10 @@ import {
 
 import { CheckboxComponentProps } from './types'
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxComponentProps>(
+export const Checkbox = React.forwardRef<
+  HTMLInputElement,
+  CheckboxComponentProps
+>(
   (
     {
       kind,
@@ -31,12 +33,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxComponentProps>(
     },
     ref
   ) => {
-    const [customStyle, setCustomStyle] = useState({
+    const [customStyle, setCustomStyle] = React.useState({
       input: {},
       label: {},
       hover: {},
     })
-    useEffect(() => {
+    React.useEffect(() => {
       let css = {
         input: {},
         label: {},
