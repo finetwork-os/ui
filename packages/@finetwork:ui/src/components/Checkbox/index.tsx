@@ -125,7 +125,6 @@ export const Checkbox = React.forwardRef<
             type="checkbox"
             id={id}
             value={value}
-            {...props}
             name={name}
             checkSize={checkSize}
             size={size}
@@ -134,6 +133,7 @@ export const Checkbox = React.forwardRef<
             disabled={disabled}
             error={error}
             css={customStyle.input}
+            {...props}
           />
         </StyledInputContainer>
 
