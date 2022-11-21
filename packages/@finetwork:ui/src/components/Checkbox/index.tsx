@@ -26,7 +26,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       borderRadius,
       error,
       borderColor,
-      onCheckedChange,
       ...props
     },
     ref

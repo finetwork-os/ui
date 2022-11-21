@@ -20,7 +20,6 @@ type CheckboxComponentOwnProps = {
   id?: string
   borderRadius?: string
   error?: boolean
-  onCheckedChange?: () => void
 }
 export type CheckboxProps = ComponentProps<typeof StyledInput> &
   CheckboxComponentOwnProps
