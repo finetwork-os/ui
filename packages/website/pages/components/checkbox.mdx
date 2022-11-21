@@ -3,7 +3,7 @@ name: Checkbox
 ---
 
 import { Playground } from 'dokz'
-import { Checkbox, H2, H3, Paragraph4, Link, CheckboxNew } from '@finetwork/ui'
+import { Checkbox, H2, H3, Paragraph4, Link, Checkbox } from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
@@ -40,9 +40,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew defaultChecked kind="primary" />
-    <CheckboxNew defaultChecked kind="secondary" />
-    <CheckboxNew defaultChecked kind="tertiary" />
+    <Checkbox defaultChecked kind="primary" />
+    <Checkbox defaultChecked kind="secondary" />
+    <Checkbox defaultChecked kind="tertiary" />
   </div>
 </Playground>
 
@@ -52,12 +52,7 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew
-      defaultChecked
-      kind="secondary"
-      id="labelExample"
-      label="Label"
-    />
+    <Checkbox defaultChecked kind="secondary" id="labelExample" label="Label" />
   </div>
 </Playground>
 
@@ -67,7 +62,7 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew
+    <Checkbox
       defaultChecked
       kind="secondary"
       id="textColorExample"
@@ -83,7 +78,7 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew
+    <Checkbox
       defaultChecked
       kind="secondary"
       id="textSizeExample"
@@ -99,9 +94,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew id="unCheckExample" kind="secondary" disabled />
-    <CheckboxNew id="checkedExample" checked kind="secondary" disabled />
-    <CheckboxNew
+    <Checkbox id="unCheckExample" kind="secondary" disabled />
+    <Checkbox id="checkedExample" checked kind="secondary" disabled />
+    <Checkbox
       id="labelUcheckedExample"
       kind="secondary"
       label="Label"
@@ -116,24 +111,14 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew
-      defaultChecked
-      size="small"
-      id="sizeSmallExample"
-      label="Label"
-    />
-    <CheckboxNew
+    <Checkbox defaultChecked size="small" id="sizeSmallExample" label="Label" />
+    <Checkbox
       defaultChecked
       size="medium"
       id="sizeMediumExample"
       label="Label"
     />
-    <CheckboxNew
-      defaultChecked
-      size="large"
-      id="sizeLargeExample"
-      label="Label"
-    />
+    <Checkbox defaultChecked size="large" id="sizeLargeExample" label="Label" />
   </div>
 </Playground>
 
@@ -143,9 +128,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew defaultChecked checkSize="small" />
-    <CheckboxNew defaultChecked checkSize="medium" />
-    <CheckboxNew defaultChecked checkSize="large" />
+    <Checkbox defaultChecked checkSize="small" />
+    <Checkbox defaultChecked checkSize="medium" />
+    <Checkbox defaultChecked checkSize="large" />
   </div>
 </Playground>
 
@@ -155,9 +140,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew defaultChecked checkColor="red" />
-    <CheckboxNew defaultChecked checkColor="green" />
-    <CheckboxNew defaultChecked checkColor="blue" />
+    <Checkbox defaultChecked checkColor="red" />
+    <Checkbox defaultChecked checkColor="green" />
+    <Checkbox defaultChecked checkColor="blue" />
   </div>
 </Playground>
 
@@ -167,9 +152,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew defaultChecked borderColor="red" />
-    <CheckboxNew defaultChecked borderColor="green" />
-    <CheckboxNew defaultChecked borderColor="blue" />
+    <Checkbox defaultChecked borderColor="red" />
+    <Checkbox defaultChecked borderColor="green" />
+    <Checkbox defaultChecked borderColor="blue" />
   </div>
 </Playground>
 
@@ -179,9 +164,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew defaultChecked hoverColor="coral" />
-    <CheckboxNew defaultChecked hoverColor="lightgreen" />
-    <CheckboxNew defaultChecked hoverColor="lightblue" />
+    <Checkbox defaultChecked hoverColor="coral" />
+    <Checkbox defaultChecked hoverColor="lightgreen" />
+    <Checkbox defaultChecked hoverColor="lightblue" />
   </div>
 </Playground>
 
@@ -191,9 +176,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew defaultChecked borderRadius="3px" />
-    <CheckboxNew defaultChecked borderRadius="5px" />
-    <CheckboxNew defaultChecked borderRadius="10px" />
+    <Checkbox defaultChecked borderRadius="3px" />
+    <Checkbox defaultChecked borderRadius="5px" />
+    <Checkbox defaultChecked borderRadius="10px" />
   </div>
 </Playground>
 
@@ -203,7 +188,7 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <CheckboxNew error={true} />
+    <Checkbox error={true} />
   </div>
 </Playground>
 

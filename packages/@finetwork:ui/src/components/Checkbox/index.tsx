@@ -9,7 +9,7 @@ import {
 
 import { CheckboxComponentProps } from './types'
 
-export const CheckboxNew = forwardRef<HTMLInputElement, CheckboxComponentProps>(
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxComponentProps>(
   (
     {
       kind,
@@ -110,7 +110,7 @@ export const CheckboxNew = forwardRef<HTMLInputElement, CheckboxComponentProps>(
 
       setCustomStyle(css)
     }, [])
-    const CheckboxNew = () => (
+    const Checkbox = () => (
       <CheckboxContainer size={size}>
         <StyledInputContainer
           error={error}
@@ -147,6 +147,6 @@ export const CheckboxNew = forwardRef<HTMLInputElement, CheckboxComponentProps>(
         )}
       </CheckboxContainer>
     )
-    return <CheckboxNew />
+    return <Checkbox />
   }
 )

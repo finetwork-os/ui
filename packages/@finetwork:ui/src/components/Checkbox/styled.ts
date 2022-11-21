@@ -1,10 +1,4 @@
-import { BooleanString, KINDS } from '../../types'
-import { CheckedState, Indicator, Root } from '@radix-ui/react-checkbox'
-import { bounceIn, fadeIn } from '../../animations'
-
-import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
-import { CheckIcon } from '../icons'
 
 export const CheckboxContainer = styled('div', {
   lineHeight: 1.1,

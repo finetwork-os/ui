@@ -4,7 +4,7 @@ export {
   AccordionItem,
   AccordionTrigger,
 } from './components/Accordion'
-export { Checkbox, CheckboxNew } from './components/Checkbox'
+export { Checkbox } from './components/Checkbox'
 export { Button } from './components/Button'
 export { Card, CardBody, CardFooter, CardHeader } from './components/Card'
 export { Input } from './components/Input'
