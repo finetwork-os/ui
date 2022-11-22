@@ -1,4 +1,4 @@
-import { styled } from '../../stitches.config'
+import { keyframes, styled } from '../../stitches.config'
 
 export const CheckboxContainer = styled('div', {
   lineHeight: 1.1,
@@ -20,6 +20,23 @@ export const CheckboxContainer = styled('div', {
   },
   defaultVariants: {
     size: 'medium',
+  },
+})
+
+const scaleUpAnimation = keyframes({
+  '0%': {
+    transform: 'scale(0)',
+  },
+  '100%': {
+    transform: 'scale(1) ',
+  },
+})
+const scaleDownAnimation = keyframes({
+  '0%': {
+    transform: 'scale(1)',
+  },
+  '100%': {
+    transform: 'scale(0) ',
   },
 })
 
@@ -46,14 +63,29 @@ export const StyledInput = styled('input', {
     width: '10px',
     height: '10px',
     borderRadius: '50%',
-    transform: 'scale(0)',
-    transition: '115ms transform ease-in-out',
     boxShadow: 'inset 14px 14px $colors$primary',
+    transition: '115ms transform ease-in-out',
+    transform: 'scale(0)',
   },
-  '&:checked::before': {
-    transform: 'scale(1)',
-  },
+
   variants: {
+    animation: {
+      closed: {
+        '&:before': {
+          animation: `${scaleDownAnimation} .18s ease-in-out forwards`,
+        },
+      },
+      showed: {
+        '&:before': {
+          animation: `${scaleUpAnimation} .18s ease-in-out forwards`,
+        },
+      },
+      hidden: {
+        '&:before': {
+          display: 'none',
+        },
+      },
+    },
     size: {
       small: {
         width: '16px',
