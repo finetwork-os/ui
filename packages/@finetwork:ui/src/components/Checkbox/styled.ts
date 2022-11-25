@@ -1,3 +1,7 @@
+import {
+  scaleDownAnimation,
+  scaleUpAnimation,
+} from '@finetwork:ui/src/animations'
 import { keyframes, styled } from '../../stitches.config'
 
 export const CheckboxContainer = styled('div', {
@@ -20,23 +24,6 @@ export const CheckboxContainer = styled('div', {
   },
   defaultVariants: {
     size: 'medium',
-  },
-})
-
-const scaleUpAnimation = keyframes({
-  '0%': {
-    transform: 'scale(0)',
-  },
-  '100%': {
-    transform: 'scale(1) ',
-  },
-})
-const scaleDownAnimation = keyframes({
-  '0%': {
-    transform: 'scale(1)',
-  },
-  '100%': {
-    transform: 'scale(0) ',
   },
 })
 
