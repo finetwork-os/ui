@@ -27,7 +27,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       error,
       borderColor,
       checked,
-      defaultChecked,
       ...props
     },
     ref
@@ -120,12 +119,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     console.log({ checked, animation })
 
     React.useEffect(() => {
-      if (checked || defaultChecked)
+      if (checked)
         return setAnimation({ status: 'showed', hasBeenClicked: true })
       if (!checked && !animation.hasBeenClicked)
         return setAnimation({ status: 'hidden', hasBeenClicked: false })
       return setAnimation({ status: 'closed', hasBeenClicked: true })
-    }, [checked, defaultChecked])
+    }, [checked])
     const Checkbox = () => (
       <CheckboxContainer size={size}>
         <StyledInputContainer
