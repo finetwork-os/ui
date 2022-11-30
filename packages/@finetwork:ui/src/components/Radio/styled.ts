@@ -1,6 +1,9 @@
 import { styled } from '../../stitches.config'
 import { Paragraph4, Paragraph5 } from '../Typography'
-import { keyframes } from '@stitches/react'
+import {
+  scaleDownAnimation,
+  scaleUpAnimation,
+} from '@finetwork:ui/src/animations'
 
 export const StyledContainer = styled('div', {
   display: 'flex',
@@ -140,16 +143,6 @@ export const StyledInputContainer = styled('div', {
   },
 })
 
-const scaleUpAnimation = keyframes({
-  '0%': { transform: 'scale(0)' },
-  '100%': { transform: 'scale(1)' },
-})
-
-const scaleDownAnimation = keyframes({
-  '0%': { transform: 'scale(1)' },
-  '100%': { transform: 'scale(0)' },
-})
-
 export const StyledInput = styled('input', {
   '-webkit-apapparance': 'none',
   appearance: 'none',
@@ -171,10 +164,24 @@ export const StyledInput = styled('input', {
     transition: '115ms transform ease-in-out',
     boxShadow: 'inset 14px 14px $colors$primary',
   },
-  '&:checked::before': {
-    transform: 'scale(1)',
-  },
   variants: {
+    animation: {
+      closed: {
+        '&:before': {
+          animation: `${scaleDownAnimation} .18s ease-in-out forwards`,
+        },
+      },
+      showed: {
+        '&:before': {
+          animation: `${scaleUpAnimation} .18s ease-in-out forwards`,
+        },
+      },
+      hidden: {
+        '&:before': {
+          display: 'none',
+        },
+      },
+    },
     size: {
       small: {
         border: '1px solid #000',

@@ -69,3 +69,13 @@ export const slideLeftAndFade = keyframes({
   '0%': { opacity: 0, transform: 'translateX(2px)' },
   '100%': { opacity: 1, transform: 'translateX(0)' },
 })
+
+export const scaleDownAnimation = keyframes({
+  '0%': { transform: 'scale(1)' },
+  '100%': { transform: 'scale(0)' },
+})
+
+export const scaleUpAnimation = keyframes({
+  '0%': { transform: 'scale(0)' },
+  '100%': { transform: 'scale(1)' },
+})
