@@ -1,5 +1,6 @@
 import { styled } from '../../stitches.config'
 import { Paragraph4, Paragraph5 } from '../Typography'
+import { keyframes } from '@stitches/react'
 
 export const StyledContainer = styled('div', {
   display: 'flex',
@@ -137,6 +138,16 @@ export const StyledInputContainer = styled('div', {
     kind: 'primary',
     size: 'medium',
   },
+})
+
+const scaleUpAnimation = keyframes({
+  '0%': { transform: 'scale(0)' },
+  '100%': { transform: 'scale(1)' },
+})
+
+const scaleDownAnimation = keyframes({
+  '0%': { transform: 'scale(1)' },
+  '100%': { transform: 'scale(0)' },
 })
 
 export const StyledInput = styled('input', {

@@ -25,4 +25,5 @@ export type RadioComponentProps = {
   textColor?: string
   borderColor?: string
   id: string
+  checked?: boolean
 }
