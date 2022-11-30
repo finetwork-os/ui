@@ -181,7 +181,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioComponentProps>(
             size={size}
             type="radio"
             value={value}
-            animation={animation}
+            animation={animation.status}
             {...props}
           />
         </StyledInputContainer>
