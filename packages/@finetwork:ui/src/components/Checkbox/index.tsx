@@ -116,8 +116,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setCustomStyle(css)
     }, [])
 
-    console.log({ checked, animation })
-
     React.useEffect(() => {
       if (checked)
         return setAnimation({ status: 'showed', hasBeenClicked: true })
