@@ -2,7 +2,7 @@ import {
   scaleDownAnimation,
   scaleUpAnimation,
 } from '@finetwork:ui/src/animations'
-import { keyframes, styled } from '../../stitches.config'
+import { styled } from '../../stitches.config'
 
 export const CheckboxContainer = styled('div', {
   lineHeight: 1.1,

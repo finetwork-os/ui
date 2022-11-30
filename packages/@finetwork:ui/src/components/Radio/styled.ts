@@ -1,5 +1,9 @@
 import { styled } from '../../stitches.config'
 import { Paragraph4, Paragraph5 } from '../Typography'
+import {
+  scaleDownAnimation,
+  scaleUpAnimation,
+} from '@finetwork:ui/src/animations'
 
 export const StyledContainer = styled('div', {
   display: 'flex',
@@ -76,7 +80,7 @@ export const StyledText = styled('label', {
     },
     isDisabled: {
       true: {
-        color: '$disabled100',
+        color: '$disabled !important',
         cursor: 'not-allowed',
       },
     },
@@ -87,7 +91,7 @@ export const StyledText = styled('label', {
 })
 
 export const StyledErrorText = styled(Paragraph5, {
-  color: '$error',
+  color: '$error !important',
 })
 
 export const StyledInputContainer = styled('div', {
@@ -131,7 +135,8 @@ export const StyledInputContainer = styled('div', {
     isDisabled: {
       true: {
         '&:hover': {
-          backgroundColor: '$disabled',
+          cursor: 'not-allowed !important',
+          backgroundColor: '$disabled100 !important',
         },
       },
     },
@@ -163,10 +168,24 @@ export const StyledInput = styled('input', {
     transition: '115ms transform ease-in-out',
     boxShadow: 'inset 14px 14px $colors$primary',
   },
-  '&:checked::before': {
-    transform: 'scale(1)',
-  },
   variants: {
+    animation: {
+      closed: {
+        '&:before': {
+          animation: `${scaleDownAnimation} .18s ease-in-out forwards`,
+        },
+      },
+      showed: {
+        '&:before': {
+          animation: `${scaleUpAnimation} .18s ease-in-out forwards`,
+        },
+      },
+      hidden: {
+        '&:before': {
+          display: 'none',
+        },
+      },
+    },
     size: {
       small: {
         border: '1px solid #000',
@@ -203,7 +222,10 @@ export const StyledInput = styled('input', {
     isDisabled: {
       true: {
         cursor: 'not-allowed',
-        border: '1px solid $disabled100',
+        border: '1px solid $disabled',
+        '&:before': {
+          boxShadow: 'inset 14px 14px $colors$disabled',
+        },
       },
     },
   },
