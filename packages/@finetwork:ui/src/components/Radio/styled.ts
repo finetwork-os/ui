@@ -30,9 +30,8 @@ export const StyledRadioGroupContainer = styled('div', {
 })
 
 export const StyledRadioContainer = styled('div', {
-  lineHeight: 1.1,
   display: 'grid',
-  gridTemplateColumns: '1em auto',
+  gridTemplateColumns: '1.5rem auto',
   alignItems: 'center',
   gap: '0.5em',
   padding: '0.3rem 0.5rem',
@@ -71,11 +70,9 @@ export const StyledText = styled('label', {
     size: {
       small: {
         fontSize: '12px',
-        marginTop: '3px',
       },
       medium: {
         fontSize: '16px',
-        marginTop: '5px',
       },
     },
     isDisabled: {
@@ -95,8 +92,7 @@ export const StyledErrorText = styled(Paragraph5, {
 })
 
 export const StyledInputContainer = styled('div', {
-  display: 'grid',
-  justifyContent: 'center',
+  display: 'table',
   alignItems: 'center',
   padding: '0.3rem',
   borderRadius: '50%',
@@ -124,12 +120,12 @@ export const StyledInputContainer = styled('div', {
     },
     size: {
       small: {
-        width: '28px',
-        height: '28px',
+        width: '23px',
+        height: '23px',
       },
       medium: {
-        width: '35px',
-        height: '35px',
+        width: '33px',
+        height: '33px',
       },
     },
     isDisabled: {
@@ -152,8 +148,8 @@ export const StyledInput = styled('input', {
   appearance: 'none',
   margin: 0,
   font: 'inherit',
-  width: '1em',
-  height: '1em',
+  width: '1.5rem',
+  height: '1.5rem',
   borderRadius: '50%',
   display: 'grid',
   placeContent: 'center',

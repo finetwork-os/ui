@@ -157,7 +157,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     React.useEffect(() => {
       if (checked)
         return setAnimation({ status: 'showed', hasBeenClicked: true })
-      if (!checked && !animation.hasBeenClicked)
+      if (!checked || !animation.hasBeenClicked)
         return setAnimation({ status: 'hidden', hasBeenClicked: false })
       return setAnimation({ status: 'closed', hasBeenClicked: true })
     }, [checked])
