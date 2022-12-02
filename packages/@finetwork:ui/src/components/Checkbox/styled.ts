@@ -31,7 +31,7 @@ export const StyledInput = styled('input', {
   '-webkit-apapparance': 'none',
   all: 'unset',
   borderWidth: 1,
-  borderColor: '#000',
+  borderColor: '#000 !important',
   width: '20px',
   height: '20px',
   transition: 'all .3s ease',

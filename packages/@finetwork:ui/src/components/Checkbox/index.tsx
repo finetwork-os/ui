@@ -77,9 +77,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           ...css,
           input: {
             ...css.input,
-            borderColor: borderColor,
+            borderColor: `${borderColor} !important`,
             '&:focus': {
-              outline: `1px solid ${borderColor}`,
+              outline: `1px solid ${borderColor} !important`,
             },
           },
         }
