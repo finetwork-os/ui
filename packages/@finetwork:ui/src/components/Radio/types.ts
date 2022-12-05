@@ -24,7 +24,7 @@ type RadioComponentOwnProps = {
   dotHover?: string
   textColor?: string
   borderColor?: string
-  id: string
+  id?: string
   checked?: boolean
 }
 export type RadioProps = ComponentProps<typeof StyledInput> &
