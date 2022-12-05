@@ -13,7 +13,6 @@ import {
   Link,
 } from '@finetwork/ui'
 import { styles } from '../../styles.ts'
-import { useState } from 'react'
 
 <div />
 <div>
@@ -29,29 +28,12 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup name="default" title={'Radio example title'}>
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt1"
-            label="Option 1"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt2"
-            label="Option 2"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="default" title={'Radio example title'}>
+      <Radio value="option1" id="opt1" label="Option 1" defaultChecked />
+      <Radio value="option2" id="opt2" label="Option 2" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -59,29 +41,12 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup name="custom-title" title={<H3>Custom example title</H3>}>
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt3"
-            label="Option 1"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt4"
-            label="Option 2"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="custom-title" title={<H3>Custom example title</H3>}>
+      <Radio value="option1" id="opt3" label="Option 1" defaultChecked />
+      <Radio value="option2" id="opt4" label="Option 2" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -89,33 +54,17 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup
-          direction="vertical"
-          name="vertical"
-          title={'Radio example title'}
-        >
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt5"
-            label="Option 1"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt6"
-            label="Option 2"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup
+      direction="vertical"
+      name="vertical"
+      title={'Radio example title'}
+      defaultChecked
+    >
+      <Radio value="option1" id="opt5" label="Option 1" defaultChecked />
+      <Radio value="option2" id="opt6" label="Option 2" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -123,34 +72,17 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('')
-    return (
-      <div style={styles}>
-        <RadioGroup
-          direction="vertical"
-          name="error"
-          title={'Radio example title'}
-          error={'Select one option'}
-        >
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt7"
-            label="Option 1"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt8"
-            label="Option 2"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup
+      direction="vertical"
+      name="error"
+      title={'Radio example title'}
+      error={'Select one option'}
+    >
+      <Radio value="option1" id="opt7" label="Option 1" defaultChecked />
+      <Radio value="option2" id="opt8" label="Option 2" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -158,16 +90,17 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <RadioGroup name="disabled">
-          <Radio value="default" id="def1" label="Disabled" disabled checked />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="disabled">
+      <Radio
+        value="default"
+        id="def1"
+        label="Disabled"
+        disabled
+        defaultChecked
+      />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -175,43 +108,19 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup
-          name="kind"
-          title={'Radio example title'}
-          direction="vertical"
-        >
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt10"
-            label="Primary"
-            kind="primary"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt11"
-            label="Secondary"
-            kind="secondary"
-          />
-          <Radio
-            value="option3"
-            onClick={() => setIsChecked('option3')}
-            checked={isChecked === 'option3' ? true : false}
-            id="opt12"
-            label="Tertiary"
-            kind="tertiary"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="kind" title={'Radio example title'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt10"
+        label="Primary"
+        kind="primary"
+        defaultChecked
+      />
+      <Radio value="option2" id="opt11" label="Secondary" kind="secondary" />
+      <Radio value="option3" id="opt12" label="Tertiary" kind="tertiary" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -219,35 +128,18 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup
-          name="sizes"
-          title={'Radio example title'}
-          direction="vertical"
-        >
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt13"
-            label="Small"
-            size="small"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt14"
-            label="Medium"
-            size="medium"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="sizes" title={'Radio example title'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt13"
+        label="Small"
+        size="small"
+        defaultChecked
+      />
+      <Radio value="option2" id="opt14" label="Medium" size="medium" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -255,27 +147,12 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('default')
-    return (
-      <div style={styles}>
-        <RadioGroup name="no-label" title="No label">
-          <Radio
-            value="default"
-            onClick={() => setIsChecked('default')}
-            checked={isChecked === 'default' ? true : false}
-            id="def31"
-          />
-          <Radio
-            value="next"
-            onClick={() => setIsChecked('next')}
-            checked={isChecked === 'next' ? true : false}
-            id="next32"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="no-label" title="No label">
+      <Radio value="default" id="def31" defaultChecked />
+      <Radio value="next" id="next32" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -283,39 +160,19 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup name="dot-color" title={'Dot color'} direction="vertical">
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt20"
-            label="Blue"
-            dotColor="blue"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt21"
-            label="Green"
-            dotColor="green"
-          />
-          <Radio
-            value="option3"
-            onClick={() => setIsChecked('option3')}
-            checked={isChecked === 'option3' ? true : false}
-            id="opt22"
-            label="Red"
-            dotColor="red"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="dot-color" title={'Dot color'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt20"
+        label="Blue"
+        dotColor="blue"
+        defaultChecked
+      />
+      <Radio value="option2" id="opt21" label="Green" dotColor="green" />
+      <Radio value="option3" id="opt22" label="Red" dotColor="red" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -323,39 +180,19 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState('option1')
-    return (
-      <div style={styles}>
-        <RadioGroup name="dot-size" title={'Dot size'} direction="vertical">
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked('option1')}
-            checked={isChecked === 'option1' ? true : false}
-            id="opt40"
-            label="5px"
-            dotSize="5px"
-          />
-          <Radio
-            value="option2"
-            onClick={() => setIsChecked('option2')}
-            checked={isChecked === 'option2' ? true : false}
-            id="opt41"
-            label="10px"
-            dotSize="10px"
-          />
-          <Radio
-            value="option3"
-            onClick={() => setIsChecked('option3')}
-            checked={isChecked === 'option3' ? true : false}
-            id="opt42"
-            label="17px"
-            dotSize="17px"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="dot-size" title={'Dot size'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt40"
+        label="5px"
+        dotSize="5px"
+        defaultChecked
+      />
+      <Radio value="option2" id="opt41" label="10px" dotSize="10px" />
+      <Radio value="option3" id="opt42" label="17px" dotSize="17px" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -363,23 +200,17 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <RadioGroup name="dot-hover" title={'Dot hover'} direction="vertical">
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked(!isChecked)}
-            checked={isChecked}
-            id="opt50"
-            label="lightblue"
-            dotHover="lightblue"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="dot-hover" title={'Dot hover'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt50"
+        label="lightblue"
+        dotHover="lightblue"
+        defaultChecked
+      />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -387,27 +218,16 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <RadioGroup
-          name="border-color"
-          title={'Border color'}
-          direction="vertical"
-        >
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked(!isChecked)}
-            checked={isChecked}
-            id="opt51"
-            label="lightblue"
-            borderColor="green"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup
+      name="border-color"
+      title={'Border color'}
+      direction="vertical"
+      defaultChecked
+    >
+      <Radio value="option1" id="opt51" label="lightblue" borderColor="green" />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <div>
@@ -415,23 +235,17 @@ import { useState } from 'react'
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <RadioGroup name="text-color" title={'Text color'} direction="vertical">
-          <Radio
-            value="option1"
-            onClick={() => setIsChecked(!isChecked)}
-            checked={isChecked}
-            id="opt52"
-            label="green"
-            textColor="green"
-          />
-        </RadioGroup>
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <RadioGroup name="text-color" title={'Text color'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt52"
+        label="green"
+        textColor="green"
+        defaultChecked
+      />
+    </RadioGroup>
+  </div>
 </Playground>
 
 <h2>RadioGroup Props</h2>

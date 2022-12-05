@@ -26,7 +26,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       borderRadius,
       error,
       borderColor,
-      checked,
       ...props
     },
     ref
@@ -36,10 +35,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       label: {},
       hover: {},
     })
-    const [animation, setAnimation] = React.useState<{
-      status: 'showed' | 'closed' | 'hidden'
-      hasBeenClicked: boolean
-    }>({ status: 'hidden', hasBeenClicked: false })
 
     React.useEffect(() => {
       let css = {
@@ -116,13 +111,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setCustomStyle(css)
     }, [])
 
-    React.useEffect(() => {
-      if (checked)
-        return setAnimation({ status: 'showed', hasBeenClicked: true })
-      if (!checked && !animation.hasBeenClicked)
-        return setAnimation({ status: 'hidden', hasBeenClicked: false })
-      return setAnimation({ status: 'closed', hasBeenClicked: true })
-    }, [checked])
     const Checkbox = () => (
       <CheckboxContainer size={size}>
         <StyledInputContainer
@@ -143,7 +131,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             isDisabled={disabled}
             disabled={disabled}
             error={error}
-            animation={animation.status}
             css={customStyle.input}
             {...props}
           />

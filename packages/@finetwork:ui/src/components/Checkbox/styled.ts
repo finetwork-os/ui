@@ -54,25 +54,12 @@ export const StyledInput = styled('input', {
     transition: '115ms transform ease-in-out',
     transform: 'scale(0)',
   },
-
-  variants: {
-    animation: {
-      closed: {
-        '&:before': {
-          animation: `${scaleDownAnimation} .18s ease-in-out forwards`,
-        },
-      },
-      showed: {
-        '&:before': {
-          animation: `${scaleUpAnimation} .18s ease-in-out forwards`,
-        },
-      },
-      hidden: {
-        '&:before': {
-          display: 'none',
-        },
-      },
+  '&:checked': {
+    '&:before': {
+      transform: 'scale(1)',
     },
+  },
+  variants: {
     size: {
       small: {
         width: '16px',

@@ -4,7 +4,6 @@ name: Checkbox
 
 import { Playground } from 'dokz'
 import { Checkbox, H2, H3, Paragraph4, Link } from '@finetwork/ui'
-import { useState } from 'react'
 
 export const styles = {
   maxWidth: '1000px',
@@ -40,28 +39,11 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="primary"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="tertiary"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox kind="primary" defaultChecked />
+    <Checkbox kind="secondary" defaultChecked />
+    <Checkbox kind="tertiary" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -69,20 +51,9 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-          id="labelExample"
-          label="Label"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox kind="secondary" id="labelExample" label="Label" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -90,21 +61,15 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-          id="textColorExample"
-          label="Label"
-          textColor="$colors$primary"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox
+      kind="secondary"
+      id="textColorExample"
+      label="Label"
+      textColor="$colors$primary"
+      defaultChecked
+    />
+  </div>
 </Playground>
 
 <div>
@@ -112,21 +77,15 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-          id="textSizeExample"
-          label="Label"
-          textSize="20px"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox
+      kind="secondary"
+      id="textSizeExample"
+      label="Label"
+      textSize="20px"
+      defaultChecked
+    />
+  </div>
 </Playground>
 
 <div>
@@ -134,35 +93,16 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          id="unCheckExample"
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-          disabled
-        />
-        <Checkbox
-          id="checkedExample"
-          checked={!isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-          disabled
-        />
-        <Checkbox
-          id="labelUcheckedExample"
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          kind="secondary"
-          label="Label"
-          disabled
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox id="unCheckExample" kind="secondary" disabled defaultChecked />
+    <Checkbox id="checkedExample" kind="secondary" disabled />
+    <Checkbox
+      id="labelUcheckedExample"
+      kind="secondary"
+      label="Label"
+      disabled
+    />
+  </div>
 </Playground>
 
 <div>
@@ -170,34 +110,16 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          size="small"
-          id="sizeSmallExample"
-          label="Label"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          size="medium"
-          id="sizeMediumExample"
-          label="Label"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          size="large"
-          id="sizeLargeExample"
-          label="Label"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox size="small" id="sizeSmallExample" label="Label" defaultChecked />
+    <Checkbox
+      size="medium"
+      id="sizeMediumExample"
+      label="Label"
+      defaultChecked
+    />
+    <Checkbox size="large" id="sizeLargeExample" label="Label" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -205,28 +127,11 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          checkSize="small"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          checkSize="medium"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          checkSize="large"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox checkSize="small" defaultChecked />
+    <Checkbox checkSize="medium" defaultChecked />
+    <Checkbox checkSize="large" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -234,28 +139,11 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          checkColor="red"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          checkColor="green"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          checkColor="blue"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox checkColor="red" defaultChecked />
+    <Checkbox checkColor="green" defaultChecked />
+    <Checkbox checkColor="blue" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -263,28 +151,11 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          borderColor="red"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          borderColor="green"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          borderColor="blue"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox borderColor="red" defaultChecked />
+    <Checkbox borderColor="green" defaultChecked />
+    <Checkbox borderColor="blue" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -292,28 +163,11 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          hoverColor="coral"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          hoverColor="lightgreen"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          hoverColor="lightblue"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox hoverColor="coral" defaultChecked />
+    <Checkbox hoverColor="lightgreen" defaultChecked />
+    <Checkbox hoverColor="lightblue" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -321,28 +175,11 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(true)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          borderRadius="3px"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          borderRadius="5px"
-        />
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          borderRadius="10px"
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox borderRadius="3px" defaultChecked />
+    <Checkbox borderRadius="5px" defaultChecked />
+    <Checkbox borderRadius="10px" defaultChecked />
+  </div>
 </Playground>
 
 <div>
@@ -350,18 +187,9 @@ export const styles = {
 </div>
 
 <Playground>
-  {() => {
-    const [isChecked, setIsChecked] = useState(false)
-    return (
-      <div style={styles}>
-        <Checkbox
-          checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-          error={true}
-        />
-      </div>
-    )
-  }}
+  <div style={styles}>
+    <Checkbox error={true} defaultChecked />
+  </div>
 </Playground>
 
 <h2>Checkbox Props</h2>

@@ -160,28 +160,16 @@ export const StyledInput = styled('input', {
     width: '10px',
     height: '10px',
     borderRadius: '50%',
-    transform: 'scale(0)',
     transition: '115ms transform ease-in-out',
+    transform: 'scale(0)',
     boxShadow: 'inset 14px 14px $colors$primary',
   },
-  variants: {
-    animation: {
-      closed: {
-        '&:before': {
-          animation: `${scaleDownAnimation} .18s ease-in-out forwards`,
-        },
-      },
-      showed: {
-        '&:before': {
-          animation: `${scaleUpAnimation} .18s ease-in-out forwards`,
-        },
-      },
-      hidden: {
-        '&:before': {
-          display: 'none',
-        },
-      },
+  '&:checked': {
+    '&:before': {
+      transform: 'scale(1)',
     },
+  },
+  variants: {
     size: {
       small: {
         border: '1px solid #000',

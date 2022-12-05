@@ -61,7 +61,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       dotHover,
       borderColor,
       id,
-      checked,
       ...props
     },
     ref
@@ -71,11 +70,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       input: {},
       text: {},
     })
-
-    const [animation, setAnimation] = React.useState<{
-      status: 'showed' | 'closed' | 'hidden'
-      hasBeenClicked: boolean
-    }>({ status: 'hidden', hasBeenClicked: false })
 
     function changeDotColor() {
       return { boxShadow: `inset 14px 14px ${dotColor}` }
@@ -154,14 +148,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       setCustomStyle(css)
     }, [])
 
-    React.useEffect(() => {
-      if (checked)
-        return setAnimation({ status: 'showed', hasBeenClicked: true })
-      if (!checked || !animation.hasBeenClicked)
-        return setAnimation({ status: 'hidden', hasBeenClicked: false })
-      return setAnimation({ status: 'closed', hasBeenClicked: true })
-    }, [checked])
-
     const Radio = () => (
       <StyledRadioContainer size={size} isDisabled={disabled}>
         <StyledInputContainer
@@ -181,7 +167,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             size={size}
             type="radio"
             value={value}
-            animation={animation.status}
             {...props}
           />
         </StyledInputContainer>
