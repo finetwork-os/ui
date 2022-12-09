@@ -1,19 +1,31 @@
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
-
-import { ComponentProps, FC, ReactNode } from 'react'
-import { StyledRadio, StyledRadioIndicator } from './styled'
-
+import { ComponentProps, ReactNode } from 'react'
 import { CSS } from '@stitches/react/types/css-util'
-import { KINDS } from '../../types'
+import { Enhancer, KINDS } from '../../types'
+import { StyledInput } from './styled'
 
-type RadioComponentProps = Omit<
-  Omit<ComponentProps<typeof StyledRadio>, 'label'>,
-  'disabled'
-> & {
+export type RadioGroupComponentProps = {
+  direction: 'vertical' | 'horizontal'
+  name: string
+  title: Enhancer
+  children: ReactNode
+  error?: string
+}
+
+type RadioComponentOwnProps = {
   css?: CSS
   kind?: KINDS
+  size?: 'small' | 'medium'
   label?: string | ReactNode
   disabled?: boolean
-  indicatorProps?: Polymorphic.OwnProps<typeof StyledRadioIndicator>
+  value: string | number
+  name?: string
+  dotColor?: string
+  dotSize?: string
+  dotHover?: string
+  textColor?: string
+  borderColor?: string
+  id?: string
+  checked?: boolean
 }
-export type RadioComponent = FC<Omit<RadioComponentProps, 'children'>>
+export type RadioProps = ComponentProps<typeof StyledInput> &
+  RadioComponentOwnProps

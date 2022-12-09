@@ -40,9 +40,9 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Checkbox defaultChecked kind="primary" />
-    <Checkbox defaultChecked kind="secondary" />
-    <Checkbox defaultChecked kind="tertiary" />
+    <Checkbox kind="primary" defaultChecked />
+    <Checkbox kind="secondary" defaultChecked />
+    <Checkbox kind="tertiary" defaultChecked />
   </div>
 </Playground>
 
@@ -52,8 +52,39 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Checkbox defaultChecked kind="secondary" id="check" />
-    <label htmlFor="check">Label</label>
+    <Checkbox kind="secondary" id="labelExample" label="Label" defaultChecked />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Text Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox
+      kind="secondary"
+      id="textColorExample"
+      label="Label"
+      textColor="$colors$primary"
+      defaultChecked
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Text Size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox
+      kind="secondary"
+      id="textSizeExample"
+      label="Label"
+      textSize="20px"
+      defaultChecked
+    />
   </div>
 </Playground>
 
@@ -63,17 +94,200 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Checkbox kind="secondary" disabled />
-    <Checkbox checked kind="secondary" disabled />
+    <Checkbox id="unCheckExample" kind="secondary" disabled defaultChecked />
+    <Checkbox id="checkedExample" kind="secondary" disabled />
+    <Checkbox
+      id="labelUcheckedExample"
+      kind="secondary"
+      label="Label"
+      disabled
+    />
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Indeterminate</H3>
+  <H3 font="secondary">Size</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Checkbox defaultChecked="indeterminate" kind="secondary" />
+    <Checkbox size="small" id="sizeSmallExample" label="Label" defaultChecked />
+    <Checkbox
+      size="medium"
+      id="sizeMediumExample"
+      label="Label"
+      defaultChecked
+    />
+    <Checkbox size="large" id="sizeLargeExample" label="Label" defaultChecked />
   </div>
 </Playground>
+
+<div>
+  <H3 font="secondary">Check Size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox checkSize="small" defaultChecked />
+    <Checkbox checkSize="medium" defaultChecked />
+    <Checkbox checkSize="large" defaultChecked />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Check Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox checkColor="red" defaultChecked />
+    <Checkbox checkColor="green" defaultChecked />
+    <Checkbox checkColor="blue" defaultChecked />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox borderColor="red" defaultChecked />
+    <Checkbox borderColor="green" defaultChecked />
+    <Checkbox borderColor="blue" defaultChecked />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Hover Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox hoverColor="coral" defaultChecked />
+    <Checkbox hoverColor="lightgreen" defaultChecked />
+    <Checkbox hoverColor="lightblue" defaultChecked />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox borderRadius="3px" defaultChecked />
+    <Checkbox borderRadius="5px" defaultChecked />
+    <Checkbox borderRadius="10px" defaultChecked />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Error</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Checkbox error={true} defaultChecked />
+  </div>
+</Playground>
+
+<h2>Checkbox Props</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>string</td>
+    <td></td>
+    <td>ID of the element</td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>string | number</td>
+    <td></td>
+    <td>Value of the option</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string</td>
+    <td></td>
+    <td>Name of the option</td>
+  </tr>
+  <tr>
+    <td>label</td>
+    <td>string</td>
+    <td></td>
+    <td>Description of the option</td>
+  </tr>
+  <tr>
+    <td>error</td>
+    <td>string</td>
+    <td></td>
+    <td>Error color of the component</td>
+  </tr>
+  <tr>
+    <td>disabled</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Set input to disabled mode</td>
+  </tr>
+  <tr>
+    <td>kind</td>
+    <td>primary | secondary | tertiary</td>
+    <td>primary</td>
+    <td>Set defined styles of the component</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>small | medium | large</td>
+    <td>medium</td>
+    <td>Input and text size of the component</td>
+  </tr>
+  <tr>
+    <td>checkColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set check color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>checkSize</td>
+    <td>string</td>
+    <td></td>
+    <td>Set check size to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>hoverColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set hover color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>borderColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set input border color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>textColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set text label color to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>textColor</td>
+    <td>string</td>
+    <td></td>
+    <td>Set label size to the one specified in this option</td>
+  </tr>
+  <tr>
+    <td>borderRadius</td>
+    <td>string</td>
+    <td></td>
+    <td>Set input border radius to the one specified in this option</td>
+  </tr>
+</table>

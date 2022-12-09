@@ -26,10 +26,10 @@
     "react-is": "^17.0.2",
     "rimraf": "^3.0.2",
     "tslib": "^2.2.0",
-    "typescript": "latest"
+    "typescript": "4.8.4"
   },
   "peerDependencies": {
-    "@finetwork/ui": "0.7.9",
+    "@finetwork/ui": "0.8.0",
     "react": ">=17.0.0"
   }
 }

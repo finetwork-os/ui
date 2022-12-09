@@ -1,0 +1,24 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   dev: true,
+0 silly argv   D: true,
+0 silly argv   scope: '@finetwork/ui-sections',
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '4.0.0',
+0 silly argv   '$0': 'node_modules/.bin/lerna',
+0 silly argv   pkg: 'typescript@4.8.4'
+0 silly argv }
+1 notice cli v4.0.0
+2 verbose rootPath /home/smolto/Escritorio/proyectos/ui
+3 notice filter including "@finetwork/ui-sections"
+4 info filter [ '@finetwork/ui-sections' ]
+5 error TypeError: Invalid comparator: latest
+5 error     at Comparator.parse (/home/smolto/Escritorio/proyectos/ui/node_modules/semver/classes/comparator.js:37:13)
+5 error     at new Comparator (/home/smolto/Escritorio/proyectos/ui/node_modules/semver/classes/comparator.js:21:10)
+5 error     at /home/smolto/Escritorio/proyectos/ui/node_modules/semver/classes/range.js:121:20
+5 error     at Array.map (<anonymous>)
+5 error     at Range.parseRange (/home/smolto/Escritorio/proyectos/ui/node_modules/semver/classes/range.js:121:8)
+5 error     at /home/smolto/Escritorio/proyectos/ui/node_modules/semver/classes/range.js:34:26
+5 error     at Array.map (<anonymous>)
+5 error     at new Range (/home/smolto/Escritorio/proyectos/ui/node_modules/semver/classes/range.js:34:8)
+5 error     at Object.intersects (/home/smolto/Escritorio/proyectos/ui/node_modules/semver/ranges/intersects.js:3:8)
