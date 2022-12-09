@@ -30,8 +30,7 @@ export const StyledRadioGroupContainer = styled('div', {
 })
 
 export const StyledRadioContainer = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: '1.5rem auto',
+  display: 'flex',
   alignItems: 'center',
   gap: '0.5em',
   padding: '0.3rem 0.5rem',

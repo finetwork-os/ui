@@ -30,12 +30,10 @@ export const CheckboxContainer = styled('div', {
 export const StyledInput = styled('input', {
   '-webkit-apapparance': 'none',
   all: 'unset',
-  borderWidth: 1,
-  borderColor: '#000 !important',
+  border: '1px solid #000 !important',
   width: '20px',
   height: '20px',
   transition: 'all .3s ease',
-  borderStyle: 'solid',
   cursor: 'pointer',
   display: 'flex',
   justifyContent: 'center',
