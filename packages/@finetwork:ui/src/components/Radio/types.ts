@@ -4,10 +4,10 @@ import { Enhancer, KINDS } from '../../types'
 import { StyledInput } from './styled'
 
 export type RadioGroupComponentProps = {
-  direction: 'vertical' | 'horizontal'
-  name: string
-  title: Enhancer
-  children: ReactNode
+  direction?: 'vertical' | 'horizontal'
+  name?: string
+  title?: Enhancer
+  children?: ReactNode
   error?: string
 }
 
@@ -17,7 +17,7 @@ type RadioComponentOwnProps = {
   size?: 'small' | 'medium'
   label?: string | ReactNode
   disabled?: boolean
-  value: string | number
+  value?: string | number
   name?: string
   dotColor?: string
   dotSize?: string
