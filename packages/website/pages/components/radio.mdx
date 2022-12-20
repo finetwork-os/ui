@@ -20,7 +20,7 @@ import { styles } from '../../styles.ts'
 </div>
 
 <Paragraph4>
-  Radio component admit such props like label, size, kind etc.
+  This component is an implementation of a custom html radio button
 </Paragraph4>
 
 <div>
@@ -179,18 +179,24 @@ import { styles } from '../../styles.ts'
   <H3 font="secondary">Dot size</H3>
 </div>
 
+<div>
+  <Paragraph4>
+    It is recommended that the size of the dot be <strong>even</strong>
+  </Paragraph4>
+</div>
+
 <Playground>
   <div style={styles}>
     <RadioGroup name="dot-size" title={'Dot size'} direction="vertical">
       <Radio
         value="option1"
         id="opt40"
-        label="5px"
-        dotSize="5px"
+        label="6px"
+        dotSize="6px"
         defaultChecked
       />
       <Radio value="option2" id="opt41" label="10px" dotSize="10px" />
-      <Radio value="option3" id="opt42" label="17px" dotSize="17px" />
+      <Radio value="option3" id="opt42" label="16px" dotSize="16px" />
     </RadioGroup>
   </div>
 </Playground>
@@ -225,7 +231,12 @@ import { styles } from '../../styles.ts'
       direction="vertical"
       defaultChecked
     >
-      <Radio value="option1" id="opt51" label="lightblue" borderColor="green" />
+      <Radio
+        value="option1"
+        id="opt51"
+        label="lightblue"
+        borderColor="lightblue"
+      />
     </RadioGroup>
   </div>
 </Playground>
@@ -250,110 +261,118 @@ import { styles } from '../../styles.ts'
 
 <h2>RadioGroup Props</h2>
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Default</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>string</td>
-    <td></td>
-    <td>Define a group of options</td>
-  </tr>
-  <tr>
-    <td>title</td>
-    <td>string</td>
-    <td></td>
-    <td>Option group title</td>
-  </tr>
-  <tr>
-    <td>direction</td>
-    <td>vertical | horizontal</td>
-    <td>horizontal</td>
-    <td>Set options in the direction you want</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td></td>
+      <td>Define a group of options</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>string</td>
+      <td></td>
+      <td>Option group title</td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>vertical | horizontal</td>
+      <td>horizontal</td>
+      <td>Set options in the direction you want</td>
+    </tr>
+  </tbody>
 </table>
 
 <h2>Radio Props</h2>
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Default</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>id</td>
-    <td>string</td>
-    <td></td>
-    <td>ID of the element</td>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>string | number</td>
-    <td></td>
-    <td>Value of the option</td>
-  </tr>
-  <tr>
-    <td>label</td>
-    <td>string | ReactNode</td>
-    <td></td>
-    <td>Description of the option</td>
-  </tr>
-  <tr>
-    <td>error</td>
-    <td>string</td>
-    <td></td>
-    <td>Error texts of the component</td>
-  </tr>
-  <tr>
-    <td>disabled</td>
-    <td>boolean</td>
-    <td>false</td>
-    <td>Set input to disabled mode</td>
-  </tr>
-  <tr>
-    <td>kind</td>
-    <td>primary | secondary | tertiary</td>
-    <td>primary</td>
-    <td>Set defined styles of the component</td>
-  </tr>
-  <tr>
-    <td>sizes</td>
-    <td>small | medium</td>
-    <td>medium</td>
-    <td>Input and text size of the component</td>
-  </tr>
-  <tr>
-    <td>dotColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set dot color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>dotSize</td>
-    <td>string</td>
-    <td></td>
-    <td>Set dot size to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>dotHover</td>
-    <td>string</td>
-    <td></td>
-    <td>Set dot hover color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>borderColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set input border color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>textColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set text label color to the one specified in this option</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string | number</td>
+      <td></td>
+      <td>Value of the option</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string | ReactNode</td>
+      <td></td>
+      <td>Description of the option</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>string</td>
+      <td></td>
+      <td>Error texts of the component</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Set input to disabled mode</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td>primary | secondary | tertiary</td>
+      <td>primary</td>
+      <td>Set defined styles of the component</td>
+    </tr>
+    <tr>
+      <td>sizes</td>
+      <td>small | medium</td>
+      <td>medium</td>
+      <td>Input and text size of the component</td>
+    </tr>
+    <tr>
+      <td>dotColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set dot color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>dotSize</td>
+      <td>string</td>
+      <td></td>
+      <td>Set dot size to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>dotHover</td>
+      <td>string</td>
+      <td></td>
+      <td>Set dot hover color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>borderColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set input border color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>textColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set text label color to the one specified in this option</td>
+    </tr>
+  </tbody>
 </table>

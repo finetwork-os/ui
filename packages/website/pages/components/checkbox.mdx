@@ -19,15 +19,7 @@ export const styles = {
 </div>
 
 <Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/checkbox"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Checkbox component
-  </Link>{' '}
-  from radix-ui.
+  This component is an implementation of a custom html checkbox
 </Paragraph4>
 
 <div>
@@ -194,100 +186,104 @@ export const styles = {
 
 <h2>Checkbox Props</h2>
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Default</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>id</td>
-    <td>string</td>
-    <td></td>
-    <td>ID of the element</td>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>string | number</td>
-    <td></td>
-    <td>Value of the option</td>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>string</td>
-    <td></td>
-    <td>Name of the option</td>
-  </tr>
-  <tr>
-    <td>label</td>
-    <td>string</td>
-    <td></td>
-    <td>Description of the option</td>
-  </tr>
-  <tr>
-    <td>error</td>
-    <td>string</td>
-    <td></td>
-    <td>Error color of the component</td>
-  </tr>
-  <tr>
-    <td>disabled</td>
-    <td>boolean</td>
-    <td>false</td>
-    <td>Set input to disabled mode</td>
-  </tr>
-  <tr>
-    <td>kind</td>
-    <td>primary | secondary | tertiary</td>
-    <td>primary</td>
-    <td>Set defined styles of the component</td>
-  </tr>
-  <tr>
-    <td>size</td>
-    <td>small | medium | large</td>
-    <td>medium</td>
-    <td>Input and text size of the component</td>
-  </tr>
-  <tr>
-    <td>checkColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set check color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>checkSize</td>
-    <td>string</td>
-    <td></td>
-    <td>Set check size to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>hoverColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set hover color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>borderColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set input border color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>textColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set text label color to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>textColor</td>
-    <td>string</td>
-    <td></td>
-    <td>Set label size to the one specified in this option</td>
-  </tr>
-  <tr>
-    <td>borderRadius</td>
-    <td>string</td>
-    <td></td>
-    <td>Set input border radius to the one specified in this option</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string | number</td>
+      <td></td>
+      <td>Value of the option</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td></td>
+      <td>Name of the option</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td></td>
+      <td>Description of the option</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>string</td>
+      <td></td>
+      <td>Error color of the component</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Set input to disabled mode</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td>primary | secondary | tertiary</td>
+      <td>primary</td>
+      <td>Set defined styles of the component</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>small | medium | large</td>
+      <td>medium</td>
+      <td>Input and text size of the component</td>
+    </tr>
+    <tr>
+      <td>checkColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set check color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>checkSize</td>
+      <td>string</td>
+      <td></td>
+      <td>Set check size to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>hoverColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set hover color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>borderColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set input border color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>textColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set text label color to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>textColor</td>
+      <td>string</td>
+      <td></td>
+      <td>Set label size to the one specified in this option</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td></td>
+      <td>Set input border radius to the one specified in this option</td>
+    </tr>
+  </tbody>
 </table>
