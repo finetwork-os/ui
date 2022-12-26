@@ -9,12 +9,8 @@ import {
   Paragraph4,
   Link,
   Select,
-  SelectGroup,
-  SelectItem,
-  SelectItemIndicator,
-  SelectItemText,
-  SelectLabel,
-  SelectSeparator,
+  OptionItem,
+  OptionGroup,
   CheckIcon,
 } from '@finetwork/ui'
 import { Fragment } from 'react'
@@ -79,22 +75,34 @@ export const allOptions = [
   },
 ]
 
+export const options = [
+  {
+    value: 'apple',
+    label: 'Apple',
+  },
+  {
+    value: 'banana',
+    label: 'Banana',
+  },
+  {
+    value: 'blueberry',
+    label: 'Blueberry',
+  },
+  {
+    value: 'orange',
+    label: 'Orange',
+  },
+]
+
 <div />
 <div>
   <H2 font="secondary">Select</H2>
 </div>
 
 <Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/select"
-    target="_bank"
-  >
-    Select
-  </Link>{' '}
-  component from radix-ui.
+  This component is an implementation of a custom html select
 </Paragraph4>
-
+{/* 
 <Playground>
   <div style={{ padding: '2rem' }}>
     <Select defaultValue="apple">
@@ -113,5 +121,34 @@ export const allOptions = [
         </Fragment>
       ))}
     </Select>
+  </div>
+</Playground> */}
+<div>
+  <H3 font="secondary">Standard</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Disabled</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" options={options} />
   </div>
 </Playground>

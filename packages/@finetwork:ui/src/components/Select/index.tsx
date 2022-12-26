@@ -1,90 +1,277 @@
-import * as SelectPrimitive from '@radix-ui/react-select'
+// import * as SelectPrimitive from '@radix-ui/react-select'
+// import * as React from 'react'
+// import {
+//   StyledContent,
+//   StyledItem,
+//   StyledItemIndicator,
+//   StyledLabel,
+//   StyledScrollDownButton,
+//   StyledScrollUpButton,
+//   StyledSeparator,
+//   StyledTrigger,
+//   StyledViewport,
+// } from './styled'
+// import { RenderEnhancer } from '../../utils'
+// import { KIND, SIZE } from '../../types'
+// import { CheckIcon, ChevronDownIcon } from '../icons'
+// import {
+//   SelectComponent,
+//   SelectContentComponent,
+//   SelectItemIndicatorComponent,
+//   SelectTriggerComponent,
+// } from './types'
+
+// const sizeIcon = {
+//   [SIZE.small]: 15,
+//   [SIZE.medium]: 18,
+//   [SIZE.large]: 21,
+// }
+
+// export const SelectValue = SelectPrimitive.Value
+// export const SelectGroup = SelectPrimitive.Group
+// export const SelectItem = StyledItem
+// export const SelectItemText = SelectPrimitive.ItemText
+// export const SelectLabel = StyledLabel
+// export const SelectSeparator = StyledSeparator
+
+// export const Select: SelectComponent = ({
+//   children,
+//   kind = KIND.primary,
+//   size = SIZE.medium,
+//   contentProps,
+//   triggerProps,
+//   ...props
+// }) => (
+//   <SelectPrimitive.Root {...props}>
+//     <SelectTrigger {...triggerProps} kind={kind} size={size} data-fi="select">
+//       <SelectValue />
+//     </SelectTrigger>
+//     <SelectContent {...contentProps} kind={kind} size={size}>
+//       {children}
+//     </SelectContent>
+//   </SelectPrimitive.Root>
+// )
+// export const SelectTrigger: SelectTriggerComponent = React.forwardRef(
+//   ({ children, kind, size, ...props }, ref) => (
+//     <StyledTrigger {...props} kind={kind} size={size} ref={ref}>
+//       {children}
+//       <SelectPrimitive.Icon>
+//         <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
+//       </SelectPrimitive.Icon>
+//     </StyledTrigger>
+//   )
+// )
+// export const SelectItemIndicator: SelectItemIndicatorComponent =
+//   React.forwardRef(
+//     ({ Icon = CheckIcon, size = SIZE.medium }, ref): JSX.Element => {
+//       return (
+//         <StyledItemIndicator ref={ref}>
+//           <RenderEnhancer
+//             Enhancer={<Icon width={sizeIcon[size]} height={sizeIcon[size]} />}
+//           />
+//         </StyledItemIndicator>
+//       )
+//     }
+//   )
+// export const SelectContent: SelectContentComponent = React.forwardRef(
+//   ({ children, kind, size, ...props }, ref) => {
+//     return (
+//       <StyledContent {...props} kind={kind} ref={ref}>
+//         <StyledScrollUpButton>
+//           <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
+//         </StyledScrollUpButton>
+//         <StyledViewport>{children}</StyledViewport>
+//         <StyledScrollDownButton>
+//           <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
+//         </StyledScrollDownButton>
+//       </StyledContent>
+//     )
+//   }
+// )
+import { useSelect } from 'downshift'
 import * as React from 'react'
 import {
-  StyledContent,
-  StyledItem,
-  StyledItemIndicator,
+  Arrow,
+  Content,
+  MainContainer,
+  SelectContainer,
   StyledLabel,
-  StyledScrollDownButton,
-  StyledScrollUpButton,
-  StyledSeparator,
-  StyledTrigger,
-  StyledViewport,
+  StyledOptionItem,
+  StyledOptionsGroup,
+  StyledSelect,
 } from './styled'
-import { RenderEnhancer } from '../../utils'
-import { KIND, SIZE } from '../../types'
-import { CheckIcon, ChevronDownIcon } from '../icons'
-import {
-  SelectComponent,
-  SelectContentComponent,
-  SelectItemIndicatorComponent,
-  SelectTriggerComponent,
-} from './types'
+import { SelectProps } from './types'
 
-const sizeIcon = {
-  [SIZE.small]: 15,
-  [SIZE.medium]: 18,
-  [SIZE.large]: 21,
-}
+export const Select = React.forwardRef<HTMLElement, SelectProps>(
+  (
+    {
+      kind,
+      size,
+      label,
+      disabled,
+      value,
+      name,
+      checkColor,
+      checkSize,
+      textSize,
+      textColor,
+      hoverColor,
+      id,
+      borderRadius,
+      error,
+      borderColor,
+      multiple,
+      options,
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const [customStyle, setCustomStyle] = React.useState({
+      select: {},
+      label: {},
+      hover: {},
+      container: {},
+    })
+    React.useEffect(() => {
+      let css = {
+        select: {},
+        label: {},
+        hover: {},
+        container: {},
+      }
 
-export const SelectValue = SelectPrimitive.Value
-export const SelectGroup = SelectPrimitive.Group
-export const SelectItem = StyledItem
-export const SelectItemText = SelectPrimitive.ItemText
-export const SelectLabel = StyledLabel
-export const SelectSeparator = StyledSeparator
+      if (hoverColor) {
+        css = {
+          ...css,
+          hover: {
+            ...css.hover,
+            '&:hover': {
+              backgroundColor: `${hoverColor} !important`,
+            },
+          },
+        }
+      }
 
-export const Select: SelectComponent = ({
-  children,
-  kind = KIND.primary,
-  size = SIZE.medium,
-  contentProps,
-  triggerProps,
-  ...props
-}) => (
-  <SelectPrimitive.Root {...props}>
-    <SelectTrigger {...triggerProps} kind={kind} size={size} data-fi="select">
-      <SelectValue />
-    </SelectTrigger>
-    <SelectContent {...contentProps} kind={kind} size={size}>
-      {children}
-    </SelectContent>
-  </SelectPrimitive.Root>
-)
-export const SelectTrigger: SelectTriggerComponent = React.forwardRef(
-  ({ children, kind, size, ...props }, ref) => (
-    <StyledTrigger {...props} kind={kind} size={size} ref={ref}>
-      {children}
-      <SelectPrimitive.Icon>
-        <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
-      </SelectPrimitive.Icon>
-    </StyledTrigger>
-  )
-)
-export const SelectItemIndicator: SelectItemIndicatorComponent =
-  React.forwardRef(
-    ({ Icon = CheckIcon, size = SIZE.medium }, ref): JSX.Element => {
-      return (
-        <StyledItemIndicator ref={ref}>
-          <RenderEnhancer
-            Enhancer={<Icon width={sizeIcon[size]} height={sizeIcon[size]} />}
-          />
-        </StyledItemIndicator>
-      )
-    }
-  )
-export const SelectContent: SelectContentComponent = React.forwardRef(
-  ({ children, kind, size, ...props }, ref) => {
-    return (
-      <StyledContent {...props} kind={kind} ref={ref}>
-        <StyledScrollUpButton>
-          <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
-        </StyledScrollUpButton>
-        <StyledViewport>{children}</StyledViewport>
-        <StyledScrollDownButton>
-          <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
-        </StyledScrollDownButton>
-      </StyledContent>
+      if (checkColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            '&:before': {
+              boxShadow: `inset 14px 14px ${checkColor}`,
+            },
+          },
+        }
+      }
+
+      if (borderColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            borderColor: `${borderColor} !important`,
+            '&:focus': {
+              outline: `1px solid ${borderColor} !important`,
+            },
+          },
+        }
+      }
+
+      if (textColor) {
+        css = {
+          ...css,
+          label: {
+            color: textColor,
+          },
+        }
+      }
+
+      if (textSize) {
+        css = {
+          ...css,
+          label: {
+            fontSize: textSize,
+          },
+        }
+      }
+
+      if (borderRadius) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            borderRadius: borderRadius,
+          },
+          container: {
+            ...css.container,
+            borderRadius: borderRadius,
+          },
+        }
+      }
+
+      setCustomStyle(css)
+    }, [])
+    const [isOpen, setIsOpen] = React.useState<boolean>(false)
+    const [chosenOption, setChosenOption] = React.useState<string | number>(
+      value
     )
+    const inputRef = React.useRef()
+
+    const Select = () => (
+      <MainContainer
+        /*size={size}*/
+        ref={inputRef}
+        onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
+      >
+        {label && (
+          <StyledLabel
+            htmlFor={id}
+            size={size}
+            isDisabled={disabled}
+            css={customStyle.label}
+          >
+            {label}
+          </StyledLabel>
+        )}
+        <SelectContainer
+          // error={error}
+          // kind={kind}
+          isDisabled={disabled}
+          onClick={() => setIsOpen(!isOpen)}
+          css={customStyle.container}
+        >
+          <StyledSelect
+            id={id}
+            // value={value}
+            // name={name}
+            // checkSize={checkSize}
+            // size={size}
+            // kind={kind}
+            isDisabled={disabled}
+            // disabled={disabled}
+            // error={error}
+            css={customStyle.select}
+            {...props}
+          >
+            <span>{chosenOption}</span>
+            <Arrow isOpen={isOpen} />
+          </StyledSelect>
+          <Content isOpen={isOpen}>
+            <StyledOptionsGroup>
+              {options.map((option) => (
+                <StyledOptionItem
+                  onClick={() => setChosenOption(option.label)}
+                  chosen={chosenOption === option.label ? true : false}
+                  key={option.value}
+                >
+                  {option.label}
+                </StyledOptionItem>
+              ))}
+            </StyledOptionsGroup>
+          </Content>
+        </SelectContainer>
+      </MainContainer>
+    )
+    return <Select />
   }
 )
