@@ -122,6 +122,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       borderColor,
       multiple,
       options,
+      setValue,
       ...props
     },
     ref
@@ -221,6 +222,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
       document.getElementById(`option-${focusedOption}`).focus()
     }, [isOpen])
+
+    React.useEffect(() => {
+      setValue(chosenOption)
+    }, [chosenOption])
 
     function optionHasBeenChosen(option, focusedNumber) {
       setChosenOption(option)

@@ -29,6 +29,7 @@
 //   }
 // >
 import { CSS } from '@stitches/react/types/css-util'
+import { Dispatch, SetStateAction } from 'react'
 import { KINDS, SIZES } from '../../types'
 
 export type SelectProps = {
@@ -50,4 +51,5 @@ export type SelectProps = {
   error?: boolean
   multiple?: boolean
   options: Array<{ value: string | number; label: string | number }>
+  setValue: Dispatch<SetStateAction<string>>
 }
