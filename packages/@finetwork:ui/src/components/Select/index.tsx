@@ -93,8 +93,10 @@ import {
   Arrow,
   Content,
   MainContainer,
+  SearchContainer,
+  SearchIcon,
+  SearchInput,
   SelectContainer,
-  StyledInputHidden,
   StyledLabel,
   StyledOptionItem,
   StyledOptionsGroup,
@@ -121,6 +123,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       error,
       borderColor,
       multiple,
+      search,
       options,
       setValue,
       ...props
@@ -224,7 +227,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     }, [isOpen])
 
     React.useEffect(() => {
-      setValue(chosenOption)
+      if (chosenOption !== undefined && setValue) setValue(chosenOption)
     }, [chosenOption])
 
     function optionHasBeenChosen(option, focusedNumber) {
@@ -254,9 +257,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     const inputRef = React.useRef()
 
+    function searchOption(e) {}
+
     const Select = () => (
       <MainContainer
-        /*size={size}*/
         ref={inputRef}
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
       >
@@ -282,6 +286,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         >
           <StyledSelect
             id={id}
+            tabIndex={0}
+            onKeyDown={(e) => e.code === 'Enter' && setIsOpen(!isOpen)}
             // value={value}
             // name={name}
             // checkSize={checkSize}
@@ -296,8 +302,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <span>{chosenOption}</span>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
-          {/* <StyledInputHidden /> */}
           <Content id="contentSelect" isOpen={isOpen}>
+            <SearchContainer onClick={() => setIsOpen(true)}>
+              <SearchIcon />
+              <SearchInput
+                type="text"
+                placeholder="Buscar..."
+                onChange={(e) => searchOption(e)}
+              />
+            </SearchContainer>
             <StyledOptionsGroup>
               {options.map((option, i) => (
                 <StyledOptionItem

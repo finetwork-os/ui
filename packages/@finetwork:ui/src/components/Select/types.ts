@@ -50,6 +50,7 @@ export type SelectProps = {
   borderRadius?: string
   error?: boolean
   multiple?: boolean
+  search?: boolean
   options: Array<{ value: string | number; label: string | number }>
   setValue?: Dispatch<SetStateAction<string | number>>
 }

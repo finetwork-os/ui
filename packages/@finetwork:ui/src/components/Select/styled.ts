@@ -266,7 +266,7 @@
 //   scrollButtonStyles
 // )
 import { styled } from '../../stitches.config'
-import { ChevronDownIcon } from '../icons'
+import { ChevronDownIcon, EyeOpenIcon } from '../icons'
 
 export const MainContainer = styled('div', {
   display: 'flex',
@@ -300,11 +300,8 @@ export const StyledLabel = styled('label', {
 
 export const SelectContainer = styled('div', {
   outline: '1px solid black !important',
-  width: 'auto',
+  width: 'fit-content',
   maring: '85px auto 0',
-  '&:hover': {
-    outline: '1px solid $primary',
-  },
   // '& input:focus': {
   //   outline: '2px solid $primary',
   // },
@@ -315,24 +312,20 @@ export const SelectContainer = styled('div', {
   },
 })
 
-export const StyledInputHidden = styled('input', {
-  opacity: 0,
-  width: 'inherit',
-})
-
 export const StyledSelect = styled('div', {
-  zIndex: 999999,
   display: 'flex',
   alignItems: 'center',
   height: '65px',
-  padding: '0 20px',
+  padding: '0 15px',
   fontSize: '22px',
   background: '#fff',
-  borderRadius: '7px',
   justifyContent: 'space-between',
-  cursor: 'pointer',
+  '&:focus': {
+    outline: '2px solid $primary',
+  },
   '&:hover': {
     cursor: 'pointer',
+    outline: '2px solid $primary',
   },
   variants: {
     isDisabled: {
@@ -348,6 +341,7 @@ export const StyledSelect = styled('div', {
 
 export const Arrow = styled(ChevronDownIcon, {
   fontSize: '31px',
+  marginLeft: '10px',
   transition: 'transform 0.3s linear',
   variants: {
     isOpen: {
@@ -360,10 +354,11 @@ export const Arrow = styled(ChevronDownIcon, {
 })
 
 export const Content = styled('div', {
+  zIndex: 999999,
   position: 'absolute',
   transition:
     'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-  padding: '20px',
+  padding: '5px',
   width: 'inherit',
   marginTop: '3px',
   background: '#fff',
@@ -441,5 +436,37 @@ export const StyledOptionItem = styled('li', {
         },
       },
     },
+  },
+})
+
+export const SearchContainer = styled('div', {
+  position: 'relative',
+  marginBottom: '10px',
+})
+
+export const SearchIcon = styled(EyeOpenIcon, {
+  top: '50%',
+  left: '15px',
+  color: '#999',
+  fontSize: '20px',
+  pointerEvents: 'none',
+  transform: 'translateY(-50%)',
+  position: 'absolute',
+})
+
+export const SearchInput = styled('input', {
+  height: '50px',
+  width: '100%',
+  outline: 'none',
+  fontSize: '17px',
+  borderRadius: '5px',
+  padding: '0 20px 0 43px',
+  border: '1px solid #B3B3B3',
+  '&:focus': {
+    paddingLeft: '42px',
+    border: '2px solid $primary',
+  },
+  '&::placeholder': {
+    color: '#bfbfbf',
   },
 })
