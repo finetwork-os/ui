@@ -88,7 +88,6 @@
 //     )
 //   }
 // )
-import { useSelect } from 'downshift'
 import * as React from 'react'
 import {
   Arrow,

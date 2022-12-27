@@ -271,9 +271,11 @@ import { ChevronDownIcon } from '../icons'
 export const MainContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  margin: '1rem',
 })
 
 export const StyledLabel = styled('label', {
+  display: 'flex',
   fontSize: '16px',
   marginBottom: '0.5rem',
   variants: {
@@ -297,8 +299,8 @@ export const StyledLabel = styled('label', {
 })
 
 export const SelectContainer = styled('div', {
-  outline: '1px solid black',
-  width: '370px',
+  outline: '1px solid black !important',
+  width: 'auto',
   maring: '85px auto 0',
   '&:hover': {
     outline: '1px solid $primary',
@@ -319,6 +321,7 @@ export const StyledInputHidden = styled('input', {
 })
 
 export const StyledSelect = styled('div', {
+  zIndex: 999999,
   display: 'flex',
   alignItems: 'center',
   height: '65px',
