@@ -154,7 +154,17 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" options={options} />
+    <Select value="Elige..." label="Futas" multiple options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Search</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" search options={options} />
   </div>
 </Playground>
 
@@ -174,6 +184,6 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" multiple options={options} />
+    <Select value="Elige..." label="Futas" options={options} />
   </div>
 </Playground>

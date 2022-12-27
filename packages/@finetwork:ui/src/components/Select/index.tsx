@@ -305,14 +305,16 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <Arrow isOpen={isOpen} />
           </StyledSelect>
           <Content id="contentSelect" isOpen={isOpen}>
-            <SearchContainer onClick={() => setIsOpen(true)}>
-              <SearchIcon />
-              <SearchInput
-                type="text"
-                placeholder="Buscar..."
-                onChange={(e) => searchOption(e)}
-              />
-            </SearchContainer>
+            {search && (
+              <SearchContainer onClick={() => setIsOpen(true)}>
+                <SearchIcon />
+                <SearchInput
+                  type="text"
+                  placeholder="Buscar..."
+                  onChange={(e) => searchOption(e)}
+                />
+              </SearchContainer>
+            )}
             {withTitle ? (
               <StyledOptionsGroup>
                 {options.map((optionGroup, i) => (
