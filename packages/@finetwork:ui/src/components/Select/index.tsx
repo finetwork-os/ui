@@ -125,6 +125,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       multiple,
       search,
       options,
+      withTitle,
       setValue,
       ...props
     },
@@ -223,7 +224,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
-      document.getElementById(`option-${focusedOption}`).focus()
+      // document.getElementById(`option-${focusedOption}`).focus()
     }, [isOpen])
 
     React.useEffect(() => {
@@ -311,22 +312,47 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 onChange={(e) => searchOption(e)}
               />
             </SearchContainer>
-            <StyledOptionsGroup>
-              {options.map((option, i) => (
-                <StyledOptionItem
-                  tabIndex={0}
-                  id={`option-${i}`}
-                  onClick={() => optionHasBeenChosen(option.label, i)}
-                  onKeyDown={(e) =>
-                    e.code === 'Enter' && optionHasBeenChosen(option.label, i)
-                  }
-                  chosen={chosenOption === option.label ? true : false}
-                  key={option.value}
-                >
-                  {option.label}
-                </StyledOptionItem>
-              ))}
-            </StyledOptionsGroup>
+            {withTitle ? (
+              <StyledOptionsGroup>
+                {options.map((optionGroup, i) => (
+                  <>
+                    {optionGroup.title && <span>{optionGroup.title}</span>}
+                    {optionGroup.options.map((option, i) => (
+                      <StyledOptionItem
+                        tabIndex={0}
+                        id={`option-${i}`}
+                        onClick={() => optionHasBeenChosen(option.label, i)}
+                        onKeyDown={(e) =>
+                          e.code === 'Enter' &&
+                          optionHasBeenChosen(option.label, i)
+                        }
+                        chosen={chosenOption === option.label ? true : false}
+                        key={option.value}
+                      >
+                        {option.label}
+                      </StyledOptionItem>
+                    ))}
+                  </>
+                ))}
+              </StyledOptionsGroup>
+            ) : (
+              <StyledOptionsGroup>
+                {options.map((option, i) => (
+                  <StyledOptionItem
+                    tabIndex={0}
+                    id={`option-${i}`}
+                    onClick={() => optionHasBeenChosen(option.label, i)}
+                    onKeyDown={(e) =>
+                      e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                    }
+                    chosen={chosenOption === option.label ? true : false}
+                    key={option.value}
+                  >
+                    {option.label}
+                  </StyledOptionItem>
+                ))}
+              </StyledOptionsGroup>
+            )}
           </Content>
         </SelectContainer>
       </MainContainer>

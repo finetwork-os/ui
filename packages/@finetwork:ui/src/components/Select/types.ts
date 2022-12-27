@@ -51,6 +51,12 @@ export type SelectProps = {
   error?: boolean
   multiple?: boolean
   search?: boolean
-  options: Array<{ value: string | number; label: string | number }>
+  options:
+    | Array<{ value: string | number; label: string | number }>
+    | Array<{
+        title: string | number
+        options: Array<{ value: string | number; label: string | number }>
+      }>
+  withTitle: boolean
   setValue?: Dispatch<SetStateAction<string | number>>
 }

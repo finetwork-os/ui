@@ -26,16 +26,16 @@ export const allOptions = [
     title: 'Fruits',
     options: [
       {
-        id: 'apple',
-        name: 'Apple',
+        value: 'Apple',
+        label: 'apple',
       },
       {
-        id: 'banana',
-        name: 'Banana',
+        value: 'Banana',
+        label: 'banana',
       },
       {
-        id: 'blueberry',
-        name: 'Blueberry',
+        value: 'Blueberry',
+        label: 'blueberry',
       },
     ],
   },
@@ -43,16 +43,16 @@ export const allOptions = [
     title: 'Vegetables',
     options: [
       {
-        id: 'aubergine',
-        name: 'Aubergine',
+        value: 'Aubergine',
+        label: 'aubergine',
       },
       {
-        id: 'broccoli',
-        name: 'Broccoli',
+        value: 'Broccoli',
+        label: 'broccoli',
       },
       {
-        id: 'leek',
-        name: 'Leek',
+        value: 'Leek',
+        label: 'leek',
       },
     ],
   },
@@ -60,16 +60,16 @@ export const allOptions = [
     title: 'Meat',
     options: [
       {
-        id: 'beef',
-        name: 'Beef',
+        value: 'Beef',
+        label: 'beef',
       },
       {
-        id: 'chicken',
-        name: 'Chicken',
+        value: 'Chicken',
+        label: 'chicken',
       },
       {
-        id: 'lamb',
-        name: 'Lamb',
+        value: 'lamb',
+        label: 'Lamb',
       },
     ],
   },
@@ -130,6 +130,21 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select value="Elige..." label="Futas" options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">With Title</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      withTitle={true}
+      options={allOptions}
+    />
   </div>
 </Playground>
 
