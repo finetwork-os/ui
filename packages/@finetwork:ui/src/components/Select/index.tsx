@@ -264,6 +264,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       <MainContainer
         ref={inputRef}
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
+        isDisabled={disabled}
       >
         {label && (
           <StyledLabel
@@ -279,7 +280,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           // error={error}
           // kind={kind}
           isDisabled={disabled}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => !disabled && setIsOpen(!isOpen)}
           css={customStyle.container}
           // onKeyDown={(e) =>
           //   e.code === 'ArrowUp' || e.code === 'ArrowUp' ? changeFocus(e) : ''

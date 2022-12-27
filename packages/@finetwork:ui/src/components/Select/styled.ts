@@ -272,6 +272,13 @@ export const MainContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   margin: '1rem',
+  variants: {
+    isDisabled: {
+      true: {
+        color: '$disabled',
+      },
+    },
+  },
 })
 
 export const StyledLabel = styled('label', {
@@ -307,7 +314,9 @@ export const SelectContainer = styled('div', {
   // },
   variants: {
     isDisabled: {
-      true: {},
+      true: {
+        outline: '1px solid $disabled !important',
+      },
     },
   },
 })
@@ -330,6 +339,7 @@ export const StyledSelect = styled('div', {
   variants: {
     isDisabled: {
       true: {
+        outline: '1px solid $disabled !important',
         color: '$disabled',
         '&:hover': {
           cursor: 'not-allowed',
