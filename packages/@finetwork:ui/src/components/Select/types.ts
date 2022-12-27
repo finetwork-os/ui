@@ -51,5 +51,5 @@ export type SelectProps = {
   error?: boolean
   multiple?: boolean
   options: Array<{ value: string | number; label: string | number }>
-  setValue: Dispatch<SetStateAction<string>>
+  setValue: Dispatch<SetStateAction<string | number>>
 }
