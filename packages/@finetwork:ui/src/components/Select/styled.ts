@@ -266,7 +266,7 @@
 //   scrollButtonStyles
 // )
 import { styled } from '../../stitches.config'
-import { CheckIcon, ChevronDownIcon } from '../icons'
+import { ChevronDownIcon } from '../icons'
 
 export const MainContainer = styled('div', {
   display: 'flex',
@@ -300,15 +300,24 @@ export const SelectContainer = styled('div', {
   outline: '1px solid black',
   width: '370px',
   maring: '85px auto 0',
-  '&:focus': {
-    outline: '2px solid $primary',
+  '&:hover': {
+    outline: '1px solid $primary',
   },
+  // '& input:focus': {
+  //   outline: '2px solid $primary',
+  // },
   variants: {
     isDisabled: {
       true: {},
     },
   },
 })
+
+export const StyledInputHidden = styled('input', {
+  opacity: 0,
+  width: 'inherit',
+})
+
 export const StyledSelect = styled('div', {
   display: 'flex',
   alignItems: 'center',
@@ -318,7 +327,6 @@ export const StyledSelect = styled('div', {
   background: '#fff',
   borderRadius: '7px',
   justifyContent: 'space-between',
-  boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
   cursor: 'pointer',
   '&:hover': {
     cursor: 'pointer',
@@ -341,6 +349,7 @@ export const Arrow = styled(ChevronDownIcon, {
   variants: {
     isOpen: {
       true: {
+        // animation: `${rotateAnimation} 300ms forwards`,
         transform: 'rotate(-180deg)',
       },
     },
@@ -370,10 +379,10 @@ export const Content = styled('div', {
 })
 
 export const StyledOptionsGroup = styled('ul', {
-  marginTop: '10px',
-  maxHeight: '250px',
+  maxHeight: '150px',
   overflowY: 'auto',
   paddingRight: '7px',
+  paddingLeft: '7px',
   '&::-webkit-scrollbar': {
     width: '7px',
   },
@@ -394,9 +403,15 @@ export const StyledOptionItem = styled('li', {
   display: 'flex',
   height: '50px',
   padding: '0 13px',
+  marginTop: '10px',
+  marginBottom: '10px',
   fontSize: '21px',
   listStyle: 'none',
   alignItems: 'center',
+  '&:focus': {
+    outline: '1px solid $primary',
+    background: '$secondary100',
+  },
   '&:after': {
     transformOrigin: 'bottom left',
     clipPath: 'polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)',
@@ -410,8 +425,7 @@ export const StyledOptionItem = styled('li', {
     transform: 'scale(0)',
   },
   '&:hover': {
-    borderRadius: '5px',
-    background: '#f2f2f2',
+    background: '$secondary100',
     color: '$primary',
     cursor: 'pointer',
   },

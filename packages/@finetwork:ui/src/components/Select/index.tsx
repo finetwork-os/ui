@@ -95,6 +95,7 @@ import {
   Content,
   MainContainer,
   SelectContainer,
+  StyledInputHidden,
   StyledLabel,
   StyledOptionItem,
   StyledOptionsGroup,
@@ -215,6 +216,38 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     const [chosenOption, setChosenOption] = React.useState<string | number>(
       value
     )
+    const [focusedOption, setFocusedOption] = React.useState<number>(0)
+
+    React.useEffect(() => {
+      document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
+      document.getElementById(`option-${focusedOption}`).focus()
+    }, [isOpen])
+
+    function optionHasBeenChosen(option, focusedNumber) {
+      setChosenOption(option)
+      setFocusedOption(focusedNumber)
+      setIsOpen(false)
+    }
+
+    // window.addEventListener('click', function (e) {
+    //   if (document.getElementById('contentSelect').contains(e.target)) {
+    //     return
+    //   } else {
+    //     setIsOpen(false)
+    //   }
+    // })
+
+    // function changeFocus(e) {
+    //   if (e.code === 'ArrowUp') {
+    //     document.getElementById(`option-${focusedOption + 1}`)?.focus()
+    //     setFocusedOption(focusedOption + 1)
+    //   }
+    //   if (e.code === 'ArrowDown') {
+    //     document.getElementById(`option-${focusedOption - 1}`).focus()
+    //     setFocusedOption(focusedOption - 1)
+    //   }
+    // }
+
     const inputRef = React.useRef()
 
     const Select = () => (
@@ -239,6 +272,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           isDisabled={disabled}
           onClick={() => setIsOpen(!isOpen)}
           css={customStyle.container}
+          // onKeyDown={(e) =>
+          //   e.code === 'ArrowUp' || e.code === 'ArrowUp' ? changeFocus(e) : ''
+          // }
         >
           <StyledSelect
             id={id}
@@ -256,11 +292,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <span>{chosenOption}</span>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
-          <Content isOpen={isOpen}>
+          {/* <StyledInputHidden /> */}
+          <Content id="contentSelect" isOpen={isOpen}>
             <StyledOptionsGroup>
-              {options.map((option) => (
+              {options.map((option, i) => (
                 <StyledOptionItem
-                  onClick={() => setChosenOption(option.label)}
+                  tabIndex={0}
+                  id={`option-${i}`}
+                  onClick={() => optionHasBeenChosen(option.label, i)}
+                  onKeyDown={(e) =>
+                    e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                  }
                   chosen={chosenOption === option.label ? true : false}
                   key={option.value}
                 >
