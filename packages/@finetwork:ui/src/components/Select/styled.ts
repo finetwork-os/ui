@@ -307,15 +307,48 @@ export const StyledLabel = styled('label', {
 
 export const SelectContainer = styled('div', {
   outline: '1px solid black !important',
-  width: 'fit-content',
+  width: '150px',
   maring: '85px auto 0',
-  // '& input:focus': {
-  //   outline: '2px solid $primary',
-  // },
+  fontSize: '1rem',
+  '&:focus': {
+    outline: '2px solid $primary',
+  },
+  '&:hover': {
+    cursor: 'pointer',
+    outline: '2px solid $primary !important',
+  },
   variants: {
     isDisabled: {
       true: {
         outline: '1px solid $disabled !important',
+        color: '$disabled',
+        '&:hover': {
+          outline: '1px solid $disabled !important',
+          cursor: 'not-allowed',
+        },
+      },
+    },
+    kind: {
+      primary: {
+        '&:hover': {
+          outline: '2px solid $primary !important',
+        },
+      },
+      secondary: {
+        '&:hover': {
+          outline: '2px solid $secondary !important',
+        },
+      },
+      tertiary: {
+        '&:hover': {
+          outline: '2px solid $tertiary !important',
+        },
+      },
+    },
+    search: {
+      true: {
+        minWidth: '200px !important',
+        width: '200px !important',
       },
     },
   },
@@ -324,24 +357,18 @@ export const SelectContainer = styled('div', {
 export const StyledSelect = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  height: '65px',
+  height: 'auto',
+  minHeight: '3em',
   padding: '0 15px',
-  fontSize: '22px',
   background: '#fff',
   justifyContent: 'space-between',
-  '&:focus': {
-    outline: '2px solid $primary',
-  },
-  '&:hover': {
-    cursor: 'pointer',
-    outline: '2px solid $primary',
-  },
   variants: {
     isDisabled: {
       true: {
         outline: '1px solid $disabled !important',
         color: '$disabled',
         '&:hover': {
+          outline: '1px solid $disabled !important',
           cursor: 'not-allowed',
         },
       },
@@ -356,7 +383,6 @@ export const Arrow = styled(ChevronDownIcon, {
   variants: {
     isOpen: {
       true: {
-        // animation: `${rotateAnimation} 300ms forwards`,
         transform: 'rotate(-180deg)',
       },
     },
@@ -373,7 +399,6 @@ export const Content = styled('div', {
   marginTop: '3px',
   background: '#fff',
   boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-  borderRadius: '7px',
   variants: {
     isOpen: {
       true: {
@@ -389,8 +414,7 @@ export const Content = styled('div', {
 export const StyledOptionsGroup = styled('ul', {
   maxHeight: '150px',
   overflowY: 'auto',
-  paddingRight: '7px',
-  paddingLeft: '7px',
+  padding: '0 7px',
   '&::-webkit-scrollbar': {
     width: '7px',
   },
@@ -409,11 +433,10 @@ export const StyledOptionsGroup = styled('ul', {
 
 export const StyledOptionItem = styled('li', {
   display: 'flex',
-  height: '50px',
+  height: '40px',
   padding: '0 13px',
   marginTop: '10px',
   marginBottom: '10px',
-  fontSize: '21px',
   listStyle: 'none',
   alignItems: 'center',
   '&:focus': {
@@ -448,6 +471,43 @@ export const StyledOptionItem = styled('li', {
         },
       },
     },
+    withoutCheck: {
+      true: {
+        '&:after': {
+          transform: 'scale(0) !important',
+        },
+      },
+    },
+    multiple: {
+      true: {
+        '&:after': {
+          transform: 'scale(0) !important',
+        },
+      },
+    },
+    kind: {
+      primary: {
+        '&:hover': {
+          color: '$primary',
+        },
+      },
+      secondary: {
+        '&:hover': {
+          color: '$secondary',
+        },
+        '&:after': {
+          boxShadow: 'inset 14px 14px $colors$secondary !important',
+        },
+      },
+      tertiary: {
+        '&:hover': {
+          color: '$tertiary',
+        },
+        '&:after': {
+          boxShadow: 'inset 14px 14px $colors$tertiary !important',
+        },
+      },
+    },
   },
 })
 
@@ -476,9 +536,25 @@ export const SearchInput = styled('input', {
   border: '1px solid #B3B3B3',
   '&:focus': {
     paddingLeft: '42px',
-    border: '2px solid $primary',
+    border: '1px solid $secondary',
   },
   '&::placeholder': {
     color: '#bfbfbf',
+  },
+})
+
+export const MultipleContainer = styled('div', {
+  display: 'flex',
+  '&:hover': {
+    background: '$secondary100',
+    color: '$primary',
+  },
+  variants: {
+    chosen: {
+      true: {
+        color: '$primary',
+        background: '$secondary100',
+      },
+    },
   },
 })

@@ -35,21 +35,19 @@ import { KINDS, SIZES } from '../../types'
 export type SelectProps = {
   css?: CSS
   kind?: KINDS
-  size?: SIZES
+  width?: number
   label?: string | number
   disabled?: boolean
   value?: string | number
   name?: string
-  checkColor?: string
-  checkSize?: SIZES
-  textSize?: string
+  labelSize?: string
   hoverColor?: string
+  labelColor?: string
   textColor?: string
   borderColor?: string
   id?: string
   borderRadius?: string
   error?: boolean
-  multiple?: boolean
   search?: boolean
   options:
     | Array<{ value: string | number; label: string | number }>
@@ -57,6 +55,7 @@ export type SelectProps = {
         title: string | number
         options: Array<{ value: string | number; label: string | number }>
       }>
-  withTitle: boolean
+  type?: 'Standard' | 'StandardWithTitle' | 'Multiple' | 'MultipleWithTitle'
+  withoutCheck: boolean
   setValue?: Dispatch<SetStateAction<string | number>>
 }

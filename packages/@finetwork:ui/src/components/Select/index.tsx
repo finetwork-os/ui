@@ -89,10 +89,12 @@
 //   }
 // )
 import * as React from 'react'
+import { Checkbox } from '../Checkbox'
 import {
   Arrow,
   Content,
   MainContainer,
+  MultipleContainer,
   SearchContainer,
   SearchIcon,
   SearchInput,
@@ -108,24 +110,23 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
     {
       kind,
-      size,
+      width,
       label,
       disabled,
       value,
       name,
-      checkColor,
-      checkSize,
-      textSize,
+      type,
+      labelColor,
       textColor,
       hoverColor,
       id,
+      labelSize,
       borderRadius,
       error,
       borderColor,
-      multiple,
       search,
       options,
-      withTitle,
+      withoutCheck,
       setValue,
       ...props
     },
@@ -136,6 +137,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       label: {},
       hover: {},
       container: {},
+      optionsContainer: {},
     })
     React.useEffect(() => {
       let css = {
@@ -143,28 +145,27 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         label: {},
         hover: {},
         container: {},
+        optionsContainer: {},
       }
 
       if (hoverColor) {
         css = {
           ...css,
-          hover: {
-            ...css.hover,
+          container: {
+            ...css.container,
             '&:hover': {
-              backgroundColor: `${hoverColor} !important`,
+              outline: `2px solid ${hoverColor} !important`,
             },
           },
         }
       }
 
-      if (checkColor) {
+      if (labelColor) {
         css = {
           ...css,
-          select: {
-            ...css.select,
-            '&:before': {
-              boxShadow: `inset 14px 14px ${checkColor}`,
-            },
+          label: {
+            ...css.label,
+            color: `${labelColor} !important`,
           },
         }
       }
@@ -172,11 +173,28 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (borderColor) {
         css = {
           ...css,
-          select: {
-            ...css.select,
-            borderColor: `${borderColor} !important`,
-            '&:focus': {
-              outline: `1px solid ${borderColor} !important`,
+          container: {
+            ...css.container,
+            outline: `1px solid ${borderColor} !important`,
+            '&:hover': {
+              outline: `2px solid ${borderColor} !important`,
+            },
+          },
+        }
+      }
+
+      if (error) {
+        css = {
+          ...css,
+          label: {
+            ...css.label,
+            color: '$error !important',
+          },
+          container: {
+            ...css.container,
+            outline: '1px solid $error !important',
+            '&:hover': {
+              outline: '2px solid $error !important',
             },
           },
         }
@@ -185,17 +203,28 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (textColor) {
         css = {
           ...css,
-          label: {
+          container: {
+            ...css.container,
             color: textColor,
           },
         }
       }
 
-      if (textSize) {
+      if (labelSize) {
         css = {
           ...css,
           label: {
-            fontSize: textSize,
+            fontSize: labelSize,
+          },
+        }
+      }
+
+      if (width) {
+        css = {
+          ...css,
+          container: {
+            ...css.container,
+            width: `${width}px !important`,
           },
         }
       }
@@ -211,9 +240,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             ...css.container,
             borderRadius: borderRadius,
           },
+          optionsContainer: {
+            ...css.optionsContainer,
+            borderRadius: borderRadius,
+          },
         }
       }
-
       setCustomStyle(css)
     }, [])
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -234,42 +266,149 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     function optionHasBeenChosen(option, focusedNumber) {
       setChosenOption(option)
       setFocusedOption(focusedNumber)
-      setIsOpen(false)
+      //setIsOpen(false)
     }
 
-    // window.addEventListener('click', function (e) {
-    //   if (document.getElementById('contentSelect').contains(e.target)) {
-    //     return
-    //   } else {
-    //     setIsOpen(false)
-    //   }
-    // })
+    React.useEffect(() => {
+      document.addEventListener('click', handleOutsideClick, true)
+    }, [])
 
-    // function changeFocus(e) {
-    //   if (e.code === 'ArrowUp') {
-    //     document.getElementById(`option-${focusedOption + 1}`)?.focus()
-    //     setFocusedOption(focusedOption + 1)
-    //   }
-    //   if (e.code === 'ArrowDown') {
-    //     document.getElementById(`option-${focusedOption - 1}`).focus()
-    //     setFocusedOption(focusedOption - 1)
-    //   }
-    // }
+    const inputRef = React.useRef(null)
+    const optionRef = React.useRef(null)
+    const optionGroupRef = React.useRef(null)
 
-    const inputRef = React.useRef()
+    const handleOutsideClick = (e) => {
+      if (
+        !inputRef.current.contains(e.target) &&
+        !optionRef.current.contains(e.target) &&
+        !optionGroupRef.current.contains(e.target)
+      ) {
+        setIsOpen(false)
+      } else {
+        if (!disabled) setIsOpen(true)
+      }
+    }
 
     function searchOption(e) {}
 
+    function addOptions() {
+      if (type === 'StandardWithTitle')
+        return (
+          <StyledOptionsGroup>
+            {options.map((optionGroup, i) => (
+              <>
+                {optionGroup.title && <span>{optionGroup.title}</span>}
+                {optionGroup.options.map((option, i) => (
+                  <StyledOptionItem
+                    tabIndex={0}
+                    id={`option-${i}`}
+                    ref={optionRef}
+                    onClick={() => optionHasBeenChosen(option.label, i)}
+                    kind={kind}
+                    withoutCheck={withoutCheck}
+                    onKeyDown={(e) =>
+                      e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                    }
+                    chosen={chosenOption === option.label ? true : false}
+                    key={option.value}
+                  >
+                    {option.label}
+                  </StyledOptionItem>
+                ))}
+              </>
+            ))}
+          </StyledOptionsGroup>
+        )
+      if (type === 'Multiple')
+        return (
+          <StyledOptionsGroup>
+            {options.map((option, i) => (
+              <MultipleContainer
+                chosen={chosenOption === option.label ? true : false}
+                ref={optionRef}
+              >
+                <Checkbox />
+                <StyledOptionItem
+                  tabIndex={0}
+                  id={`option-${i}`}
+                  onClick={() => optionHasBeenChosen(option.label, i)}
+                  kind={kind}
+                  withoutCheck={withoutCheck}
+                  onKeyDown={(e) =>
+                    e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                  }
+                  key={option.value}
+                >
+                  {option.label}
+                </StyledOptionItem>
+              </MultipleContainer>
+            ))}
+          </StyledOptionsGroup>
+        )
+      if (type === 'MultipleWithTitle')
+        return (
+          <StyledOptionsGroup>
+            {options.map((optionGroup, i) => (
+              <>
+                {optionGroup.title && <span>{optionGroup.title}</span>}
+                {optionGroup.options.map((option, i) => (
+                  <MultipleContainer
+                    chosen={chosenOption === option.label ? true : false}
+                    ref={optionRef}
+                  >
+                    <Checkbox />
+                    <StyledOptionItem
+                      tabIndex={0}
+                      id={`option-${i}`}
+                      onClick={() => optionHasBeenChosen(option.label, i)}
+                      kind={kind}
+                      withoutCheck={withoutCheck}
+                      onKeyDown={(e) =>
+                        e.code === 'Enter' &&
+                        optionHasBeenChosen(option.label, i)
+                      }
+                      chosen={chosenOption === option.label ? true : false}
+                      key={option.value}
+                    >
+                      {option.label}
+                    </StyledOptionItem>
+                  </MultipleContainer>
+                ))}
+              </>
+            ))}
+          </StyledOptionsGroup>
+        )
+      return (
+        <StyledOptionsGroup>
+          {options.map((option, i) => (
+            <StyledOptionItem
+              tabIndex={0}
+              id={`option-${i}`}
+              ref={optionRef}
+              onClick={() => optionHasBeenChosen(option.label, i)}
+              kind={kind}
+              withoutCheck={withoutCheck}
+              onKeyDown={(e) =>
+                e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+              }
+              chosen={chosenOption === option.label ? true : false}
+              key={option.value}
+            >
+              {option.label}
+            </StyledOptionItem>
+          ))}
+        </StyledOptionsGroup>
+      )
+    }
+
     const Select = () => (
       <MainContainer
-        ref={inputRef}
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
         isDisabled={disabled}
       >
         {label && (
           <StyledLabel
             htmlFor={id}
-            size={size}
             isDisabled={disabled}
             css={customStyle.label}
           >
@@ -280,7 +419,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           // error={error}
           // kind={kind}
           isDisabled={disabled}
-          onClick={() => !disabled && setIsOpen(!isOpen)}
+          kind={kind}
+          search={search}
           css={customStyle.container}
           // onKeyDown={(e) =>
           //   e.code === 'ArrowUp' || e.code === 'ArrowUp' ? changeFocus(e) : ''
@@ -289,6 +429,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           <StyledSelect
             id={id}
             tabIndex={0}
+            ref={inputRef}
             onKeyDown={(e) => e.code === 'Enter' && setIsOpen(!isOpen)}
             // value={value}
             // name={name}
@@ -304,7 +445,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <span>{chosenOption}</span>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
-          <Content id="contentSelect" isOpen={isOpen}>
+          <Content
+            id="contentSelect"
+            ref={optionGroupRef}
+            isOpen={isOpen}
+            css={customStyle.optionsContainer}
+          >
             {search && (
               <SearchContainer onClick={() => setIsOpen(true)}>
                 <SearchIcon />
@@ -315,47 +461,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 />
               </SearchContainer>
             )}
-            {withTitle ? (
-              <StyledOptionsGroup>
-                {options.map((optionGroup, i) => (
-                  <>
-                    {optionGroup.title && <span>{optionGroup.title}</span>}
-                    {optionGroup.options.map((option, i) => (
-                      <StyledOptionItem
-                        tabIndex={0}
-                        id={`option-${i}`}
-                        onClick={() => optionHasBeenChosen(option.label, i)}
-                        onKeyDown={(e) =>
-                          e.code === 'Enter' &&
-                          optionHasBeenChosen(option.label, i)
-                        }
-                        chosen={chosenOption === option.label ? true : false}
-                        key={option.value}
-                      >
-                        {option.label}
-                      </StyledOptionItem>
-                    ))}
-                  </>
-                ))}
-              </StyledOptionsGroup>
-            ) : (
-              <StyledOptionsGroup>
-                {options.map((option, i) => (
-                  <StyledOptionItem
-                    tabIndex={0}
-                    id={`option-${i}`}
-                    onClick={() => optionHasBeenChosen(option.label, i)}
-                    onKeyDown={(e) =>
-                      e.code === 'Enter' && optionHasBeenChosen(option.label, i)
-                    }
-                    chosen={chosenOption === option.label ? true : false}
-                    key={option.value}
-                  >
-                    {option.label}
-                  </StyledOptionItem>
-                ))}
-              </StyledOptionsGroup>
-            )}
+            {addOptions()}
           </Content>
         </SelectContainer>
       </MainContainer>

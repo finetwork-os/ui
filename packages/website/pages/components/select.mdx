@@ -19,6 +19,7 @@ export const styles = {
   maxWidth: '1000px',
   padding: '2em',
   height: '20em',
+  display: 'flex',
 }
 
 export const allOptions = [
@@ -124,37 +125,30 @@ export const options = [
   </div>
 </Playground> */}
 <div>
-  <H3 font="secondary">Standard</H3>
+  <H3 font="secondary">Type</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" options={options} />
-  </div>
-</Playground>
-
-<div>
-  <H3 font="secondary">With Title</H3>
-</div>
-
-<Playground>
-  <div style={styles}>
+    <Select value="Elige..." label="Standard" options={options} />
     <Select
       value="Elige..."
-      label="Futas"
-      withTitle={true}
+      label="Standard With Title"
+      type="StandardWithTitle"
       options={allOptions}
     />
-  </div>
-</Playground>
-
-<div>
-  <H3 font="secondary">Multiple</H3>
-</div>
-
-<Playground>
-  <div style={styles}>
-    <Select value="Elige..." label="Futas" multiple options={options} />
+    <Select
+      value="Elige..."
+      label="Multiple"
+      type="Multiple"
+      options={options}
+    />
+    <Select
+      value="Elige..."
+      label="Multiple With Title"
+      type="MultipleWithTitle"
+      options={allOptions}
+    />
   </div>
 </Playground>
 
@@ -184,6 +178,133 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" options={options} />
+    <Select
+      value="Elige..."
+      label="Futas"
+      borderRadius="5px"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Label size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" labelSize="20px" options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Label Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      labelColor="$primary"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Error</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" error options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Width</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" width={200} options={options} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Kind</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Primary" kind="primary" options={options} />
+    <Select
+      value="Elige..."
+      label="Secondary"
+      kind="secondary"
+      options={options}
+    />
+    <Select
+      value="Elige..."
+      label="Tertiary"
+      kind="tertiary"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Hover Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      hoverColor="green"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Text Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      textColor="$primary"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      borderColor="green"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Without Check</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select value="Elige..." label="Futas" withoutCheck options={options} />
   </div>
 </Playground>
