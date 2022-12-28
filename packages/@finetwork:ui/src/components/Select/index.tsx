@@ -285,9 +285,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       ) {
         setIsOpen(false)
       } else {
-        if (!disabled) setIsOpen(true)
+        if (inputRef.current.contains(e.target)) {
+          if (!disabled) setIsOpen(isOpen === true ? false : true)
+        } else {
+          if (!disabled) setIsOpen(true)
+        }
       }
     }
+
+    React.useEffect(() => {
+      console.log(isOpen)
+    }, [isOpen])
 
     function searchOption(e) {}
 
@@ -430,6 +438,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             id={id}
             tabIndex={0}
             ref={inputRef}
+            onClick={() => setIsOpen(!isOpen)}
             onKeyDown={(e) => e.code === 'Enter' && setIsOpen(!isOpen)}
             // value={value}
             // name={name}
@@ -452,7 +461,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             css={customStyle.optionsContainer}
           >
             {search && (
-              <SearchContainer onClick={() => setIsOpen(true)}>
+              <SearchContainer>
                 <SearchIcon />
                 <SearchInput
                   type="text"
