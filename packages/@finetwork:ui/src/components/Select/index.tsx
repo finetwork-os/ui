@@ -172,6 +172,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
     }, [isOpen])
 
+    const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
+
     React.useEffect(() => {
       if (type === 'Multiple' || type === 'MultipleWithTitle') {
         if (chosenMultipleOptions !== undefined && setValue)
@@ -238,13 +240,25 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       return formattedArray
     }
 
-    function searchOption(e) {}
+    function searchOption(e) {
+      let optionsFound = []
+      options.map((option, i) => {
+        if (option.label.toLowerCase().includes(e.toLowerCase()))
+          optionsFound.push(option)
+      })
+      console.log(e)
+      if (e === '') {
+        setAllPosibleOptions(options)
+      } else {
+        setAllPosibleOptions(optionsFound)
+      }
+    }
 
     function addOptions() {
       if (type === 'StandardWithTitle')
         return (
           <StyledOptionsGroup>
-            {options.map((optionGroup, i) => (
+            {allPosibleOptions.map((optionGroup, i) => (
               <>
                 {optionGroup.title && (
                   <StyledTitle>{optionGroup.title}</StyledTitle>
@@ -252,7 +266,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 {optionGroup.options.map((option, i) => (
                   <StyledOptionItem
                     tabIndex={0}
-                    id={`option-${i}`}
                     ref={optionRef}
                     onClick={() => optionHasBeenChosen(option.label)}
                     kind={kind}
@@ -273,7 +286,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (type === 'Multiple')
         return (
           <StyledOptionsGroup>
-            {options.map((option, i) => (
+            {allPosibleOptions.map((option, i) => (
               <MultipleContainer
                 chosen={chosenMultipleOptions?.includes(option.label)}
                 onClick={() => multipleOptionHasBeenChosen(option.label)}
@@ -288,7 +301,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 <Checkbox
                   checked={chosenMultipleOptions?.includes(option.label)}
                   label={
-                    <StyledOptionMultiple id={`option-${i}`} key={option.value}>
+                    <StyledOptionMultiple key={option.value}>
                       {option.label}
                     </StyledOptionMultiple>
                   }
@@ -300,7 +313,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (type === 'MultipleWithTitle')
         return (
           <StyledOptionsGroup>
-            {options.map((optionGroup, i) => (
+            {allPosibleOptions.map((optionGroup, i) => (
               <>
                 {optionGroup.title && (
                   <StyledTitle>{optionGroup.title}</StyledTitle>
@@ -320,10 +333,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                     <Checkbox
                       checked={chosenMultipleOptions?.includes(option.label)}
                       label={
-                        <StyledOptionMultiple
-                          id={`option-${i}`}
-                          key={option.value}
-                        >
+                        <StyledOptionMultiple key={option.value}>
                           {option.label}
                         </StyledOptionMultiple>
                       }
@@ -336,10 +346,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         )
       return (
         <StyledOptionsGroup>
-          {options.map((option, i) => (
+          {allPosibleOptions.map((option, i) => (
             <StyledOptionItem
               tabIndex={0}
-              id={`option-${i}`}
               ref={optionRef}
               onClick={() => optionHasBeenChosen(option.label)}
               kind={kind}
@@ -395,7 +404,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <Arrow isOpen={isOpen} />
           </StyledSelect>
           <Content
-            id="contentSelect"
             ref={optionGroupRef}
             isOpen={isOpen}
             css={customStyle.optionsContainer}
@@ -406,7 +414,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 <SearchInput
                   type="text"
                   placeholder="Buscar..."
-                  onChange={(e) => searchOption(e)}
+                  onChange={({ target: { value } }) => searchOption(value)}
                 />
               </SearchContainer>
             )}
