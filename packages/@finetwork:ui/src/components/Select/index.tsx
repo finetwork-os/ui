@@ -1,93 +1,3 @@
-// import * as SelectPrimitive from '@radix-ui/react-select'
-// import * as React from 'react'
-// import {
-//   StyledContent,
-//   StyledItem,
-//   StyledItemIndicator,
-//   StyledLabel,
-//   StyledScrollDownButton,
-//   StyledScrollUpButton,
-//   StyledSeparator,
-//   StyledTrigger,
-//   StyledViewport,
-// } from './styled'
-// import { RenderEnhancer } from '../../utils'
-// import { KIND, SIZE } from '../../types'
-// import { CheckIcon, ChevronDownIcon } from '../icons'
-// import {
-//   SelectComponent,
-//   SelectContentComponent,
-//   SelectItemIndicatorComponent,
-//   SelectTriggerComponent,
-// } from './types'
-
-// const sizeIcon = {
-//   [SIZE.small]: 15,
-//   [SIZE.medium]: 18,
-//   [SIZE.large]: 21,
-// }
-
-// export const SelectValue = SelectPrimitive.Value
-// export const SelectGroup = SelectPrimitive.Group
-// export const SelectItem = StyledItem
-// export const SelectItemText = SelectPrimitive.ItemText
-// export const SelectLabel = StyledLabel
-// export const SelectSeparator = StyledSeparator
-
-// export const Select: SelectComponent = ({
-//   children,
-//   kind = KIND.primary,
-//   size = SIZE.medium,
-//   contentProps,
-//   triggerProps,
-//   ...props
-// }) => (
-//   <SelectPrimitive.Root {...props}>
-//     <SelectTrigger {...triggerProps} kind={kind} size={size} data-fi="select">
-//       <SelectValue />
-//     </SelectTrigger>
-//     <SelectContent {...contentProps} kind={kind} size={size}>
-//       {children}
-//     </SelectContent>
-//   </SelectPrimitive.Root>
-// )
-// export const SelectTrigger: SelectTriggerComponent = React.forwardRef(
-//   ({ children, kind, size, ...props }, ref) => (
-//     <StyledTrigger {...props} kind={kind} size={size} ref={ref}>
-//       {children}
-//       <SelectPrimitive.Icon>
-//         <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
-//       </SelectPrimitive.Icon>
-//     </StyledTrigger>
-//   )
-// )
-// export const SelectItemIndicator: SelectItemIndicatorComponent =
-//   React.forwardRef(
-//     ({ Icon = CheckIcon, size = SIZE.medium }, ref): JSX.Element => {
-//       return (
-//         <StyledItemIndicator ref={ref}>
-//           <RenderEnhancer
-//             Enhancer={<Icon width={sizeIcon[size]} height={sizeIcon[size]} />}
-//           />
-//         </StyledItemIndicator>
-//       )
-//     }
-//   )
-// export const SelectContent: SelectContentComponent = React.forwardRef(
-//   ({ children, kind, size, ...props }, ref) => {
-//     return (
-//       <StyledContent {...props} kind={kind} ref={ref}>
-//         <StyledScrollUpButton>
-//           <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
-//         </StyledScrollUpButton>
-//         <StyledViewport>{children}</StyledViewport>
-//         <StyledScrollDownButton>
-//           <ChevronDownIcon width={sizeIcon[size]} height={sizeIcon[size]} />
-//         </StyledScrollDownButton>
-//       </StyledContent>
-//     )
-//   }
-// )
 import * as React from 'react'
 import { Checkbox } from '../Checkbox'
 import {
@@ -101,8 +11,10 @@ import {
   SelectContainer,
   StyledLabel,
   StyledOptionItem,
+  StyledOptionMultiple,
   StyledOptionsGroup,
   StyledSelect,
+  StyledTitle,
 } from './styled'
 import { SelectProps } from './types'
 
@@ -252,21 +164,39 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     const [chosenOption, setChosenOption] = React.useState<string | number>(
       value
     )
-    const [focusedOption, setFocusedOption] = React.useState<number>(0)
+    const [chosenMultipleOptions, setChosenMultipleOptions] = React.useState<
+      Array<string | number>
+    >([])
 
     React.useEffect(() => {
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
-      // document.getElementById(`option-${focusedOption}`).focus()
     }, [isOpen])
 
     React.useEffect(() => {
-      if (chosenOption !== undefined && setValue) setValue(chosenOption)
-    }, [chosenOption])
+      if (type === 'Multiple' || type === 'MultipleWithTitle') {
+        if (chosenMultipleOptions !== undefined && setValue)
+          setValue(chosenMultipleOptions)
+      } else if (chosenOption !== undefined && setValue) setValue(chosenOption)
+    }, [chosenOption, chosenMultipleOptions])
 
-    function optionHasBeenChosen(option, focusedNumber) {
+    function optionHasBeenChosen(option) {
       setChosenOption(option)
-      setFocusedOption(focusedNumber)
-      //setIsOpen(false)
+      setIsOpen(false)
+    }
+
+    function multipleOptionHasBeenChosen(option) {
+      if (chosenMultipleOptions?.includes(option)) {
+        chosenMultipleOptions.splice(chosenMultipleOptions.indexOf(option), 1)
+
+        setChosenMultipleOptions((chosenMultipleOptions) => [
+          ...chosenMultipleOptions,
+        ])
+      } else {
+        setChosenMultipleOptions((chosenMultipleOptions) => [
+          ...chosenMultipleOptions,
+          option,
+        ])
+      }
     }
 
     React.useEffect(() => {
@@ -279,13 +209,13 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     const handleOutsideClick = (e) => {
       if (
-        !inputRef.current.contains(e.target) &&
-        !optionRef.current.contains(e.target) &&
-        !optionGroupRef.current.contains(e.target)
+        !inputRef.current?.contains(e.target) &&
+        !optionRef.current?.contains(e.target) &&
+        !optionGroupRef.current?.contains(e.target)
       ) {
         setIsOpen(false)
       } else {
-        if (inputRef.current.contains(e.target)) {
+        if (inputRef.current?.contains(e.target)) {
           if (!disabled) setIsOpen(isOpen === true ? false : true)
         } else {
           if (!disabled) setIsOpen(true)
@@ -293,9 +223,20 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
     }
 
-    React.useEffect(() => {
-      console.log(isOpen)
-    }, [isOpen])
+    function selectLabelToMultipleOption() {
+      if (chosenMultipleOptions.length <= 0) {
+        return value ? value : 'Elige...'
+      }
+      var formattedArray = ''
+      for (let i = 0; i < chosenMultipleOptions.length; i++) {
+        if (i < chosenMultipleOptions.length - 1) {
+          formattedArray += `${chosenMultipleOptions[i]}, `
+        } else {
+          formattedArray += chosenMultipleOptions[i]
+        }
+      }
+      return formattedArray
+    }
 
     function searchOption(e) {}
 
@@ -305,17 +246,19 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           <StyledOptionsGroup>
             {options.map((optionGroup, i) => (
               <>
-                {optionGroup.title && <span>{optionGroup.title}</span>}
+                {optionGroup.title && (
+                  <StyledTitle>{optionGroup.title}</StyledTitle>
+                )}
                 {optionGroup.options.map((option, i) => (
                   <StyledOptionItem
                     tabIndex={0}
                     id={`option-${i}`}
                     ref={optionRef}
-                    onClick={() => optionHasBeenChosen(option.label, i)}
+                    onClick={() => optionHasBeenChosen(option.label)}
                     kind={kind}
                     withoutCheck={withoutCheck}
                     onKeyDown={(e) =>
-                      e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                      e.code === 'Enter' && optionHasBeenChosen(option.label)
                     }
                     chosen={chosenOption === option.label ? true : false}
                     key={option.value}
@@ -332,23 +275,24 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           <StyledOptionsGroup>
             {options.map((option, i) => (
               <MultipleContainer
-                chosen={chosenOption === option.label ? true : false}
+                chosen={chosenMultipleOptions?.includes(option.label)}
+                onClick={() => multipleOptionHasBeenChosen(option.label)}
+                onKeyDown={(e) =>
+                  e.code === 'Enter' &&
+                  multipleOptionHasBeenChosen(option.label)
+                }
+                kind={kind}
+                tabIndex={0}
                 ref={optionRef}
               >
-                <Checkbox />
-                <StyledOptionItem
-                  tabIndex={0}
-                  id={`option-${i}`}
-                  onClick={() => optionHasBeenChosen(option.label, i)}
-                  kind={kind}
-                  withoutCheck={withoutCheck}
-                  onKeyDown={(e) =>
-                    e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                <Checkbox
+                  checked={chosenMultipleOptions?.includes(option.label)}
+                  label={
+                    <StyledOptionMultiple id={`option-${i}`} key={option.value}>
+                      {option.label}
+                    </StyledOptionMultiple>
                   }
-                  key={option.value}
-                >
-                  {option.label}
-                </StyledOptionItem>
+                />
               </MultipleContainer>
             ))}
           </StyledOptionsGroup>
@@ -358,28 +302,32 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           <StyledOptionsGroup>
             {options.map((optionGroup, i) => (
               <>
-                {optionGroup.title && <span>{optionGroup.title}</span>}
+                {optionGroup.title && (
+                  <StyledTitle>{optionGroup.title}</StyledTitle>
+                )}
                 {optionGroup.options.map((option, i) => (
                   <MultipleContainer
                     chosen={chosenOption === option.label ? true : false}
+                    onClick={() => multipleOptionHasBeenChosen(option.label)}
+                    onKeyDown={(e) =>
+                      e.code === 'Enter' &&
+                      multipleOptionHasBeenChosen(option.label)
+                    }
+                    kind={kind}
+                    tabIndex={0}
                     ref={optionRef}
                   >
-                    <Checkbox />
-                    <StyledOptionItem
-                      tabIndex={0}
-                      id={`option-${i}`}
-                      onClick={() => optionHasBeenChosen(option.label, i)}
-                      kind={kind}
-                      withoutCheck={withoutCheck}
-                      onKeyDown={(e) =>
-                        e.code === 'Enter' &&
-                        optionHasBeenChosen(option.label, i)
+                    <Checkbox
+                      checked={chosenMultipleOptions?.includes(option.label)}
+                      label={
+                        <StyledOptionMultiple
+                          id={`option-${i}`}
+                          key={option.value}
+                        >
+                          {option.label}
+                        </StyledOptionMultiple>
                       }
-                      chosen={chosenOption === option.label ? true : false}
-                      key={option.value}
-                    >
-                      {option.label}
-                    </StyledOptionItem>
+                    />
                   </MultipleContainer>
                 ))}
               </>
@@ -393,11 +341,11 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               tabIndex={0}
               id={`option-${i}`}
               ref={optionRef}
-              onClick={() => optionHasBeenChosen(option.label, i)}
+              onClick={() => optionHasBeenChosen(option.label)}
               kind={kind}
               withoutCheck={withoutCheck}
               onKeyDown={(e) =>
-                e.code === 'Enter' && optionHasBeenChosen(option.label, i)
+                e.code === 'Enter' && optionHasBeenChosen(option.label)
               }
               chosen={chosenOption === option.label ? true : false}
               key={option.value}
@@ -424,34 +372,26 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           </StyledLabel>
         )}
         <SelectContainer
-          // error={error}
-          // kind={kind}
           isDisabled={disabled}
           kind={kind}
           search={search}
           css={customStyle.container}
-          // onKeyDown={(e) =>
-          //   e.code === 'ArrowUp' || e.code === 'ArrowUp' ? changeFocus(e) : ''
-          // }
         >
           <StyledSelect
             id={id}
             tabIndex={0}
             ref={inputRef}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => !disabled && setIsOpen(!isOpen)}
             onKeyDown={(e) => e.code === 'Enter' && setIsOpen(!isOpen)}
-            // value={value}
-            // name={name}
-            // checkSize={checkSize}
-            // size={size}
-            // kind={kind}
             isDisabled={disabled}
-            // disabled={disabled}
-            // error={error}
             css={customStyle.select}
             {...props}
           >
-            <span>{chosenOption}</span>
+            <span>
+              {type === 'Multiple' || type === 'MultipleWithTitle'
+                ? selectLabelToMultipleOption()
+                : chosenOption}
+            </span>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
           <Content

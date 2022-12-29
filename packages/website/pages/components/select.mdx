@@ -27,16 +27,16 @@ export const allOptions = [
     title: 'Fruits',
     options: [
       {
-        value: 'Apple',
-        label: 'apple',
+        value: 'apple',
+        label: 'Apple',
       },
       {
-        value: 'Banana',
-        label: 'banana',
+        value: 'banana',
+        label: 'Banana',
       },
       {
-        value: 'Blueberry',
-        label: 'blueberry',
+        value: 'blueberry',
+        label: 'Blueberry',
       },
     ],
   },
@@ -44,16 +44,16 @@ export const allOptions = [
     title: 'Vegetables',
     options: [
       {
-        value: 'Aubergine',
-        label: 'aubergine',
+        value: 'aubergine',
+        label: 'Aubergine',
       },
       {
-        value: 'Broccoli',
-        label: 'broccoli',
+        value: 'broccoli',
+        label: 'Broccoli',
       },
       {
-        value: 'Leek',
-        label: 'leek',
+        value: 'leek',
+        label: 'Leek',
       },
     ],
   },
@@ -61,12 +61,12 @@ export const allOptions = [
     title: 'Meat',
     options: [
       {
-        value: 'Beef',
-        label: 'beef',
+        value: 'beef',
+        label: 'Beef',
       },
       {
-        value: 'Chicken',
-        label: 'chicken',
+        value: 'chicken',
+        label: 'Chicken',
       },
       {
         value: 'lamb',
@@ -103,27 +103,7 @@ export const options = [
 <Paragraph4>
   This component is an implementation of a custom html select
 </Paragraph4>
-{/* 
-<Playground>
-  <div style={{ padding: '2rem' }}>
-    <Select defaultValue="apple">
-      {allOptions.map(({ title, options }, index) => (
-        <Fragment key={title}>
-          <SelectGroup>
-            <SelectLabel>{title}</SelectLabel>
-            {options.map(({ id, name }) => (
-              <SelectItem value={id} key={id}>
-                <SelectItemText>{name}</SelectItemText>
-                <SelectItemIndicator Icon={CheckIcon} />
-              </SelectItem>
-            ))}
-          </SelectGroup>
-          {index < allOptions.length - 1 && <SelectSeparator />}
-        </Fragment>
-      ))}
-    </Select>
-  </div>
-</Playground> */}
+
 <div>
   <H3 font="secondary">Type</H3>
 </div>
@@ -141,12 +121,14 @@ export const options = [
       value="Elige..."
       label="Multiple"
       type="Multiple"
+      width={180}
       options={options}
     />
     <Select
       value="Elige..."
       label="Multiple With Title"
       type="MultipleWithTitle"
+      width={180}
       options={allOptions}
     />
   </div>

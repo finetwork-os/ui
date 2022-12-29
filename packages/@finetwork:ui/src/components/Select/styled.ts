@@ -314,7 +314,6 @@ export const SelectContainer = styled('div', {
     outline: '2px solid $primary',
   },
   '&:hover': {
-    cursor: 'pointer',
     outline: '2px solid $primary !important',
   },
   variants: {
@@ -362,6 +361,9 @@ export const StyledSelect = styled('div', {
   padding: '0 15px',
   background: '#fff',
   justifyContent: 'space-between',
+  '&:hover': {
+    cursor: 'pointer',
+  },
   variants: {
     isDisabled: {
       true: {
@@ -412,7 +414,7 @@ export const Content = styled('div', {
 })
 
 export const StyledOptionsGroup = styled('ul', {
-  maxHeight: '150px',
+  maxHeight: '200px',
   overflowY: 'auto',
   padding: '0 7px',
   '&::-webkit-scrollbar': {
@@ -548,6 +550,7 @@ export const MultipleContainer = styled('div', {
   '&:hover': {
     background: '$secondary100',
     color: '$primary',
+    cursor: 'pointer',
   },
   variants: {
     chosen: {
@@ -556,5 +559,38 @@ export const MultipleContainer = styled('div', {
         background: '$secondary100',
       },
     },
+    kind: {
+      primary: {
+        '&:hover': {
+          color: '$primary',
+        },
+      },
+      secondary: {
+        '&:hover': {
+          color: '$secondary',
+        },
+      },
+      tertiary: {
+        '&:hover': {
+          color: '$tertiary',
+        },
+      },
+    },
   },
+})
+
+export const StyledTitle = styled('span', {
+  display: 'flex',
+  height: '40px',
+  alignItems: 'center',
+  fontWeight: 'bold',
+})
+
+export const StyledOptionMultiple = styled('li', {
+  display: 'flex',
+  height: '40px',
+  marginTop: '10px',
+  marginBottom: '10px',
+  listStyle: 'none',
+  alignItems: 'center',
 })

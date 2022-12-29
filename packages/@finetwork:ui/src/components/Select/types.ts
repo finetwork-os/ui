@@ -57,5 +57,5 @@ export type SelectProps = {
       }>
   type?: 'Standard' | 'StandardWithTitle' | 'Multiple' | 'MultipleWithTitle'
   withoutCheck: boolean
-  setValue?: Dispatch<SetStateAction<string | number>>
+  setValue?: Dispatch<SetStateAction<string | number | Array<string | number>>>
 }
