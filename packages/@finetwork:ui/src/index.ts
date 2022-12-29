@@ -33,6 +33,7 @@ export {
   DropdownMenuTriggerItem,
 } from './components/DropdownMenu'
 export { Radio, RadioGroup } from './components/Radio'
+export { Range } from './components/Range'
 export {
   Select,
   SelectGroup,

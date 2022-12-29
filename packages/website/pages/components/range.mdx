@@ -1,0 +1,26 @@
+---
+name: Range
+---
+
+import { Playground } from 'dokz'
+import { Range } from '@finetwork/ui'
+import { styles } from '../../styles.ts'
+
+<div />
+<div>
+  <H2 font="secondary">Range</H2>
+</div>
+
+<Paragraph4>
+  This component is an implementation of a custom html input range
+</Paragraph4>
+
+<div>
+  <H3 font="secondary">Default</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Range min={0} max={30} />
+  </div>
+</Playground>
