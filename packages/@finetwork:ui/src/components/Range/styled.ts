@@ -121,6 +121,7 @@ export const CustomRangeContainer = styled('div', {
 export const ThumbValue = styled('span', {
   width: THUMBSIZE,
   height: THUMBSIZE,
+  display: 'flex',
   position: 'absolute',
   paddingTop: '1rem',
   top: '50%',
@@ -145,3 +146,5 @@ export const InnerRail = styled('div', {
   height: '100%',
   position: 'absolute',
 })
+
+export const IndividualRange = styled('input', {})

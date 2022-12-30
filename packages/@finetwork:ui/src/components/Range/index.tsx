@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {
   CustomRangeContainer,
+  IndividualRange,
   InnerRail,
   OriginalInputs,
   Rail,
@@ -15,7 +16,6 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>(
   (
     {
       kind,
-      size,
       label,
       disabled,
       value,
@@ -26,6 +26,7 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>(
       dotHover,
       borderColor,
       id,
+      multiple,
       min,
       max,
       step = 1,
@@ -39,7 +40,7 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>(
     const [customStyle, setCustomStyle] = React.useState({
       inputContainer: {},
       input: {},
-      text: {},
+      rail: {},
     })
 
     // function changeDotColor() {
@@ -49,75 +50,76 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>(
     //   return { width: dotSize, height: dotSize }
     // }
 
-    // React.useEffect(() => {
-    //   let css = {
-    //     inputContainer: {},
-    //     input: {},
-    //     text: {},
-    //   }
-    //   if (dotColor && dotSize) {
-    //     css = {
-    //       ...css,
-    //       input: {
-    //         '&:before': {
-    //           ...changeDotColor(),
-    //           ...changeDotSize(),
-    //         },
-    //       },
-    //     }
-    //   }
-    //   if (dotColor && !dotSize) {
-    //     css = {
-    //       ...css,
-    //       input: {
-    //         '&:before': {
-    //           ...changeDotColor(),
-    //         },
-    //       },
-    //     }
-    //   }
-    //   if (dotSize && !dotColor) {
-    //     css = {
-    //       ...css,
-    //       input: {
-    //         '&:before': {
-    //           ...changeDotSize(),
-    //         },
-    //       },
-    //     }
-    //   }
-    //   if (borderColor) {
-    //     css = {
-    //       ...css,
-    //       input: {
-    //         ...css.input,
-    //         borderColor,
-    //       },
-    //     }
-    //   }
+    React.useEffect(() => {
+      let css = {
+        inputContainer: {},
+        input: {},
+        rail: {},
+      }
 
-    //   if (dotHover) {
-    //     css = {
-    //       ...css,
-    //       inputContainer: {
-    //         '&:hover': {
-    //           backgroundColor: dotHover,
-    //         },
-    //       },
-    //     }
-    //   }
+      //   if (dotColor && dotSize) {
+      //     css = {
+      //       ...css,
+      //       input: {
+      //         '&:before': {
+      //           ...changeDotColor(),
+      //           ...changeDotSize(),
+      //         },
+      //       },
+      //     }
+      //   }
+      //   if (dotColor && !dotSize) {
+      //     css = {
+      //       ...css,
+      //       input: {
+      //         '&:before': {
+      //           ...changeDotColor(),
+      //         },
+      //       },
+      //     }
+      //   }
+      //   if (dotSize && !dotColor) {
+      //     css = {
+      //       ...css,
+      //       input: {
+      //         '&:before': {
+      //           ...changeDotSize(),
+      //         },
+      //       },
+      //     }
+      //   }
+      //   if (borderColor) {
+      //     css = {
+      //       ...css,
+      //       input: {
+      //         ...css.input,
+      //         borderColor,
+      //       },
+      //     }
+      //   }
 
-    //   if (textColor) {
-    //     css = {
-    //       ...css,
-    //       text: {
-    //         color: textColor,
-    //       },
-    //     }
-    //   }
+      //   if (dotHover) {
+      //     css = {
+      //       ...css,
+      //       inputContainer: {
+      //         '&:hover': {
+      //           backgroundColor: dotHover,
+      //         },
+      //       },
+      //     }
+      //   }
 
-    //   setCustomStyle(css)
-    // }, [])
+      //   if (textColor) {
+      //     css = {
+      //       ...css,
+      //       text: {
+      //         color: textColor,
+      //       },
+      //     }
+      //   }
+
+      setCustomStyle(css)
+    }, [])
 
     const [minValue, setMinValue] = React.useState<number>(currentMinValue)
     const [maxValue, setMaxValue] = React.useState<number>(currentMaxValue)
@@ -145,36 +147,48 @@ export const Range = React.forwardRef<HTMLInputElement, RangeProps>(
     }
     const minPos = ((minValue - min) / (max - min)) * 100
     const maxPos = ((maxValue - min) / (max - min)) * 100
-
+    console.log(maxPos)
     const Range = () => (
       <RangeContainer>
-        <OriginalInputs>
-          <StyledInput
-            type="range"
-            value={minValue}
-            min={min}
-            max={max}
-            step={step}
-            onChange={(e) => handleMinChange(e)}
-          />
-          <StyledInput
+        {multiple ? (
+          <>
+            <OriginalInputs>
+              <StyledInput
+                type="range"
+                value={minValue}
+                min={min}
+                max={max}
+                step={step}
+                onChange={(e) => handleMinChange(e)}
+              />
+              <StyledInput
+                type="range"
+                value={maxValue}
+                min={min}
+                max={max}
+                step={step}
+                onChange={(e) => handleMaxChange(e)}
+              />
+            </OriginalInputs>
+            <CustomRangeContainer>
+              <ThumbValue css={{ left: '2%' }}>{minValue}</ThumbValue>
+              <Rail>
+                <InnerRail
+                  css={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
+                />
+              </Rail>
+              <ThumbValue css={{ left: '96%' }}>{maxValue}</ThumbValue>
+            </CustomRangeContainer>
+          </>
+        ) : (
+          <IndividualRange
             type="range"
             value={maxValue}
             min={min}
             max={max}
-            step={step}
             onChange={(e) => handleMaxChange(e)}
           />
-        </OriginalInputs>
-        <CustomRangeContainer>
-          <ThumbValue css={{ left: '2%' }}>{minValue}</ThumbValue>
-          <Rail>
-            <InnerRail
-              css={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
-            />
-          </Rail>
-          <ThumbValue css={{ left: '96%' }}>{maxValue}</ThumbValue>
-        </CustomRangeContainer>
+        )}
       </RangeContainer>
     )
     return <Range />

@@ -6,7 +6,6 @@ import { StyledInput } from './styled'
 type RangeComponentOwnProps = {
   css?: CSS
   kind?: KINDS
-  size?: 'small' | 'medium'
   label?: string | ReactNode
   disabled?: boolean
   value?: string | number
@@ -17,7 +16,7 @@ type RangeComponentOwnProps = {
   textColor?: string
   borderColor?: string
   id?: string
-  checked?: boolean
+  multiple?: boolean
   min: number
   max: number
   step?: number

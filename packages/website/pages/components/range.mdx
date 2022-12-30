@@ -3,7 +3,7 @@ name: Range
 ---
 
 import { Playground } from 'dokz'
-import { Range } from '@finetwork/ui'
+import { Range, H2, H3, Paragraph4, Paragraph1, Link } from '@finetwork/ui'
 import { styles } from '../../styles.ts'
 
 <div />
@@ -21,6 +21,8 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Range min={0} max={30} />
+    <div style={{ width: '80%', height: '100%' }}>
+      <Range min={0} max={30} multiple />
+    </div>
   </div>
 </Playground>
