@@ -36,6 +36,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       borderRadius,
       error,
       borderColor,
+      checkColor,
+      hoverOptionColor,
+      hoverBackgroundOptionColor,
+      chosenColor,
       search,
       options,
       withoutCheck,
@@ -50,6 +54,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       hover: {},
       container: {},
       optionsContainer: {},
+      options: {},
     })
     React.useEffect(() => {
       let css = {
@@ -58,6 +63,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         hover: {},
         container: {},
         optionsContainer: {},
+        options: {},
       }
 
       if (hoverColor) {
@@ -115,9 +121,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (textColor) {
         css = {
           ...css,
-          container: {
-            ...css.container,
+          options: {
+            ...css.options,
             color: textColor,
+            '&:after': {
+              boxShadow: `inset 14px 14px ${textColor} !important`,
+            },
           },
         }
       }
@@ -137,6 +146,30 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           container: {
             ...css.container,
             width: `${width}px !important`,
+          },
+        }
+      }
+
+      if (hoverOptionColor) {
+        css = {
+          ...css,
+          options: {
+            ...css.options,
+            '&:hover': {
+              color: `${hoverOptionColor} !important`,
+            },
+          },
+        }
+      }
+
+      if (hoverBackgroundOptionColor) {
+        css = {
+          ...css,
+          options: {
+            ...css.options,
+            '&:hover': {
+              background: `${hoverBackgroundOptionColor} !important`,
+            },
           },
         }
       }
@@ -240,19 +273,33 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       return formattedArray
     }
 
-    function searchOption(e) {
+    function choseChosenOptionColor(option) {
+      if (chosenOption === option) {
+        if (chosenColor) return chosenColor
+        if (kind) {
+          if (kind === 'secondary') return '$colors$secondary'
+          if (kind === 'tertiary') return '$colors$tertiary'
+        }
+        return '$colors$primary'
+      }
+      if (textColor) return textColor
+      return 'black'
+    }
+    const [searchValue, setSearchValue] = React.useState<string>('')
+    React.useEffect(() => {
       let optionsFound = []
-      options.map((option, i) => {
-        if (option.label.toLowerCase().includes(e.toLowerCase()))
-          optionsFound.push(option)
-      })
-      console.log(e)
-      if (e === '') {
+      if (searchValue === '') {
         setAllPosibleOptions(options)
       } else {
+        options.map((option, i) => {
+          if (option.label.toLowerCase().includes(searchValue.toLowerCase()))
+            optionsFound.push(option)
+        })
         setAllPosibleOptions(optionsFound)
       }
-    }
+    }, [searchValue])
+
+    console.log(searchValue)
 
     function addOptions() {
       if (type === 'StandardWithTitle')
@@ -274,6 +321,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       e.code === 'Enter' && optionHasBeenChosen(option.label)
                     }
                     chosen={chosenOption === option.label ? true : false}
+                    css={
+                      (customStyle.options,
+                      {
+                        color: `${choseChosenOptionColor(option.label)}`,
+                        '&:after': {
+                          boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                            option.label
+                          )} !important`,
+                        },
+                      })
+                    }
                     key={option.value}
                   >
                     {option.label}
@@ -301,7 +359,20 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 <Checkbox
                   checked={chosenMultipleOptions?.includes(option.label)}
                   label={
-                    <StyledOptionMultiple key={option.value}>
+                    <StyledOptionMultiple
+                      css={
+                        (customStyle.options,
+                        {
+                          color: `${choseChosenOptionColor(option.label)}`,
+                          '&:after': {
+                            boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                              option.label
+                            )} !important`,
+                          },
+                        })
+                      }
+                      key={option.value}
+                    >
                       {option.label}
                     </StyledOptionMultiple>
                   }
@@ -333,7 +404,20 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                     <Checkbox
                       checked={chosenMultipleOptions?.includes(option.label)}
                       label={
-                        <StyledOptionMultiple key={option.value}>
+                        <StyledOptionMultiple
+                          css={
+                            (customStyle.options,
+                            {
+                              color: `${choseChosenOptionColor(option.label)}`,
+                              '&:after': {
+                                boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                                  option.label
+                                )} !important`,
+                              },
+                            })
+                          }
+                          key={option.value}
+                        >
                           {option.label}
                         </StyledOptionMultiple>
                       }
@@ -357,6 +441,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 e.code === 'Enter' && optionHasBeenChosen(option.label)
               }
               chosen={chosenOption === option.label ? true : false}
+              css={
+                (customStyle.options,
+                {
+                  color: `${choseChosenOptionColor(option.label)}`,
+                  '&:after': {
+                    boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                      option.label
+                    )} !important`,
+                  },
+                })
+              }
               key={option.value}
             >
               {option.label}
@@ -414,7 +509,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 <SearchInput
                   type="text"
                   placeholder="Buscar..."
-                  onChange={({ target: { value } }) => searchOption(value)}
+                  value={searchValue}
+                  onChange={({ target: { value } }) => {
+                    setSearchValue(value)
+                  }}
                 />
               </SearchContainer>
             )}

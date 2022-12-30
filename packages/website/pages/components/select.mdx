@@ -260,7 +260,7 @@ export const options = [
     <Select
       value="Elige..."
       label="Futas"
-      textColor="$primary"
+      textColor="green"
       options={options}
     />
   </div>
@@ -276,6 +276,51 @@ export const options = [
       value="Elige..."
       label="Futas"
       borderColor="green"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Hover Option Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      hoverOptionColor="#EEB637"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Hover Background Option Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      hoverBackgroundOptionColor="#FDF4DE"
+      options={options}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Chosen Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Select
+      value="Elige..."
+      label="Futas"
+      chosenColor="#829EFC"
       options={options}
     />
   </div>
