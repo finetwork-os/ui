@@ -331,17 +331,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       e.code === 'Enter' && optionHasBeenChosen(option.label)
                     }
                     chosen={chosenOption === option.label ? true : false}
-                    css={
-                      (customStyle.options,
-                      {
-                        color: `${choseChosenOptionColor(option.label)}`,
-                        '&:after': {
-                          boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                            option.label
-                          )} !important`,
-                        },
-                      })
-                    }
+                    css={{
+                      ...customStyle.options,
+                      color: `${choseChosenOptionColor(option.label)}`,
+                      '&:after': {
+                        boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                          option.label
+                        )} !important`,
+                      },
+                    }}
                     key={option.value}
                   >
                     {option.label}
@@ -372,17 +370,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   readOnly
                   label={
                     <StyledOptionMultiple
-                      css={
-                        (customStyle.options,
-                        {
-                          color: `${choseChosenOptionColor(option.label)}`,
-                          '&:after': {
-                            boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                              option.label
-                            )} !important`,
-                          },
-                        })
-                      }
+                      css={{
+                        ...customStyle.options,
+                        color: `${choseChosenOptionColor(option.label)}`,
+                        '&:after': {
+                          boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                            option.label
+                          )} !important`,
+                        },
+                      }}
                     >
                       {option.label}
                     </StyledOptionMultiple>
@@ -418,17 +414,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       readOnly
                       label={
                         <StyledOptionMultiple
-                          css={
-                            (customStyle.options,
-                            {
-                              color: `${choseChosenOptionColor(option.label)}`,
-                              '&:after': {
-                                boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                                  option.label
-                                )} !important`,
-                              },
-                            })
-                          }
+                          css={{
+                            ...customStyle.options,
+                            color: `${choseChosenOptionColor(option.label)}`,
+                            '&:after': {
+                              boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                                option.label
+                              )} !important`,
+                            },
+                          }}
                         >
                           {option.label}
                         </StyledOptionMultiple>
@@ -453,17 +447,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 e.code === 'Enter' && optionHasBeenChosen(option.label)
               }
               chosen={chosenOption === option.label ? true : false}
-              css={
-                (customStyle.options,
-                {
-                  color: `${choseChosenOptionColor(option.label)}`,
-                  '&:after': {
-                    boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                      option.label
-                    )} !important`,
-                  },
-                })
-              }
+              css={{
+                ...customStyle.options,
+                color: `${choseChosenOptionColor(option.label)}`,
+                '&:after': {
+                  boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                    option.label
+                  )} !important`,
+                },
+              }}
               key={option.value}
             >
               {option.label}
