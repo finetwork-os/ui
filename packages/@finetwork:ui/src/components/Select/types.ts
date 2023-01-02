@@ -22,6 +22,7 @@ export type SelectProps = {
   hoverBackgroundOptionColor?: boolean
   chosenColor?: boolean
   error?: boolean
+  errorMessage?: string
   search?: boolean
   options:
     | Array<{ value: string | number; label: string | number }>

@@ -327,3 +327,7 @@ export const StyledOptionMultiple = styled('li', {
   listStyle: 'none',
   alignItems: 'center',
 })
+
+export const ErrorMessage = styled('div', {
+  color: 'red',
+})

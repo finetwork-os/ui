@@ -3,6 +3,7 @@ import { Checkbox } from '../Checkbox'
 import {
   Arrow,
   Content,
+  ErrorMessage,
   MainContainer,
   MultipleContainer,
   SearchContainer,
@@ -35,6 +36,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       labelSize,
       borderRadius,
       error,
+      errorMessage,
       borderColor,
       checkColor,
       hoverOptionColor,
@@ -530,6 +532,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {addOptions()}
           </Content>
         </SelectContainer>
+        {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </MainContainer>
     )
     return <Select />
