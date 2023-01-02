@@ -318,12 +318,16 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {allPosibleOptions.map((optionGroup, i) => (
               <>
                 {optionGroup.title && (
-                  <StyledTitle>{optionGroup.title}</StyledTitle>
+                  <StyledTitle key={`${id}_title_${optionGroup.value}`}>
+                    {optionGroup.title}
+                  </StyledTitle>
                 )}
                 {optionGroup.options.map((option, i) => (
                   <>
                     {option.label === 'No encontrado' ? (
-                      <NotFoundMessage>No encontrado</NotFoundMessage>
+                      <NotFoundMessage key={`${id}_Not-Found`}>
+                        No encontrado
+                      </NotFoundMessage>
                     ) : (
                       <StyledOptionItem
                         tabIndex={0}
@@ -362,7 +366,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {allPosibleOptions.map((option, i) => (
               <>
                 {option.label === 'No encontrado' ? (
-                  <NotFoundMessage>No encontrado</NotFoundMessage>
+                  <NotFoundMessage key={`${id}_Not-Found`}>
+                    No encontrado
+                  </NotFoundMessage>
                 ) : (
                   <MultipleContainer
                     chosen={chosenMultipleOptions?.includes(option.label)}
@@ -407,12 +413,16 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {allPosibleOptions.map((optionGroup, i) => (
               <>
                 {optionGroup.title && (
-                  <StyledTitle>{optionGroup.title}</StyledTitle>
+                  <StyledTitle key={`${id}_title_${optionGroup.value}`}>
+                    {optionGroup.title}
+                  </StyledTitle>
                 )}
                 {optionGroup.options.map((option, i) => (
                   <>
                     {option.label === 'No encontrado' ? (
-                      <NotFoundMessage>No encontrado</NotFoundMessage>
+                      <NotFoundMessage key={`${id}_Not-Found`}>
+                        No encontrado
+                      </NotFoundMessage>
                     ) : (
                       <MultipleContainer
                         chosen={chosenOption === option.label ? true : false}
@@ -462,7 +472,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           {allPosibleOptions.map((option, i) => (
             <>
               {option.label === 'No encontrado' ? (
-                <NotFoundMessage>No encontrado</NotFoundMessage>
+                <NotFoundMessage key={`${id}_Not-Found`}>
+                  No encontrado
+                </NotFoundMessage>
               ) : (
                 <StyledOptionItem
                   tabIndex={0}
