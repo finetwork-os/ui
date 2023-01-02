@@ -203,6 +203,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
+      if (search) document.getElementById('seachInput').focus()
     }, [isOpen])
 
     const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
@@ -507,6 +508,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 <SearchInput
                   type="text"
                   placeholder="Buscar..."
+                  id="seachInput"
                   value={searchValue}
                   onChange={({ target: { value } }) => {
                     setSearchValue(value)
