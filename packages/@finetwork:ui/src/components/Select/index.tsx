@@ -1,23 +1,17 @@
 import * as React from 'react'
-import { Checkbox } from '../Checkbox'
+import { Options } from './options'
 import {
   Arrow,
   Content,
   ErrorMessage,
   MainContainer,
-  MultipleContainer,
-  NotFoundMessage,
   SearchContainer,
   SearchIcon,
   SearchInput,
   SelectContainer,
-  ShowChosenMultipleOptions,
+  ShowChosenOptions,
   StyledLabel,
-  StyledOptionItem,
-  StyledOptionMultiple,
-  StyledOptionsGroup,
   StyledSelect,
-  StyledTitle,
 } from './styled'
 import { SelectProps } from './types'
 
@@ -268,26 +262,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
     }
 
-    function optionHasBeenChosen(option) {
-      setChosenOption(option)
-      setIsOpen(false)
-    }
-
-    function multipleOptionHasBeenChosen(option) {
-      if (chosenMultipleOptions?.includes(option)) {
-        chosenMultipleOptions.splice(chosenMultipleOptions.indexOf(option), 1)
-
-        setChosenMultipleOptions((chosenMultipleOptions) => [
-          ...chosenMultipleOptions,
-        ])
-      } else {
-        setChosenMultipleOptions((chosenMultipleOptions) => [
-          ...chosenMultipleOptions,
-          option,
-        ])
-      }
-    }
-
     function selectLabelToMultipleOption() {
       if (chosenMultipleOptions.length <= 0) {
         return value ? value : 'Elige...'
@@ -301,214 +275,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         }
       }
       return formattedArray
-    }
-
-    function chosenOptionColor(option) {
-      if (chosenOption === option) {
-        if (chosenColor) return chosenColor
-        if (kind) {
-          if (kind === 'secondary') return '$colors$secondary'
-          if (kind === 'tertiary') return '$colors$tertiary'
-        }
-        return '$colors$primary'
-      }
-      if (textColor) return textColor
-      return 'black'
-    }
-
-    function addOptions() {
-      if (type === 'StandardWithTitle')
-        return (
-          <StyledOptionsGroup>
-            {allPosibleOptions.map((optionGroup, i) => (
-              <>
-                {optionGroup.title && (
-                  <StyledTitle key={`${id}_title_${optionGroup.value}`}>
-                    {optionGroup.title}
-                  </StyledTitle>
-                )}
-                {optionGroup.options.map((option, i) => (
-                  <>
-                    {option.label === 'No encontrado' ? (
-                      <NotFoundMessage key={`${id}_Not-Found`}>
-                        No encontrado
-                      </NotFoundMessage>
-                    ) : (
-                      <StyledOptionItem
-                        tabIndex={0}
-                        ref={optionRef}
-                        onClick={() => optionHasBeenChosen(option.label)}
-                        kind={kind}
-                        withoutCheck={withoutCheck}
-                        onKeyDown={(e) =>
-                          e.code === 'Enter' &&
-                          optionHasBeenChosen(option.label)
-                        }
-                        chosen={chosenOption === option.label ? true : false}
-                        css={{
-                          ...customStyle.options,
-                          color: `${chosenOptionColor(option.label)}`,
-                          '&:after': {
-                            boxShadow: `inset 14px 14px ${chosenOptionColor(
-                              option.label
-                            )} !important`,
-                          },
-                        }}
-                        key={`${id}_${option.value}`}
-                      >
-                        {option.label}
-                      </StyledOptionItem>
-                    )}
-                  </>
-                ))}
-              </>
-            ))}
-          </StyledOptionsGroup>
-        )
-      if (type === 'Multiple')
-        return (
-          <StyledOptionsGroup>
-            {allPosibleOptions.map((option, i) => (
-              <>
-                {option.label === 'No encontrado' ? (
-                  <NotFoundMessage key={`${id}_Not-Found`}>
-                    No encontrado
-                  </NotFoundMessage>
-                ) : (
-                  <MultipleContainer
-                    chosen={chosenMultipleOptions?.includes(option.label)}
-                    onClick={() => multipleOptionHasBeenChosen(option.label)}
-                    onKeyDown={(e) =>
-                      e.code === 'Enter' &&
-                      multipleOptionHasBeenChosen(option.label)
-                    }
-                    kind={kind}
-                    tabIndex={0}
-                    key={`${id}_${option.value}`}
-                    ref={optionRef}
-                  >
-                    <Checkbox
-                      checked={chosenMultipleOptions?.includes(option.label)}
-                      readOnly
-                      label={
-                        <StyledOptionMultiple
-                          css={{
-                            ...customStyle.options,
-                            color: `${chosenOptionColor(option.label)}`,
-                            '&:after': {
-                              boxShadow: `inset 14px 14px ${chosenOptionColor(
-                                option.label
-                              )} !important`,
-                            },
-                          }}
-                        >
-                          {option.label}
-                        </StyledOptionMultiple>
-                      }
-                    />
-                  </MultipleContainer>
-                )}
-              </>
-            ))}
-          </StyledOptionsGroup>
-        )
-      if (type === 'MultipleWithTitle')
-        return (
-          <StyledOptionsGroup>
-            {allPosibleOptions.map((optionGroup, i) => (
-              <>
-                {optionGroup.title && (
-                  <StyledTitle key={`${id}_title_${optionGroup.value}`}>
-                    {optionGroup.title}
-                  </StyledTitle>
-                )}
-                {optionGroup.options.map((option, i) => (
-                  <>
-                    {option.label === 'No encontrado' ? (
-                      <NotFoundMessage key={`${id}_Not-Found`}>
-                        No encontrado
-                      </NotFoundMessage>
-                    ) : (
-                      <MultipleContainer
-                        chosen={chosenOption === option.label ? true : false}
-                        onClick={() =>
-                          multipleOptionHasBeenChosen(option.label)
-                        }
-                        onKeyDown={(e) =>
-                          e.code === 'Enter' &&
-                          multipleOptionHasBeenChosen(option.label)
-                        }
-                        kind={kind}
-                        tabIndex={0}
-                        key={`${id}_${option.value}`}
-                        ref={optionRef}
-                      >
-                        <Checkbox
-                          checked={chosenMultipleOptions?.includes(
-                            option.label
-                          )}
-                          readOnly
-                          label={
-                            <StyledOptionMultiple
-                              css={{
-                                ...customStyle.options,
-                                color: `${chosenOptionColor(option.label)}`,
-                                '&:after': {
-                                  boxShadow: `inset 14px 14px ${chosenOptionColor(
-                                    option.label
-                                  )} !important`,
-                                },
-                              }}
-                            >
-                              {option.label}
-                            </StyledOptionMultiple>
-                          }
-                        />
-                      </MultipleContainer>
-                    )}
-                  </>
-                ))}
-              </>
-            ))}
-          </StyledOptionsGroup>
-        )
-      return (
-        <StyledOptionsGroup>
-          {allPosibleOptions.map((option, i) => (
-            <>
-              {option.label === 'No encontrado' ? (
-                <NotFoundMessage key={`${id}_Not-Found`}>
-                  No encontrado
-                </NotFoundMessage>
-              ) : (
-                <StyledOptionItem
-                  tabIndex={0}
-                  ref={optionRef}
-                  onClick={() => optionHasBeenChosen(option.label)}
-                  kind={kind}
-                  withoutCheck={withoutCheck}
-                  onKeyDown={(e) =>
-                    e.code === 'Enter' && optionHasBeenChosen(option.label)
-                  }
-                  chosen={chosenOption === option.label ? true : false}
-                  css={{
-                    ...customStyle.options,
-                    color: `${chosenOptionColor(option.label)}`,
-                    '&:after': {
-                      boxShadow: `inset 14px 14px ${chosenOptionColor(
-                        option.label
-                      )} !important`,
-                    },
-                  }}
-                  key={`${id}_${option.value}`}
-                >
-                  {option.label}
-                </StyledOptionItem>
-              )}
-            </>
-          ))}
-        </StyledOptionsGroup>
-      )
     }
 
     const Select = () => (
@@ -541,7 +307,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             css={customStyle.select}
             {...props}
           >
-            <ShowChosenMultipleOptions
+            <ShowChosenOptions
               css={{
                 width: `${width ? width - 10 : 110}px`,
               }}
@@ -549,7 +315,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               {type === 'Multiple' || type === 'MultipleWithTitle'
                 ? selectLabelToMultipleOption()
                 : chosenOption}
-            </ShowChosenMultipleOptions>
+            </ShowChosenOptions>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
           <Content
@@ -572,7 +338,22 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 />
               </SearchContainer>
             )}
-            {addOptions()}
+            <Options
+              type={type}
+              allPosibleOptions={allPosibleOptions}
+              optionRef={optionRef}
+              id={id}
+              chosenOption={chosenOption}
+              setChosenOption={setChosenOption}
+              setIsOpen={setIsOpen}
+              kind={kind}
+              withoutCheck={withoutCheck}
+              customStyle={customStyle}
+              chosenColor={chosenColor}
+              textColor={textColor}
+              chosenMultipleOptions={chosenMultipleOptions}
+              setChosenMultipleOptions={setChosenMultipleOptions}
+            />
           </Content>
         </SelectContainer>
         {error && <ErrorMessage>{errorMessage}</ErrorMessage>}

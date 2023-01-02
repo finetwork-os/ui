@@ -351,7 +351,7 @@ export const NotFoundMessage = styled('p', {
   marginTop: '10px',
 })
 
-export const ShowChosenMultipleOptions = styled('span', {
+export const ShowChosenOptions = styled('span', {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis !important',
