@@ -11,6 +11,7 @@ import {
   SearchIcon,
   SearchInput,
   SelectContainer,
+  ShowChosenMultipleOptions,
   StyledLabel,
   StyledOptionItem,
   StyledOptionMultiple,
@@ -197,18 +198,26 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       setCustomStyle(css)
     }, [])
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
+
     const [chosenOption, setChosenOption] = React.useState<string | number>(
       value
     )
+
     const [chosenMultipleOptions, setChosenMultipleOptions] = React.useState<
       Array<string | number>
     >([])
 
+    const [searchValue, setSearchValue] = React.useState<string>('')
+
+    const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
+
+    React.useEffect(() => {
+      document.addEventListener('click', handleOutsideClick, true)
+    }, [])
+
     React.useEffect(() => {
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
     }, [isOpen])
-
-    const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
 
     React.useEffect(() => {
       if (type === 'Multiple' || type === 'MultipleWithTitle') {
@@ -216,6 +225,48 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           setValue(chosenMultipleOptions)
       } else if (chosenOption !== undefined && setValue) setValue(chosenOption)
     }, [chosenOption, chosenMultipleOptions])
+
+    React.useEffect(() => {
+      let optionsFound = []
+      if (searchValue === '') {
+        setAllPosibleOptions(options)
+      } else {
+        options.map((option, i) => {
+          if (option.label.toLowerCase().includes(searchValue.toLowerCase()))
+            optionsFound.push(option)
+        })
+        if (optionsFound.length <= 0) {
+          setAllPosibleOptions([
+            {
+              value: 'No encontrado',
+              label: 'No encontrado',
+            },
+          ])
+        } else {
+          setAllPosibleOptions(optionsFound)
+        }
+      }
+    }, [searchValue])
+
+    const inputRef = React.useRef(null)
+    const optionRef = React.useRef(null)
+    const optionGroupRef = React.useRef(null)
+
+    function handleOutsideClick(e) {
+      if (
+        !inputRef.current?.contains(e.target) &&
+        !optionRef.current?.contains(e.target) &&
+        !optionGroupRef.current?.contains(e.target)
+      ) {
+        setIsOpen(false)
+      } else {
+        if (inputRef.current?.contains(e.target)) {
+          if (!disabled) setIsOpen(isOpen === true ? false : true)
+        } else {
+          if (!disabled) setIsOpen(true)
+        }
+      }
+    }
 
     function optionHasBeenChosen(option) {
       setChosenOption(option)
@@ -234,30 +285,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           ...chosenMultipleOptions,
           option,
         ])
-      }
-    }
-
-    React.useEffect(() => {
-      document.addEventListener('click', handleOutsideClick, true)
-    }, [])
-
-    const inputRef = React.useRef(null)
-    const optionRef = React.useRef(null)
-    const optionGroupRef = React.useRef(null)
-
-    const handleOutsideClick = (e) => {
-      if (
-        !inputRef.current?.contains(e.target) &&
-        !optionRef.current?.contains(e.target) &&
-        !optionGroupRef.current?.contains(e.target)
-      ) {
-        setIsOpen(false)
-      } else {
-        if (inputRef.current?.contains(e.target)) {
-          if (!disabled) setIsOpen(isOpen === true ? false : true)
-        } else {
-          if (!disabled) setIsOpen(true)
-        }
       }
     }
 
@@ -288,28 +315,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (textColor) return textColor
       return 'black'
     }
-    const [searchValue, setSearchValue] = React.useState<string>('')
-    React.useEffect(() => {
-      let optionsFound = []
-      if (searchValue === '') {
-        setAllPosibleOptions(options)
-      } else {
-        options.map((option, i) => {
-          if (option.label.toLowerCase().includes(searchValue.toLowerCase()))
-            optionsFound.push(option)
-        })
-        if (optionsFound.length <= 0) {
-          setAllPosibleOptions([
-            {
-              value: 'No encontrado',
-              label: 'No encontrado',
-            },
-          ])
-        } else {
-          setAllPosibleOptions(optionsFound)
-        }
-      }
-    }, [searchValue])
 
     function addOptions() {
       if (type === 'StandardWithTitle')
@@ -536,11 +541,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             css={customStyle.select}
             {...props}
           >
-            <span>
+            <ShowChosenMultipleOptions
+              css={{
+                width: `${width ? width - 10 : 110}px`,
+              }}
+            >
               {type === 'Multiple' || type === 'MultipleWithTitle'
                 ? selectLabelToMultipleOption()
                 : chosenOption}
-            </span>
+            </ShowChosenMultipleOptions>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
           <Content

@@ -89,7 +89,7 @@ export const SelectContainer = styled('div', {
 export const StyledSelect = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  height: 'auto',
+  height: '40px',
   minHeight: '3em',
   padding: '0 15px',
   background: '#fff',
@@ -349,4 +349,10 @@ export const NotFoundMessage = styled('p', {
   height: '40px',
   padding: '0 13px',
   marginTop: '10px',
+})
+
+export const ShowChosenMultipleOptions = styled('span', {
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis !important',
 })
