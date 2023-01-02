@@ -296,7 +296,16 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           if (option.label.toLowerCase().includes(searchValue.toLowerCase()))
             optionsFound.push(option)
         })
-        setAllPosibleOptions(optionsFound)
+        if (optionsFound.length <= 0) {
+          setAllPosibleOptions([
+            {
+              value: 'No se ha encontrado',
+              label: 'No se ha encontrado',
+            },
+          ])
+        } else {
+          setAllPosibleOptions(optionsFound)
+        }
       }
     }, [searchValue])
 
@@ -353,6 +362,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 }
                 kind={kind}
                 tabIndex={0}
+                key={option.value}
                 ref={optionRef}
               >
                 <Checkbox
@@ -371,7 +381,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                           },
                         })
                       }
-                      key={option.value}
                     >
                       {option.label}
                     </StyledOptionMultiple>
@@ -399,6 +408,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                     }
                     kind={kind}
                     tabIndex={0}
+                    key={option.value}
                     ref={optionRef}
                   >
                     <Checkbox
@@ -417,7 +427,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                               },
                             })
                           }
-                          key={option.value}
                         >
                           {option.label}
                         </StyledOptionMultiple>
