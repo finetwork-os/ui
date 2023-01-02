@@ -299,8 +299,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
     }, [searchValue])
 
-    console.log(searchValue)
-
     function addOptions() {
       if (type === 'StandardWithTitle')
         return (
