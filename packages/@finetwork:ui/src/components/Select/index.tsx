@@ -357,6 +357,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               >
                 <Checkbox
                   checked={chosenMultipleOptions?.includes(option.label)}
+                  readOnly
                   label={
                     <StyledOptionMultiple
                       css={
@@ -402,6 +403,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   >
                     <Checkbox
                       checked={chosenMultipleOptions?.includes(option.label)}
+                      readOnly
                       label={
                         <StyledOptionMultiple
                           css={
