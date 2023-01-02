@@ -206,7 +206,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
-      if (search) document.getElementById('seachInput').focus()
     }, [isOpen])
 
     const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
@@ -277,7 +276,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       return formattedArray
     }
 
-    function choseChosenOptionColor(option) {
+    function chosenOptionColor(option) {
       if (chosenOption === option) {
         if (chosenColor) return chosenColor
         if (kind) {
@@ -339,9 +338,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                         chosen={chosenOption === option.label ? true : false}
                         css={{
                           ...customStyle.options,
-                          color: `${choseChosenOptionColor(option.label)}`,
+                          color: `${chosenOptionColor(option.label)}`,
                           '&:after': {
-                            boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                            boxShadow: `inset 14px 14px ${chosenOptionColor(
                               option.label
                             )} !important`,
                           },
@@ -384,9 +383,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                         <StyledOptionMultiple
                           css={{
                             ...customStyle.options,
-                            color: `${choseChosenOptionColor(option.label)}`,
+                            color: `${chosenOptionColor(option.label)}`,
                             '&:after': {
-                              boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                              boxShadow: `inset 14px 14px ${chosenOptionColor(
                                 option.label
                               )} !important`,
                             },
@@ -438,11 +437,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                             <StyledOptionMultiple
                               css={{
                                 ...customStyle.options,
-                                color: `${choseChosenOptionColor(
-                                  option.label
-                                )}`,
+                                color: `${chosenOptionColor(option.label)}`,
                                 '&:after': {
-                                  boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                                  boxShadow: `inset 14px 14px ${chosenOptionColor(
                                     option.label
                                   )} !important`,
                                 },
@@ -479,9 +476,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   chosen={chosenOption === option.label ? true : false}
                   css={{
                     ...customStyle.options,
-                    color: `${choseChosenOptionColor(option.label)}`,
+                    color: `${chosenOptionColor(option.label)}`,
                     '&:after': {
-                      boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                      boxShadow: `inset 14px 14px ${chosenOptionColor(
                         option.label
                       )} !important`,
                     },
@@ -544,6 +541,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 <SearchIcon />
                 <SearchInput
                   type="text"
+                  autoFocus
                   placeholder="Buscar..."
                   id="seachInput"
                   value={searchValue}
