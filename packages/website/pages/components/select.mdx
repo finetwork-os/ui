@@ -110,14 +110,21 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Standard" options={options} />
     <Select
+      id="type-standard"
+      value="Elige..."
+      label="Standard"
+      options={options}
+    />
+    <Select
+      id="type-standard-with-title"
       value="Elige..."
       label="Standard With Title"
       type="StandardWithTitle"
       options={allOptions}
     />
     <Select
+      id="type-multiple"
       value="Elige..."
       label="Multiple"
       type="Multiple"
@@ -125,6 +132,7 @@ export const options = [
       options={options}
     />
     <Select
+      id="type-multiple-with-title"
       value="Elige..."
       label="Multiple With Title"
       type="MultipleWithTitle"
@@ -140,7 +148,13 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" search options={options} />
+    <Select
+      id="search"
+      value="Elige..."
+      label="Futas"
+      search
+      options={options}
+    />
   </div>
 </Playground>
 
@@ -150,7 +164,13 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" disabled options={options} />
+    <Select
+      id="disabled"
+      value="Elige..."
+      label="Futas"
+      disabled
+      options={options}
+    />
   </div>
 </Playground>
 
@@ -161,6 +181,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="border-radius"
       value="Elige..."
       label="Futas"
       borderRadius="5px"
@@ -175,7 +196,13 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" labelSize="20px" options={options} />
+    <Select
+      id="label-size"
+      value="Elige..."
+      label="Futas"
+      labelSize="20px"
+      options={options}
+    />
   </div>
 </Playground>
 
@@ -186,6 +213,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="label-color"
       value="Elige..."
       label="Futas"
       labelColor="$primary"
@@ -201,6 +229,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="error"
       value="Elige..."
       label="Futas"
       error
@@ -216,7 +245,13 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" width={200} options={options} />
+    <Select
+      id="width"
+      value="Elige..."
+      label="Futas"
+      width={200}
+      options={options}
+    />
   </div>
 </Playground>
 
@@ -226,14 +261,22 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Primary" kind="primary" options={options} />
     <Select
+      id="kind-primary"
+      value="Elige..."
+      label="Primary"
+      kind="primary"
+      options={options}
+    />
+    <Select
+      id="kind-secondary"
       value="Elige..."
       label="Secondary"
       kind="secondary"
       options={options}
     />
     <Select
+      id="kind-tertiary"
       value="Elige..."
       label="Tertiary"
       kind="tertiary"
@@ -249,6 +292,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="hover-color"
       value="Elige..."
       label="Futas"
       hoverColor="green"
@@ -264,6 +308,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="text-color"
       value="Elige..."
       label="Futas"
       textColor="green"
@@ -279,6 +324,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="border-color"
       value="Elige..."
       label="Futas"
       borderColor="green"
@@ -294,6 +340,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="hover-option-color"
       value="Elige..."
       label="Futas"
       hoverOptionColor="#EEB637"
@@ -309,6 +356,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="hover-background-option-color"
       value="Elige..."
       label="Futas"
       hoverBackgroundOptionColor="#FDF4DE"
@@ -324,6 +372,7 @@ export const options = [
 <Playground>
   <div style={styles}>
     <Select
+      id="chosen-color"
       value="Elige..."
       label="Futas"
       chosenColor="#829EFC"
@@ -338,6 +387,12 @@ export const options = [
 
 <Playground>
   <div style={styles}>
-    <Select value="Elige..." label="Futas" withoutCheck options={options} />
+    <Select
+      id="without-check"
+      value="Elige..."
+      label="Futas"
+      withoutCheck
+      options={options}
+    />
   </div>
 </Playground>

@@ -345,7 +345,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                             )} !important`,
                           },
                         }}
-                        key={option.value}
+                        key={`${id}_${option.value}`}
                       >
                         {option.label}
                       </StyledOptionItem>
@@ -373,7 +373,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                     }
                     kind={kind}
                     tabIndex={0}
-                    key={option.value}
+                    key={`${id}_${option.value}`}
                     ref={optionRef}
                   >
                     <Checkbox
@@ -425,7 +425,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                         }
                         kind={kind}
                         tabIndex={0}
-                        key={option.value}
+                        key={`${id}_${option.value}`}
                         ref={optionRef}
                       >
                         <Checkbox
@@ -483,7 +483,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       )} !important`,
                     },
                   }}
-                  key={option.value}
+                  key={`${id}_${option.value}`}
                 >
                   {option.label}
                 </StyledOptionItem>
