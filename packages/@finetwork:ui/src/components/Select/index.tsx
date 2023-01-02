@@ -6,6 +6,7 @@ import {
   ErrorMessage,
   MainContainer,
   MultipleContainer,
+  NotFoundMessage,
   SearchContainer,
   SearchIcon,
   SearchInput,
@@ -321,29 +322,36 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   <StyledTitle>{optionGroup.title}</StyledTitle>
                 )}
                 {optionGroup.options.map((option, i) => (
-                  <StyledOptionItem
-                    tabIndex={0}
-                    ref={optionRef}
-                    onClick={() => optionHasBeenChosen(option.label)}
-                    kind={kind}
-                    withoutCheck={withoutCheck}
-                    onKeyDown={(e) =>
-                      e.code === 'Enter' && optionHasBeenChosen(option.label)
-                    }
-                    chosen={chosenOption === option.label ? true : false}
-                    css={{
-                      ...customStyle.options,
-                      color: `${choseChosenOptionColor(option.label)}`,
-                      '&:after': {
-                        boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                          option.label
-                        )} !important`,
-                      },
-                    }}
-                    key={option.value}
-                  >
-                    {option.label}
-                  </StyledOptionItem>
+                  <>
+                    {option.label === 'No encontrado' ? (
+                      <NotFoundMessage>No encontrado</NotFoundMessage>
+                    ) : (
+                      <StyledOptionItem
+                        tabIndex={0}
+                        ref={optionRef}
+                        onClick={() => optionHasBeenChosen(option.label)}
+                        kind={kind}
+                        withoutCheck={withoutCheck}
+                        onKeyDown={(e) =>
+                          e.code === 'Enter' &&
+                          optionHasBeenChosen(option.label)
+                        }
+                        chosen={chosenOption === option.label ? true : false}
+                        css={{
+                          ...customStyle.options,
+                          color: `${choseChosenOptionColor(option.label)}`,
+                          '&:after': {
+                            boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                              option.label
+                            )} !important`,
+                          },
+                        }}
+                        key={option.value}
+                      >
+                        {option.label}
+                      </StyledOptionItem>
+                    )}
+                  </>
                 ))}
               </>
             ))}
@@ -353,52 +361,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         return (
           <StyledOptionsGroup>
             {allPosibleOptions.map((option, i) => (
-              <MultipleContainer
-                chosen={chosenMultipleOptions?.includes(option.label)}
-                onClick={() => multipleOptionHasBeenChosen(option.label)}
-                onKeyDown={(e) =>
-                  e.code === 'Enter' &&
-                  multipleOptionHasBeenChosen(option.label)
-                }
-                kind={kind}
-                tabIndex={0}
-                key={option.value}
-                ref={optionRef}
-              >
-                <Checkbox
-                  checked={chosenMultipleOptions?.includes(option.label)}
-                  readOnly
-                  label={
-                    <StyledOptionMultiple
-                      css={{
-                        ...customStyle.options,
-                        color: `${choseChosenOptionColor(option.label)}`,
-                        '&:after': {
-                          boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                            option.label
-                          )} !important`,
-                        },
-                      }}
-                    >
-                      {option.label}
-                    </StyledOptionMultiple>
-                  }
-                />
-              </MultipleContainer>
-            ))}
-          </StyledOptionsGroup>
-        )
-      if (type === 'MultipleWithTitle')
-        return (
-          <StyledOptionsGroup>
-            {allPosibleOptions.map((optionGroup, i) => (
               <>
-                {optionGroup.title && (
-                  <StyledTitle>{optionGroup.title}</StyledTitle>
-                )}
-                {optionGroup.options.map((option, i) => (
+                {option.label === 'No encontrado' ? (
+                  <NotFoundMessage>No encontrado</NotFoundMessage>
+                ) : (
                   <MultipleContainer
-                    chosen={chosenOption === option.label ? true : false}
+                    chosen={chosenMultipleOptions?.includes(option.label)}
                     onClick={() => multipleOptionHasBeenChosen(option.label)}
                     onKeyDown={(e) =>
                       e.code === 'Enter' &&
@@ -429,6 +397,64 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       }
                     />
                   </MultipleContainer>
+                )}
+              </>
+            ))}
+          </StyledOptionsGroup>
+        )
+      if (type === 'MultipleWithTitle')
+        return (
+          <StyledOptionsGroup>
+            {allPosibleOptions.map((optionGroup, i) => (
+              <>
+                {optionGroup.title && (
+                  <StyledTitle>{optionGroup.title}</StyledTitle>
+                )}
+                {optionGroup.options.map((option, i) => (
+                  <>
+                    {option.label === 'No encontrado' ? (
+                      <NotFoundMessage>No encontrado</NotFoundMessage>
+                    ) : (
+                      <MultipleContainer
+                        chosen={chosenOption === option.label ? true : false}
+                        onClick={() =>
+                          multipleOptionHasBeenChosen(option.label)
+                        }
+                        onKeyDown={(e) =>
+                          e.code === 'Enter' &&
+                          multipleOptionHasBeenChosen(option.label)
+                        }
+                        kind={kind}
+                        tabIndex={0}
+                        key={option.value}
+                        ref={optionRef}
+                      >
+                        <Checkbox
+                          checked={chosenMultipleOptions?.includes(
+                            option.label
+                          )}
+                          readOnly
+                          label={
+                            <StyledOptionMultiple
+                              css={{
+                                ...customStyle.options,
+                                color: `${choseChosenOptionColor(
+                                  option.label
+                                )}`,
+                                '&:after': {
+                                  boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                                    option.label
+                                  )} !important`,
+                                },
+                              }}
+                            >
+                              {option.label}
+                            </StyledOptionMultiple>
+                          }
+                        />
+                      </MultipleContainer>
+                    )}
+                  </>
                 ))}
               </>
             ))}
@@ -437,29 +463,35 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       return (
         <StyledOptionsGroup>
           {allPosibleOptions.map((option, i) => (
-            <StyledOptionItem
-              tabIndex={0}
-              ref={optionRef}
-              onClick={() => optionHasBeenChosen(option.label)}
-              kind={kind}
-              withoutCheck={withoutCheck}
-              onKeyDown={(e) =>
-                e.code === 'Enter' && optionHasBeenChosen(option.label)
-              }
-              chosen={chosenOption === option.label ? true : false}
-              css={{
-                ...customStyle.options,
-                color: `${choseChosenOptionColor(option.label)}`,
-                '&:after': {
-                  boxShadow: `inset 14px 14px ${choseChosenOptionColor(
-                    option.label
-                  )} !important`,
-                },
-              }}
-              key={option.value}
-            >
-              {option.label}
-            </StyledOptionItem>
+            <>
+              {option.label === 'No encontrado' ? (
+                <NotFoundMessage>No encontrado</NotFoundMessage>
+              ) : (
+                <StyledOptionItem
+                  tabIndex={0}
+                  ref={optionRef}
+                  onClick={() => optionHasBeenChosen(option.label)}
+                  kind={kind}
+                  withoutCheck={withoutCheck}
+                  onKeyDown={(e) =>
+                    e.code === 'Enter' && optionHasBeenChosen(option.label)
+                  }
+                  chosen={chosenOption === option.label ? true : false}
+                  css={{
+                    ...customStyle.options,
+                    color: `${choseChosenOptionColor(option.label)}`,
+                    '&:after': {
+                      boxShadow: `inset 14px 14px ${choseChosenOptionColor(
+                        option.label
+                      )} !important`,
+                    },
+                  }}
+                  key={option.value}
+                >
+                  {option.label}
+                </StyledOptionItem>
+              )}
+            </>
           ))}
         </StyledOptionsGroup>
       )

@@ -341,6 +341,12 @@ export const StyledOptionMultiple = styled('li', {
   alignItems: 'center',
 })
 
-export const ErrorMessage = styled('div', {
+export const ErrorMessage = styled('p', {
   color: 'red',
+})
+
+export const NotFoundMessage = styled('p', {
+  height: '40px',
+  padding: '0 13px',
+  marginTop: '10px',
 })
