@@ -299,8 +299,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         if (optionsFound.length <= 0) {
           setAllPosibleOptions([
             {
-              value: 'No se ha encontrado',
-              label: 'No se ha encontrado',
+              value: 'No encontrado',
+              label: 'No encontrado',
             },
           ])
         } else {
