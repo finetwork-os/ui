@@ -224,11 +224,13 @@ export const StyledOptionItem = styled('li', {
       primary: {
         '&:hover': {
           color: '$primary',
+          background: '$primary100 !important',
         },
       },
       secondary: {
         '&:hover': {
           color: '$secondary',
+          background: '$secondary100 !important',
         },
         '&:after': {
           boxShadow: 'inset 14px 14px $colors$secondary !important',
@@ -237,6 +239,7 @@ export const StyledOptionItem = styled('li', {
       tertiary: {
         '&:hover': {
           color: '$tertiary',
+          background: '$tertiary100 !important',
         },
         '&:after': {
           boxShadow: 'inset 14px 14px $colors$tertiary !important',
