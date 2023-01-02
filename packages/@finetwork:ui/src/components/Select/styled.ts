@@ -285,30 +285,40 @@ export const MultipleContainer = styled('div', {
   display: 'flex',
   '&:hover': {
     background: '$secondary100',
-    color: '$primary',
     cursor: 'pointer',
+    '& div label li': {
+      color: '$primary',
+    },
   },
   variants: {
     chosen: {
       true: {
-        color: '$primary',
+        '& div label li': {
+          color: '$primary',
+        },
         background: '$secondary100',
       },
     },
     kind: {
       primary: {
         '&:hover': {
-          color: '$primary',
+          '& div label li': {
+            color: '$primary',
+          },
         },
       },
       secondary: {
         '&:hover': {
-          color: '$secondary',
+          '& div label li': {
+            color: '$secondary',
+          },
         },
       },
       tertiary: {
         '&:hover': {
-          color: '$tertiary',
+          '& div label li': {
+            color: '$tertiary',
+          },
         },
       },
     },
