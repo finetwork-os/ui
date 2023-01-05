@@ -9,6 +9,7 @@ export type RadioGroupComponentProps = {
   title?: Enhancer
   children?: ReactNode
   error?: string
+  optionsGap?: string
 }
 
 type RadioComponentOwnProps = {

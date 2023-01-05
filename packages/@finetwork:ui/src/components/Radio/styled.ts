@@ -1,19 +1,13 @@
 import { styled } from '../../stitches.config'
 import { Paragraph4, Paragraph5 } from '../Typography'
-import {
-  scaleDownAnimation,
-  scaleUpAnimation,
-} from '@finetwork:ui/src/animations'
 
 export const StyledContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.7rem',
 })
 
 export const StyledRadioGroupContainer = styled('div', {
   display: 'flex',
-  gap: '0.4rem',
   variants: {
     direction: {
       horizontal: {
