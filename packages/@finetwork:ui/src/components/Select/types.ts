@@ -24,6 +24,7 @@ export type SelectProps = {
   error?: boolean
   errorMessage?: string
   search?: boolean
+  height?: string
   options:
     | Array<{ value: string | number; label: string | number }>
     | Array<{

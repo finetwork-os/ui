@@ -95,3 +95,13 @@ export const rotateAnimation = keyframes({
     transform: 'rotate(-180deg) ',
   },
 })
+
+export const fadeInBackground = keyframes({
+  '0%': { backgroundColor: 'rgba(0,0,0,0)' },
+  '100%': { backgroundColor: 'rgba(0,0,0,0.5)' },
+})
+
+export const fadeOutBackground = keyframes({
+  '0%': { backgroundColor: 'rgba(0,0,0,0)' },
+  '100%': { backgroundColor: 'rgba(0,0,0,0)' },
+})

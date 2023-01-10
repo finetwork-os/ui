@@ -1,3 +1,10 @@
+import {
+  fadeInBackground,
+  fadeOutBackground,
+} from '@finetwork:ui/src/animations'
+import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
+import { theme } from '@finetwork:ui/src/stitches.config'
+import { mediaQuery } from '@finetwork:ui/src/types'
 import * as React from 'react'
 import { Options } from './options'
 import {
@@ -5,6 +12,7 @@ import {
   Content,
   ErrorMessage,
   MainContainer,
+  Overlay,
   SearchContainer,
   SearchIcon,
   SearchInput,
@@ -39,6 +47,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       hoverBackgroundOptionColor,
       chosenColor,
       search,
+      height,
       options,
       withoutCheck,
       setValue,
@@ -52,6 +61,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       hover: {},
       container: {},
       optionsContainer: {},
+      optionsGroup: {},
       options: {},
     })
     React.useEffect(() => {
@@ -61,6 +71,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         hover: {},
         container: {},
         optionsContainer: {},
+        optionsGroup: {},
         options: {},
       }
 
@@ -172,6 +183,20 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         }
       }
 
+      if (height) {
+        css = {
+          ...css,
+          optionsContainer: {
+            ...css.optionsContainer,
+            height: `${height}`,
+          },
+          optionsGroup: {
+            maxHeight: 'none !important',
+            height: '100%',
+          },
+        }
+      }
+
       if (borderRadius) {
         css = {
           ...css,
@@ -203,14 +228,24 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     const [searchValue, setSearchValue] = React.useState<string>('')
 
+    const [isOverlay, setIsOverlay] = React.useState<boolean>(false)
+
     const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
+
+    const { width: displayWidth } = useWindowSize()
 
     React.useEffect(() => {
       document.addEventListener('click', handleOutsideClick, true)
     }, [])
 
     React.useEffect(() => {
-      document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
+      if (displayWidth < mediaQuery.tablet && isOpen) {
+        document.body.style.overflow = 'hidden'
+        setIsOverlay(true)
+      } else {
+        document.body.style.overflow = 'auto'
+        setIsOverlay(false)
+      }
     }, [isOpen])
 
     React.useEffect(() => {
@@ -318,43 +353,85 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             </ShowChosenOptions>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
-          <Content
-            ref={optionGroupRef}
-            isOpen={isOpen}
-            css={customStyle.optionsContainer}
-          >
-            {search && (
-              <SearchContainer>
-                <SearchIcon />
-                <SearchInput
-                  type="text"
-                  autoFocus
-                  placeholder="Buscar..."
-                  id="seachInput"
-                  value={searchValue}
-                  onChange={({ target: { value } }) => {
-                    setSearchValue(value)
-                  }}
+          {displayWidth < mediaQuery.tablet ? (
+            <Overlay isMobile={isOverlay}>
+              <Content
+                ref={optionGroupRef}
+                isOpen={isOpen}
+                css={customStyle.optionsContainer}
+              >
+                {search && (
+                  <SearchContainer>
+                    <SearchIcon />
+                    <SearchInput
+                      type="text"
+                      autoFocus
+                      placeholder="Buscar..."
+                      id="seachInput"
+                      value={searchValue}
+                      onChange={({ target: { value } }) => {
+                        setSearchValue(value)
+                      }}
+                    />
+                  </SearchContainer>
+                )}
+                <Options
+                  type={type}
+                  allPosibleOptions={allPosibleOptions}
+                  optionRef={optionRef}
+                  id={id}
+                  chosenOption={chosenOption}
+                  setChosenOption={setChosenOption}
+                  setIsOpen={setIsOpen}
+                  kind={kind}
+                  withoutCheck={withoutCheck}
+                  customStyle={customStyle}
+                  chosenColor={chosenColor}
+                  textColor={textColor}
+                  chosenMultipleOptions={chosenMultipleOptions}
+                  setChosenMultipleOptions={setChosenMultipleOptions}
                 />
-              </SearchContainer>
-            )}
-            <Options
-              type={type}
-              allPosibleOptions={allPosibleOptions}
-              optionRef={optionRef}
-              id={id}
-              chosenOption={chosenOption}
-              setChosenOption={setChosenOption}
-              setIsOpen={setIsOpen}
-              kind={kind}
-              withoutCheck={withoutCheck}
-              customStyle={customStyle}
-              chosenColor={chosenColor}
-              textColor={textColor}
-              chosenMultipleOptions={chosenMultipleOptions}
-              setChosenMultipleOptions={setChosenMultipleOptions}
-            />
-          </Content>
+              </Content>
+            </Overlay>
+          ) : (
+            <Content
+              ref={optionGroupRef}
+              isOpen={isOpen}
+              css={customStyle.optionsContainer}
+            >
+              {search && (
+                <SearchContainer>
+                  <SearchIcon />
+                  <SearchInput
+                    type="text"
+                    autoFocus
+                    placeholder="Buscar..."
+                    id="seachInput"
+                    value={searchValue}
+                    onChange={({ target: { value } }) => {
+                      setSearchValue(value)
+                    }}
+                  />
+                </SearchContainer>
+              )}
+              <Options
+                type={type}
+                allPosibleOptions={allPosibleOptions}
+                optionRef={optionRef}
+                id={id}
+                chosenOption={chosenOption}
+                setChosenOption={setChosenOption}
+                setIsOpen={setIsOpen}
+                kind={kind}
+                withoutCheck={withoutCheck}
+                customStyle={customStyle}
+                chosenColor={chosenColor}
+                textColor={textColor}
+                chosenMultipleOptions={chosenMultipleOptions}
+                setChosenMultipleOptions={setChosenMultipleOptions}
+              />
+            </Content>
+          )}
         </SelectContainer>
         {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </MainContainer>

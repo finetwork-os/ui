@@ -248,7 +248,7 @@ export const StyledTextarea: StyledComponent<
   '&::placeholder': {
     color: '#A7A7A7',
   },
-  '@tablet': {
+  '@tabletXl': {
     fontSize: 'unset',
   },
   '&:focus': {

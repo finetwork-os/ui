@@ -30,6 +30,7 @@ type OptionsProps = {
     hover: {}
     container: {}
     optionsContainer: {}
+    optionsGroup: {}
     options: {}
   }
   chosenColor: boolean
@@ -91,7 +92,7 @@ export const Options: FC<OptionsProps> = ({
 
   if (type === 'StandardWithTitle')
     return (
-      <StyledOptionsGroup>
+      <StyledOptionsGroup css={customStyle.optionsGroup}>
         {allPosibleOptions.map((optionGroup, i) => (
           <>
             {optionGroup.title && (
@@ -138,7 +139,7 @@ export const Options: FC<OptionsProps> = ({
     )
   if (type === 'Multiple')
     return (
-      <StyledOptionsGroup>
+      <StyledOptionsGroup css={customStyle.optionsGroup}>
         {allPosibleOptions.map((option, i) => (
           <>
             {option.label === 'No encontrado' ? (
@@ -185,7 +186,7 @@ export const Options: FC<OptionsProps> = ({
     )
   if (type === 'MultipleWithTitle')
     return (
-      <StyledOptionsGroup>
+      <StyledOptionsGroup css={customStyle.optionsGroup}>
         {allPosibleOptions.map((optionGroup, i) => (
           <>
             {optionGroup.title && (
@@ -240,7 +241,7 @@ export const Options: FC<OptionsProps> = ({
       </StyledOptionsGroup>
     )
   return (
-    <StyledOptionsGroup>
+    <StyledOptionsGroup css={customStyle.optionsGroup}>
       {allPosibleOptions.map((option, i) => (
         <>
           {option.label === 'No encontrado' ? (

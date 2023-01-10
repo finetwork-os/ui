@@ -1,3 +1,4 @@
+import { fadeInBackground } from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 import { ChevronDownIcon, Loupe } from '../icons'
 
@@ -124,16 +125,47 @@ export const Arrow = styled(ChevronDownIcon, {
   },
 })
 
+export const Overlay = styled('div', {
+  display: 'none',
+  height: '100%',
+  zIndex: 9999,
+  position: 'fixed',
+  left: 0,
+  right: 0,
+  bottom: 0,
+  margin: '0 auto',
+  animation: `${fadeInBackground} .7s forwards`,
+  variants: {
+    isMobile: {
+      true: {
+        display: 'block',
+      },
+    },
+  },
+})
+
 export const Content = styled('div', {
   zIndex: 999999,
-  position: 'absolute',
+  position: 'fixed',
+  left: 0,
+  right: 0,
+  bottom: 0,
+  margin: '0 auto',
   transition:
     'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   padding: '5px',
-  width: 'inherit',
   marginTop: '3px',
   background: '#fff',
   boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+  borderRadius: '10px 10px 0px 0px',
+  '@tablet': {
+    left: 'unset',
+    right: 'unset',
+    bottom: 'unset',
+    width: 'inherit',
+    position: 'absolute',
+    borderRadius: 'unset',
+  },
   variants: {
     isOpen: {
       true: {
@@ -167,6 +199,7 @@ export const StyledOptionsGroup = styled('ul', {
 })
 
 export const StyledOptionItem = styled('li', {
+  justifyContent: 'center',
   display: 'flex',
   height: '40px',
   padding: '0 13px',
@@ -174,6 +207,9 @@ export const StyledOptionItem = styled('li', {
   marginBottom: '10px',
   listStyle: 'none',
   alignItems: 'center',
+  '@tablet': {
+    justifyContent: 'flex-start',
+  },
   '&:focus': {
     outline: '1px solid $primary',
     background: '$secondary100',
