@@ -6,12 +6,14 @@ import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import { theme } from '@finetwork:ui/src/stitches.config'
 import { mediaQuery } from '@finetwork:ui/src/types'
 import * as React from 'react'
+import { Separator } from '../Separator'
 import { Options } from './options'
 import {
   Arrow,
   Content,
   ErrorMessage,
   MainContainer,
+  MainTitle,
   Overlay,
   SearchContainer,
   SearchIcon,
@@ -48,6 +50,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       chosenColor,
       search,
       height,
+      selectTitle,
       options,
       withoutCheck,
       setValue,
@@ -360,6 +363,14 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 isOpen={isOpen}
                 css={customStyle.optionsContainer}
               >
+                {selectTitle && (
+                  <div style={{ width: '100%', marginBottom: '0.5rem' }}>
+                    <MainTitle css={{ padding: '0.7rem 0 0.7rem 0' }}>
+                      {selectTitle}
+                    </MainTitle>
+                    <Separator />
+                  </div>
+                )}
                 {search && (
                   <SearchContainer>
                     <SearchIcon />

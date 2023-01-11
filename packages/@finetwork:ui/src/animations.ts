@@ -105,3 +105,13 @@ export const fadeOutBackground = keyframes({
   '0%': { backgroundColor: 'rgba(0,0,0,0)' },
   '100%': { backgroundColor: 'rgba(0,0,0,0)' },
 })
+
+export const animationSelect = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(-10%)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+})
+
+export const animationSelectMobile = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(100%)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+})

@@ -1,4 +1,8 @@
-import { fadeInBackground } from '@finetwork:ui/src/animations'
+import {
+  animationSelect,
+  animationSelectMobile,
+  fadeInBackground,
+} from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 import { ChevronDownIcon, Loupe } from '../icons'
 
@@ -158,6 +162,7 @@ export const Content = styled('div', {
   background: '#fff',
   boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
   borderRadius: '10px 10px 0px 0px',
+  animation: `${animationSelectMobile}  0.5s forwards`,
   '@tablet': {
     left: 'unset',
     right: 'unset',
@@ -165,6 +170,7 @@ export const Content = styled('div', {
     width: 'inherit',
     position: 'absolute',
     borderRadius: 'unset',
+    animation: `${animationSelect}  0.5s forwards`,
   },
   variants: {
     isOpen: {
@@ -199,7 +205,6 @@ export const StyledOptionsGroup = styled('ul', {
 })
 
 export const StyledOptionItem = styled('li', {
-  justifyContent: 'center',
   display: 'flex',
   height: '40px',
   padding: '0 13px',
@@ -207,9 +212,6 @@ export const StyledOptionItem = styled('li', {
   marginBottom: '10px',
   listStyle: 'none',
   alignItems: 'center',
-  '@tablet': {
-    justifyContent: 'flex-start',
-  },
   '&:focus': {
     outline: '1px solid $primary',
     background: '$secondary100',
@@ -364,6 +366,7 @@ export const MultipleContainer = styled('div', {
 export const StyledTitle = styled('span', {
   display: 'flex',
   height: '40px',
+  marginRight: '1rem',
   alignItems: 'center',
   fontWeight: 'bold',
 })
@@ -391,4 +394,10 @@ export const ShowChosenOptions = styled('span', {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis !important',
+})
+
+export const MainTitle = styled('span', {
+  fontWeight: 'bold',
+  display: 'flex',
+  justifyContent: 'center',
 })
