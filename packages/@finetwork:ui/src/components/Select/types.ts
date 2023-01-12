@@ -1,12 +1,12 @@
 import { CSS } from '@stitches/react/types/css-util'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 import { KINDS } from '../../types'
 
 export type SelectProps = {
   css?: CSS
   kind?: KINDS
   width?: number
-  label?: string | number
+  label?: string | ReactNode
   disabled?: boolean
   value?: string | number
   name?: string
@@ -33,6 +33,6 @@ export type SelectProps = {
         options: Array<{ value: string | number; label: string | number }>
       }>
   type?: 'Standard' | 'StandardWithTitle' | 'Multiple' | 'MultipleWithTitle'
-  withoutCheck: boolean
+  withoutCheck?: boolean
   setValue?: Dispatch<SetStateAction<string | number | Array<string | number>>>
 }

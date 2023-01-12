@@ -157,7 +157,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           ...css,
           container: {
             ...css.container,
-            width: `${width}px !important`,
+            width: `${width} !important`,
           },
         }
       }
@@ -314,7 +314,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
       return formattedArray
     }
-
     const Select = () => (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
@@ -444,7 +443,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             </Content>
           )}
         </SelectContainer>
-        {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </MainContainer>
     )
     return <Select />

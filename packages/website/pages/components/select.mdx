@@ -128,7 +128,6 @@ export const options = [
       value="Elige..."
       label="Multiple"
       type="Multiple"
-      //width={180}
       options={options}
     />
     <Select
@@ -136,7 +135,7 @@ export const options = [
       value="Elige..."
       label="Multiple With Title"
       type="MultipleWithTitle"
-      width={180}
+      width="180px"
       options={allOptions}
     />
   </div>
@@ -249,7 +248,7 @@ export const options = [
       id="width"
       value="Elige..."
       label="Futas"
-      width={200}
+      width="200px"
       options={options}
     />
   </div>
@@ -429,3 +428,194 @@ export const options = [
     />
   </div>
 </Playground>
+
+<h2>Select Props</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Name of the element</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string | number</td>
+      <td></td>
+      <td>No</td>
+      <td>Value of the select</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string | ReactNode</td>
+      <td></td>
+      <td>No</td>
+      <td>Description of the select</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>Standard | StandardWithTitle | Multiple | MultipleWithTitle</td>
+      <td>Standard</td>
+      <td>No</td>
+      <td>Set defined the type of the component</td>
+    </tr>
+    <tr>
+      <td>search</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Add a search engine to the options</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Set input to disabled mode</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Define amount of border radius in select style</td>
+    </tr>
+    <tr>
+      <td>labelSize</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the size of the select label</td>
+    </tr>
+    <tr>
+      <td>labelColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of the select label</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the styles of error</td>
+    </tr>
+    <tr>
+      <td>errorMessage</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Error texts of the component</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>number</td>
+      <td>primary</td>
+      <td>No</td>
+      <td>Defines the width of select</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td>primary | secondary | tertiary</td>
+      <td>primary</td>
+      <td>No</td>
+      <td>Set defined styles of the component</td>
+    </tr>
+    <tr>
+      <td>hoverColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the hover color of the select</td>
+    </tr>
+    <tr>
+      <td>textColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the color of the different options</td>
+    </tr>
+    <tr>
+      <td>borderColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the border color of the select</td>
+    </tr>
+    <tr>
+      <td>hoverOptionColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the color text when hover of the different options</td>
+    </tr>
+    <tr>
+      <td>hoverBackgroundOptionColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the hover color of the different options</td>
+    </tr>
+<tr>
+      <td>chosenColor</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the color when the option has been chosen</td>
+    </tr>
+    <tr>
+      <td>withoutCheck</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Do not check when the option has been chosen</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Defines the height of select in px</td>
+    </tr>
+    <tr>
+      <td>selectTitle</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set title top of the options container only in mobile size</td>
+    </tr>
+    <tr>
+      <td>SetValue</td>
+      <td>state</td>
+      <td></td>
+      <td>No</td>
+      <td>The result will be sent through this set</td>
+    </tr>
+    <tr>
+      <td>options</td>
+      <td>Array of objects with value: string|number and label: string|number or Array of objects with title: string|number and options: Array of objects with value: string|number and label: string|number</td>
+      <td></td>
+      <td>Yes</td>
+      <td>The different options of the select</td>
+    </tr>
+
+  </tbody>
+</table>
