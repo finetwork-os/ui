@@ -303,7 +303,7 @@ export const SearchIcon = styled(Loupe, {
 })
 
 export const SearchInput = styled('input', {
-  height: '50px',
+  height: '36px',
   width: '100%',
   outline: 'none',
   fontSize: '17px',
