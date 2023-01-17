@@ -1,9 +1,4 @@
-import {
-  fadeInBackground,
-  fadeOutBackground,
-} from '@finetwork:ui/src/animations'
 import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
-import { theme } from '@finetwork:ui/src/stitches.config'
 import { mediaQuery } from '@finetwork:ui/src/types'
 import * as React from 'react'
 import { Separator } from '../Separator'
@@ -157,7 +152,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           ...css,
           container: {
             ...css.container,
-            width: `${width} !important`,
+            width: `${width}px !important`,
           },
         }
       }
@@ -314,6 +309,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
       return formattedArray
     }
+
     const Select = () => (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
@@ -344,11 +340,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             css={customStyle.select}
             {...props}
           >
-            <ShowChosenOptions
-              css={{
-                width: `${width ? width - 10 : 110}px`,
-              }}
-            >
+            <ShowChosenOptions>
               {type === 'Multiple' || type === 'MultipleWithTitle'
                 ? selectLabelToMultipleOption()
                 : chosenOption}

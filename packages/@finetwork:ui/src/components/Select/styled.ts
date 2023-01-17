@@ -162,7 +162,7 @@ export const Content = styled('div', {
   background: '#fff',
   boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
   borderRadius: '10px 10px 0px 0px',
-  animation: `${animationSelectMobile}  0.5s forwards`,
+  animation: `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01) 0.25s forwards`,
   '@tablet': {
     left: 'unset',
     right: 'unset',
@@ -170,7 +170,7 @@ export const Content = styled('div', {
     width: 'inherit',
     position: 'absolute',
     borderRadius: 'unset',
-    animation: `${animationSelect}  0.5s forwards`,
+    animation: `${animationSelect} cubic-bezier(0.44,0.15,0.43,1.5) 0.3s forwards`,
   },
   variants: {
     isOpen: {
@@ -394,6 +394,7 @@ export const ShowChosenOptions = styled('span', {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis !important',
+  width: '100%',
 })
 
 export const MainTitle = styled('span', {

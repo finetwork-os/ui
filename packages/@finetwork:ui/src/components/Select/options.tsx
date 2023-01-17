@@ -1,5 +1,5 @@
-import { FC } from 'react'
 import { Checkbox } from '../Checkbox'
+import * as React from 'react'
 import {
   MultipleContainer,
   NotFoundMessage,
@@ -41,7 +41,7 @@ type OptionsProps = {
   >
 }
 
-export const Options: FC<OptionsProps> = ({
+export const Options: React.FC<OptionsProps> = ({
   type,
   allPosibleOptions,
   optionRef,
@@ -94,20 +94,21 @@ export const Options: FC<OptionsProps> = ({
     return (
       <StyledOptionsGroup css={customStyle.optionsGroup}>
         {allPosibleOptions.map((optionGroup, i) => (
-          <>
+          <div
+            key={`${id}_optionWithTitle_${optionGroup.title}_${optionGroup.options.value}`}
+          >
             {optionGroup.title && (
-              <StyledTitle key={`${id}_title_${optionGroup.value}`}>
-                {optionGroup.title}
-              </StyledTitle>
+              <StyledTitle>{optionGroup.title}</StyledTitle>
             )}
             {optionGroup.options.map((option, i) => (
               <>
                 {option.label === 'No encontrado' ? (
-                  <NotFoundMessage key={`${id}_Not-Found`}>
+                  <NotFoundMessage key={`${id}_optionWithTitle_Not-Found_${i}`}>
                     No encontrado
                   </NotFoundMessage>
                 ) : (
                   <StyledOptionItem
+                    key={`${id}_optionWithTitle_${option.value}`}
                     tabIndex={0}
                     ref={optionRef}
                     onClick={() => optionHasBeenChosen(option.label)}
@@ -126,14 +127,13 @@ export const Options: FC<OptionsProps> = ({
                         )} !important`,
                       },
                     }}
-                    key={`${id}_${option.value}`}
                   >
                     {option.label}
                   </StyledOptionItem>
                 )}
               </>
             ))}
-          </>
+          </div>
         ))}
       </StyledOptionsGroup>
     )
@@ -141,13 +141,12 @@ export const Options: FC<OptionsProps> = ({
     return (
       <StyledOptionsGroup css={customStyle.optionsGroup}>
         {allPosibleOptions.map((option, i) => (
-          <>
+          <div key={`${id}_optionMultiple_${option.value}`}>
             {option.label === 'No encontrado' ? (
-              <NotFoundMessage key={`${id}_Not-Found`}>
-                No encontrado
-              </NotFoundMessage>
+              <NotFoundMessage>No encontrado</NotFoundMessage>
             ) : (
               <MultipleContainer
+                key={`${id}_optionMultiple_${option.value}`}
                 chosen={chosenMultipleOptions?.includes(option.label)}
                 onClick={() => multipleOptionHasBeenChosen(option.label)}
                 onKeyDown={(e) =>
@@ -156,7 +155,6 @@ export const Options: FC<OptionsProps> = ({
                 }
                 kind={kind}
                 tabIndex={0}
-                key={`${id}_${option.value}`}
                 ref={optionRef}
               >
                 <Checkbox
@@ -180,7 +178,7 @@ export const Options: FC<OptionsProps> = ({
                 />
               </MultipleContainer>
             )}
-          </>
+          </div>
         ))}
       </StyledOptionsGroup>
     )
@@ -188,20 +186,23 @@ export const Options: FC<OptionsProps> = ({
     return (
       <StyledOptionsGroup css={customStyle.optionsGroup}>
         {allPosibleOptions.map((optionGroup, i) => (
-          <>
+          <div
+            key={`${id}_optionMultipleWithTitle_${optionGroup.title}_${optionGroup.options.value}`}
+          >
             {optionGroup.title && (
-              <StyledTitle key={`${id}_title_${optionGroup.value}`}>
-                {optionGroup.title}
-              </StyledTitle>
+              <StyledTitle>{optionGroup.title}</StyledTitle>
             )}
             {optionGroup.options.map((option, i) => (
               <>
                 {option.label === 'No encontrado' ? (
-                  <NotFoundMessage key={`${id}_Not-Found`}>
+                  <NotFoundMessage
+                    key={`${id}_optionMultipleWithTitle_Not-Found_${i}`}
+                  >
                     No encontrado
                   </NotFoundMessage>
                 ) : (
                   <MultipleContainer
+                    key={`${id}_optionMultipleWithTitle_${option.value}`}
                     chosen={chosenOption === option.label ? true : false}
                     onClick={() => multipleOptionHasBeenChosen(option.label)}
                     onKeyDown={(e) =>
@@ -210,7 +211,6 @@ export const Options: FC<OptionsProps> = ({
                     }
                     kind={kind}
                     tabIndex={0}
-                    key={`${id}_${option.value}`}
                     ref={optionRef}
                   >
                     <Checkbox
@@ -236,18 +236,16 @@ export const Options: FC<OptionsProps> = ({
                 )}
               </>
             ))}
-          </>
+          </div>
         ))}
       </StyledOptionsGroup>
     )
   return (
     <StyledOptionsGroup css={customStyle.optionsGroup}>
       {allPosibleOptions.map((option, i) => (
-        <>
+        <div key={`${id}_option_${option.value}`}>
           {option.label === 'No encontrado' ? (
-            <NotFoundMessage key={`${id}_Not-Found`}>
-              No encontrado
-            </NotFoundMessage>
+            <NotFoundMessage>No encontrado</NotFoundMessage>
           ) : (
             <StyledOptionItem
               tabIndex={0}
@@ -268,12 +266,11 @@ export const Options: FC<OptionsProps> = ({
                   )} !important`,
                 },
               }}
-              key={`${id}_${option.value}`}
             >
               {option.label}
             </StyledOptionItem>
           )}
-        </>
+        </div>
       ))}
     </StyledOptionsGroup>
   )
