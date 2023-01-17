@@ -285,10 +285,13 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         !optionRef.current?.contains(e.target) &&
         !optionGroupRef.current?.contains(e.target)
       ) {
+        console.log('Hago click fuera')
         setIsOpen(false)
       } else {
         if (inputRef.current?.contains(e.target)) {
-          if (!disabled) setIsOpen(isOpen === true ? false : true)
+          if (!disabled) {
+            setIsOpen(!isOpen)
+          }
         } else {
           if (!disabled) setIsOpen(true)
         }
@@ -309,8 +312,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
       return formattedArray
     }
-
-    const Select = () => (
+    return (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
         isDisabled={disabled}
@@ -334,8 +336,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             id={id}
             tabIndex={0}
             ref={inputRef}
-            onClick={() => !disabled && setIsOpen(!isOpen)}
-            onKeyDown={(e) => e.code === 'Enter' && setIsOpen(!isOpen)}
+            // onClick={() => !disabled && setIsOpen(!isOpen)}
+            onKeyDown={(e) =>
+              e.code === 'Enter' || (e.code === 'Space' && setIsOpen(!isOpen))
+            }
             isDisabled={disabled}
             css={customStyle.select}
             {...props}
@@ -438,6 +442,5 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </MainContainer>
     )
-    return <Select />
   }
 )
