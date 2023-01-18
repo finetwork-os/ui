@@ -18,7 +18,7 @@ import {
   StyledLabel,
   StyledSelect,
 } from './styled'
-import { SelectProps } from './types'
+import { DOMEvent, SelectProps, SelectState } from './types'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
@@ -62,6 +62,37 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       optionsGroup: {},
       options: {},
     })
+    const [
+      {
+        isOpen,
+        chosenOption,
+        chosenMultipleOptions,
+        searchValue,
+        isOverlay,
+        allPosibleOptions,
+      },
+      updateEvent,
+    ] = React.useReducer(
+      (prev: SelectState, next: Partial<SelectState>) => {
+        return { ...prev, ...next }
+      },
+      {
+        isOpen: false,
+        chosenOption: value,
+        chosenMultipleOptions: [],
+        searchValue: '',
+        isOverlay: false,
+        allPosibleOptions: options,
+      }
+    )
+
+    const inputRef = React.useRef(null)
+    const optionRef = React.useRef(null)
+    const optionGroupRef = React.useRef(null)
+    const searchInputRef = React.useRef(null)
+
+    const { width: displayWidth } = useWindowSize()
+
     React.useEffect(() => {
       let css = {
         select: {},
@@ -84,7 +115,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (labelColor) {
         css = {
           ...css,
@@ -94,7 +124,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (borderColor) {
         css = {
           ...css,
@@ -107,7 +136,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (error) {
         css = {
           ...css,
@@ -124,7 +152,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (textColor) {
         css = {
           ...css,
@@ -137,7 +164,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (labelSize) {
         css = {
           ...css,
@@ -146,7 +172,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (width) {
         css = {
           ...css,
@@ -156,7 +181,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (hoverOptionColor) {
         css = {
           ...css,
@@ -168,7 +192,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (hoverBackgroundOptionColor) {
         css = {
           ...css,
@@ -180,7 +203,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (height) {
         css = {
           ...css,
@@ -194,7 +216,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-
       if (borderRadius) {
         css = {
           ...css,
@@ -214,23 +235,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
       setCustomStyle(css)
     }, [])
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
-
-    const [chosenOption, setChosenOption] = React.useState<string | number>(
-      value
-    )
-
-    const [chosenMultipleOptions, setChosenMultipleOptions] = React.useState<
-      Array<string | number>
-    >([])
-
-    const [searchValue, setSearchValue] = React.useState<string>('')
-
-    const [isOverlay, setIsOverlay] = React.useState<boolean>(false)
-
-    const [allPosibleOptions, setAllPosibleOptions] = React.useState(options)
-
-    const { width: displayWidth } = useWindowSize()
 
     React.useEffect(() => {
       document.addEventListener('click', handleOutsideClick, true)
@@ -239,62 +243,60 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     React.useEffect(() => {
       if (displayWidth < mediaQuery.tablet && isOpen) {
         document.body.style.overflow = 'hidden'
-        setIsOverlay(true)
-      } else {
-        document.body.style.overflow = 'auto'
-        setIsOverlay(false)
+        return updateEvent({ isOverlay: true })
       }
+      document.body.style.overflow = 'auto'
+      return updateEvent({ isOverlay: false })
     }, [isOpen])
 
     React.useEffect(() => {
       if (type === 'Multiple' || type === 'MultipleWithTitle') {
         if (chosenMultipleOptions !== undefined && setValue)
-          setValue(chosenMultipleOptions)
-      } else if (chosenOption !== undefined && setValue) setValue(chosenOption)
+          return setValue(chosenMultipleOptions)
+      }
+
+      if (chosenOption !== undefined && setValue) return setValue(chosenOption)
     }, [chosenOption, chosenMultipleOptions])
 
     React.useEffect(() => {
-      let optionsFound = []
       if (searchValue === '') {
-        setAllPosibleOptions(options)
-      } else {
-        options.map((option, i) => {
+        return updateEvent({ allPosibleOptions: options })
+      }
+
+      const optionsFound = options
+        .map((option) => {
           if (option.label.toLowerCase().includes(searchValue.toLowerCase()))
-            optionsFound.push(option)
+            return option
         })
-        if (optionsFound.length <= 0) {
-          setAllPosibleOptions([
+        .filter((option) => typeof option !== 'undefined')
+
+      if (optionsFound.length <= 0) {
+        return updateEvent({
+          allPosibleOptions: [
             {
               value: 'No encontrado',
               label: 'No encontrado',
             },
-          ])
-        } else {
-          setAllPosibleOptions(optionsFound)
-        }
+          ],
+        })
       }
+
+      return updateEvent({
+        allPosibleOptions: optionsFound,
+      })
     }, [searchValue])
 
-    const inputRef = React.useRef(null)
-    const optionRef = React.useRef(null)
-    const optionGroupRef = React.useRef(null)
+    React.useEffect(() => {
+      if (isOpen && search) searchInputRef.current.focus()
+    }, [search, isOpen])
 
-    function handleOutsideClick(e) {
+    function handleOutsideClick(e: DOMEvent<HTMLInputElement>) {
       if (
         !inputRef.current?.contains(e.target) &&
         !optionRef.current?.contains(e.target) &&
         !optionGroupRef.current?.contains(e.target)
       ) {
-        console.log('Hago click fuera')
-        setIsOpen(false)
-      } else {
-        if (inputRef.current?.contains(e.target)) {
-          if (!disabled) {
-            setIsOpen(!isOpen)
-          }
-        } else {
-          if (!disabled) setIsOpen(true)
-        }
+        return updateEvent({ isOpen: false })
       }
     }
 
@@ -302,6 +304,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (chosenMultipleOptions.length <= 0) {
         return value ? value : 'Elige...'
       }
+
       var formattedArray = ''
       for (let i = 0; i < chosenMultipleOptions.length; i++) {
         if (i < chosenMultipleOptions.length - 1) {
@@ -312,6 +315,32 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
       return formattedArray
     }
+
+    function setChosenMultipleOptions(option: string | number) {
+      if (chosenMultipleOptions.find((_option) => option === _option)) {
+        return updateEvent({
+          chosenMultipleOptions: [...chosenMultipleOptions].filter(
+            (_option) => _option !== option
+          ),
+        })
+      }
+      return updateEvent({
+        chosenMultipleOptions: [...chosenMultipleOptions, option],
+      })
+    }
+
+    function setIsOpen(isOpen: boolean) {
+      updateEvent({ isOpen })
+    }
+
+    function setChoseOption(option: string | number) {
+      updateEvent({ chosenOption: option })
+    }
+
+    function handleChangeInputValue(e: React.ChangeEvent<HTMLInputElement>) {
+      updateEvent({ searchValue: e.target.value })
+    }
+
     return (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
@@ -336,10 +365,14 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             id={id}
             tabIndex={0}
             ref={inputRef}
-            // onClick={() => !disabled && setIsOpen(!isOpen)}
-            onKeyDown={(e) =>
-              e.code === 'Enter' || (e.code === 'Space' && setIsOpen(!isOpen))
-            }
+            onKeyDown={(e) => {
+              if (e.code === 'Enter' || e.code === 'Space') {
+                setIsOpen(!isOpen)
+              }
+            }}
+            onClick={() => {
+              if (!disabled) setIsOpen(!isOpen)
+            }}
             isDisabled={disabled}
             css={customStyle.select}
             {...props}
@@ -375,9 +408,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       placeholder="Buscar..."
                       id="seachInput"
                       value={searchValue}
-                      onChange={({ target: { value } }) => {
-                        setSearchValue(value)
-                      }}
+                      ref={searchInputRef}
+                      onChange={handleChangeInputValue}
                     />
                   </SearchContainer>
                 )}
@@ -387,8 +419,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   optionRef={optionRef}
                   id={id}
                   chosenOption={chosenOption}
-                  setChosenOption={setChosenOption}
-                  setIsOpen={setIsOpen}
+                  setChosenOption={setChoseOption}
+                  setIsOpen={(isOpen: boolean) => updateEvent({ isOpen })}
                   kind={kind}
                   withoutCheck={withoutCheck}
                   customStyle={customStyle}
@@ -414,9 +446,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                     placeholder="Buscar..."
                     id="seachInput"
                     value={searchValue}
-                    onChange={({ target: { value } }) => {
-                      setSearchValue(value)
-                    }}
+                    onChange={handleChangeInputValue}
+                    ref={searchInputRef}
                   />
                 </SearchContainer>
               )}
@@ -426,8 +457,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 optionRef={optionRef}
                 id={id}
                 chosenOption={chosenOption}
-                setChosenOption={setChosenOption}
-                setIsOpen={setIsOpen}
+                setChosenOption={setChoseOption}
+                setIsOpen={(isOpen: boolean) => updateEvent({ isOpen })}
                 kind={kind}
                 withoutCheck={withoutCheck}
                 customStyle={customStyle}

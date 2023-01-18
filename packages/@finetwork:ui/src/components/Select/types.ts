@@ -2,6 +2,23 @@ import { CSS } from '@stitches/react/types/css-util'
 import * as React from 'react'
 import { KINDS } from '../../types'
 
+export type TypeOptions =
+  | Array<{ value: string | number; label: string | number }>
+  | Array<{
+      title: string | number
+      options: Array<{ value: string | number; label: string | number }>
+    }>
+
+export type TypeSelect =
+  | 'Standard'
+  | 'StandardWithTitle'
+  | 'Multiple'
+  | 'MultipleWithTitle'
+
+export interface DOMEvent<T extends EventTarget> extends Event {
+  readonly target: T
+}
+
 export type SelectProps = {
   css?: CSS
   kind?: KINDS
@@ -26,15 +43,19 @@ export type SelectProps = {
   search?: boolean
   height?: string
   selectTitle?: string
-  options:
-    | Array<{ value: string | number; label: string | number }>
-    | Array<{
-        title: string | number
-        options: Array<{ value: string | number; label: string | number }>
-      }>
-  type?: 'Standard' | 'StandardWithTitle' | 'Multiple' | 'MultipleWithTitle'
+  options: TypeOptions
+  type?: TypeSelect
   withoutCheck?: boolean
   setValue?: React.Dispatch<
     React.SetStateAction<string | number | Array<string | number>>
   >
+}
+
+export type SelectState = {
+  isOpen: boolean
+  chosenOption: string | number
+  chosenMultipleOptions: (string | number)[]
+  searchValue: string
+  isOverlay: boolean
+  allPosibleOptions: TypeOptions
 }

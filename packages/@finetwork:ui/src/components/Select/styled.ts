@@ -119,7 +119,7 @@ export const StyledSelect = styled('div', {
 export const Arrow = styled(ChevronDownIcon, {
   fontSize: '31px',
   marginLeft: '10px',
-  transition: 'transform 0.3s linear',
+  transition: 'transform 0.25s linear',
   variants: {
     isOpen: {
       true: {

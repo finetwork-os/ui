@@ -8,21 +8,18 @@ import {
   StyledOptionsGroup,
   StyledTitle,
 } from './styled'
+import { TypeOptions, TypeSelect } from './types'
+import { KINDS } from '@finetwork:ui/src/types'
 
 type OptionsProps = {
-  type: 'Standard' | 'StandardWithTitle' | 'Multiple' | 'MultipleWithTitle'
-  allPosibleOptions:
-    | Array<{ value: string | number; label: string | number }>
-    | Array<{
-        title: string | number
-        options: Array<{ value: string | number; label: string | number }>
-      }>
-  optionRef: React.MutableRefObject<any>
+  type: TypeSelect
+  allPosibleOptions: TypeOptions
+  optionRef: React.MutableRefObject<HTMLLIElement | HTMLDivElement>
   id: string
   chosenOption: string | number
-  setChosenOption: React.Dispatch<React.SetStateAction<string | number>>
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  kind?: 'primary' | 'secondary' | 'tertiary'
+  setChosenOption: (option: string | number) => void
+  setIsOpen: (isOpen: boolean) => void
+  kind?: KINDS
   withoutCheck?: boolean
   customStyle: {
     select: {}
@@ -36,9 +33,7 @@ type OptionsProps = {
   chosenColor: boolean
   textColor?: string
   chosenMultipleOptions: (string | number)[]
-  setChosenMultipleOptions: React.Dispatch<
-    React.SetStateAction<(string | number)[]>
-  >
+  setChosenMultipleOptions: (option: string | number) => void
 }
 
 export const Options: React.FC<OptionsProps> = ({
@@ -76,18 +71,7 @@ export const Options: React.FC<OptionsProps> = ({
   }
 
   function multipleOptionHasBeenChosen(option) {
-    if (chosenMultipleOptions?.includes(option)) {
-      chosenMultipleOptions.splice(chosenMultipleOptions.indexOf(option), 1)
-
-      setChosenMultipleOptions((chosenMultipleOptions) => [
-        ...chosenMultipleOptions,
-      ])
-    } else {
-      setChosenMultipleOptions((chosenMultipleOptions) => [
-        ...chosenMultipleOptions,
-        option,
-      ])
-    }
+    setChosenMultipleOptions(option)
   }
 
   if (type === 'StandardWithTitle')
@@ -110,7 +94,7 @@ export const Options: React.FC<OptionsProps> = ({
                   <StyledOptionItem
                     key={`${id}_optionWithTitle_${option.value}`}
                     tabIndex={0}
-                    ref={optionRef}
+                    ref={optionRef as React.MutableRefObject<HTMLLIElement>}
                     onClick={() => optionHasBeenChosen(option.label)}
                     kind={kind}
                     withoutCheck={withoutCheck}
@@ -155,7 +139,7 @@ export const Options: React.FC<OptionsProps> = ({
                 }
                 kind={kind}
                 tabIndex={0}
-                ref={optionRef}
+                ref={optionRef as React.MutableRefObject<HTMLDivElement>}
               >
                 <Checkbox
                   checked={chosenMultipleOptions?.includes(option.label)}
@@ -211,7 +195,7 @@ export const Options: React.FC<OptionsProps> = ({
                     }
                     kind={kind}
                     tabIndex={0}
-                    ref={optionRef}
+                    ref={optionRef as React.MutableRefObject<HTMLDivElement>}
                   >
                     <Checkbox
                       checked={chosenMultipleOptions?.includes(option.label)}
@@ -249,7 +233,7 @@ export const Options: React.FC<OptionsProps> = ({
           ) : (
             <StyledOptionItem
               tabIndex={0}
-              ref={optionRef}
+              ref={optionRef as React.MutableRefObject<HTMLLIElement>}
               onClick={() => optionHasBeenChosen(option.label)}
               kind={kind}
               withoutCheck={withoutCheck}
