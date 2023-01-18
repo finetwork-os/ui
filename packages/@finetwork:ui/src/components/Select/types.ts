@@ -2,11 +2,13 @@ import { CSS } from '@stitches/react/types/css-util'
 import * as React from 'react'
 import { KINDS } from '../../types'
 
+export type TypeOption = { value: string | number; label: string | number }
+
 export type TypeOptions =
-  | Array<{ value: string | number; label: string | number }>
+  | Array<TypeOption>
   | Array<{
       title: string | number
-      options: Array<{ value: string | number; label: string | number }>
+      options: Array<TypeOption>
     }>
 
 export type TypeSelect =

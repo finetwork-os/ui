@@ -71,7 +71,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         isOverlay,
         allPosibleOptions,
       },
-      updateEvent,
+      updateState,
     ] = React.useReducer(
       (prev: SelectState, next: Partial<SelectState>) => {
         return { ...prev, ...next }
@@ -86,10 +86,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
     )
 
-    const inputRef = React.useRef(null)
-    const optionRef = React.useRef(null)
-    const optionGroupRef = React.useRef(null)
-    const searchInputRef = React.useRef(null)
+    const inputRef = React.useRef<HTMLDivElement>(null)
+    const optionRef = React.useRef<HTMLLIElement>(null)
+    const optionGroupRef = React.useRef<HTMLDivElement>(null)
+    const searchInputRef = React.useRef<HTMLInputElement>(null)
 
     const { width: displayWidth } = useWindowSize()
 
@@ -243,10 +243,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     React.useEffect(() => {
       if (displayWidth < mediaQuery.tablet && isOpen) {
         document.body.style.overflow = 'hidden'
-        return updateEvent({ isOverlay: true })
+        return updateState({ isOverlay: true })
       }
       document.body.style.overflow = 'auto'
-      return updateEvent({ isOverlay: false })
+      return updateState({ isOverlay: false })
     }, [isOpen])
 
     React.useEffect(() => {
@@ -260,7 +260,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       if (searchValue === '') {
-        return updateEvent({ allPosibleOptions: options })
+        return updateState({ allPosibleOptions: options })
       }
 
       const optionsFound = options
@@ -271,7 +271,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         .filter((option) => typeof option !== 'undefined')
 
       if (optionsFound.length <= 0) {
-        return updateEvent({
+        return updateState({
           allPosibleOptions: [
             {
               value: 'No encontrado',
@@ -281,7 +281,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         })
       }
 
-      return updateEvent({
+      return updateState({
         allPosibleOptions: optionsFound,
       })
     }, [searchValue])
@@ -296,7 +296,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         !optionRef.current?.contains(e.target) &&
         !optionGroupRef.current?.contains(e.target)
       ) {
-        return updateEvent({ isOpen: false })
+        return updateState({ isOpen: false })
       }
     }
 
@@ -318,27 +318,27 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     function setChosenMultipleOptions(option: string | number) {
       if (chosenMultipleOptions.find((_option) => option === _option)) {
-        return updateEvent({
+        return updateState({
           chosenMultipleOptions: [...chosenMultipleOptions].filter(
             (_option) => _option !== option
           ),
         })
       }
-      return updateEvent({
+      return updateState({
         chosenMultipleOptions: [...chosenMultipleOptions, option],
       })
     }
 
     function setIsOpen(isOpen: boolean) {
-      updateEvent({ isOpen })
+      updateState({ isOpen })
     }
 
     function setChoseOption(option: string | number) {
-      updateEvent({ chosenOption: option })
+      updateState({ chosenOption: option })
     }
 
     function handleChangeInputValue(e: React.ChangeEvent<HTMLInputElement>) {
-      updateEvent({ searchValue: e.target.value })
+      updateState({ searchValue: e.target.value })
     }
 
     return (
@@ -420,7 +420,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   id={id}
                   chosenOption={chosenOption}
                   setChosenOption={setChoseOption}
-                  setIsOpen={(isOpen: boolean) => updateEvent({ isOpen })}
+                  setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                   kind={kind}
                   withoutCheck={withoutCheck}
                   customStyle={customStyle}
@@ -458,7 +458,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 id={id}
                 chosenOption={chosenOption}
                 setChosenOption={setChoseOption}
-                setIsOpen={(isOpen: boolean) => updateEvent({ isOpen })}
+                setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                 kind={kind}
                 withoutCheck={withoutCheck}
                 customStyle={customStyle}
