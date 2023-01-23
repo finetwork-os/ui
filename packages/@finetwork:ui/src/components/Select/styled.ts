@@ -5,6 +5,7 @@ import {
 } from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 import { ChevronDownIcon, Loupe } from '../icons'
+import { Paragraph5 } from '../Typography'
 
 export const MainContainer = styled('div', {
   display: 'flex',
@@ -380,8 +381,9 @@ export const StyledOptionMultiple = styled('li', {
   alignItems: 'center',
 })
 
-export const ErrorMessage = styled('p', {
-  color: 'red',
+export const ErrorMessage = styled(Paragraph5, {
+  color: '$error !important',
+  marginTop: '0.7rem',
 })
 
 export const NotFoundMessage = styled('p', {

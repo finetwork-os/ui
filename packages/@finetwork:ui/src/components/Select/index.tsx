@@ -37,7 +37,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       labelSize,
       borderRadius,
       error,
-      errorMessage,
       borderColor,
       checkColor,
       hoverOptionTextColor,
@@ -470,7 +469,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             </Content>
           )}
         </SelectContainer>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </MainContainer>
     )
   }
