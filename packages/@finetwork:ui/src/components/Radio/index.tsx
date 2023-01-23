@@ -152,7 +152,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       setCustomStyle(css)
     }, [])
 
-    const Radio = () => (
+    return (
       <StyledRadioContainer size={size} isDisabled={disabled}>
         <StyledInputContainer
           kind={kind}
@@ -184,6 +184,5 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         </StyledText>
       </StyledRadioContainer>
     )
-    return <Radio />
   }
 )

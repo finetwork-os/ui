@@ -111,7 +111,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       setCustomStyle(css)
     }, [])
 
-    const Checkbox = () => (
+    return (
       <CheckboxContainer size={size}>
         <StyledInputContainer
           error={error}
@@ -148,6 +148,5 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         )}
       </CheckboxContainer>
     )
-    return <Checkbox />
   }
 )
