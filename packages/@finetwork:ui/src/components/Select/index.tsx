@@ -45,7 +45,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       chosenColor,
       search,
       optionContainerHeight,
-      selectTitle,
+      optionContainerTitle,
       options,
       withoutCheck,
       setValue,
@@ -391,10 +391,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 isOpen={isOpen}
                 css={customStyle.optionsContainer}
               >
-                {selectTitle && (
+                {optionContainerTitle && (
                   <div style={{ width: '100%', marginBottom: '0.5rem' }}>
                     <MainTitle css={{ padding: '0.7rem 0 0.7rem 0' }}>
-                      {selectTitle}
+                      {optionContainerTitle}
                     </MainTitle>
                     <Separator />
                   </div>
