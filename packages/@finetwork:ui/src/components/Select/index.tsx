@@ -176,7 +176,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           ...css,
           container: {
             ...css.container,
-            width: `${width}px !important`,
+            width: `${width} !important`,
           },
         }
       }
@@ -340,6 +340,11 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       updateState({ searchValue: e.target.value })
     }
 
+    function getSelectWidth() {
+      const selectWidth = document.getElementById(`container-${id}`)
+      return selectWidth?.clientWidth
+    }
+
     return (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
@@ -355,6 +360,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           </StyledLabel>
         )}
         <SelectContainer
+          id={`container-${id}`}
           isDisabled={disabled}
           kind={kind}
           search={search}
@@ -434,7 +440,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <Content
               ref={optionGroupRef}
               isOpen={isOpen}
-              css={customStyle.optionsContainer}
+              css={{
+                ...customStyle.optionsContainer,
+                width: `${getSelectWidth()}px !important`,
+              }}
             >
               {search && (
                 <SearchContainer>

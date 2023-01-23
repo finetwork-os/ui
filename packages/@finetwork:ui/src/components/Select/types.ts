@@ -24,7 +24,7 @@ export interface DOMEvent<T extends EventTarget> extends Event {
 export type SelectProps = {
   css?: CSS
   kind?: KINDS
-  width?: number
+  width?: string
   label?: string | React.ReactNode
   disabled?: boolean
   value?: string | number
