@@ -30,7 +30,7 @@ type OptionsProps = {
     optionsGroup: {}
     options: {}
   }
-  chosenColor: boolean
+  selectedOptionColor: string
   textColor?: string
   chosenMultipleOptions: (string | number)[]
   setChosenMultipleOptions: (option: string | number) => void
@@ -47,7 +47,7 @@ export const Options: React.FC<OptionsProps> = ({
   kind,
   withoutCheck,
   customStyle,
-  chosenColor,
+  selectedOptionColor,
   textColor,
   chosenMultipleOptions,
   setChosenMultipleOptions,
@@ -59,7 +59,7 @@ export const Options: React.FC<OptionsProps> = ({
 
   function chosenOptionColor(option) {
     if (chosenOption === option) {
-      if (chosenColor) return chosenColor
+      if (selectedOptionColor) return selectedOptionColor
       if (kind) {
         if (kind === 'secondary') return '$colors$secondary'
         if (kind === 'tertiary') return '$colors$tertiary'

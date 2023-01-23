@@ -39,7 +39,7 @@ export type SelectProps = {
   checkColor?: boolean
   hoverOptionColor?: boolean
   hoverBackgroundOptionColor?: boolean
-  chosenColor?: boolean
+  selectedOptionColor?: string
   error?: boolean
   errorMessage?: string
   search?: boolean

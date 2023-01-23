@@ -42,7 +42,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       checkColor,
       hoverOptionColor,
       hoverBackgroundOptionColor,
-      chosenColor,
+      selectedOptionColor,
       search,
       optionContainerHeight,
       optionContainerTitle,
@@ -424,7 +424,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   kind={kind}
                   withoutCheck={withoutCheck}
                   customStyle={customStyle}
-                  chosenColor={chosenColor}
+                  selectedOptionColor={selectedOptionColor}
                   textColor={optionTextColor}
                   chosenMultipleOptions={chosenMultipleOptions}
                   setChosenMultipleOptions={setChosenMultipleOptions}
@@ -462,7 +462,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 kind={kind}
                 withoutCheck={withoutCheck}
                 customStyle={customStyle}
-                chosenColor={chosenColor}
+                selectedOptionColor={selectedOptionColor}
                 textColor={optionTextColor}
                 chosenMultipleOptions={chosenMultipleOptions}
                 setChosenMultipleOptions={setChosenMultipleOptions}
