@@ -32,7 +32,7 @@ export type SelectProps = {
   labelSize?: string
   hoverBorderColor?: string
   labelColor?: string
-  textColor?: string
+  optionTextColor?: string
   borderColor?: string
   id: string
   borderRadius?: string

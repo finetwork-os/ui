@@ -31,7 +31,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       name,
       type,
       labelColor,
-      textColor,
+      optionTextColor,
       hoverBorderColor,
       id,
       labelSize,
@@ -152,14 +152,14 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-      if (textColor) {
+      if (optionTextColor) {
         css = {
           ...css,
           options: {
             ...css.options,
-            color: textColor,
+            color: optionTextColor,
             '&:after': {
-              boxShadow: `inset 14px 14px ${textColor} !important`,
+              boxShadow: `inset 14px 14px ${optionTextColor} !important`,
             },
           },
         }
@@ -425,7 +425,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   withoutCheck={withoutCheck}
                   customStyle={customStyle}
                   chosenColor={chosenColor}
-                  textColor={textColor}
+                  textColor={optionTextColor}
                   chosenMultipleOptions={chosenMultipleOptions}
                   setChosenMultipleOptions={setChosenMultipleOptions}
                 />
@@ -463,7 +463,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 withoutCheck={withoutCheck}
                 customStyle={customStyle}
                 chosenColor={chosenColor}
-                textColor={textColor}
+                textColor={optionTextColor}
                 chosenMultipleOptions={chosenMultipleOptions}
                 setChosenMultipleOptions={setChosenMultipleOptions}
               />
