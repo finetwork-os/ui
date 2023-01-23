@@ -32,7 +32,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       type,
       labelColor,
       textColor,
-      hoverColor,
+      hoverBorderColor,
       id,
       labelSize,
       borderRadius,
@@ -104,13 +104,13 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         options: {},
       }
 
-      if (hoverColor) {
+      if (hoverBorderColor) {
         css = {
           ...css,
           container: {
             ...css.container,
             '&:hover': {
-              outline: `2px solid ${hoverColor} !important`,
+              outline: `2px solid ${hoverBorderColor} !important`,
             },
           },
         }
