@@ -44,7 +44,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       hoverBackgroundOptionColor,
       chosenColor,
       search,
-      height,
+      optionContainerHeight,
       selectTitle,
       options,
       withoutCheck,
@@ -203,12 +203,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-      if (height) {
+      if (optionContainerHeight) {
         css = {
           ...css,
           optionsContainer: {
             ...css.optionsContainer,
-            height: `${height}`,
+            height: `${optionContainerHeight}`,
           },
           optionsGroup: {
             maxHeight: 'none !important',

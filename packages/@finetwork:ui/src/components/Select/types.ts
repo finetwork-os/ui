@@ -43,7 +43,7 @@ export type SelectProps = {
   error?: boolean
   errorMessage?: string
   search?: boolean
-  height?: string
+  optionContainerHeight?: string
   selectTitle?: string
   options: TypeOptions
   type?: TypeSelect
