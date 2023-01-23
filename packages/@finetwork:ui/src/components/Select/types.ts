@@ -37,7 +37,7 @@ export type SelectProps = {
   id: string
   borderRadius?: string
   checkColor?: boolean
-  hoverOptionColor?: boolean
+  hoverOptionTextColor?: boolean
   hoverBackgroundOptionColor?: boolean
   selectedOptionColor?: string
   error?: boolean

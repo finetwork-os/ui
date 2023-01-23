@@ -31,7 +31,7 @@ type OptionsProps = {
     options: {}
   }
   selectedOptionColor: string
-  textColor?: string
+  optionTextColor?: string
   chosenMultipleOptions: (string | number)[]
   setChosenMultipleOptions: (option: string | number) => void
 }
@@ -48,7 +48,7 @@ export const Options: React.FC<OptionsProps> = ({
   withoutCheck,
   customStyle,
   selectedOptionColor,
-  textColor,
+  optionTextColor,
   chosenMultipleOptions,
   setChosenMultipleOptions,
 }) => {
@@ -66,7 +66,7 @@ export const Options: React.FC<OptionsProps> = ({
       }
       return '$colors$primary'
     }
-    if (textColor) return textColor
+    if (optionTextColor) return optionTextColor
     return 'black'
   }
 

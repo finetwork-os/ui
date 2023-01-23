@@ -40,7 +40,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       errorMessage,
       borderColor,
       checkColor,
-      hoverOptionColor,
+      hoverOptionTextColor,
       hoverBackgroundOptionColor,
       selectedOptionColor,
       search,
@@ -181,13 +181,13 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
-      if (hoverOptionColor) {
+      if (hoverOptionTextColor) {
         css = {
           ...css,
           options: {
             ...css.options,
             '&:hover': {
-              color: `${hoverOptionColor} !important`,
+              color: `${hoverOptionTextColor} !important`,
             },
           },
         }
@@ -425,7 +425,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   withoutCheck={withoutCheck}
                   customStyle={customStyle}
                   selectedOptionColor={selectedOptionColor}
-                  textColor={optionTextColor}
+                  optionTextColor={optionTextColor}
                   chosenMultipleOptions={chosenMultipleOptions}
                   setChosenMultipleOptions={setChosenMultipleOptions}
                 />
@@ -463,7 +463,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 withoutCheck={withoutCheck}
                 customStyle={customStyle}
                 selectedOptionColor={selectedOptionColor}
-                textColor={optionTextColor}
+                optionTextColor={optionTextColor}
                 chosenMultipleOptions={chosenMultipleOptions}
                 setChosenMultipleOptions={setChosenMultipleOptions}
               />
