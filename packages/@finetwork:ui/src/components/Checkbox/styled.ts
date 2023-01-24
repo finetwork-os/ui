@@ -1,15 +1,21 @@
-import {
-  scaleDownAnimation,
-  scaleUpAnimation,
-} from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 
 export const CheckboxContainer = styled('div', {
-  lineHeight: 1.1,
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   gap: '.5rem',
   variants: {
+    align: {
+      start: {
+        alignItems: 'flex-start !important',
+      },
+      center: {
+        alignItems: 'center !important',
+      },
+      end: {
+        alignItems: 'flex-end !important',
+      },
+    },
     size: {
       small: {
         fontSize: '18px',
@@ -157,6 +163,8 @@ export const StyledInput = styled('input', {
 
 export const StyledLabel = styled('label', {
   fontSize: '16px',
+  paddingTop: '.4rem',
+  paddingBottom: '.4rem',
   '&:hover': {
     cursor: 'pointer',
   },

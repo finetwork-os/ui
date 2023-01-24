@@ -11,6 +11,7 @@ type CheckboxComponentOwnProps = {
   disabled?: boolean
   value?: string | number
   name?: string
+  align?: 'start' | 'center' | 'end'
   checkColor?: string
   checkSize?: SIZES
   textSize?: string
