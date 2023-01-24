@@ -23,6 +23,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       textColor,
       hoverColor,
       id,
+      align,
       borderRadius,
       error,
       borderColor,
@@ -112,7 +113,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }, [])
 
     return (
-      <CheckboxContainer size={size}>
+      <CheckboxContainer align={align} size={size}>
         <StyledInputContainer
           error={error}
           kind={kind}
