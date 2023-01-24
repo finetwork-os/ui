@@ -47,6 +47,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       optionContainerTitle,
       options,
       withoutCheck,
+      scrollbarColor,
       setValue,
       ...props
     },
@@ -427,6 +428,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   setChosenOption={setChoseOption}
                   setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                   kind={kind}
+                  scrollbarColor={scrollbarColor}
                   withoutCheck={withoutCheck}
                   customStyle={customStyle}
                   selectedOptionColor={selectedOptionColor}
@@ -468,6 +470,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 setChosenOption={setChoseOption}
                 setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                 kind={kind}
+                scrollbarColor={scrollbarColor}
                 withoutCheck={withoutCheck}
                 customStyle={customStyle}
                 selectedOptionColor={selectedOptionColor}

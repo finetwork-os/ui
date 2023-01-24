@@ -20,6 +20,7 @@ type OptionsProps = {
   setChosenOption: (option: string | number) => void
   setIsOpen: (isOpen: boolean) => void
   kind?: KINDS
+  scrollbarColor?: string
   withoutCheck?: boolean
   customStyle: {
     select: {}
@@ -45,6 +46,7 @@ export const Options: React.FC<OptionsProps> = ({
   setChosenOption,
   setIsOpen,
   kind,
+  scrollbarColor,
   withoutCheck,
   customStyle,
   selectedOptionColor,
@@ -76,7 +78,18 @@ export const Options: React.FC<OptionsProps> = ({
 
   if (type === 'StandardWithTitle')
     return (
-      <StyledOptionsGroup css={customStyle.optionsGroup}>
+      <StyledOptionsGroup
+        css={{
+          ...customStyle.optionsGroup,
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: `hsl(${scrollbarColor}, 60%) !important`,
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: `hsl(${scrollbarColor}) !important`,
+          },
+        }}
+        kind={kind}
+      >
         {allPosibleOptions.map((optionGroup, i) => (
           <div
             key={`${id}_optionWithTitle_${optionGroup.title}_${optionGroup.options.value}`}
@@ -123,7 +136,18 @@ export const Options: React.FC<OptionsProps> = ({
     )
   if (type === 'Multiple')
     return (
-      <StyledOptionsGroup css={customStyle.optionsGroup}>
+      <StyledOptionsGroup
+        css={{
+          ...customStyle.optionsGroup,
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: `hsl(${scrollbarColor}, 60%) !important`,
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: `hsl(${scrollbarColor}) !important`,
+          },
+        }}
+        kind={kind}
+      >
         {allPosibleOptions.map((option, i) => (
           <div key={`${id}_optionMultiple_${option.value}`}>
             {option.label === 'No encontrado' ? (
@@ -168,7 +192,18 @@ export const Options: React.FC<OptionsProps> = ({
     )
   if (type === 'MultipleWithTitle')
     return (
-      <StyledOptionsGroup css={customStyle.optionsGroup}>
+      <StyledOptionsGroup
+        css={{
+          ...customStyle.optionsGroup,
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: `hsl(${scrollbarColor}, 60%) !important`,
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: `hsl(${scrollbarColor}) !important`,
+          },
+        }}
+        kind={kind}
+      >
         {allPosibleOptions.map((optionGroup, i) => (
           <div
             key={`${id}_optionMultipleWithTitle_${optionGroup.title}_${optionGroup.options.value}`}
@@ -225,7 +260,18 @@ export const Options: React.FC<OptionsProps> = ({
       </StyledOptionsGroup>
     )
   return (
-    <StyledOptionsGroup css={customStyle.optionsGroup}>
+    <StyledOptionsGroup
+      css={{
+        ...customStyle.optionsGroup,
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: `hsl(${scrollbarColor}, 60%) !important`,
+        },
+        '&::-webkit-scrollbar-thumb:hover': {
+          backgroundColor: `hsl(${scrollbarColor}) !important`,
+        },
+      }}
+      kind={kind}
+    >
       {allPosibleOptions.map((option, i) => (
         <div key={`${id}_option_${option.value}`}>
           {option.label === 'No encontrado' ? (

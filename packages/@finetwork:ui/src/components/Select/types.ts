@@ -47,6 +47,7 @@ export type SelectProps = {
   options: TypeOptions
   type?: TypeSelect
   withoutCheck?: boolean
+  scrollbarColor?: string
   setValue?: React.Dispatch<
     React.SetStateAction<string | number | Array<string | number>>
   >

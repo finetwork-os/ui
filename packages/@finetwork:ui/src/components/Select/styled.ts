@@ -189,6 +189,10 @@ export const StyledOptionsGroup = styled('ul', {
   maxHeight: '200px',
   overflowY: 'auto',
   padding: '0 7px',
+  scrollbarColor: '$secondary',
+  '&:hover': {
+    scrollbarColor: '$primary',
+  },
   '&::-webkit-scrollbar': {
     width: '7px',
   },
@@ -202,6 +206,37 @@ export const StyledOptionsGroup = styled('ul', {
   },
   '&::-webkit-scrollbar-thumb:hover': {
     background: '$primary',
+  },
+  variants: {
+    kind: {
+      primary: {
+        '&::-webkit-scrollbar-thumb': {
+          background: '$secondary',
+        },
+        '&::-webkit-scrollbar-thumb:hover': {
+          background: '$primary',
+        },
+        scrollbarColor: '$primary',
+      },
+      secondary: {
+        '&::-webkit-scrollbar-thumb': {
+          background: '$secondary400',
+        },
+        '&::-webkit-scrollbar-thumb:hover': {
+          background: '$secondary',
+        },
+        scrollbarColor: '$secondary',
+      },
+      tertiary: {
+        '&::-webkit-scrollbar-thumb': {
+          background: '$tertiary400',
+        },
+        '&::-webkit-scrollbar-thumb:hover': {
+          background: '$tertiary',
+        },
+        scrollbarColor: '$tertiary',
+      },
+    },
   },
 })
 
@@ -261,12 +296,14 @@ export const StyledOptionItem = styled('li', {
     },
     kind: {
       primary: {
+        scrollbarColor: '$primary',
         '&:hover': {
           color: '$primary',
           background: '$primary100 !important',
         },
       },
       secondary: {
+        scrollbarColor: '$secondary',
         '&:hover': {
           color: '$secondary',
           background: '$secondary100 !important',
