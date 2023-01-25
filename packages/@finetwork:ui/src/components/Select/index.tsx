@@ -399,7 +399,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               >
                 {optionContainerTitle && (
                   <div style={{ width: '100%', marginBottom: '0.5rem' }}>
-                    <MainTitle css={{ padding: '0.7rem 0 0.7rem 0' }}>
+                    <MainTitle css={{ padding: '0.7rem 0' }}>
                       {optionContainerTitle}
                     </MainTitle>
                     <Separator />
@@ -447,6 +447,14 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 width: `${getSelectWidth()}px !important`,
               }}
             >
+              {optionContainerTitle && (
+                <div style={{ width: '100%', marginBottom: '0.2rem' }}>
+                  <MainTitle css={{ padding: '0.5rem 0' }}>
+                    {optionContainerTitle}
+                  </MainTitle>
+                  <Separator />
+                </div>
+              )}
               {search && (
                 <SearchContainer>
                   <SearchIcon />
