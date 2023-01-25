@@ -17,7 +17,7 @@ import { RenderEnhancer } from '../../utils'
 export const RadioGroup = React.forwardRef<
   HTMLDivElement,
   RadioGroupComponentProps
->(({ children, direction, name, title, error }, ref) => {
+>(({ children, direction, name, title, error, optionsGap }, ref) => {
   return (
     <StyledContainer>
       {title && (
@@ -27,7 +27,11 @@ export const RadioGroup = React.forwardRef<
         </>
       )}
 
-      <StyledRadioGroupContainer direction={direction} ref={ref}>
+      <StyledRadioGroupContainer
+        direction={direction}
+        ref={ref}
+        css={{ gap: optionsGap }}
+      >
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) return null
           if (name) {
@@ -148,7 +152,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       setCustomStyle(css)
     }, [])
 
-    const Radio = () => (
+    return (
       <StyledRadioContainer size={size} isDisabled={disabled}>
         <StyledInputContainer
           kind={kind}
@@ -180,6 +184,5 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         </StyledText>
       </StyledRadioContainer>
     )
-    return <Radio />
   }
 )

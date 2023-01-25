@@ -22,4 +22,4 @@ yarn add @finetwork/ui react
 
 ## Documentation
 
-Check out our [documentation website](https://finetwork-ui.vercel.app/).
+Check out our [documentation website](https://finetwork-ui-website.vercel.app/).
