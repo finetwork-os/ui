@@ -411,7 +411,6 @@ export const StyledTitle = styled('span', {
 
 export const StyledOptionMultiple = styled('li', {
   display: 'flex',
-  height: '40px',
   marginTop: '10px',
   marginBottom: '10px',
   listStyle: 'none',

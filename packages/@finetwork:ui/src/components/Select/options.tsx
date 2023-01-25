@@ -168,6 +168,7 @@ export const Options: React.FC<OptionsProps> = ({
                 <Checkbox
                   checked={chosenMultipleOptions?.includes(option.label)}
                   readOnly
+                  align="center"
                   label={
                     <StyledOptionMultiple
                       css={{
@@ -235,6 +236,7 @@ export const Options: React.FC<OptionsProps> = ({
                     <Checkbox
                       checked={chosenMultipleOptions?.includes(option.label)}
                       readOnly
+                      align="center"
                       label={
                         <StyledOptionMultiple
                           css={{
