@@ -10,7 +10,6 @@ import { Paragraph5 } from '../Typography'
 export const MainContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  margin: '1rem',
   variants: {
     isDisabled: {
       true: {

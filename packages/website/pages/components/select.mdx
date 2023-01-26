@@ -20,6 +20,7 @@ export const styles = {
   padding: '2em',
   height: '20em',
   display: 'flex',
+  gap: '1rem',
 }
 
 export const allOptions = [
@@ -112,27 +113,27 @@ export const options = [
   <div style={styles}>
     <Select
       id="type-standard"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Standard"
       options={options}
     />
     <Select
       id="type-standard-with-title"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Standard With Title"
       type="StandardWithTitle"
       options={allOptions}
     />
     <Select
       id="type-multiple"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Multiple"
       type="Multiple"
       options={options}
     />
     <Select
       id="type-multiple-with-title"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Multiple With Title"
       type="MultipleWithTitle"
       width={200}
@@ -149,21 +150,21 @@ export const options = [
   <div style={styles}>
     <Select
       id="kind-primary"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Primary"
       kind="primary"
       options={options}
     />
     <Select
       id="kind-secondary"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Secondary"
       kind="secondary"
       options={options}
     />
     <Select
       id="kind-tertiary"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Tertiary"
       kind="tertiary"
       options={options}
@@ -172,12 +173,17 @@ export const options = [
 </Playground>
 
 <div>
-  <H3 font="secondary">Value</H3>
+  <H3 font="secondary">Default Value</H3>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Select id="defaultValue" value="Banana" label="Frutas" options={options} />
+    <Select
+      id="defaultValue"
+      defaultValue={{ value: 'banana', label: 'Banana' }}
+      label="Frutas"
+      options={options}
+    />
   </div>
 </Playground>
 
@@ -189,7 +195,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="search"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       search
       options={options}
@@ -205,7 +211,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="disabled"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       disabled
       options={options}
@@ -221,7 +227,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="error"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       error="Ha habido un error"
       options={options}
@@ -237,7 +243,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="border-radius"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       borderRadius="5px"
       options={options}
@@ -253,7 +259,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="width"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       width="200px"
       options={options}
@@ -269,7 +275,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="scrollbarColor"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       scrollbarColor="230, 83%, 64%"
       options={options}
@@ -285,7 +291,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="without-check"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       withoutCheck
       options={options}
@@ -301,7 +307,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="label-size"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       labelSize="20px"
       options={options}
@@ -317,7 +323,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="label-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       labelColor="$primary"
       options={options}
@@ -333,7 +339,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="hover-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       hoverBorderColor="green"
       options={options}
@@ -349,7 +355,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="border-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       borderColor="green"
       options={options}
@@ -365,7 +371,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="text-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       optionTextColor="green"
       options={options}
@@ -381,7 +387,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="hover-option-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       hoverOptionTextColor="#EEB637"
       options={options}
@@ -397,7 +403,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="hover-background-option-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       hoverBackgroundOptionColor="#FDF4DE"
       options={options}
@@ -413,7 +419,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="chosen-color"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       selectedOptionColor="#829EFC"
       options={options}
@@ -429,7 +435,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="height"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       optionContainerHeight="50%"
       type="StandardWithTitle"
@@ -446,7 +452,7 @@ export const options = [
   <div style={styles}>
     <Select
       id="optionContainerTitle"
-      value="Elige..."
+      defaultValue={{ value: 'elige', label: 'Elige...' }}
       label="Frutas"
       optionContainerTitle="Frutas"
       options={options}
@@ -481,11 +487,11 @@ export const options = [
       <td>Name of the element</td>
     </tr>
     <tr>
-      <td>value</td>
-      <td>string | number</td>
+      <td>defaultValue</td>
+      <td> value: string | number; label: string | number </td>
       <td></td>
       <td>No</td>
-      <td>Value of the select</td>
+      <td>Default value of the select</td>
     </tr>
     <tr>
       <td>label</td>

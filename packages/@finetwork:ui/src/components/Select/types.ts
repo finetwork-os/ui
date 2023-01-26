@@ -27,7 +27,7 @@ export type SelectProps = {
   width?: string
   label?: string | React.ReactNode
   disabled?: boolean
-  value?: string | number
+  defaultValue?: TypeOption
   name?: string
   labelSize?: string
   hoverBorderColor?: string
@@ -48,15 +48,15 @@ export type SelectProps = {
   type?: TypeSelect
   withoutCheck?: boolean
   scrollbarColor?: string
-  setValue?: React.Dispatch<
-    React.SetStateAction<string | number | Array<string | number>>
-  >
+  setValue?: React.Dispatch<React.SetStateAction<any>>
 }
 
 export type SelectState = {
   isOpen: boolean
-  chosenOption: string | number
-  chosenMultipleOptions: (string | number)[]
+  labelChosenOption: string | number
+  labelChosenMultipleOptions: (string | number)[]
+  valueChosenOption: string | number
+  valueChosenMultipleOptions: (string | number)[]
   searchValue: string
   isOverlay: boolean
   allPosibleOptions: TypeOptions

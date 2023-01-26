@@ -16,10 +16,13 @@ type OptionsProps = {
   allPosibleOptions: TypeOptions
   optionRef: React.MutableRefObject<HTMLLIElement | HTMLDivElement>
   id: string
-  chosenOption: string | number
-  setChosenOption: (option: string | number) => void
+  labelChosenOption: string | number
+  setValueChosenOption: (option: string | number) => void
+  setValueChosenMultipleOptions: (option: string | number) => void
   setIsOpen: (isOpen: boolean) => void
   kind?: KINDS
+  value?: string | number
+  defaultChecked?: string | number
   scrollbarColor?: string
   withoutCheck?: boolean
   customStyle: {
@@ -33,8 +36,9 @@ type OptionsProps = {
   }
   selectedOptionColor: string
   optionTextColor?: string
-  chosenMultipleOptions: (string | number)[]
-  setChosenMultipleOptions: (option: string | number) => void
+  labelChosenMultipleOptions: (string | number)[]
+  setLabelChosenOption: (option: string | number) => void
+  setLabelChosenMultipleOptions: (option: string | number) => void
 }
 
 export const Options: React.FC<OptionsProps> = ({
@@ -42,8 +46,9 @@ export const Options: React.FC<OptionsProps> = ({
   allPosibleOptions,
   optionRef,
   id,
-  chosenOption,
-  setChosenOption,
+  labelChosenOption,
+  setValueChosenOption,
+  setValueChosenMultipleOptions,
   setIsOpen,
   kind,
   scrollbarColor,
@@ -51,16 +56,18 @@ export const Options: React.FC<OptionsProps> = ({
   customStyle,
   selectedOptionColor,
   optionTextColor,
-  chosenMultipleOptions,
-  setChosenMultipleOptions,
+  labelChosenMultipleOptions,
+  setLabelChosenOption,
+  setLabelChosenMultipleOptions,
 }) => {
   function optionHasBeenChosen(option) {
-    setChosenOption(option)
+    setLabelChosenOption(option.label)
+    setValueChosenOption(option.value)
     setIsOpen(false)
   }
 
   function chosenOptionColor(option) {
-    if (chosenOption === option) {
+    if (labelChosenOption === option) {
       if (selectedOptionColor) return selectedOptionColor
       if (kind) {
         if (kind === 'secondary') return '$colors$secondary'
@@ -73,7 +80,8 @@ export const Options: React.FC<OptionsProps> = ({
   }
 
   function multipleOptionHasBeenChosen(option) {
-    setChosenMultipleOptions(option)
+    setLabelChosenMultipleOptions(option.label)
+    setValueChosenMultipleOptions(option.value)
   }
 
   if (type === 'StandardWithTitle')
@@ -108,13 +116,13 @@ export const Options: React.FC<OptionsProps> = ({
                     key={`${id}_optionWithTitle_${option.value}`}
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-                    onClick={() => optionHasBeenChosen(option.label)}
+                    onClick={() => optionHasBeenChosen(option)}
                     kind={kind}
                     withoutCheck={withoutCheck}
                     onKeyDown={(e) =>
-                      e.code === 'Enter' && optionHasBeenChosen(option.label)
+                      e.code === 'Enter' && optionHasBeenChosen(option)
                     }
-                    chosen={chosenOption === option.label ? true : false}
+                    chosen={labelChosenOption === option.label ? true : false}
                     css={{
                       ...customStyle.options,
                       color: `${chosenOptionColor(option.label)}`,
@@ -155,18 +163,17 @@ export const Options: React.FC<OptionsProps> = ({
             ) : (
               <MultipleContainer
                 key={`${id}_optionMultiple_${option.value}`}
-                chosen={chosenMultipleOptions?.includes(option.label)}
-                onClick={() => multipleOptionHasBeenChosen(option.label)}
+                chosen={labelChosenMultipleOptions?.includes(option.label)}
+                onClick={() => multipleOptionHasBeenChosen(option)}
                 onKeyDown={(e) =>
-                  e.code === 'Enter' &&
-                  multipleOptionHasBeenChosen(option.label)
+                  e.code === 'Enter' && multipleOptionHasBeenChosen(option)
                 }
                 kind={kind}
                 tabIndex={0}
                 ref={optionRef as React.MutableRefObject<HTMLDivElement>}
               >
                 <Checkbox
-                  checked={chosenMultipleOptions?.includes(option.label)}
+                  checked={labelChosenMultipleOptions?.includes(option.label)}
                   readOnly
                   align="center"
                   label={
@@ -223,18 +230,19 @@ export const Options: React.FC<OptionsProps> = ({
                 ) : (
                   <MultipleContainer
                     key={`${id}_optionMultipleWithTitle_${option.value}`}
-                    chosen={chosenOption === option.label ? true : false}
-                    onClick={() => multipleOptionHasBeenChosen(option.label)}
+                    chosen={labelChosenOption === option.label ? true : false}
+                    onClick={() => multipleOptionHasBeenChosen(option)}
                     onKeyDown={(e) =>
-                      e.code === 'Enter' &&
-                      multipleOptionHasBeenChosen(option.label)
+                      e.code === 'Enter' && multipleOptionHasBeenChosen(option)
                     }
                     kind={kind}
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLDivElement>}
                   >
                     <Checkbox
-                      checked={chosenMultipleOptions?.includes(option.label)}
+                      checked={labelChosenMultipleOptions?.includes(
+                        option.label
+                      )}
                       readOnly
                       align="center"
                       label={
@@ -282,13 +290,13 @@ export const Options: React.FC<OptionsProps> = ({
             <StyledOptionItem
               tabIndex={0}
               ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-              onClick={() => optionHasBeenChosen(option.label)}
+              onClick={() => optionHasBeenChosen(option)}
               kind={kind}
               withoutCheck={withoutCheck}
               onKeyDown={(e) =>
-                e.code === 'Enter' && optionHasBeenChosen(option.label)
+                e.code === 'Enter' && optionHasBeenChosen(option)
               }
-              chosen={chosenOption === option.label ? true : false}
+              chosen={labelChosenOption === option.label ? true : false}
               css={{
                 ...customStyle.options,
                 color: `${chosenOptionColor(option.label)}`,
