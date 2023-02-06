@@ -2,12 +2,16 @@ import { CSS } from '@stitches/react/types/css-util'
 import * as React from 'react'
 import { KINDS } from '../../types'
 
+export type Value =
+  | { value: string | number; label: string | number }
+  | Array<{ value: string | number; label: string | number }>
+
 export type TypeOption = { value: string | number; label: string | number }
 
 export type TypeOptions =
   | Array<TypeOption>
   | Array<{
-      title: string | number
+      value: string | number
       options: Array<TypeOption>
     }>
 
@@ -27,7 +31,7 @@ export type SelectProps = {
   width?: string
   label?: string | React.ReactNode
   disabled?: boolean
-  defaultValue?: TypeOption
+  value?: Value
   name?: string
   labelSize?: string
   hoverBorderColor?: string
@@ -49,14 +53,11 @@ export type SelectProps = {
   withoutCheck?: boolean
   scrollbarColor?: string
   setValue?: React.Dispatch<React.SetStateAction<any>>
+  grouping: boolean
 }
 
 export type SelectState = {
   isOpen: boolean
-  labelChosenOption: string | number
-  labelChosenMultipleOptions: (string | number)[]
-  valueChosenOption: string | number
-  valueChosenMultipleOptions: (string | number)[]
   searchValue: string
   isOverlay: boolean
   allPosibleOptions: TypeOptions

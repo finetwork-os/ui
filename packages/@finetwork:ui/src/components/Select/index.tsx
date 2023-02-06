@@ -21,38 +21,35 @@ import {
 import { DOMEvent, SelectProps, SelectState } from './types'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
-  (
-    {
-      kind,
-      width,
-      label,
-      disabled,
-      defaultValue,
-      name,
-      type,
-      labelColor,
-      optionTextColor,
-      hoverBorderColor,
-      id,
-      labelSize,
-      borderRadius,
-      error,
-      borderColor,
-      checkColor,
-      hoverOptionTextColor,
-      hoverBackgroundOptionColor,
-      selectedOptionColor,
-      search,
-      optionContainerHeight,
-      optionContainerTitle,
-      options,
-      withoutCheck,
-      scrollbarColor,
-      setValue,
-      ...props
-    },
-    ref
-  ): JSX.Element => {
+  ({
+    kind,
+    width,
+    label,
+    disabled,
+    value,
+    name,
+    type,
+    labelColor,
+    optionTextColor,
+    hoverBorderColor,
+    id,
+    labelSize,
+    borderRadius,
+    error,
+    borderColor,
+    checkColor,
+    hoverOptionTextColor,
+    hoverBackgroundOptionColor,
+    selectedOptionColor,
+    search,
+    optionContainerHeight,
+    optionContainerTitle,
+    options,
+    withoutCheck,
+    scrollbarColor,
+    setValue,
+    ...props
+  }): JSX.Element => {
     const [customStyle, setCustomStyle] = React.useState({
       select: {},
       label: {},
@@ -62,34 +59,26 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       optionsGroup: {},
       options: {},
     })
-    const [
-      {
-        isOpen,
-        labelChosenOption,
-        labelChosenMultipleOptions,
-        valueChosenOption,
-        valueChosenMultipleOptions,
-        searchValue,
-        isOverlay,
-        allPosibleOptions,
-      },
-      updateState,
-    ] = React.useReducer(
-      (prev: SelectState, next: Partial<SelectState>) => {
-        return { ...prev, ...next }
-      },
-      {
-        isOpen: false,
-        labelChosenOption: defaultValue.label,
-        labelChosenMultipleOptions: [],
-        valueChosenOption: defaultValue.value,
-        valueChosenMultipleOptions: [],
-        searchValue: '',
-        isOverlay: false,
-        allPosibleOptions: options,
-      }
-    )
 
+    const [{ isOpen, searchValue, isOverlay, allPosibleOptions }, updateState] =
+      React.useReducer(
+        (prev: SelectState, next: Partial<SelectState>) => {
+          return { ...prev, ...next }
+        },
+        {
+          isOpen: false,
+          searchValue: '',
+          isOverlay: false,
+          allPosibleOptions: options,
+        }
+      )
+
+    const defaultValue = React.useMemo(() => {
+      if (Array.isArray(value)) {
+        return value[0]
+      }
+      return value
+    }, [])
     const inputRef = React.useRef<HTMLDivElement>(null)
     const optionRef = React.useRef<HTMLLIElement>(null)
     const optionGroupRef = React.useRef<HTMLDivElement>(null)
@@ -254,17 +243,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     }, [isOpen])
 
     React.useEffect(() => {
-      if (type === 'Multiple' || type === 'MultipleWithTitle') {
-        if (labelChosenMultipleOptions !== undefined && setValue) {
-          return setValue(valueChosenMultipleOptions)
-        }
-      }
-      if (labelChosenOption !== undefined && setValue) {
-        return setValue(valueChosenOption)
-      }
-    }, [labelChosenOption, labelChosenMultipleOptions])
-
-    React.useEffect(() => {
       if (searchValue === '') {
         return updateState({ allPosibleOptions: options })
       }
@@ -294,6 +272,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       if (isOpen && search) searchInputRef.current.focus()
+
+      if (!isOpen && search) updateState({ searchValue: '' })
     }, [search, isOpen])
 
     React.useEffect(() => {
@@ -301,13 +281,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         allPosibleOptions: options,
       })
     }, [options])
-
-    // React.useEffect(() => {
-    //   updateState({
-    //     labelChosenOption: defaultValue.label,
-    //     valueChosenOption: defaultValue.value,
-    //   })
-    // }, [defaultValue])
 
     function handleOutsideClick(e: DOMEvent<HTMLInputElement>) {
       if (
@@ -320,57 +293,25 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     }
 
     function selectLabelToMultipleOption() {
-      if (labelChosenMultipleOptions.length <= 0) {
-        return defaultValue ? defaultValue.label : 'Elige...'
-      }
+      if (!Array.isArray(value)) return
 
-      var formattedArray = ''
-      for (let i = 0; i < labelChosenMultipleOptions.length; i++) {
-        if (i < labelChosenMultipleOptions.length - 1) {
-          formattedArray += `${labelChosenMultipleOptions[i]}, `
+      if (value.length <= 1) return `${defaultValue.label}`
+
+      let formattedArray = ''
+      for (let i = 0; i < value.length; i++) {
+        if (value[i].value === defaultValue.value) {
+          formattedArray = formattedArray
+        } else if (i < value.length - 1) {
+          formattedArray += `${value[i].label}, `
         } else {
-          formattedArray += labelChosenMultipleOptions[i]
+          formattedArray += value[i].label
         }
       }
       return formattedArray
     }
 
-    function setLabelChosenMultipleOptions(option: string | number) {
-      if (labelChosenMultipleOptions.find((_option) => option === _option)) {
-        return updateState({
-          labelChosenMultipleOptions: [...labelChosenMultipleOptions].filter(
-            (_option) => _option !== option
-          ),
-        })
-      }
-      return updateState({
-        labelChosenMultipleOptions: [...labelChosenMultipleOptions, option],
-      })
-    }
-
     function setIsOpen(isOpen: boolean) {
       updateState({ isOpen })
-    }
-
-    function setLabelChosenOption(option: string | number) {
-      updateState({ labelChosenOption: option })
-    }
-
-    function setValueChosenOption(option: string | number) {
-      updateState({ valueChosenOption: option })
-    }
-
-    function setValueChosenMultipleOptions(option: string | number) {
-      if (valueChosenMultipleOptions.find((_option) => option === _option)) {
-        return updateState({
-          valueChosenMultipleOptions: [...valueChosenMultipleOptions].filter(
-            (_option) => _option !== option
-          ),
-        })
-      }
-      return updateState({
-        valueChosenMultipleOptions: [...valueChosenMultipleOptions, option],
-      })
     }
 
     function handleChangeInputValue(e: React.ChangeEvent<HTMLInputElement>) {
@@ -422,7 +363,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             <ShowChosenOptions>
               {type === 'Multiple' || type === 'MultipleWithTitle'
                 ? selectLabelToMultipleOption()
-                : labelChosenOption}
+                : !Array.isArray(value) && value.label}
             </ShowChosenOptions>
             <Arrow isOpen={isOpen} />
           </StyledSelect>
@@ -460,10 +401,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   allPosibleOptions={allPosibleOptions}
                   optionRef={optionRef}
                   id={id}
-                  labelChosenOption={labelChosenOption}
-                  setLabelChosenOption={setLabelChosenOption}
-                  setValueChosenOption={setValueChosenOption}
-                  setValueChosenMultipleOptions={setValueChosenMultipleOptions}
+                  labelChosenOption={!Array.isArray(value) && value.label}
+                  setValue={setValue}
                   setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                   kind={kind}
                   scrollbarColor={scrollbarColor}
@@ -471,8 +410,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   customStyle={customStyle}
                   selectedOptionColor={selectedOptionColor}
                   optionTextColor={optionTextColor}
-                  labelChosenMultipleOptions={labelChosenMultipleOptions}
-                  setLabelChosenMultipleOptions={setLabelChosenMultipleOptions}
+                  value={value}
                 />
               </Content>
             </Overlay>
@@ -512,10 +450,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 allPosibleOptions={allPosibleOptions}
                 optionRef={optionRef}
                 id={id}
-                labelChosenOption={labelChosenOption}
-                setLabelChosenOption={setLabelChosenOption}
-                setValueChosenOption={setValueChosenOption}
-                setValueChosenMultipleOptions={setValueChosenMultipleOptions}
+                labelChosenOption={!Array.isArray(value) && value.label}
+                setValue={setValue}
                 setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                 kind={kind}
                 scrollbarColor={scrollbarColor}
@@ -523,8 +459,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 customStyle={customStyle}
                 selectedOptionColor={selectedOptionColor}
                 optionTextColor={optionTextColor}
-                labelChosenMultipleOptions={labelChosenMultipleOptions}
-                setLabelChosenMultipleOptions={setLabelChosenMultipleOptions}
+                value={value}
               />
             </Content>
           )}

@@ -110,36 +110,66 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="type-standard"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Standard"
-      options={options}
-    />
-    <Select
-      id="type-standard-with-title"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Standard With Title"
-      type="StandardWithTitle"
-      options={allOptions}
-    />
-    <Select
-      id="type-multiple"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Multiple"
-      type="Multiple"
-      options={options}
-    />
-    <Select
-      id="type-multiple-with-title"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Multiple With Title"
-      type="MultipleWithTitle"
-      width={200}
-      options={allOptions}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      const [values, setValues] = React.useState([
+        {
+          value: 'choose',
+          label: 'Choose at least one...',
+        },
+      ])
+      const [valueWithTitle, setValueWithTitle] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      const [valuesWithTitle, setValuesWithTitle] = React.useState([
+        {
+          value: 'choose',
+          label: 'Choose at least one...',
+        },
+      ])
+      return (
+        <div style={styles}>
+          <Select
+            id="type-standard"
+            value={value}
+            label="Standard"
+            options={options}
+            setValue={setValue}
+          />
+          <Select
+            id="type-standard-1"
+            value={values}
+            label="Standard"
+            options={options}
+            setValue={setValues}
+            type="Multiple"
+          />
+          <Select
+            id="type-standard-with-title"
+            value={valueWithTitle}
+            label="Standard With Title"
+            type="StandardWithTitle"
+            setValue={setValueWithTitle}
+            options={allOptions}
+          />
+          <Select
+            id="type-multiple-with-title"
+            value={valuesWithTitle}
+            label="Multiple With Title"
+            type="MultipleWithTitle"
+            setValue={setValuesWithTitle}
+            options={allOptions}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -147,44 +177,43 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="kind-primary"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Primary"
-      kind="primary"
-      options={options}
-    />
-    <Select
-      id="kind-secondary"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Secondary"
-      kind="secondary"
-      options={options}
-    />
-    <Select
-      id="kind-tertiary"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Tertiary"
-      kind="tertiary"
-      options={options}
-    />
-  </div>
-</Playground>
-
-<div>
-  <H3 font="secondary">Default Value</H3>
-</div>
-
-<Playground>
-  <div style={styles}>
-    <Select
-      id="defaultValue"
-      defaultValue={{ value: 'banana', label: 'Banana' }}
-      label="Frutas"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Elige...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="kind-primary"
+            value={value}
+            label="Primary"
+            kind="primary"
+            options={options}
+            setValue={setValue}
+          />
+          <Select
+            id="kind-secondary"
+            value={value}
+            label="Secondary"
+            kind="secondary"
+            options={options}
+            setValue={setValue}
+          />
+          <Select
+            id="kind-tertiary"
+            value={value}
+            label="Tertiary"
+            kind="tertiary"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -192,15 +221,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="search"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      search
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="search"
+            value={value}
+            label="Fruits"
+            search
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -208,15 +249,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="disabled"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      disabled
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="disabled"
+            value={value}
+            label="Fruits"
+            disabled
+            setValue={setValue}
+            options={options}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -224,15 +277,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="error"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      error="Ha habido un error"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="error"
+            value={value}
+            label="Fruits"
+            error="An error has occured"
+            setValue={setValue}
+            options={options}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -240,15 +305,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="border-radius"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      borderRadius="5px"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="border-radius"
+            value={value}
+            label="Fruits"
+            borderRadius="5px"
+            setValue={setValue}
+            options={options}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -256,15 +333,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="width"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      width="200px"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="width"
+            value={value}
+            label="Fruits"
+            width="200px"
+            setValue={setValue}
+            options={options}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -272,15 +361,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="scrollbarColor"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      scrollbarColor="230, 83%, 64%"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="scrollbarColor"
+            value={value}
+            label="Fruits"
+            scrollbarColor="230, 83%, 64%"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -288,15 +389,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="without-check"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      withoutCheck
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="scrollbarColor"
+            value={value}
+            label="Fruits"
+            options={options}
+            setValue={setValue}
+            withoutCheck
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -304,15 +417,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="label-size"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      labelSize="20px"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-size"
+            value={value}
+            label="Fruits"
+            labelSize="20px"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -320,15 +445,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="label-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      labelColor="$primary"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            labelColor="$primary"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -336,15 +473,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="hover-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      hoverBorderColor="green"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="hover-color"
+            value={value}
+            label="Fruits"
+            hoverBorderColor="green"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -352,15 +501,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="border-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      borderColor="green"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="border-color"
+            value={value}
+            label="Fruits"
+            borderColor="green"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -368,15 +529,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="text-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      optionTextColor="green"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="text-color"
+            value={value}
+            label="Fruits"
+            optionTextColor="green"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -384,15 +557,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="hover-option-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      hoverOptionTextColor="#EEB637"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="hover-option-color"
+            value={value}
+            label="Fruits"
+            hoverOptionTextColor="#EEB637"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -400,15 +585,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="hover-background-option-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      hoverBackgroundOptionColor="#FDF4DE"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="hover-background-option-color"
+            value={value}
+            label="Fruits"
+            hoverBackgroundOptionColor="#FDF4DE"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -416,15 +613,27 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="chosen-color"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      selectedOptionColor="#829EFC"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="chosen-color"
+            value={value}
+            label="Fruits"
+            selectedOptionColor="#829EFC"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -432,16 +641,28 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="height"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      optionContainerHeight="50%"
-      type="StandardWithTitle"
-      options={allOptions}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="height"
+            value={value}
+            label="Fruits"
+            optionContainerHeight="50%"
+            type="StandardWithTitle"
+            options={allOptions}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -449,204 +670,25 @@ export const options = [
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Select
-      id="optionContainerTitle"
-      defaultValue={{ value: 'elige', label: 'Elige...' }}
-      label="Frutas"
-      optionContainerTitle="Frutas"
-      options={options}
-    />
-  </div>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="optionContainerTitle"
+            value={value}
+            label="Fruits"
+            optionContainerTitle="Fruits"
+            options={options}
+            setValue={setValue}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
-
-<h2>Select Props</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Required</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id</td>
-      <td>string</td>
-      <td></td>
-      <td>Yes</td>
-      <td>ID of the element</td>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Name of the element</td>
-    </tr>
-    <tr>
-      <td>defaultValue</td>
-      <td> value: string | number; label: string | number </td>
-      <td></td>
-      <td>No</td>
-      <td>Default value of the select</td>
-    </tr>
-    <tr>
-      <td>label</td>
-      <td>string | ReactNode</td>
-      <td></td>
-      <td>No</td>
-      <td>Description of the select</td>
-    </tr>
-    <tr>
-      <td>type</td>
-      <td>Standard | StandardWithTitle | Multiple | MultipleWithTitle</td>
-      <td>Standard</td>
-      <td>No</td>
-      <td>Set defined the type of the component</td>
-    </tr>
-    <tr>
-      <td>search</td>
-      <td>boolean</td>
-      <td></td>
-      <td>No</td>
-      <td>Add a search engine to the options</td>
-    </tr>
-    <tr>
-      <td>disabled</td>
-      <td>boolean</td>
-      <td>false</td>
-      <td>No</td>
-      <td>Set input to disabled mode</td>
-    </tr>
-    <tr>
-      <td>borderRadius</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Define amount of border radius in select style</td>
-    </tr>
-    <tr>
-      <td>labelSize</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Set the size of the select label</td>
-    </tr>
-    <tr>
-      <td>labelColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Set the color of the select label</td>
-    </tr>
-    <tr>
-      <td>error</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the styles and text of error</td>
-    </tr>
-    <tr>
-      <td>width</td>
-      <td>string</td>
-      <td>primary</td>
-      <td>No</td>
-      <td>Defines the width of select</td>
-    </tr>
-    <tr>
-      <td>kind</td>
-      <td>primary | secondary | tertiary</td>
-      <td>primary</td>
-      <td>No</td>
-      <td>Set defined styles of the component</td>
-    </tr>
-    <tr>
-      <td>hoverBorderColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the hover color of the select</td>
-    </tr>
-    <tr>
-      <td>optionTextColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the color of the different options</td>
-    </tr>
-    <tr>
-      <td>borderColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the border color of the select</td>
-    </tr>
-    <tr>
-      <td>hoverOptionTextColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the color text when hover of the different options</td>
-    </tr>
-    <tr>
-      <td>hoverBackgroundOptionColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the hover color of the different options</td>
-    </tr>
-    <tr>
-      <td>selectedOptionColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the color when the option has been chosen</td>
-    </tr>
-    <tr>
-      <td>withoutCheck</td>
-      <td>boolean</td>
-      <td></td>
-      <td>No</td>
-      <td>Do not check when the option has been chosen</td>
-    </tr>
-    <tr>
-      <td>height</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Defines the height of select in px</td>
-    </tr>
-    <tr>
-      <td>selectTitle</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Set title top of the options container only in mobile size</td>
-    </tr>
-    <tr>
-      <td>scrollbarColor</td>
-      <td>string</td>
-      <td></td>
-      <td>No</td>
-      <td>Set scrollbar color, this must be defined in hsl format</td>
-    </tr>
-    <tr>
-      <td>SetValue</td>
-      <td>state</td>
-      <td></td>
-      <td>No</td>
-      <td>The result will be sent through this set</td>
-    </tr>
-    <tr>
-      <td>options</td>
-      <td>Array of objects with value: string|number and label: string|number or Array of objects with title: string|number and options: Array of objects with value: string|number and label: string|number</td>
-      <td></td>
-      <td>Yes</td>
-      <td>The different options of the select</td>
-    </tr>
-
-  </tbody>
-</table>
