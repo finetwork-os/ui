@@ -8,6 +8,7 @@ export const StyledTag = styled('div', {
   gap: '.3rem',
   padding: '5px 10px',
   background: '#B4C4F9',
+  width: 'fit-content',
   variants: {
     kind: {
       primary: {

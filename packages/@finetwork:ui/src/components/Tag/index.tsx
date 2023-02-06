@@ -16,7 +16,7 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
       endEnhancer,
       startEnhancer,
       colorText,
-      bold = true,
+      bold = false,
       ...props
     },
     ref
