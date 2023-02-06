@@ -1,11 +1,19 @@
-import { ComponentProps, FC } from 'react'
-
+import { ComponentProps, ReactNode } from 'react'
 import { KINDS } from '../../types'
-import { Property } from '@stitches/react/types/css'
 import { StyledTag } from './styled'
 
-export type TagProps = ComponentProps<typeof StyledTag> & {
+export type TagComponentOwnProps = {
+  id?: string
   kind?: KINDS
-  textTransform?: Property.TextTransform
+  text?: string
+  textSize?: string
+  background?: string
+  width?: string
+  height?: string
+  borderRadius?: string
+  colorText?: string
+  bold?: boolean
+  startEnhancer?: ReactNode | string
+  endEnhancer?: ReactNode | string
 }
-export type TagComponent = FC<TagProps>
+export type TagProps = ComponentProps<typeof StyledTag> & TagComponentOwnProps

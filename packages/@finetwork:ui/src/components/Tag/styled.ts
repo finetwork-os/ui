@@ -1,34 +1,43 @@
 import { styled } from '../../stitches.config'
+import { Paragraph6 } from '../Typography'
 
 export const StyledTag = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '.3rem',
   padding: '5px 10px',
-  textTransform: 'uppercase',
+  background: '#B4C4F9',
   variants: {
     kind: {
       primary: {
-        color: '$primaryText',
-        backgroundColor: '$primary',
+        background: '$primary',
       },
       secondary: {
-        color: '$secondaryText',
-        backgroundColor: '$secondary',
+        background: '$secondary',
       },
       tertiary: {
-        color: '$tertiaryText',
-        backgroundColor: '$tertiary',
-      },
-    },
-    font: {
-      primary: {
-        fontFamily: '$primary',
-      },
-      secondary: {
-        fontFamily: '$secondary',
+        background: '$tertiary',
       },
     },
   },
-  defaultVariants: {
-    kind: 'primary',
-    font: 'primary',
+})
+
+export const StyledParagraph6 = styled(Paragraph6, {
+  variants: {
+    bold: {
+      true: {
+        fontWeight: 'bold !important',
+      },
+    },
+    kind: {
+      primary: {
+        color: 'white',
+      },
+      secondary: {
+        color: 'white',
+      },
+      tertiary: {},
+    },
   },
 })
