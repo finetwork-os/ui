@@ -2,7 +2,8 @@ import * as Stitches from '@stitches/react'
 
 const media = {
   mobile: '(min-width: 360px)',
-  tablet: '(min-width: 768px)',
+  tablet: '(min-width: 480px)',
+  tabletXl: '(min-width: 768px)',
   desktop: '(min-width: 1024px)',
   'desktop-xl': '(min-width: 1280px)',
 }

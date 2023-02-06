@@ -32,7 +32,7 @@ export const PriceContainer = styled('div', {
     bottom: '-1.5rem',
     width: '5rem',
   },
-  '@tablet': {
+  '@tabletXl': {
     display: 'none',
   },
   '@desktop-xl': {

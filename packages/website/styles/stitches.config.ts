@@ -13,6 +13,7 @@ export const {
   media: {
     mobile: `(min-width: ${lightTheme.sizes.mobile})`,
     tablet: `(min-width: ${lightTheme.sizes.tablet})`,
+    tabletXl: `(min-width: ${lightTheme.sizes.tabletXl})`,
     desktop: `(min-width: ${lightTheme.sizes.desktop})`,
     'desktop-xl': `(min-width: ${lightTheme.sizes.desktop})`,
     'desktop-2xl': `(min-width: ${lightTheme.sizes['desktop-2xl']})`,

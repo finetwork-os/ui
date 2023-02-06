@@ -44,7 +44,8 @@ const sharedStyles = {
   space: {},
   sizes: {
     mobile: '360px',
-    tablet: '768px',
+    tablet: '480px',
+    tabletXl: '768px',
     desktop: '1024px',
     'desktop-xl': '1280px',
     'desktop-2xl': '1680px',
