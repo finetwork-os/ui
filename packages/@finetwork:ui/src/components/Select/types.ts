@@ -11,50 +11,48 @@ export type TypeOption = { value: string | number; label: string | number }
 export type TypeOptions =
   | Array<TypeOption>
   | Array<{
-      value: string | number
+      title: string | number
       options: Array<TypeOption>
     }>
-
-export type TypeSelect =
-  | 'Standard'
-  | 'StandardWithTitle'
-  | 'Multiple'
-  | 'MultipleWithTitle'
 
 export interface DOMEvent<T extends EventTarget> extends Event {
   readonly target: T
 }
 
+type Shared = {
+  id: string
+  setValue?: React.Dispatch<React.SetStateAction<any>>
+  kind?: KINDS
+  withoutCheck?: boolean
+  scrollbarColor?: string
+  selectedOptionColor: string
+  optionTextColor?: string
+  value?: Value
+  grouping: boolean
+}
+
 export type SelectProps = {
   css?: CSS
-  kind?: KINDS
   width?: string
   label?: string | React.ReactNode
   disabled?: boolean
-  value?: Value
   name?: string
   labelSize?: string
   hoverBorderColor?: string
   labelColor?: string
-  optionTextColor?: string
   borderColor?: string
-  id: string
   borderRadius?: string
   checkColor?: boolean
   hoverOptionTextColor?: boolean
   hoverBackgroundOptionColor?: boolean
-  selectedOptionColor?: string
   error?: string
   search?: boolean
   optionContainerHeight?: string
   optionContainerTitle?: string
   options: TypeOptions
-  type?: TypeSelect
-  withoutCheck?: boolean
-  scrollbarColor?: string
-  setValue?: React.Dispatch<React.SetStateAction<any>>
-  grouping: boolean
-}
+  notFoundText?: string
+  searchText?: string
+} & Shared
 
 export type SelectState = {
   isOpen: boolean
@@ -62,3 +60,19 @@ export type SelectState = {
   isOverlay: boolean
   allPosibleOptions: TypeOptions
 }
+
+export type OptionsProps = {
+  allPosibleOptions: TypeOptions
+  optionRef: React.MutableRefObject<HTMLLIElement | HTMLDivElement>
+  setIsOpen: (isOpen: boolean) => void
+  customStyle: {
+    select: {}
+    label: {}
+    hover: {}
+    container: {}
+    optionsContainer: {}
+    optionsGroup: {}
+    options: {}
+  }
+  isMultiple: boolean
+} & Shared

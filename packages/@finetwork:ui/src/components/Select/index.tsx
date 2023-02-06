@@ -28,7 +28,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     disabled,
     value,
     name,
-    type,
     labelColor,
     optionTextColor,
     hoverBorderColor,
@@ -48,6 +47,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     withoutCheck,
     scrollbarColor,
     setValue,
+    grouping,
+    notFoundText,
+    searchText,
     ...props
   }): JSX.Element => {
     const [customStyle, setCustomStyle] = React.useState({
@@ -78,6 +80,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         return value[0]
       }
       return value
+    }, [])
+
+    const isMultiple = React.useMemo(() => {
+      return Array.isArray(value)
     }, [])
     const inputRef = React.useRef<HTMLDivElement>(null)
     const optionRef = React.useRef<HTMLLIElement>(null)
@@ -258,8 +264,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         return updateState({
           allPosibleOptions: [
             {
-              value: 'No encontrado',
-              label: 'No encontrado',
+              value: 'not-found',
+              label: notFoundText,
             },
           ],
         })
@@ -361,7 +367,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {...props}
           >
             <ShowChosenOptions>
-              {type === 'Multiple' || type === 'MultipleWithTitle'
+              {isMultiple
                 ? selectLabelToMultipleOption()
                 : !Array.isArray(value) && value.label}
             </ShowChosenOptions>
@@ -388,7 +394,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                     <SearchInput
                       type="text"
                       autoFocus
-                      placeholder="Buscar..."
+                      placeholder={searchText}
                       id="seachInput"
                       value={searchValue}
                       ref={searchInputRef}
@@ -397,11 +403,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   </SearchContainer>
                 )}
                 <Options
-                  type={type}
                   allPosibleOptions={allPosibleOptions}
                   optionRef={optionRef}
                   id={id}
-                  labelChosenOption={!Array.isArray(value) && value.label}
                   setValue={setValue}
                   setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                   kind={kind}
@@ -411,6 +415,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   selectedOptionColor={selectedOptionColor}
                   optionTextColor={optionTextColor}
                   value={value}
+                  isMultiple={isMultiple}
+                  grouping={grouping}
                 />
               </Content>
             </Overlay>
@@ -437,7 +443,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   <SearchInput
                     type="text"
                     autoFocus
-                    placeholder="Buscar..."
+                    placeholder={searchText}
                     id="seachInput"
                     value={searchValue}
                     onChange={handleChangeInputValue}
@@ -446,11 +452,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 </SearchContainer>
               )}
               <Options
-                type={type}
                 allPosibleOptions={allPosibleOptions}
                 optionRef={optionRef}
                 id={id}
-                labelChosenOption={!Array.isArray(value) && value.label}
                 setValue={setValue}
                 setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                 kind={kind}
@@ -460,6 +464,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 selectedOptionColor={selectedOptionColor}
                 optionTextColor={optionTextColor}
                 value={value}
+                isMultiple={isMultiple}
+                grouping={grouping}
               />
             </Content>
           )}

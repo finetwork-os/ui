@@ -8,41 +8,12 @@ import {
   StyledOptionsGroup,
   StyledTitle,
 } from './styled'
-import { TypeOption, TypeOptions, TypeSelect, Value } from './types'
-import { KINDS } from '@finetwork:ui/src/types'
-
-type OptionsProps = {
-  type: TypeSelect
-  allPosibleOptions: TypeOptions
-  optionRef: React.MutableRefObject<HTMLLIElement | HTMLDivElement>
-  id: string
-  labelChosenOption: string | number
-  setValue: any
-  setIsOpen: (isOpen: boolean) => void
-  kind?: KINDS
-  defaultChecked?: string | number
-  scrollbarColor?: string
-  withoutCheck?: boolean
-  customStyle: {
-    select: {}
-    label: {}
-    hover: {}
-    container: {}
-    optionsContainer: {}
-    optionsGroup: {}
-    options: {}
-  }
-  selectedOptionColor: string
-  optionTextColor?: string
-  value: Value
-}
+import { OptionsProps, TypeOptions, Value } from './types'
 
 export const Options: React.FC<OptionsProps> = ({
-  type,
   allPosibleOptions,
   optionRef,
   id,
-  labelChosenOption,
   setValue,
   setIsOpen,
   kind,
@@ -52,6 +23,8 @@ export const Options: React.FC<OptionsProps> = ({
   selectedOptionColor,
   optionTextColor,
   value,
+  isMultiple,
+  grouping,
 }) => {
   function optionHasBeenChosen(option) {
     if (!Array.isArray(value)) {
@@ -62,8 +35,9 @@ export const Options: React.FC<OptionsProps> = ({
     setValue([...value, option])
   }
 
-  function chosenOptionColor(option) {
-    if (labelChosenOption === option) {
+  function chosenOptionColor(option: string) {
+    if (Array.isArray(value)) return
+    if (value.value === option) {
       if (selectedOptionColor) return selectedOptionColor
       if (kind) {
         if (kind === 'secondary') return '$colors$secondary'
@@ -75,7 +49,7 @@ export const Options: React.FC<OptionsProps> = ({
     return 'black'
   }
 
-  function multipleOptionHasBeenChosen(option) {
+  function multipleOptionHasBeenChosen(option: Value) {
     if (Array.isArray(value))
       if (value.some((value) => option === value)) {
         setValue([...value, option].filter((value) => option !== value))
@@ -84,7 +58,7 @@ export const Options: React.FC<OptionsProps> = ({
       }
   }
 
-  if (type === 'StandardWithTitle')
+  if (!isMultiple && grouping)
     return (
       <StyledOptionsGroup
         css={{
@@ -125,10 +99,10 @@ export const Options: React.FC<OptionsProps> = ({
                     chosen={Array.isArray(value) && value?.includes(option)}
                     css={{
                       ...customStyle.options,
-                      color: `${chosenOptionColor(option.label)}`,
+                      color: `${chosenOptionColor(option.value)}`,
                       '&:after': {
                         boxShadow: `inset 14px 14px ${chosenOptionColor(
-                          option.label
+                          option.value
                         )} !important`,
                       },
                     }}
@@ -142,7 +116,7 @@ export const Options: React.FC<OptionsProps> = ({
         ))}
       </StyledOptionsGroup>
     )
-  if (type === 'Multiple')
+  if (isMultiple && !grouping)
     return (
       <StyledOptionsGroup
         css={{
@@ -198,7 +172,7 @@ export const Options: React.FC<OptionsProps> = ({
         ))}
       </StyledOptionsGroup>
     )
-  if (type === 'MultipleWithTitle')
+  if (isMultiple && grouping)
     return (
       <StyledOptionsGroup
         css={{
@@ -267,6 +241,7 @@ export const Options: React.FC<OptionsProps> = ({
         ))}
       </StyledOptionsGroup>
     )
+
   return (
     <StyledOptionsGroup
       css={{
@@ -297,10 +272,10 @@ export const Options: React.FC<OptionsProps> = ({
               chosen={Array.isArray(value) && value?.includes(option)}
               css={{
                 ...customStyle.options,
-                color: `${chosenOptionColor(option.label)}`,
+                color: `${chosenOptionColor(option.value)}`,
                 '&:after': {
                   boxShadow: `inset 14px 14px ${chosenOptionColor(
-                    option.label
+                    option.value
                   )} !important`,
                 },
               }}
