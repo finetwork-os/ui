@@ -113,6 +113,9 @@ const getTypographyStyles = (
   '@tablet': {
     ...allDevicesSizes,
   },
+  '@tabletXl': {
+    ...allDevicesSizes,
+  },
   '@desktop': {
     ...allDevicesSizes,
   },

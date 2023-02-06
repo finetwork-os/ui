@@ -86,3 +86,32 @@ export const scaleDownAnimation = keyframes({
     transform: 'scale(0) ',
   },
 })
+
+export const rotateAnimation = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(-180deg) ',
+  },
+})
+
+export const fadeInBackground = keyframes({
+  '0%': { backgroundColor: 'rgba(0,0,0,0)' },
+  '100%': { backgroundColor: 'rgba(0,0,0,0.5)' },
+})
+
+export const fadeOutBackground = keyframes({
+  '0%': { backgroundColor: 'rgba(0,0,0,0)' },
+  '100%': { backgroundColor: 'rgba(0,0,0,0)' },
+})
+
+export const animationSelect = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(-10%)' },
+  '100%': { opacity: 1, transform: 'translateY(0)' },
+})
+
+export const animationSelectMobile = keyframes({
+  '0%': { transform: 'translateY(100%)' },
+  '100%': { transform: 'translateY(0)' },
+})
