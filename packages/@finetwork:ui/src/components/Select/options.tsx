@@ -14,7 +14,7 @@ export const Options: React.FC<OptionsProps> = ({
   allPosibleOptions,
   optionRef,
   id,
-  setValue,
+  onChange,
   setIsOpen,
   kind,
   scrollbarColor,
@@ -28,11 +28,11 @@ export const Options: React.FC<OptionsProps> = ({
 }) => {
   function optionHasBeenChosen(option) {
     if (!Array.isArray(value)) {
-      setValue({ value: option.value, label: option.label })
+      onChange({ value: option.value, label: option.label })
       return setIsOpen(false)
     }
 
-    setValue([...value, option])
+    onChange([...value, option])
   }
 
   function chosenOptionColor(option: string) {
@@ -52,9 +52,9 @@ export const Options: React.FC<OptionsProps> = ({
   function multipleOptionHasBeenChosen(option: Value) {
     if (Array.isArray(value))
       if (value.some((value) => option === value)) {
-        setValue([...value, option].filter((value) => option !== value))
+        onChange([...value, option].filter((value) => option !== value))
       } else {
-        setValue([...value, option])
+        onChange([...value, option])
       }
   }
 
@@ -90,14 +90,21 @@ export const Options: React.FC<OptionsProps> = ({
                     key={`${id}_optionWithTitle_${option.value}`}
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-                    onClick={() => optionHasBeenChosen(option)}
+                    onClick={() =>
+                      option.disabled !== true && optionHasBeenChosen(option)
+                    }
                     kind={kind}
                     withoutCheck={withoutCheck}
+                    isDisabled={option.disabled}
                     onKeyDown={(e) =>
-                      e.code === 'Enter' && optionHasBeenChosen(option)
+                      e.code === 'Enter' &&
+                      option.disabled !== true &&
+                      optionHasBeenChosen(option)
                     }
                     chosen={
-                      !Array.isArray(value) && option.value === value.value
+                      !Array.isArray(value) &&
+                      option.value === value.value &&
+                      option.disabled !== true
                     }
                     css={{
                       ...customStyle.options,
@@ -139,19 +146,34 @@ export const Options: React.FC<OptionsProps> = ({
             ) : (
               <MultipleContainer
                 key={`${id}_optionMultiple_${option.value}`}
-                chosen={Array.isArray(value) && value?.includes(option)}
-                onClick={() => multipleOptionHasBeenChosen(option)}
-                onKeyDown={(e) =>
-                  e.code === 'Enter' && multipleOptionHasBeenChosen(option)
+                chosen={
+                  Array.isArray(value) &&
+                  value?.includes(option) &&
+                  option.disabled !== true
                 }
+                onClick={() =>
+                  option.disabled !== true &&
+                  multipleOptionHasBeenChosen(option)
+                }
+                onKeyDown={(e) =>
+                  e.code === 'Enter' &&
+                  option.disabled !== true &&
+                  multipleOptionHasBeenChosen(option)
+                }
+                isDisabled={option.disabled}
                 kind={kind}
                 tabIndex={0}
                 ref={optionRef as React.MutableRefObject<HTMLDivElement>}
               >
                 <Checkbox
-                  checked={Array.isArray(value) && value?.includes(option)}
+                  checked={
+                    Array.isArray(value) &&
+                    value?.includes(option) &&
+                    option.disabled !== true
+                  }
                   readOnly
                   align="center"
+                  isDisabled={option.disabled}
                   label={
                     <StyledOptionMultiple
                       css={{
@@ -206,17 +228,31 @@ export const Options: React.FC<OptionsProps> = ({
                 ) : (
                   <MultipleContainer
                     key={`${id}_optionMultipleWithTitle_${option.value}`}
-                    chosen={Array.isArray(value) && value?.includes(option)}
-                    onClick={() => multipleOptionHasBeenChosen(option)}
-                    onKeyDown={(e) =>
-                      e.code === 'Enter' && multipleOptionHasBeenChosen(option)
+                    chosen={
+                      Array.isArray(value) &&
+                      value?.includes(option) &&
+                      option.disabled !== true
                     }
+                    onClick={() =>
+                      option.disabled !== true &&
+                      multipleOptionHasBeenChosen(option)
+                    }
+                    onKeyDown={(e) =>
+                      e.code === 'Enter' &&
+                      option.disabled !== true &&
+                      multipleOptionHasBeenChosen(option)
+                    }
+                    isDisabled={option.disabled}
                     kind={kind}
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLDivElement>}
                   >
                     <Checkbox
-                      checked={Array.isArray(value) && value?.includes(option)}
+                      checked={
+                        Array.isArray(value) &&
+                        value?.includes(option) &&
+                        option.disabled !== true
+                      }
                       readOnly
                       align="center"
                       label={
@@ -265,13 +301,22 @@ export const Options: React.FC<OptionsProps> = ({
             <StyledOptionItem
               tabIndex={0}
               ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-              onClick={() => optionHasBeenChosen(option)}
+              onClick={() =>
+                option.disabled !== true && optionHasBeenChosen(option)
+              }
               kind={kind}
               withoutCheck={withoutCheck}
               onKeyDown={(e) =>
-                e.code === 'Enter' && optionHasBeenChosen(option)
+                e.code === 'Enter' &&
+                option.disabled !== true &&
+                optionHasBeenChosen(option)
               }
-              chosen={!Array.isArray(value) && option.value === value.value}
+              chosen={
+                !Array.isArray(value) &&
+                option.value === value.value &&
+                option.disabled !== true
+              }
+              isDisabled={option.disabled}
               css={{
                 ...customStyle.options,
                 color: `${chosenOptionColor(option.value)}`,

@@ -96,8 +96,26 @@ export const options = [
     label: 'Orange',
   },
 ]
+export const optionsWidthDisable = [
+  {
+    value: 'apple',
+    label: 'Apple',
+  },
+  {
+    value: 'banana',
+    label: 'Banana',
+    disabled: true,
+  },
+  {
+    value: 'blueberry',
+    label: 'Blueberry',
+  },
+  {
+    value: 'orange',
+    label: 'Orange',
+  },
+]
 
-<div />
 <div>
   <H3 font="secondary">Select</H3>
 </div>
@@ -218,21 +236,21 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
-      const [values, setValues] = React.useState([
+      const [values, onChanges] = React.useState([
         {
           value: 'choose',
           label: 'Choose at least one...',
         },
       ])
-      const [valueWithTitle, setValueWithTitle] = React.useState({
+      const [valueWithTitle, onChangeWithTitle] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
-      const [valuesWithTitle, setValuesWithTitle] = React.useState([
+      const [valuesWithTitle, onChangesWithTitle] = React.useState([
         {
           value: 'choose',
           label: 'Choose at least one...',
@@ -245,20 +263,20 @@ export const options = [
             value={value}
             label="Standard"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
           <Select
             id="type-standard-1"
             value={values}
             label="Multiple"
             options={options}
-            setValue={setValues}
+            onChange={onChanges}
           />
           <Select
             id="type-standard-with-title"
             value={valueWithTitle}
             label="Standard With Title"
-            setValue={setValueWithTitle}
+            onChange={onChangeWithTitle}
             options={allOptions}
             grouping
           />
@@ -266,7 +284,7 @@ export const options = [
             id="type-multiple-with-title"
             value={valuesWithTitle}
             label="Multiple With Title"
-            setValue={setValuesWithTitle}
+            onChange={onChangesWithTitle}
             options={allOptions}
             grouping
           />
@@ -284,7 +302,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Elige...',
       })
@@ -296,7 +314,7 @@ export const options = [
             label="Primary"
             kind="primary"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
           <Select
             id="kind-secondary"
@@ -304,7 +322,7 @@ export const options = [
             label="Secondary"
             kind="secondary"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
           <Select
             id="kind-tertiary"
@@ -312,7 +330,7 @@ export const options = [
             label="Tertiary"
             kind="tertiary"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -328,7 +346,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -340,7 +358,7 @@ export const options = [
             label="Fruits"
             search
             options={options}
-            setValue={setValue}
+            onChange={onChange}
             searchText="Search ..."
             notFoundText="Option not found"
           />
@@ -358,7 +376,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -369,8 +387,48 @@ export const options = [
             value={value}
             label="Fruits"
             disabled
-            setValue={setValue}
+            onChange={onChange}
             options={options}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Disabled Option</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      const [values, onChanges] = React.useState([
+        {
+          value: 'choose',
+          label: 'Choose at least one...',
+        },
+      ])
+      return (
+        <div style={styles}>
+          <Select
+            id="optionsWidthDisable"
+            value={value}
+            label="Standard"
+            onChange={onChange}
+            options={optionsWidthDisable}
+          />
+          <Select
+            id="allPosibelOptionsWidthDisable"
+            value={values}
+            label="Multiple"
+            onChange={onChanges}
+            options={optionsWidthDisable}
           />
         </div>
       )
@@ -386,7 +444,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -397,7 +455,7 @@ export const options = [
             value={value}
             label="Fruits"
             error="An error has occured"
-            setValue={setValue}
+            onChange={onChange}
             options={options}
           />
         </div>
@@ -414,7 +472,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -425,7 +483,7 @@ export const options = [
             value={value}
             label="Fruits"
             borderRadius="5px"
-            setValue={setValue}
+            onChange={onChange}
             options={options}
           />
         </div>
@@ -442,7 +500,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -453,7 +511,7 @@ export const options = [
             value={value}
             label="Fruits"
             width="200px"
-            setValue={setValue}
+            onChange={onChange}
             options={options}
           />
         </div>
@@ -470,7 +528,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -482,7 +540,7 @@ export const options = [
             label="Fruits"
             scrollbarColor="230, 83%, 64%"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -498,7 +556,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -509,7 +567,7 @@ export const options = [
             value={value}
             label="Fruits"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
             withoutCheck
           />
         </div>
@@ -526,7 +584,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -538,7 +596,7 @@ export const options = [
             label="Fruits"
             labelSize="20px"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -554,7 +612,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -566,7 +624,7 @@ export const options = [
             label="Fruits"
             labelColor="$primary"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -582,7 +640,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -594,7 +652,7 @@ export const options = [
             label="Fruits"
             hoverBorderColor="green"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -610,7 +668,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -622,7 +680,7 @@ export const options = [
             label="Fruits"
             borderColor="green"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -638,7 +696,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -650,7 +708,7 @@ export const options = [
             label="Fruits"
             optionTextColor="green"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -666,7 +724,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -678,7 +736,7 @@ export const options = [
             label="Fruits"
             hoverOptionTextColor="#EEB637"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -694,7 +752,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -706,7 +764,7 @@ export const options = [
             label="Fruits"
             hoverBackgroundOptionColor="#FDF4DE"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -722,7 +780,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -734,7 +792,7 @@ export const options = [
             label="Fruits"
             selectedOptionColor="#829EFC"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -750,7 +808,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -763,7 +821,7 @@ export const options = [
             optionContainerHeight="50%"
             type="StandardWithTitle"
             options={allOptions}
-            setValue={setValue}
+            onChange={onChange}
             grouping
           />
         </div>
@@ -780,7 +838,7 @@ export const options = [
 <Playground>
   {() => {
     const App = () => {
-      const [value, setValue] = React.useState({
+      const [value, onChange] = React.useState({
         value: 'choose',
         label: 'Choose one...',
       })
@@ -792,7 +850,7 @@ export const options = [
             label="Fruits"
             optionContainerTitle="Fruits"
             options={options}
-            setValue={setValue}
+            onChange={onChange}
           />
         </div>
       )
@@ -882,6 +940,13 @@ export const options = [
       <td></td>
       <td>No</td>
       <td>Set the color of the select label</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Set the disabled state to specific option</td>
     </tr>
     <tr>
       <td>error</td>
@@ -975,7 +1040,7 @@ export const options = [
       <td>Set scrollbar color, this must be defined in hsl format</td>
     </tr>
     <tr>
-      <td>SetValue</td>
+      <td>onChange</td>
       <td>state</td>
       <td></td>
       <td>No</td>
