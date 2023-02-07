@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 
 import { ColorModeSwitch, DokzProvider, GithubLink } from 'dokz'
-import { H2 } from '@finetwork/ui'
+import { H2, H3, H4 } from '@finetwork/ui'
 
 import { ChakraProvider } from '@chakra-ui/react'
 import Head from 'next/head'
@@ -30,7 +30,7 @@ export default function App(props) {
         headerLogo={
           <Link href="/" passHref>
             <a>
-              <H2 font="secondary">Finetwork UI</H2>
+              <H4 font="secondary">Finetwork UI</H4>
             </a>
           </Link>
         }

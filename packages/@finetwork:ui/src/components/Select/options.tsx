@@ -96,7 +96,9 @@ export const Options: React.FC<OptionsProps> = ({
                     onKeyDown={(e) =>
                       e.code === 'Enter' && optionHasBeenChosen(option)
                     }
-                    chosen={Array.isArray(value) && value?.includes(option)}
+                    chosen={
+                      !Array.isArray(value) && option.value === value.value
+                    }
                     css={{
                       ...customStyle.options,
                       color: `${chosenOptionColor(option.value)}`,
@@ -269,7 +271,7 @@ export const Options: React.FC<OptionsProps> = ({
               onKeyDown={(e) =>
                 e.code === 'Enter' && optionHasBeenChosen(option)
               }
-              chosen={Array.isArray(value) && value?.includes(option)}
+              chosen={!Array.isArray(value) && option.value === value.value}
               css={{
                 ...customStyle.options,
                 color: `${chosenOptionColor(option.value)}`,
