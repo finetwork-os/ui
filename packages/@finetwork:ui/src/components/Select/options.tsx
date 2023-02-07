@@ -79,39 +79,45 @@ export const Options: React.FC<OptionsProps> = ({
             {optionGroup.title && (
               <StyledTitle>{optionGroup.title}</StyledTitle>
             )}
-            {optionGroup.options.map((option, i) => (
-              <>
-                {option.label === 'No encontrado' ? (
-                  <NotFoundMessage key={`${id}_optionWithTitle_Not-Found_${i}`}>
-                    No encontrado
-                  </NotFoundMessage>
-                ) : (
-                  <StyledOptionItem
-                    key={`${id}_optionWithTitle_${option.value}`}
-                    tabIndex={0}
-                    ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-                    onClick={() => optionHasBeenChosen(option)}
-                    kind={kind}
-                    withoutCheck={withoutCheck}
-                    onKeyDown={(e) =>
-                      e.code === 'Enter' && optionHasBeenChosen(option)
-                    }
-                    chosen={Array.isArray(value) && value?.includes(option)}
-                    css={{
-                      ...customStyle.options,
-                      color: `${chosenOptionColor(option.value)}`,
-                      '&:after': {
-                        boxShadow: `inset 14px 14px ${chosenOptionColor(
-                          option.value
-                        )} !important`,
-                      },
-                    }}
-                  >
-                    {option.label}
-                  </StyledOptionItem>
-                )}
-              </>
-            ))}
+            {optionGroup.options.map((option, i) => {
+              return (
+                <>
+                  {option.label === 'No encontrado' ? (
+                    <NotFoundMessage
+                      key={`${id}_optionWithTitle_Not-Found_${i}`}
+                    >
+                      No encontrado
+                    </NotFoundMessage>
+                  ) : (
+                    <StyledOptionItem
+                      key={`${id}_optionWithTitle_${option.value}`}
+                      tabIndex={0}
+                      ref={optionRef as React.MutableRefObject<HTMLLIElement>}
+                      onClick={() => optionHasBeenChosen(option)}
+                      kind={kind}
+                      withoutCheck={withoutCheck}
+                      onKeyDown={(e) =>
+                        e.code === 'Enter' && optionHasBeenChosen(option)
+                      }
+                      chosen={
+                        !Array.isArray(value) && option.value === value.value
+                      }
+                      css={{
+                        ...customStyle.options,
+                        color: `${chosenOptionColor(option.value)}`,
+                        '&:after': {
+                          boxShadow: `inset 14px 14px ${chosenOptionColor(
+                            option.value
+                          )} !important`,
+                        },
+                      }}
+                    >
+                      {option.label}
+                    </StyledOptionItem>
+                  )}
+                </>
+              )
+            })}
           </div>
         ))}
       </StyledOptionsGroup>
@@ -269,7 +275,7 @@ export const Options: React.FC<OptionsProps> = ({
               onKeyDown={(e) =>
                 e.code === 'Enter' && optionHasBeenChosen(option)
               }
-              chosen={Array.isArray(value) && value?.includes(option)}
+              chosen={!Array.isArray(value) && option.value === value.value}
               css={{
                 ...customStyle.options,
                 color: `${chosenOptionColor(option.value)}`,

@@ -106,6 +106,111 @@ export const options = [
 </Paragraph4>
 
 <div>
+  <H3 font="secondary">Option without title</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const options = [
+        {
+          value: 'apple',
+          label: 'Apple',
+        },
+        {
+          value: 'banana',
+          label: 'Banana',
+        },
+        {
+          value: 'blueberry',
+          label: 'Blueberry',
+        },
+        {
+          value: 'orange',
+          label: 'Orange',
+        },
+      ]
+      return (
+        <div style={styles}>
+          <Paragraph4>Press on code tab to see option structure</Paragraph4>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">Option with title</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const allOptions = [
+        {
+          title: 'Fruits',
+          options: [
+            {
+              value: 'apple',
+              label: 'Apple',
+            },
+            {
+              value: 'banana',
+              label: 'Banana',
+            },
+            {
+              value: 'blueberry',
+              label: 'Blueberry',
+            },
+          ],
+        },
+        {
+          title: 'Vegetables',
+          options: [
+            {
+              value: 'aubergine',
+              label: 'Aubergine',
+            },
+            {
+              value: 'broccoli',
+              label: 'Broccoli',
+            },
+            {
+              value: 'leek',
+              label: 'Leek',
+            },
+          ],
+        },
+        {
+          title: 'Meat',
+          options: [
+            {
+              value: 'beef',
+              label: 'Beef',
+            },
+            {
+              value: 'chicken',
+              label: 'Chicken',
+            },
+            {
+              value: 'lamb',
+              label: 'Lamb',
+            },
+          ],
+        },
+      ]
+      return (
+        <div style={styles}>
+          <Paragraph4>Press on code tab to see option structure</Paragraph4>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H3 font="secondary">Type</H3>
 </div>
 
@@ -144,16 +249,14 @@ export const options = [
           <Select
             id="type-standard-1"
             value={values}
-            label="Standard"
+            label="Multiple"
             options={options}
             setValue={setValues}
-            type="Multiple"
           />
           <Select
             id="type-standard-with-title"
             value={valueWithTitle}
             label="Standard With Title"
-            type="StandardWithTitle"
             setValue={setValueWithTitle}
             options={allOptions}
             grouping
@@ -162,7 +265,6 @@ export const options = [
             id="type-multiple-with-title"
             value={valuesWithTitle}
             label="Multiple With Title"
-            type="MultipleWithTitle"
             setValue={setValuesWithTitle}
             options={allOptions}
             grouping

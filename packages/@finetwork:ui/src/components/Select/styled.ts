@@ -272,7 +272,7 @@ export const StyledOptionItem = styled('li', {
     chosen: {
       true: {
         color: '$primary',
-        background: '$secondary100',
+        // background: '$secondary100',
 
         '&:after': {
           transform: 'scale(1)',
@@ -371,7 +371,6 @@ export const MultipleContainer = styled('div', {
         '& div label li': {
           color: '$primary',
         },
-        background: '$secondary100',
       },
     },
     kind: {
