@@ -37,22 +37,42 @@ export const Separator = React.forwardRef<HTMLHRElement, SeparatorProps>(
       }
 
       if (width) {
-        css = {
-          ...css,
-          hr: {
-            ...css.hr,
-            width: `${width} !important`,
-          },
+        if (orientation === 'vertical') {
+          css = {
+            ...css,
+            hr: {
+              ...css.hr,
+              borderWidth: `${width} !important`,
+            },
+          }
+        } else {
+          css = {
+            ...css,
+            hr: {
+              ...css.hr,
+              width: `${width} !important`,
+            },
+          }
         }
       }
 
       if (height) {
-        css = {
-          ...css,
-          hr: {
-            ...css.hr,
-            borderWidth: `${height}`,
-          },
+        if (orientation === 'vertical') {
+          css = {
+            ...css,
+            hr: {
+              ...css.hr,
+              height: `${height} !important`,
+            },
+          }
+        } else {
+          css = {
+            ...css,
+            hr: {
+              ...css.hr,
+              borderWidth: `${height} !important`,
+            },
+          }
         }
       }
 
@@ -61,7 +81,7 @@ export const Separator = React.forwardRef<HTMLHRElement, SeparatorProps>(
           ...css,
           hr: {
             ...css.hr,
-            borderRadius: `${borderRadius}`,
+            borderRadius: `${borderRadius} !important`,
           },
         }
       }
