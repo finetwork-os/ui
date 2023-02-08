@@ -14,6 +14,7 @@ type SeparatorComponentOwnProps = {
   type?: 'solid' | 'dashed' | 'dotted'
   align?: 'start' | 'center' | 'end'
   borderRadius?: string
+  borderWidth?: string
 }
 
 export type SeparatorProps = ComponentProps<typeof StyledSeparator> &
