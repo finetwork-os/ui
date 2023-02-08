@@ -7,7 +7,8 @@ export const StyledSeparator = styled('hr', {
     orientation: {
       horizontal: {},
       vertical: {
-        transform: 'rotate(90deg)',
+        height: '100%',
+        width: '1px',
       },
     },
     type: {

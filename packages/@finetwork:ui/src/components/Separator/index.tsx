@@ -76,7 +76,7 @@ export const Separator = React.forwardRef<HTMLHRElement, SeparatorProps>(
           ...css,
           hr: {
             ...css.hr,
-            borderRadius: `${borderRadius}`,
+            borderRadius: `${borderRadius} !important`,
           },
         }
       }
