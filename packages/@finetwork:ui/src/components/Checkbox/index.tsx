@@ -5,7 +5,6 @@ import {
   StyledInputContainer,
   StyledLabel,
 } from './styled'
-
 import { CheckboxProps } from './types'
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(

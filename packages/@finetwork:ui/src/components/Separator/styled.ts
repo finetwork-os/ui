@@ -1,9 +1,48 @@
-import * as SeparatorPrimitive from '@radix-ui/react-separator'
-
 import { styled } from '../../stitches.config'
 
-export const StyledSeparator = styled(SeparatorPrimitive.Root, {
-  backgroundColor: '$disabled',
-  '&[data-orientation=horizontal]': { height: 1, width: '100%' },
-  '&[data-orientation=vertical]': { height: '100%', width: 1 },
+export const StyledSeparator = styled('hr', {
+  borderColor: '#ddd',
+  width: '100%',
+  variants: {
+    orientation: {
+      horizontal: {},
+      vertical: {
+        height: '100%',
+        width: '1px',
+      },
+    },
+    type: {
+      solid: {
+        borderStyle: 'solid',
+      },
+      dashed: {
+        borderStyle: 'dashed',
+      },
+      dotted: {
+        borderStyle: 'dotted',
+      },
+    },
+    kind: {
+      primary: {
+        borderColor: '$primary',
+      },
+      secondary: {
+        borderColor: '$secondary',
+      },
+      tertiary: {
+        borderColor: '$tertiary',
+      },
+    },
+    align: {
+      start: {
+        alignSelf: 'start',
+      },
+      center: {
+        alignSelf: 'center',
+      },
+      end: {
+        alignSelf: 'end',
+      },
+    },
+  },
 })
