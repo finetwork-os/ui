@@ -11,17 +11,6 @@ export const styles = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  height: '10rem',
-  justifyContent: 'space-around',
-}
-
-export const horizontalStyles = {
-  maxWidth: '1000px',
-  padding: '2em',
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  height: '10rem',
   justifyContent: 'space-around',
 }
 
@@ -30,42 +19,149 @@ export const horizontalStyles = {
   <H2 font="secondary">Separator</H2>
 </div>
 
-<Paragraph4>
-  Separator is a static structure that provides a visible boundary for elements.
-  Separator component admit prop orientation
-</Paragraph4>
+<Paragraph4>This component is an implementation of a custom html hr</Paragraph4>
 
 <div>
   <H3 font="secondary">Orientation</H3>
 </div>
 
-<Paragraph4>Possible values horizontal, vertical</Paragraph4>
-
 <Playground>
-  <div style={styles}>
+  <div style={{ ...styles, flexDirection: 'row !important', gap: '3rem' }}>
     <Separator orientation="horizontal" />
     <Separator orientation="vertical" />
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Overrides</H3>
+  <H3 font="secondary">Kind</H3>
 </div>
 
-<Paragraph4>
-  You can customize your separator whatever you want, even you can set
-  <i> css</i> property to override styles if you need.
-</Paragraph4>
-
 <Playground>
-  <div style={horizontalStyles}>
-    <Separator css={{ backgroundColor: 'green' }} size="medium" />
-    <Separator orientation="horizontal" size="small" />
-    <Separator size="small" css={{ backgroundColor: 'orange' }} size="medium" />
-    <Separator
-      orientation="horizontal"
-      css={{ backgroundColor: 'black' }}
-      size="small"
-    />
+  <div style={{ ...styles, gap: '3rem' }}>
+    <Separator kind="primary" />
+    <Separator kind="secondary" />
+    <Separator kind="tertiary" />
   </div>
 </Playground>
+
+<div>
+  <H3 font="secondary">Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Separator color="red" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Width & Height</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Separator width="300px" height="3px" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Type</H3>
+</div>
+
+<Playground>
+  <div style={{ ...styles, gap: '3rem' }}>
+    <Separator height="1px" type="solid" />
+    <Separator height="1px" type="dashed" />
+    <Separator height="1px" type="dotted" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Align</H3>
+</div>
+
+<Playground>
+  <div style={{ ...styles, gap: '3rem' }}>
+    <Separator width="200px" align="start" />
+    <Separator width="200px" align="center" />
+    <Separator width="200px" align="end" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Separator height="2px" borderRadius="10px" />
+  </div>
+</Playground>
+
+<h2>Separator Props</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>orientation</td>
+      <td>horizontal | vertical</td>
+      <td>horizontal</td>
+      <td>Set orientation</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td>primary | secondary | tertiary</td>
+      <td></td>
+      <td>Set separator color kind</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>string</td>
+      <td>#ddd</td>
+      <td>Set color</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td>100%</td>
+      <td>Set width</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>string</td>
+      <td></td>
+      <td>Set height</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>solid | dashed | dotted</td>
+      <td>solid</td>
+      <td>Set type of border style</td>
+    </tr>
+    <tr>
+      <td>align</td>
+      <td>start | center | left</td>
+      <td>center</td>
+      <td>Set align</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td></td>
+      <td>Set border radius</td>
+    </tr>
+  </tbody>
+</table>

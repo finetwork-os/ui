@@ -1,19 +1,21 @@
-import { ComponentProps, ReactNode } from 'react'
+import { ComponentProps, MouseEventHandler, ReactNode } from 'react'
 import { KINDS } from '../../types'
 import { StyledTag } from './styled'
 
 export type TagComponentOwnProps = {
   id?: string
   kind?: KINDS
-  text?: string
   textSize?: string
   background?: string
   width?: string
   height?: string
+  type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
   borderRadius?: string
-  colorText?: string
+  textColor?: string
   bold?: boolean
   startEnhancer?: ReactNode | string
   endEnhancer?: ReactNode | string
+  onClick?: MouseEventHandler<HTMLDivElement> &
+    MouseEventHandler<HTMLButtonElement>
 }
 export type TagProps = ComponentProps<typeof StyledTag> & TagComponentOwnProps

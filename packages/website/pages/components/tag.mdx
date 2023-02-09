@@ -2,129 +2,169 @@
 name: Tag
 ---
 
+import { useState } from 'react'
 import { Playground } from 'dokz'
-import { Tag, H2, H3, Paragraph4, CheckIcon } from '@finetwork/ui'
+import { Tag, H3, H4, Paragraph4, CheckIcon } from '@finetwork/ui'
 import { styles } from '../../styles.ts'
+
+export const types = ['standard', 'success', 'error', 'disabled', 'warning']
 
 <div />
 <div>
-  <H2 font="secondary">Tag</H2>
+  <H3 font="secondary">Tag</H3>
 </div>
 
 <Paragraph4>This component is an implementation of a custom tag</Paragraph4>
 
 <div>
-  <H3 font="secondary">Kind</H3>
+  <H4 font="secondary">Kind</H4>
 </div>
 
 <Playground>
   <div style={styles}>
     <Tag kind="primary" text="kind primary">
-      Primary
+      primary
     </Tag>
     <Tag kind="secondary" text="kind secondary">
-      Secondary
+      secondary
     </Tag>
     <Tag kind="tertiary" text="kind tertiary">
-      Tertiary
+      tertiary
     </Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Background</H3>
+  <H4 font="secondary">Type</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" text="background" />
+    <Tag type="standard">standard</Tag>
+    <Tag type="success">success</Tag>
+    <Tag type="warning">warning</Tag>
+    <Tag type="error">error</Tag>
+    <Tag type="disabled">disabled</Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Border Radius</H3>
+  <H4 font="secondary">Background</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" borderRadius="5px" text="border radius" />
+    <Tag background="#B4C4F9">background</Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Width & Height</H3>
+  <H4 font="secondary">Border Radius</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" borderRadius="5px" width="80px" text="width" />
-    <Tag background="#B4C4F9" borderRadius="5px" height="50px" text="height" />
+    <Tag background="#B4C4F9" borderRadius="0px">
+      min radius
+    </Tag>
+    <Tag background="#B4C4F9" borderRadius="20px">
+      max radius
+    </Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Text Size</H3>
+  <H4 font="secondary">Width and Height</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag
-      background="#B4C4F9"
-      borderRadius="5px"
-      textSize="20px"
-      text="text size"
-    />
+    <Tag background="#B4C4F9" width="80px">
+      width
+    </Tag>
+    <Tag background="#B4C4F9" height="50px">
+      height
+    </Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Color Text</H3>
+  <H4 font="secondary">Text Size</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag
-      background="#2152F7"
-      borderRadius="5px"
-      colorText="white"
-      text="color text"
-    />
+    <Tag background="#B4C4F9" textSize="20px">
+      text size
+    </Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Bold</H3>
+  <H4 font="secondary">Color Text</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" borderRadius="5px" text="bold" />
-    <Tag background="#B4C4F9" borderRadius="5px" bold={true} text="bold" />
+    <Tag background="#2152F7" textColor="white">
+      color text
+    </Tag>
   </div>
 </Playground>
 
 <div>
-  <H3 font="secondary">Start Enhancer & End Enhancer</H3>
+  <H4 font="secondary">Bold</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Tag
-      background="#B4C4F9"
-      borderRadius="5px"
-      startEnhancer={CheckIcon}
-      text="start enhancer"
-    />
-    <Tag
-      background="#B4C4F9"
-      borderRadius="5px"
-      endEnhancer={CheckIcon}
-      text="end enhancer"
-    />
+    <Tag background="#B4C4F9">no bold</Tag>
+    <Tag background="#B4C4F9" bold={true}>
+      bold
+    </Tag>
   </div>
 </Playground>
 
-<h2>Tag Props</h2>
+<div>
+  <H4 font="secondary">Start Enhancer & End Enhancer</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tag background="#B4C4F9" startEnhancer={CheckIcon}>
+      start enhancer
+    </Tag>
+    <Tag background="#B4C4F9" endEnhancer={CheckIcon}>
+      end enhancer
+    </Tag>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">OnClick</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [type, setType] = React.useState(types[0])
+      function handleClick() {
+        const filtered = types.filter((_type) => _type !== type)
+        setType(filtered[Math.floor(Math.random() * filtered.length)])
+      }
+      return (
+        <div style={styles}>
+          <Tag type={type} onClick={handleClick}>
+            {type}
+          </Tag>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<H4>Tag Props</H4>
 <table>
   <thead>
     <tr>
@@ -154,6 +194,12 @@ import { styles } from '../../styles.ts'
       <td>Set defined styles of the component</td>
     </tr>
     <tr>
+      <td>type</td>
+      <td>standard | success | warning | error | disabled</td>
+      <td></td>
+      <td>Set the style depending on the type</td>
+    </tr>
+    <tr>
       <td>background</td>
       <td>string</td>
       <td>#B4C4F9</td>
@@ -174,7 +220,7 @@ import { styles } from '../../styles.ts'
     <tr>
       <td>borderRadius</td>
       <td>string</td>
-      <td>0</td>
+      <td>5px</td>
       <td>Set border radius</td>
     </tr>
     <tr>
@@ -206,6 +252,12 @@ import { styles } from '../../styles.ts'
       <td>string | ReactNode</td>
       <td></td>
       <td>Set icon to end</td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>MouseEventHandler</td>
+      <td></td>
+      <td>Set onClick function</td>
     </tr>
   </tbody>
 </table>
