@@ -6,13 +6,18 @@ export type Value =
   | { value: string | number; label: string | number }
   | Array<{ value: string | number; label: string | number }>
 
-export type TypeOption = { value: string | number; label: string | number }
+export type TypeOption = {
+  value: string | number
+  label: string | number
+  disabled?: boolean
+}
 
 export type TypeOptions =
   | Array<TypeOption>
   | Array<{
       title: string | number
       options: Array<TypeOption>
+      disabled?: boolean
     }>
 
 export interface DOMEvent<T extends EventTarget> extends Event {
@@ -21,14 +26,14 @@ export interface DOMEvent<T extends EventTarget> extends Event {
 
 type Shared = {
   id: string
-  setValue?: React.Dispatch<React.SetStateAction<any>>
+  onChange: React.Dispatch<React.SetStateAction<any>>
   kind?: KINDS
   withoutCheck?: boolean
   scrollbarColor?: string
-  selectedOptionColor: string
+  selectedOptionColor?: string
   optionTextColor?: string
-  value?: Value
-  grouping: boolean
+  value: Value
+  grouping?: boolean
 }
 
 export type SelectProps = {

@@ -1,3 +1,4 @@
+import { isValidElementType } from 'react-is'
 import {
   animationSelect,
   animationSelectMobile,
@@ -186,6 +187,7 @@ export const Content = styled('div', {
 
 export const StyledOptionsGroup = styled('ul', {
   maxHeight: '200px',
+  textAlign: 'left !important',
   overflowY: 'auto',
   padding: '0 7px',
   scrollbarColor: '$secondary',
@@ -272,9 +274,16 @@ export const StyledOptionItem = styled('li', {
     chosen: {
       true: {
         color: '$primary',
-
         '&:after': {
           transform: 'scale(1)',
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        color: '$disabled !important',
+        '&:hover': {
+          cursor: 'not-allowed !important',
         },
       },
     },
@@ -364,11 +373,27 @@ export const MultipleContainer = styled('div', {
       color: '$primary',
     },
   },
+  '&:focus': {
+    outline: '1px solid $primary',
+    background: '$secondary100',
+  },
   variants: {
     chosen: {
       true: {
         '& div label li': {
           color: '$primary',
+        },
+      },
+    },
+    isDisabled: {
+      true: {
+        color: '$disabled !important',
+        '&:hover': {
+          '& div label li': {
+            color: '$disabled !important',
+            cursor: 'not-allowed !important',
+          },
+          cursor: 'not-allowed !important',
         },
       },
     },
@@ -429,6 +454,7 @@ export const ShowChosenOptions = styled('span', {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis !important',
+  textAlign: 'left !important',
   width: '100%',
 })
 

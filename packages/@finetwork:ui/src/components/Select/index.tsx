@@ -47,7 +47,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       options,
       withoutCheck,
       scrollbarColor,
-      setValue,
+      onChange,
       grouping,
       notFoundText,
       searchText,
@@ -409,7 +409,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   allPosibleOptions={allPosibleOptions}
                   optionRef={optionRef}
                   id={id}
-                  setValue={setValue}
+                  onChange={onChange}
                   setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                   kind={kind}
                   scrollbarColor={scrollbarColor}
@@ -458,7 +458,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 allPosibleOptions={allPosibleOptions}
                 optionRef={optionRef}
                 id={id}
-                setValue={setValue}
+                onChange={onChange}
                 setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
                 kind={kind}
                 scrollbarColor={scrollbarColor}
