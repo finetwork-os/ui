@@ -9,7 +9,7 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
       kind,
       textSize,
       background,
-      borderRadius,
+      borderRadius = '5px',
       width,
       height,
       endEnhancer,
@@ -98,7 +98,7 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
         }
       }
       setCustomStyle(css)
-    }, [])
+    }, [background, borderRadius, width, height, onClick, textSize, textColor])
 
     return (
       <StyledTag
