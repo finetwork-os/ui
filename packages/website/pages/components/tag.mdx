@@ -2,6 +2,7 @@
 name: Tag
 ---
 
+import { useState } from 'react'
 import { Playground } from 'dokz'
 import { Tag, H2, H3, Paragraph4, CheckIcon } from '@finetwork/ui'
 import { styles } from '../../styles.ts'
@@ -20,13 +21,37 @@ import { styles } from '../../styles.ts'
 <Playground>
   <div style={styles}>
     <Tag kind="primary" text="kind primary">
-      Primary
+      primary
     </Tag>
     <Tag kind="secondary" text="kind secondary">
-      Secondary
+      secondary
     </Tag>
     <Tag kind="tertiary" text="kind tertiary">
-      Tertiary
+      tertiary
+    </Tag>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Type</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tag type="standard" borderRadius="5px">
+      standard
+    </Tag>
+    <Tag type="success" borderRadius="5px">
+      success
+    </Tag>
+    <Tag type="warning" borderRadius="5px">
+      warning
+    </Tag>
+    <Tag type="error" borderRadius="5px">
+      error
+    </Tag>
+    <Tag type="disabled" borderRadius="5px">
+      disabled
     </Tag>
   </div>
 </Playground>
@@ -37,7 +62,7 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" text="background" />
+    <Tag background="#B4C4F9">background</Tag>
   </div>
 </Playground>
 
@@ -47,7 +72,9 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" borderRadius="5px" text="border radius" />
+    <Tag background="#B4C4F9" borderRadius="5px">
+      border radius
+    </Tag>
   </div>
 </Playground>
 
@@ -57,8 +84,12 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" borderRadius="5px" width="80px" text="width" />
-    <Tag background="#B4C4F9" borderRadius="5px" height="50px" text="height" />
+    <Tag background="#B4C4F9" borderRadius="5px" width="80px">
+      width
+    </Tag>
+    <Tag background="#B4C4F9" borderRadius="5px" height="50px">
+      height
+    </Tag>
   </div>
 </Playground>
 
@@ -68,12 +99,9 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag
-      background="#B4C4F9"
-      borderRadius="5px"
-      textSize="20px"
-      text="text size"
-    />
+    <Tag background="#B4C4F9" borderRadius="5px" textSize="20px">
+      text size
+    </Tag>
   </div>
 </Playground>
 
@@ -83,12 +111,9 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag
-      background="#2152F7"
-      borderRadius="5px"
-      colorText="white"
-      text="color text"
-    />
+    <Tag background="#2152F7" borderRadius="5px" textColor="white">
+      color text
+    </Tag>
   </div>
 </Playground>
 
@@ -98,8 +123,12 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag background="#B4C4F9" borderRadius="5px" text="bold" />
-    <Tag background="#B4C4F9" borderRadius="5px" bold={true} text="bold" />
+    <Tag background="#B4C4F9" borderRadius="5px">
+      no bold
+    </Tag>
+    <Tag background="#B4C4F9" borderRadius="5px" bold={true}>
+      bold
+    </Tag>
   </div>
 </Playground>
 
@@ -109,19 +138,42 @@ import { styles } from '../../styles.ts'
 
 <Playground>
   <div style={styles}>
-    <Tag
-      background="#B4C4F9"
-      borderRadius="5px"
-      startEnhancer={CheckIcon}
-      text="start enhancer"
-    />
-    <Tag
-      background="#B4C4F9"
-      borderRadius="5px"
-      endEnhancer={CheckIcon}
-      text="end enhancer"
-    />
+    <Tag background="#B4C4F9" borderRadius="5px" startEnhancer={CheckIcon}>
+      start enhancer
+    </Tag>
+    <Tag background="#B4C4F9" borderRadius="5px" endEnhancer={CheckIcon}>
+      end enhancer
+    </Tag>
   </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">OnClick</H3>
+</div>
+
+<Playground>
+  {() => {
+    const TagApp = () => {
+      const [colorValue, setColorValue] = React.useState('black')
+      console.log(colorValue)
+      return (
+        <div style={styles}>
+          <Tag
+            background="#B4C4F9"
+            textColor={colorValue}
+            onClick={() =>
+              colorValue === 'black'
+                ? setColorValue('red')
+                : setColorValue('black')
+            }
+          >
+            onClick
+          </Tag>
+        </div>
+      )
+    }
+    return <TagApp />
+  }}
 </Playground>
 
 <h2>Tag Props</h2>
@@ -152,6 +204,12 @@ import { styles } from '../../styles.ts'
       <td>primary | secondary | tertiary</td>
       <td></td>
       <td>Set defined styles of the component</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>standard | success | warning | error | disabled</td>
+      <td></td>
+      <td>Set the style depending on the type</td>
     </tr>
     <tr>
       <td>background</td>
@@ -206,6 +264,12 @@ import { styles } from '../../styles.ts'
       <td>string | ReactNode</td>
       <td></td>
       <td>Set icon to end</td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>MouseEventHandler</td>
+      <td></td>
+      <td>Set onClick function</td>
     </tr>
   </tbody>
 </table>

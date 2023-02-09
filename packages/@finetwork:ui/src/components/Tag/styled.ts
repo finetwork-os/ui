@@ -21,6 +21,23 @@ export const StyledTag = styled('div', {
         background: '$tertiary',
       },
     },
+    type: {
+      standard: {
+        background: 'rgb(244, 238, 255) !important',
+      },
+      success: {
+        background: 'rgb(218, 252, 236) !important',
+      },
+      warning: {
+        background: '#F7F4CD !important',
+      },
+      error: {
+        background: '#F7CDCD !important',
+      },
+      disabled: {
+        background: '#E9E9E9 !important',
+      },
+    },
   },
 })
 
@@ -39,6 +56,23 @@ export const StyledParagraph6 = styled(Paragraph6, {
         color: 'white',
       },
       tertiary: {},
+    },
+    type: {
+      standard: {
+        color: 'rgb(95, 10, 255) !important',
+      },
+      success: {
+        color: 'rgb(0, 109, 57) !important',
+      },
+      warning: {
+        color: '#D0C100 !important',
+      },
+      error: {
+        color: '$error !important',
+      },
+      disabled: {
+        color: '#8E8E8E !important',
+      },
     },
   },
 })

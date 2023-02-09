@@ -7,7 +7,6 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
   (
     {
       kind,
-      text,
       textSize,
       background,
       borderRadius,
@@ -15,7 +14,10 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
       height,
       endEnhancer,
       startEnhancer,
-      colorText,
+      textColor,
+      children,
+      type,
+      onClick,
       bold = false,
       ...props
     },
@@ -66,6 +68,17 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
           },
         }
       }
+      if (onClick) {
+        css = {
+          ...css,
+          tag: {
+            ...css.tag,
+            '&:hover': {
+              cursor: 'pointer',
+            },
+          },
+        }
+      }
       if (textSize) {
         css = {
           ...css,
@@ -75,22 +88,34 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
           },
         }
       }
-      if (colorText) {
+      if (textColor) {
         css = {
           ...css,
           text: {
             ...css.text,
-            color: `${colorText} !important`,
+            color: `${textColor} !important`,
           },
         }
       }
       setCustomStyle(css)
     }, [])
+
     return (
-      <StyledTag kind={kind} css={customStyle.tag} {...props}>
+      <StyledTag
+        onClick={onClick}
+        kind={kind}
+        type={type}
+        css={customStyle.tag}
+        {...props}
+      >
         {startEnhancer && <RenderEnhancer Enhancer={startEnhancer} />}
-        <StyledParagraph6 kind={kind} bold={bold} css={customStyle.text}>
-          {text}
+        <StyledParagraph6
+          type={type}
+          kind={kind}
+          bold={bold}
+          css={customStyle.text}
+        >
+          {children}
         </StyledParagraph6>
         {endEnhancer && <RenderEnhancer Enhancer={endEnhancer} />}
       </StyledTag>
