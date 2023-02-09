@@ -91,20 +91,20 @@ export const Options: React.FC<OptionsProps> = ({
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
                     onClick={() =>
-                      option.disabled !== true && optionHasBeenChosen(option)
+                      !option.disabled && optionHasBeenChosen(option)
                     }
                     kind={kind}
                     withoutCheck={withoutCheck}
                     isDisabled={option.disabled}
                     onKeyDown={(e) =>
                       e.code === 'Enter' &&
-                      option.disabled !== true &&
+                      !option.disabled &&
                       optionHasBeenChosen(option)
                     }
                     chosen={
                       !Array.isArray(value) &&
                       option.value === value.value &&
-                      option.disabled !== true
+                      !option.disabled
                     }
                     css={{
                       ...customStyle.options,
@@ -149,15 +149,14 @@ export const Options: React.FC<OptionsProps> = ({
                 chosen={
                   Array.isArray(value) &&
                   value?.includes(option) &&
-                  option.disabled !== true
+                  !option.disabled
                 }
                 onClick={() =>
-                  option.disabled !== true &&
-                  multipleOptionHasBeenChosen(option)
+                  !option.disabled && multipleOptionHasBeenChosen(option)
                 }
                 onKeyDown={(e) =>
                   e.code === 'Enter' &&
-                  option.disabled !== true &&
+                  !option.disabled &&
                   multipleOptionHasBeenChosen(option)
                 }
                 isDisabled={option.disabled}
@@ -169,7 +168,7 @@ export const Options: React.FC<OptionsProps> = ({
                   checked={
                     Array.isArray(value) &&
                     value?.includes(option) &&
-                    option.disabled !== true
+                    !option.disabled
                   }
                   readOnly
                   align="center"
@@ -231,15 +230,14 @@ export const Options: React.FC<OptionsProps> = ({
                     chosen={
                       Array.isArray(value) &&
                       value?.includes(option) &&
-                      option.disabled !== true
+                      !option.disabled
                     }
                     onClick={() =>
-                      option.disabled !== true &&
-                      multipleOptionHasBeenChosen(option)
+                      !option.disabled && multipleOptionHasBeenChosen(option)
                     }
                     onKeyDown={(e) =>
                       e.code === 'Enter' &&
-                      option.disabled !== true &&
+                      !option.disabled &&
                       multipleOptionHasBeenChosen(option)
                     }
                     isDisabled={option.disabled}
@@ -251,7 +249,7 @@ export const Options: React.FC<OptionsProps> = ({
                       checked={
                         Array.isArray(value) &&
                         value?.includes(option) &&
-                        option.disabled !== true
+                        !option.disabled
                       }
                       readOnly
                       align="center"
@@ -301,20 +299,18 @@ export const Options: React.FC<OptionsProps> = ({
             <StyledOptionItem
               tabIndex={0}
               ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-              onClick={() =>
-                option.disabled !== true && optionHasBeenChosen(option)
-              }
+              onClick={() => !option.disabled && optionHasBeenChosen(option)}
               kind={kind}
               withoutCheck={withoutCheck}
               onKeyDown={(e) =>
                 e.code === 'Enter' &&
-                option.disabled !== true &&
+                !option.disabled &&
                 optionHasBeenChosen(option)
               }
               chosen={
                 !Array.isArray(value) &&
                 option.value === value.value &&
-                option.disabled !== true
+                !option.disabled
               }
               isDisabled={option.disabled}
               css={{
