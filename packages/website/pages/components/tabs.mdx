@@ -5,15 +5,16 @@ name: Tabs
 import { Playground } from 'dokz'
 import {
   Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   H2,
   Paragraph4,
   Input,
   Button,
-  TabsContent,
-  TabsTrigger,
-  TabsList,
   Paragraph5,
   H3,
+  H4,
   Link,
 } from '@finetwork/ui'
 
@@ -26,38 +27,21 @@ export const styles = {
 
 <div />
 <div>
-  <H2 font="secondary">Tabs</H2>
+  <H3 font="secondary">Tabs</H3>
 </div>
 
-<Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/tabs"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Tabs component
-  </Link>{' '}
-  from radix-ui.
-</Paragraph4>
+<Paragraph4>This component is an implementation of a custom tab</Paragraph4>
 
 <div>
-  <H3 font="secondary">Kind</H3>
+  <H4 font="secondary">New Tab</H4>
 </div>
-
-<Paragraph4>
-  <b>TabsTrigger</b> component admit <i>kind</i> prop
-</Paragraph4>
-<Paragraph4>
-  Possible values <i>primary</i>, <i>secondary</i>, <i>tertiary</i>
-</Paragraph4>
 
 <Playground>
   <div style={styles}>
     <Tabs defaultValue="tab1">
-      <TabsList aria-label="Manage your account">
-        <TabsTrigger value="tab1">Account</TabsTrigger>
-        <TabsTrigger value="tab2">Password</TabsTrigger>
+      <TabsList>
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
       </TabsList>
       <TabsContent value="tab1">
         <div
@@ -70,8 +54,8 @@ export const styles = {
           <Paragraph5 css={{ color: '#ccc' }}>
             Make changes to your account here. Click save when you're done.
           </Paragraph5>
-          <Input id="name" defaultValue="Fran garcia" />
-          <Input id="username" defaultValue="@frgarciames" />
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
           <Button outline>Save changes</Button>
         </div>
       </TabsContent>

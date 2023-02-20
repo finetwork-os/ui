@@ -1,98 +1,173 @@
-import * as TabsPrimitive from '@radix-ui/react-tabs'
-
-import { mauve } from '@radix-ui/colors'
+import { fadeIn, fadeOut } from './../../animations'
 import { styled } from '../../stitches.config'
+import { Paragraph4, Paragraph6 } from '../Typography'
 
-export const StyledTabs = styled(TabsPrimitive.Root, {
+export const StyledTabs = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
 })
 
-export const StyledList = styled(TabsPrimitive.List, {
-  flexShrink: 0,
+export const StyledTabsList = styled('div', {
   display: 'flex',
+  justifyContent: 'space-around',
+  padding: '1rem',
   variants: {
-    align: {
-      bottom: {
-        borderBottom: `2px solid ${mauve.mauve6}`,
+    direction: {
+      horizontal: {
+        flexDirection: 'row',
       },
-      top: {
-        borderTop: `2px solid ${mauve.mauve6}`,
+      vertical: {
+        flexDirection: 'column',
       },
     },
   },
-  defaultVariants: {
-    align: 'bottom',
-  },
 })
 
-export const StyledTrigger = styled(TabsPrimitive.Trigger, {
-  all: 'unset',
-  fontFamily: 'inherit',
-  padding: '0 20px',
-  height: 45,
-  flex: 1,
+export const StyledTabsTrigger = styled('div', {
+  position: 'relative',
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
-  fontSize: 15,
-  lineHeight: 1,
-  userSelect: 'none',
-  cursor: 'pointer',
+  alignItems: 'center',
+  marginBottom: '0.5rem',
+  width: '100%',
+  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+})
+
+export const StyledButtonTrigger = styled('button', {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  padding: '0.5rem',
   variants: {
-    align: {
-      bottom: {
-        '&[data-state="active"]': {
-          boxShadow: '0 2px 0 0 currentColor',
+    type: {
+      standard: {
+        '&:hover': {
+          cursor: 'pointer',
+          '& p': {
+            color: 'rgb(95, 10, 255)',
+          },
         },
       },
-      top: {
-        '&[data-state="active"]': {
-          boxShadow: '0 -2px 0 0 currentColor',
+      success: {
+        '&:hover': {
+          cursor: 'pointer',
+          '& p': {
+            color: 'rgb(0, 109, 57)',
+          },
+        },
+      },
+      warning: {
+        '&:hover': {
+          cursor: 'pointer',
+          '& p': {
+            color: '#D0C100',
+          },
+        },
+      },
+      error: {
+        '&:hover': {
+          cursor: 'pointer',
+          '& p': {
+            color: '$error',
+          },
+        },
+      },
+      disabled: {
+        '&:hover': {
+          cursor: 'pointer',
+          '& p': {
+            color: '#8E8E8E',
+          },
         },
       },
     },
-    kind: {
-      primary: {
-        '&:hover': { color: '$primary' },
-        '&[data-state="active"]': {
-          color: '$primary',
-        },
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300 !important',
-        },
-      },
-      secondary: {
-        '&:hover': { color: '$secondary' },
-        '&[data-state="active"]': {
-          color: '$secondary',
-        },
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300 !important',
-        },
-      },
-      tertiary: {
-        '&:hover': { color: '$tertiary' },
-        '&[data-state="active"]': {
-          color: '$tertiary',
-        },
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300 !important',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    kind: 'primary',
-    align: 'bottom',
   },
 })
 
-export const StyledContent = styled(TabsPrimitive.Content, {
-  flexGrow: 1,
-  padding: 20,
-  borderBottomLeftRadius: 6,
-  borderBottomRightRadius: 6,
-  outline: 'none',
+export const Line = styled('div', {
+  position: 'absolute',
+  display: 'flex',
+  justifyContent: 'center',
+  alignContent: 'center',
+  bottom: 0,
+  transition: 'left 0.5s ease-in-out',
+  height: '3px',
+  backgroundColor: '$secondary',
+  width: '80%',
+  pointerEvents: 'none',
+  // transform: 'translateX(-60px)',
+  variants: {
+    isSelected: {
+      false: {
+        display: 'none',
+      },
+    },
+    type: {
+      standard: {
+        backgroundColor: 'rgb(95, 10, 255) !important',
+      },
+      success: {
+        backgroundColor: 'rgb(0, 109, 57) !important',
+      },
+      warning: {
+        backgroundColor: '#D0C100 !important',
+      },
+      error: {
+        backgroundColor: '$error !important',
+      },
+      disabled: {
+        backgroundColor: '#8E8E8E !important',
+      },
+    },
+  },
+})
+
+export const StyledTabsContent = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  variants: {
+    isShow: {
+      true: {
+        display: 'flex',
+        animation: `${fadeIn} 0.5s ease-in-out`,
+      },
+      false: {
+        display: 'none',
+        animation: `${fadeOut} 0.5s ease-in-out`,
+      },
+    },
+  },
+})
+
+export const StyledParagraph = styled(Paragraph4, {
+  variants: {
+    bold: {
+      true: {
+        fontWeight: 'bold !important',
+      },
+    },
+    type: {
+      withoutSelected: {
+        color: 'black',
+      },
+      standard: {
+        color: 'rgb(95, 10, 255)',
+      },
+      success: {
+        color: 'rgb(0, 109, 57)',
+      },
+      warning: {
+        color: '#D0C100',
+      },
+      error: {
+        color: '$error',
+      },
+      disabled: {
+        color: '#8E8E8E',
+      },
+    },
+  },
 })
