@@ -1,11 +1,21 @@
 import { fadeIn, fadeOut } from './../../animations'
 import { styled } from '../../stitches.config'
-import { Paragraph4, Paragraph6 } from '../Typography'
+import { Paragraph4 } from '../Typography'
 
 export const StyledTabs = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
+  variants: {
+    direction: {
+      horizontal: {
+        flexDirection: 'row',
+      },
+      vertical: {
+        flexDirection: 'column',
+      },
+    },
+  },
 })
 
 export const StyledTabsList = styled('div', {
@@ -15,10 +25,12 @@ export const StyledTabsList = styled('div', {
   variants: {
     direction: {
       horizontal: {
-        flexDirection: 'row',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        gap: '1rem',
       },
       vertical: {
-        flexDirection: 'column',
+        flexDirection: 'row',
       },
     },
   },
@@ -39,11 +51,35 @@ export const StyledButtonTrigger = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  gap: '0.3rem',
   width: '100%',
   padding: '0.5rem',
+  '&::before': {
+    content: '',
+    position: 'absolute',
+    width: '100%',
+    height: '3px',
+    bottom: 0,
+    left: 0,
+    visibility: 'hidden',
+    borderRadius: '5px',
+    transform: 'scaleX(0)',
+    transition: '.1s ease-in-out',
+  },
   variants: {
+    isSelected: {
+      true: {
+        '&::before': {
+          visibility: 'visible',
+          transform: 'scaleX(1)',
+        },
+      },
+    },
     type: {
       standard: {
+        '&::before': {
+          backgroundColor: '$secondary',
+        },
         '&:hover': {
           cursor: 'pointer',
           '& p': {
@@ -52,6 +88,9 @@ export const StyledButtonTrigger = styled('button', {
         },
       },
       success: {
+        '&::before': {
+          backgroundColor: 'rgb(0, 109, 57)',
+        },
         '&:hover': {
           cursor: 'pointer',
           '& p': {
@@ -60,6 +99,9 @@ export const StyledButtonTrigger = styled('button', {
         },
       },
       warning: {
+        '&::before': {
+          backgroundColor: '#D0C100',
+        },
         '&:hover': {
           cursor: 'pointer',
           '& p': {
@@ -68,6 +110,9 @@ export const StyledButtonTrigger = styled('button', {
         },
       },
       error: {
+        '&::before': {
+          backgroundColor: '$error',
+        },
         '&:hover': {
           cursor: 'pointer',
           '& p': {
@@ -76,8 +121,11 @@ export const StyledButtonTrigger = styled('button', {
         },
       },
       disabled: {
+        '&::before': {
+          backgroundColor: '#8E8E8E',
+        },
         '&:hover': {
-          cursor: 'pointer',
+          cursor: 'not-allowed',
           '& p': {
             color: '#8E8E8E',
           },
@@ -87,56 +135,19 @@ export const StyledButtonTrigger = styled('button', {
   },
 })
 
-export const Line = styled('div', {
-  position: 'absolute',
-  display: 'flex',
-  justifyContent: 'center',
-  alignContent: 'center',
-  bottom: 0,
-  transition: 'left 0.5s ease-in-out',
-  height: '3px',
-  backgroundColor: '$secondary',
-  width: '80%',
-  pointerEvents: 'none',
-  // transform: 'translateX(-60px)',
-  variants: {
-    isSelected: {
-      false: {
-        display: 'none',
-      },
-    },
-    type: {
-      standard: {
-        backgroundColor: 'rgb(95, 10, 255) !important',
-      },
-      success: {
-        backgroundColor: 'rgb(0, 109, 57) !important',
-      },
-      warning: {
-        backgroundColor: '#D0C100 !important',
-      },
-      error: {
-        backgroundColor: '$error !important',
-      },
-      disabled: {
-        backgroundColor: '#8E8E8E !important',
-      },
-    },
-  },
-})
-
 export const StyledTabsContent = styled('div', {
   display: 'flex',
   justifyContent: 'center',
+  width: '100%',
   variants: {
     isShow: {
       true: {
         display: 'flex',
-        animation: `${fadeIn} 0.5s ease-in-out`,
+        animation: `${fadeIn} 0.3s ease-in-out`,
       },
       false: {
         display: 'none',
-        animation: `${fadeOut} 0.5s ease-in-out`,
+        animation: `${fadeOut} 0.3s ease-in-out`,
       },
     },
   },

@@ -7,7 +7,6 @@ import {
   TabsTriggerProps,
 } from './types'
 import {
-  Line,
   StyledButtonTrigger,
   StyledParagraph,
   StyledTabs,
@@ -16,58 +15,13 @@ import {
   StyledTabsTrigger,
 } from './styled'
 
-//const [selectedValue, setSelectedValue] = React.useState<string>('')
-
 export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   (
-    {
-      ariaLabel,
-      width,
-      type,
-      height,
-      direction = 'horizontal',
-      selectedValue,
-      setSelectedValue,
-      children,
-      ...props
-    },
+    { type, direction, selectedValue, setSelectedValue, children, ...props },
     ref
   ) => {
-    const [customStyle, setCustomStyle] = React.useState({
-      divList: {},
-    })
-    React.useEffect(() => {
-      let css = {
-        divList: {},
-      }
-      if (width) {
-        css = {
-          ...css,
-          divList: {
-            ...css.divList,
-            width: `${width} !important`,
-          },
-        }
-      }
-      if (height) {
-        css = {
-          ...css,
-          divList: {
-            ...css.divList,
-            height: `${height} !important`,
-          },
-        }
-      }
-      setCustomStyle(css)
-    }, [width, height])
-
     return (
-      <StyledTabsList
-        aria-label={ariaLabel}
-        direction={direction}
-        css={customStyle.divList}
-        {...props}
-      >
+      <StyledTabsList direction={direction} {...props}>
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) return null
           return React.cloneElement(child, {
@@ -87,8 +41,6 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
     {
       textSize,
       value,
-      width,
-      height,
       type,
       endEnhancer,
       startEnhancer,
@@ -111,24 +63,6 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
         divTrigger: {},
         textTrigger: {},
       }
-      if (width) {
-        css = {
-          ...css,
-          divTrigger: {
-            ...css.divTrigger,
-            width: `${width} !important`,
-          },
-        }
-      }
-      if (height) {
-        css = {
-          ...css,
-          divTrigger: {
-            ...css.divTrigger,
-            height: `${height} !important`,
-          },
-        }
-      }
       if (textSize) {
         css = {
           ...css,
@@ -148,17 +82,26 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
         }
       }
       setCustomStyle(css)
-    }, [width, height, textSize, textColor])
+    }, [textSize, textColor])
+
+    function whatType() {
+      if (disabled) return 'disabled'
+      if (selectedValue === value) return type
+      return 'withoutSelected'
+    }
 
     return (
       <StyledTabsTrigger css={customStyle.divTrigger} {...props}>
         <StyledButtonTrigger
-          type={type}
-          onClick={() => value !== selectedValue && setSelectedValue(value)}
+          type={disabled ? 'disabled' : type}
+          onClick={() =>
+            value !== selectedValue && !disabled && setSelectedValue(value)
+          }
+          isSelected={selectedValue === value}
         >
           {startEnhancer && <RenderEnhancer Enhancer={startEnhancer} />}
           <StyledParagraph
-            type={selectedValue === value ? type : 'withoutSelected'}
+            type={whatType()}
             bold={bold}
             css={customStyle.textTrigger}
           >
@@ -166,48 +109,15 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
           </StyledParagraph>
           {endEnhancer && <RenderEnhancer Enhancer={endEnhancer} />}
         </StyledButtonTrigger>
-        <Line type={type} isSelected={selectedValue === value} />
       </StyledTabsTrigger>
     )
   }
 )
 
 export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  ({ width, height, children, value, selectedValue, ...props }, ref) => {
-    const [customStyle, setCustomStyle] = React.useState({
-      divContent: {},
-    })
-    React.useEffect(() => {
-      let css = {
-        divContent: {},
-      }
-      if (width) {
-        css = {
-          ...css,
-          divContent: {
-            ...css.divContent,
-            width: `${width} !important`,
-          },
-        }
-      }
-      if (height) {
-        css = {
-          ...css,
-          divContent: {
-            ...css.divContent,
-            height: `${height} !important`,
-          },
-        }
-      }
-      setCustomStyle(css)
-    }, [width, height])
-
+  ({ children, value, selectedValue, ...props }, ref) => {
     return (
-      <StyledTabsContent
-        isShow={value === selectedValue}
-        css={customStyle.divContent}
-        {...props}
-      >
+      <StyledTabsContent isShow={value === selectedValue} {...props}>
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) return null
           return React.cloneElement(child, {
@@ -222,12 +132,12 @@ export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
 export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   (
     {
-      background,
       defaultValue,
       borderRadius = '5px',
       width,
       height,
       children,
+      direction = 'vertical',
       type = 'standard',
       ...props
     },
@@ -239,15 +149,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     React.useEffect(() => {
       let css = {
         tab: {},
-      }
-      if (background) {
-        css = {
-          ...css,
-          tab: {
-            ...css.tab,
-            background: `${background} !important`,
-          },
-        }
       }
       if (borderRadius) {
         css = {
@@ -277,12 +178,12 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
         }
       }
       setCustomStyle(css)
-    }, [background, borderRadius, width, height])
+    }, [borderRadius, width, height])
 
     const [selectedValue, setSelectedValue] = React.useState(defaultValue)
 
     return (
-      <StyledTabs /*kind={kind} type={type}*/ css={customStyle.tab} {...props}>
+      <StyledTabs direction={direction} css={customStyle.tab} {...props}>
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) return null
           return React.cloneElement(child, {
@@ -290,6 +191,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
             selectedValue,
             setSelectedValue,
             type,
+            direction,
           })
         })}
       </StyledTabs>
