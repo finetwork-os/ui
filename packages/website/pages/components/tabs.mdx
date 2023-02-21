@@ -44,6 +44,7 @@ export const styles = {
       <TabsList>
         <TabsTrigger value="tab1">TAB 1</TabsTrigger>
         <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+        <TabsTrigger value="tab3">TAB 3</TabsTrigger>
       </TabsList>
       <TabsContent value="tab1">
         <div
@@ -77,6 +78,22 @@ export const styles = {
           <Input id="currentPassword" type="password" />
           <Input id="newPassword" type="password" />
           <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab3">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            width: 'inherit',
+            backgroundColor: '$primaryText',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
           <Button outline>Change password</Button>
         </div>
       </TabsContent>
