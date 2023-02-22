@@ -84,12 +84,6 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
       setCustomStyle(css)
     }, [textSize, textColor])
 
-    function whatType() {
-      if (disabled) return 'disabled'
-      if (selectedValue === value) return type
-      return 'withoutSelected'
-    }
-
     return (
       <StyledTabsTrigger css={customStyle.divTrigger} {...props}>
         <StyledButtonTrigger
@@ -101,7 +95,7 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
         >
           {startEnhancer && <RenderEnhancer Enhancer={startEnhancer} />}
           <StyledParagraph
-            type={whatType()}
+            type={disabled ? 'disabled' : type}
             bold={bold}
             css={customStyle.textTrigger}
           >
