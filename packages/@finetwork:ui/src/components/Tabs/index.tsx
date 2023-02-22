@@ -17,11 +17,61 @@ import {
 
 export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   (
-    { type, direction, selectedValue, setSelectedValue, children, ...props },
+    {
+      type,
+      direction,
+      selectedValue,
+      setSelectedValue,
+      justifyContent,
+      gap,
+      width,
+      children,
+      ...props
+    },
     ref
   ) => {
+    const [customStyle, setCustomStyle] = React.useState({
+      tabList: {},
+    })
+    React.useEffect(() => {
+      let css = {
+        tabList: {},
+      }
+      if (justifyContent) {
+        css = {
+          ...css,
+          tabList: {
+            ...css.tabList,
+            justifyContent: `${justifyContent}`,
+          },
+        }
+      }
+      if (gap) {
+        css = {
+          ...css,
+          tabList: {
+            ...css.tabList,
+            gap: `${gap}`,
+          },
+        }
+      }
+      if (width) {
+        css = {
+          ...css,
+          tabList: {
+            ...css.tabList,
+            width: `${width}`,
+          },
+        }
+      }
+      setCustomStyle(css)
+    }, [justifyContent, gap, width])
     return (
-      <StyledTabsList direction={direction} {...props}>
+      <StyledTabsList
+        direction={direction}
+        css={customStyle.tabList}
+        {...props}
+      >
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) return null
           return React.cloneElement(child, {
@@ -47,6 +97,7 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
       textColor,
       disabled,
       children,
+      width,
       selectedValue,
       setSelectedValue,
       bold = false,
@@ -81,12 +132,22 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
           },
         }
       }
+      if (width) {
+        css = {
+          ...css,
+          divTrigger: {
+            ...css.divTrigger,
+            width: `${width}`,
+          },
+        }
+      }
       setCustomStyle(css)
-    }, [textSize, textColor])
+    }, [textSize, textColor, width])
 
     return (
       <StyledTabsTrigger css={customStyle.divTrigger} {...props}>
         <StyledButtonTrigger
+          css={customStyle.divTrigger}
           type={disabled ? 'disabled' : type}
           onClick={() =>
             value !== selectedValue && !disabled && setSelectedValue(value)

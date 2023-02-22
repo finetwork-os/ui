@@ -102,6 +102,56 @@ export const styles = {
 </Playground>
 
 <div>
+  <H4 font="secondary">Align, Gap and Width</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList justifyContent="start" gap="2rem" width="50%">
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
   <H4 font="secondary">Direction</H4>
 </div>
 
@@ -530,6 +580,42 @@ export const styles = {
   </tbody>
 </table>
 
+<H4>TabsList Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td>100%</td>
+      <td>No</td>
+      <td>Set width size</td>
+    </tr>
+    <tr>
+      <td>justifyContent</td>
+      <td>space-around</td>
+      <td>start | center | end | space-around | space-between</td>
+      <td>No</td>
+      <td>Set horizontal position</td>
+    </tr>
+    <tr>
+      <td>gap</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set separation size between elements</td>
+    </tr>
+  </tbody>
+</table>
+
 <H4>TabsTrigger Props</H4>
 <table>
   <thead>
@@ -548,6 +634,13 @@ export const styles = {
       <td></td>
       <td>Yes</td>
       <td>value of the element</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td>100%</td>
+      <td>No</td>
+      <td>Set width size</td>
     </tr>
     <tr>
       <td>textSize</td>
@@ -591,7 +684,6 @@ export const styles = {
       <td>No</td>
       <td>Set disabled mode</td>
     </tr>
-
   </tbody>
 </table>
 

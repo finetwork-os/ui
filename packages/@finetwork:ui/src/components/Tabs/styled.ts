@@ -21,6 +21,7 @@ export const StyledTabs = styled('div', {
 export const StyledTabsList = styled('div', {
   display: 'flex',
   justifyContent: 'space-around',
+  alignItems: 'center',
   padding: '1rem',
   variants: {
     direction: {
@@ -83,7 +84,7 @@ export const StyledButtonTrigger = styled('button', {
         '&:hover': {
           cursor: 'pointer',
           '& p': {
-            color: 'rgb(95, 10, 255)',
+            color: 'rgb(95, 10, 255) !important',
           },
         },
       },
@@ -94,7 +95,7 @@ export const StyledButtonTrigger = styled('button', {
         '&:hover': {
           cursor: 'pointer',
           '& p': {
-            color: 'rgb(0, 109, 57)',
+            color: 'rgb(0, 109, 57) !important',
           },
         },
       },
@@ -105,7 +106,7 @@ export const StyledButtonTrigger = styled('button', {
         '&:hover': {
           cursor: 'pointer',
           '& p': {
-            color: '#D0C100',
+            color: '#D0C100 !important',
           },
         },
       },
@@ -116,7 +117,7 @@ export const StyledButtonTrigger = styled('button', {
         '&:hover': {
           cursor: 'pointer',
           '& p': {
-            color: '$error',
+            color: '$error !important',
           },
         },
       },
@@ -127,7 +128,7 @@ export const StyledButtonTrigger = styled('button', {
         '&:hover': {
           cursor: 'not-allowed',
           '& p': {
-            color: '#8E8E8E',
+            color: '#8E8E8E !important',
           },
         },
       },
@@ -161,9 +162,6 @@ export const StyledParagraph = styled(Paragraph4, {
       },
     },
     type: {
-      withoutSelected: {
-        color: 'black',
-      },
       standard: {
         color: 'rgb(95, 10, 255)',
       },

@@ -16,6 +16,9 @@ export type TabsProps = ComponentProps<typeof StyledTabs> &
 export type TabsListComponentOwnProps = {
   direction?: 'horizontal' | 'vertical'
   type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
+  justifyContent?: 'start' | 'center' | 'end' | 'space-around' | 'space-between'
+  gap?: string
+  width?: string
   selectedValue?: string
   setSelectedValue?: React.Dispatch<
     React.SetStateAction<string | (readonly string[] & string)>
@@ -31,6 +34,7 @@ export type TabsTriggerComponentOwnProps = {
   textSize?: string
   bold?: boolean
   disabled?: boolean
+  width?: string
   selectedValue?: string
   setSelectedValue?: React.Dispatch<
     React.SetStateAction<string | (readonly string[] & string)>
