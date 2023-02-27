@@ -102,6 +102,56 @@ export const styles = {
 </Playground>
 
 <div>
+  <H4 font="secondary">Tabs</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList borderBottomColor="rgba(0, 0, 0, 0.12)">
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            width: 'inherit',
+            backgroundColor: '$primaryText',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            width: 'inherit',
+            backgroundColor: '$primaryText',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
   <H4 font="secondary">Align, Gap and Width</H4>
 </div>
 
@@ -157,8 +207,8 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Tabs defaultValue="tab1" direction="horizontal">
-      <TabsList>
+    <Tabs defaultValue="tab1" direction="vertical">
+      <TabsList width="200px">
         <TabsTrigger value="tab1">TAB 1</TabsTrigger>
         <TabsTrigger value="tab2">TAB 2</TabsTrigger>
       </TabsList>
@@ -191,7 +241,6 @@ export const styles = {
           <Paragraph5 css={{ color: '#ccc' }}>
             Change your password here. After saving, you'll be logged out.
           </Paragraph5>
-          <Input id="currentPassword" type="password" />
           <Input id="newPassword" type="password" />
           <Input id="confirmPassword" type="password" />
           <Button outline>Change password</Button>

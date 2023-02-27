@@ -26,6 +26,7 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
       gap,
       width,
       children,
+      borderBottomColor,
       ...props
     },
     ref
@@ -61,6 +62,15 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
           tabList: {
             ...css.tabList,
             width: `${width}`,
+          },
+        }
+      }
+      if (borderBottomColor) {
+        css = {
+          ...css,
+          tabList: {
+            ...css.tabList,
+            borderBottom: `1px solid ${borderBottomColor}`,
           },
         }
       }
@@ -192,7 +202,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       width,
       height,
       children,
-      direction = 'vertical',
+      direction = 'horizontal',
       type = 'standard',
       ...props
     },

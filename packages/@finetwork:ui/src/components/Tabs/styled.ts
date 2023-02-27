@@ -9,10 +9,10 @@ export const StyledTabs = styled('div', {
   variants: {
     direction: {
       horizontal: {
-        flexDirection: 'row',
+        flexDirection: 'column',
       },
       vertical: {
-        flexDirection: 'column',
+        flexDirection: 'row',
       },
     },
   },
@@ -22,16 +22,17 @@ export const StyledTabsList = styled('div', {
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
-  padding: '1rem',
   variants: {
     direction: {
       horizontal: {
+        marginBottom: '1rem',
+        flexDirection: 'row',
+      },
+      vertical: {
+        marginRight: '1rem',
         flexDirection: 'column',
         justifyContent: 'center',
         gap: '1rem',
-      },
-      vertical: {
-        flexDirection: 'row',
       },
     },
   },
@@ -42,7 +43,6 @@ export const StyledTabsTrigger = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginBottom: '0.5rem',
   width: '100%',
   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0ms',
 })

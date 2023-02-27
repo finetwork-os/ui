@@ -17,6 +17,7 @@ export type TabsListComponentOwnProps = {
   direction?: 'horizontal' | 'vertical'
   type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
   justifyContent?: 'start' | 'center' | 'end' | 'space-around' | 'space-between'
+  borderBottomColor?: string
   gap?: string
   width?: string
   selectedValue?: string
