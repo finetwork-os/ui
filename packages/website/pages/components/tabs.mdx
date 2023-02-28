@@ -5,73 +5,61 @@ name: Tabs
 import { Playground } from 'dokz'
 import {
   Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   H2,
   Paragraph4,
   Input,
   Button,
-  TabsContent,
-  TabsTrigger,
-  TabsList,
   Paragraph5,
   H3,
+  H4,
   Link,
+  Cross1Icon,
 } from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '500px',
   padding: '2em',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
 }
 
 <div />
 <div>
-  <H2 font="secondary">Tabs</H2>
+  <H3 font="secondary">Tabs</H3>
 </div>
 
-<Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/tabs"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Tabs component
-  </Link>{' '}
-  from radix-ui.
-</Paragraph4>
+<Paragraph4>This component is an implementation of a custom tab</Paragraph4>
 
 <div>
-  <H3 font="secondary">Kind</H3>
+  <H4 font="secondary">Tabs</H4>
 </div>
-
-<Paragraph4>
-  <b>TabsTrigger</b> component admit <i>kind</i> prop
-</Paragraph4>
-<Paragraph4>
-  Possible values <i>primary</i>, <i>secondary</i>, <i>tertiary</i>
-</Paragraph4>
 
 <Playground>
   <div style={styles}>
     <Tabs defaultValue="tab1">
-      <TabsList aria-label="Manage your account">
-        <TabsTrigger value="tab1">Account</TabsTrigger>
-        <TabsTrigger value="tab2">Password</TabsTrigger>
+      <TabsList>
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+        <TabsTrigger value="tab3">TAB 3</TabsTrigger>
       </TabsList>
       <TabsContent value="tab1">
         <div
           style={{
             display: 'grid',
             gap: '1rem',
+            width: 'inherit',
             backgroundColor: '$primaryText',
           }}
         >
           <Paragraph5 css={{ color: '#ccc' }}>
             Make changes to your account here. Click save when you're done.
           </Paragraph5>
-          <Input id="name" defaultValue="Fran garcia" />
-          <Input id="username" defaultValue="@frgarciames" />
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
           <Button outline>Save changes</Button>
         </div>
       </TabsContent>
@@ -80,6 +68,73 @@ export const styles = {
           style={{
             display: 'grid',
             gap: '1rem',
+            width: 'inherit',
+            backgroundColor: '$primaryText',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab3">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            width: 'inherit',
+            backgroundColor: '$primaryText',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Tabs</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList borderBottomColor="rgba(0, 0, 0, 0.12)">
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            width: 'inherit',
+            backgroundColor: '$primaryText',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            width: 'inherit',
             backgroundColor: '$primaryText',
           }}
         >
@@ -95,3 +150,610 @@ export const styles = {
     </Tabs>
   </div>
 </Playground>
+
+<div>
+  <H4 font="secondary">Align, Gap and Width</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList justifyContent="start" gap="2rem" width="50%">
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Direction</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1" direction="vertical">
+      <TabsList width="200px">
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Type</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Paragraph4>Type: standard, success, warning, error, disabled</Paragraph4>
+    <Tabs defaultValue="tab1" type="success">
+      <TabsList>
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Disabled</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList>
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger disabled value="tab2">
+          TAB 2
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Bold</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList>
+        <TabsTrigger bold value="tab1">
+          TAB 1
+        </TabsTrigger>
+        <TabsTrigger bold value="tab2">
+          TAB 2
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Text Size</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList>
+        <TabsTrigger textSize="1.3rem" value="tab1">
+          TAB 1
+        </TabsTrigger>
+        <TabsTrigger textSize="1.3rem" value="tab2">
+          TAB 2
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Start Enhancer and End Enhancer</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1">
+      <TabsList>
+        <TabsTrigger startEnhancer={Cross1Icon} value="tab1">
+          TAB 1
+        </TabsTrigger>
+        <TabsTrigger endEnhancer={Cross1Icon} value="tab2">
+          TAB 2
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Width and Height</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tabs defaultValue="tab1" width="700px" height="300px">
+      <TabsList>
+        <TabsTrigger value="tab1">TAB 1</TabsTrigger>
+        <TabsTrigger value="tab2">TAB 2</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Make changes to your account here. Click save when you're done.
+          </Paragraph5>
+          <Input id="name" defaultValue="Sergio y Santiago" />
+          <Input id="username" defaultValue="@serysan97" />
+          <Button outline>Save changes</Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="tab2">
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            backgroundColor: '$primaryText',
+            width: 'inherit',
+          }}
+        >
+          <Paragraph5 css={{ color: '#ccc' }}>
+            Change your password here. After saving, you'll be logged out.
+          </Paragraph5>
+          <Input id="currentPassword" type="password" />
+          <Input id="newPassword" type="password" />
+          <Input id="confirmPassword" type="password" />
+          <Button outline>Change password</Button>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+</Playground>
+
+<H4>Tabs Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>the tab that will be selected by default</td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>horizontal | vertical</td>
+      <td>vertical</td>
+      <td>No</td>
+      <td>Set direction</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>standard | success | warning | error | disabled</td>
+      <td>standard</td>
+      <td>No</td>
+      <td>Set styles depending of the type</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td>5px</td>
+      <td>No</td>
+      <td>Set border radius</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set width size</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set height size</td>
+    </tr>
+  </tbody>
+</table>
+
+<H4>TabsList Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td>100%</td>
+      <td>No</td>
+      <td>Set width size</td>
+    </tr>
+    <tr>
+      <td>justifyContent</td>
+      <td>space-around</td>
+      <td>start | center | end | space-around | space-between</td>
+      <td>No</td>
+      <td>Set horizontal position</td>
+    </tr>
+    <tr>
+      <td>gap</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set separation size between elements</td>
+    </tr>
+  </tbody>
+</table>
+
+<H4>TabsTrigger Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>value of the element</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td>100%</td>
+      <td>No</td>
+      <td>Set width size</td>
+    </tr>
+    <tr>
+      <td>textSize</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set text size</td>
+    </tr>
+    <tr>
+      <td>textColor</td>
+      <td>string</td>
+      <td>black</td>
+      <td>No</td>
+      <td>Set text color</td>
+    </tr>
+    <tr>
+      <td>bold</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Set text bold</td>
+    </tr>
+    <tr>
+      <td>startEnhancer</td>
+      <td>string | ReactNode</td>
+      <td></td>
+      <td>No</td>
+      <td>Set icon to start</td>
+    </tr>
+    <tr>
+      <td>endEnhancer</td>
+      <td>string | ReactNode</td>
+      <td></td>
+      <td>No</td>
+      <td>Set icon to end</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Set disabled mode</td>
+    </tr>
+  </tbody>
+</table>
+
+<H4>TabsContent Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>value of the element</td>
+    </tr>
+  </tbody>
+</table>
