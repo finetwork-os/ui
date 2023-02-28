@@ -1,6 +1,6 @@
 {
   "name": "@finetwork/ui",
-  "version": "0.9.2",
+  "version": "0.9.21",
   "source": "src/index.ts",
   "typings": "src/index.ts",
   "main": "src/index.ts",

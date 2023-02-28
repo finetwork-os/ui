@@ -155,6 +155,7 @@ export const StyledTabsContent = styled('div', {
 })
 
 export const StyledParagraph = styled(Paragraph4, {
+  textAlign: 'center !important',
   variants: {
     bold: {
       true: {
