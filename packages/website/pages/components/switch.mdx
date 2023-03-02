@@ -57,6 +57,20 @@ export const horizontalStyles = {
 </Playground>
 
 <div>
+  <H4 font="secondary">Kind</H4>
+</div>
+
+<Paragraph4>Possible values are primary, secondary, tertiary</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-3" kind="primary" />
+    <Switch id="chk-4" kind="secondary" />
+    <Switch id="chk-5" kind="tertiary" />
+  </div>
+</Playground>
+
+<div>
   <H3 font="secondary">isLoading</H3>
 </div>
 
@@ -69,14 +83,14 @@ export const horizontalStyles = {
         <div style={styles}>
           <Switch
             size="medium"
-            id="chk-3"
+            id="chk-6"
             isLoading
             checked={checked}
             handleChange={setChecked}
           />
           <Switch
             size="large"
-            id="chk-4"
+            id="chk-7"
             isLoading
             checked={checked2}
             handleChange={setChecked2}
@@ -86,4 +100,88 @@ export const horizontalStyles = {
     }
     return <App />
   }}
+</Playground>
+
+<div>
+  <H3 font="secondary">loadingColor</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      const [checked2, setChecked2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <Switch
+            size="medium"
+            id="chk-8"
+            isLoading
+            loadingColor="black"
+            checked={checked}
+            handleChange={setChecked}
+          />
+          <Switch
+            size="large"
+            id="chk-9"
+            isLoading
+            loadingColor="#5F3DFF"
+            checked={checked2}
+            handleChange={setChecked2}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">loadingSpeed</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      const [checked2, setChecked2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <Switch
+            size="medium"
+            id="chk-10"
+            isLoading
+            loadingSpeed={1}
+            checked={checked}
+            handleChange={setChecked}
+          />
+          <Switch
+            size="large"
+            id="chk-11"
+            isLoading
+            loadingSpeed={4}
+            checked={checked2}
+            handleChange={setChecked2}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Type</H4>
+</div>
+
+<Paragraph4>Possible values are primary, secondary, tertiary</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-20" type="standard" />
+    <Switch id="chk-21" type="success" />
+    <Switch id="chk-23" type="warning" />
+    <Switch id="chk-24" type="error" />
+    <Switch id="chk-25" type="disabled" />
+  </div>
 </Playground>

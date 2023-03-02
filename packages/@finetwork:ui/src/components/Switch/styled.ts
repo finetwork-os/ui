@@ -25,6 +25,23 @@ export const StyledSwitch = styled('label', {
         height: '25px',
       },
     },
+    type: {
+      standard: {
+        background: 'rgb(244, 238, 255) !important',
+      },
+      success: {
+        background: 'rgb(218, 252, 236) !important',
+      },
+      warning: {
+        background: '#F7F4CD !important',
+      },
+      error: {
+        background: '#F7CDCD !important',
+      },
+      disabled: {
+        background: '#E9E9E9 !important',
+      },
+    },
   },
 })
 
@@ -49,9 +66,6 @@ export const StyledSlider = styled('span', {
 
 export const StyledInput = styled('input', {
   display: 'none',
-  [`&:checked ~ ${StyledSwitch}`]: {
-    background: '$colors$primary',
-  },
   variants: {
     size: {
       medium: {
@@ -67,6 +81,50 @@ export const StyledInput = styled('input', {
     },
     isFirstChecked: {
       false: {},
+    },
+    kind: {
+      primary: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$colors$primary',
+        },
+      },
+      secondary: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$colors$secondary',
+        },
+      },
+      tertiary: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$colors$tertiary',
+        },
+      },
+    },
+    switchType: {
+      standard: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: 'rgb(95, 10, 255) !important',
+        },
+      },
+      success: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: 'rgb(0, 109, 57) !important',
+        },
+      },
+      warning: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '#D0C100 !important',
+        },
+      },
+      error: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$error !important',
+        },
+      },
+      disabled: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '#8E8E8E !important',
+        },
+      },
     },
   },
   compoundVariants: [

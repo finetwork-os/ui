@@ -19,6 +19,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
       checked,
       loadingColor = '#fff',
       loadingSpeed = 2,
+      kind = 'primary',
+      type,
       handleChange,
     },
     ref
@@ -32,6 +34,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
           checked={
             checked !== null || checked !== undefined ? checked : undefined
           }
+          kind={kind}
+          switchType={type ? type : undefined}
           type={'checkbox'}
           id={id}
           size={size}
@@ -43,7 +47,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
             }
           }}
         />
-        <StyledSwitch htmlFor={id} size={size}>
+        <StyledSwitch htmlFor={id} size={size} type={type ? type : undefined}>
           {isLoading ? (
             <StyledLoadingContainer>
               <Ring
