@@ -1,7 +1,5 @@
 import * as React from 'react'
-
 import { StyledLoading, getComputedStyles } from './styled'
-
 import { LoadingComponent } from './types'
 
 export const Loading: LoadingComponent = ({

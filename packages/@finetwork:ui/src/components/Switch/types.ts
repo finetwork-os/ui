@@ -1,7 +1,13 @@
+import { SIZE } from '@finetwork:ui/src/types'
 import { ComponentProps, FC } from 'react'
-
-import { Root } from '@radix-ui/react-switch'
 import { StyledSwitch } from './styled'
 
-type SwitchVariants = ComponentProps<typeof StyledSwitch>
-export type SwitchComponent = FC<ComponentProps<typeof Root> & SwitchVariants>
+export type SwitchComponent = {
+  size?: 'medium' | 'large'
+  id: string
+  isLoading?: boolean
+  checked?: boolean
+  loadingColor?: string
+  loadingSpeed?: number
+  handleChange?: (value: boolean) => void
+}

@@ -13,17 +13,17 @@ export const getComputedStyles = ({
   return {
     width: size,
     height: size,
-    borderColor: disabled ? '#eee' : `$${kind}200`,
-    borderTopColor: disabled ? '#aaa' : `$${kind}400`,
-    borderStyle: 'solid',
+    // borderColor: disabled ? '#eee' : `$${kind}200`,
+    // borderTopColor: disabled ? '#aaa' : `$${kind}400`,
+    // borderStyle: 'solid',
   }
 }
 
 export const StyledLoading = styled('div', {
-  borderWidth: '2px',
-  borderColor: '$primary200',
-  borderTopColor: '$primary400',
   borderRadius: '50%',
-  animation: `${spin} .8s linear infinite`,
-  backgroundColor: 'transparent',
+  display: 'inline-block',
+  borderTop: '3px solid #FFF',
+  borderRight: '3px solid transparent',
+  boxSizing: 'border-box',
+  animation: `${spin} 1s linear infinite`,
 })

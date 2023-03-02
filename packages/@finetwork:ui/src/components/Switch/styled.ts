@@ -1,104 +1,115 @@
-import { KINDS, SIZES } from '../../types'
-import { Root, Thumb } from '@radix-ui/react-switch'
-
-import { StyledComponent } from '@stitches/react/types/styled-component'
+import {
+  switchAnimation,
+  switchAnimationBackwards,
+  switchFunction,
+} from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 
-export const StyledSwitch: StyledComponent<
-  typeof Root,
-  {
-    size?: SIZES
-    kind?: KINDS
-  }
-> = styled(Root, {
-  appearance: 'none',
-  border: 'none',
-  padding: 2,
-  borderRadius: 15,
+export const StyledSwitch = styled('label', {
   position: 'relative',
-  transition: 'all .3s ease',
+  backgroundColor: '$colors$disabled',
+  borderRadius: '40px',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '2px',
+  transition: 'all .5s ease-in-out',
+  cursor: 'pointer',
   variants: {
     size: {
-      small: {
-        width: 30,
-        height: 15,
-      },
       medium: {
-        width: 40,
-        height: 20,
+        width: '40px',
+        height: '20px',
       },
       large: {
-        width: 50,
-        height: 25,
+        width: '50px',
+        height: '25px',
       },
     },
-    kind: {
-      primary: {
-        backgroundColor: '$primary200',
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300',
-        },
-        '&[data-state="checked"]': {
-          backgroundColor: '$primary',
-        },
-      },
-      secondary: {
-        backgroundColor: '$secondary200',
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$secondary300',
-        },
-        '&[data-state="checked"]': {
-          backgroundColor: '$secondary',
-        },
-      },
-      tertiary: {
-        backgroundColor: '$tertiary200',
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$tertiary300',
-        },
-        '&[data-state="checked"]': {
-          backgroundColor: '$tertiary',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'medium',
-    kind: 'primary',
   },
 })
 
-export const StyledThumb = styled(Thumb, {
-  display: 'block',
-  backgroundColor: 'white',
+export const StyledSlider = styled('span', {
+  position: 'absolute',
+  backgroundColor: '#FFF',
   borderRadius: '50%',
-  height: '100%',
-  boxShadow: 'rgba(0, 0, 0, 0.3) 0px 0px 2px',
-  transition: 'transform .3s ease',
-  willChange: 'transform',
+  transition: 'all 0.5s ease-in-out',
   variants: {
     size: {
-      small: {
-        width: 'calc(100% - 15px)',
-        '&[data-state="checked"]': {
-          transform: 'translateX(calc(100% + 4px))',
-        },
-      },
       medium: {
-        width: 'calc(100% - 20px)',
-        '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 4px))',
-        },
+        width: '16px',
+        height: '16px',
       },
       large: {
-        width: 'calc(100% - 26px)',
-        '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 5px))',
-        },
+        width: '21px',
+        height: '21px',
       },
     },
   },
-  defaultVariants: {
-    size: 'medium',
+})
+
+export const StyledInput = styled('input', {
+  display: 'none',
+  [`&:checked ~ ${StyledSwitch}`]: {
+    background: '$colors$primary',
   },
+  variants: {
+    size: {
+      medium: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(20px)',
+        },
+      },
+      large: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(25px)',
+        },
+      },
+    },
+    isFirstChecked: {
+      false: {},
+    },
+  },
+  compoundVariants: [
+    {
+      size: 'medium',
+      isFirstChecked: 'false',
+      css: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(20px)',
+          animation: `${
+            switchFunction('medium').switchAnimationForwards
+          } 0.5s ease-in-out forwards`,
+        },
+        [`&:not(:checked) ~ ${StyledSwitch} ${StyledSlider}`]: {
+          animation: `${
+            switchFunction('medium').switchAnimationBackwards
+          } 0.5s ease-in-out forwards`,
+        },
+      },
+    },
+    {
+      size: 'large',
+      isFirstChecked: 'false',
+      css: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(25px)',
+          animation: `${
+            switchFunction('large').switchAnimationForwards
+          } 0.5s ease-in-out forwards`,
+        },
+        [`&:not(:checked) ~ ${StyledSwitch} ${StyledSlider}`]: {
+          animation: `${
+            switchFunction('large').switchAnimationBackwards
+          } 0.5s ease-in-out forwards`,
+        },
+      },
+    },
+  ],
+})
+
+export const StyledLoadingContainer = styled('div', {
+  display: 'grid',
+  justifyContent: 'center',
+  alignContent: 'center',
+  width: '100%',
 })
