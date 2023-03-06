@@ -25,21 +25,61 @@ export const StyledSwitch = styled('label', {
         height: '25px',
       },
     },
+    kind: {
+      primary: {
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$primary',
+        },
+      },
+      secondary: {
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$secondary',
+        },
+      },
+      tertiary: {
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$tertiary',
+        },
+      },
+    },
     type: {
       standard: {
         background: 'rgb(244, 238, 255) !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(95, 10, 255)',
+        },
       },
       success: {
         background: 'rgb(218, 252, 236) !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(0, 109, 57)',
+        },
       },
       warning: {
         background: '#F7F4CD !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px #D0C100',
+        },
       },
       error: {
         background: '#F7CDCD !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error',
+        },
       },
       disabled: {
         background: '#E9E9E9 !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px #8E8E8E',
+        },
       },
     },
     disabled: {

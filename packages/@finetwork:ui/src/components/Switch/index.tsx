@@ -29,6 +29,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
       switchBackgroundColor,
       checkedEnhancer,
       uncheckedEnhancer,
+      focusOutlineColor,
       ...props
     },
     ref
@@ -68,10 +69,21 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
         }
       }
 
+      if (focusOutlineColor) {
+        css = {
+          ...css,
+          switch: {
+            ...css.switch,
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${focusOutlineColor}`,
+            },
+          },
+        }
+      }
+
       setSwitchStyles(css)
     }, [])
-
-    console.log({ disabled })
 
     return (
       <div>
@@ -96,11 +108,21 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
           {...props}
         />
         <StyledSwitch
+          tabIndex={disabled ? -1 : 0}
           htmlFor={id}
           size={size}
+          kind={kind}
           type={type ? type : undefined}
           disabled={disabled}
           css={{ ...switchStyles.switch }}
+          onKeyUp={(e) => {
+            if (e.key !== 'Enter') return
+            if (isFirstChecked) setIsFirstChecked(false)
+            if (handleChange && !isLoading && !disabled) {
+              console.log(!checked)
+              handleChange(!checked)
+            }
+          }}
         >
           {isLoading ? (
             <StyledLoadingContainer>

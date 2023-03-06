@@ -14,6 +14,7 @@ export type SwitchComponent = {
   type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
   handleChange?: (value: boolean) => void
   switchBackgroundColor?: { checked: string; unchecked: string }
+  focusOutlineColor?: string
   sliderColor?: string
   checkedEnhancer: Enhancer
   uncheckedEnhancer: Enhancer
