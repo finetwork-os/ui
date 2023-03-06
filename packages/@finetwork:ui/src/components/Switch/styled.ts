@@ -42,6 +42,12 @@ export const StyledSwitch = styled('label', {
         background: '#E9E9E9 !important',
       },
     },
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+        background: '#E9E9E9 !important',
+      },
+    },
   },
 })
 
@@ -59,6 +65,11 @@ export const StyledSlider = styled('span', {
       large: {
         width: '21px',
         height: '21px',
+      },
+    },
+    disabled: {
+      true: {
+        backgroundColor: '$colors$disabled !important',
       },
     },
   },
@@ -170,4 +181,11 @@ export const StyledLoadingContainer = styled('div', {
   justifyContent: 'center',
   alignContent: 'center',
   width: '100%',
+})
+
+export const StyledEnhancerContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
 })

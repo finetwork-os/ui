@@ -3,7 +3,15 @@ name: Switch
 ---
 
 import { Playground } from 'dokz'
-import { Switch, H4, Paragraph4, H3, Link } from '@finetwork/ui'
+import {
+  Switch,
+  H4,
+  Paragraph4,
+  H3,
+  Link,
+  RocketIcon,
+  ArrowRightIcon,
+} from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
@@ -67,6 +75,16 @@ export const horizontalStyles = {
     <Switch id="chk-3" kind="primary" />
     <Switch id="chk-4" kind="secondary" />
     <Switch id="chk-5" kind="tertiary" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Disabled</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-30" disabled />
   </div>
 </Playground>
 
@@ -184,4 +202,56 @@ export const horizontalStyles = {
     <Switch id="chk-24" type="error" />
     <Switch id="chk-25" type="disabled" />
   </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">sliderColor</H4>
+</div>
+
+<Paragraph4>Color of circle inside switch</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-26" sliderColor="yellow" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">switchBackgroundColor</H4>
+</div>
+
+<Paragraph4>Object that needs a checked and unckecked color</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch
+      id="chk-27"
+      switchBackgroundColor={{ unchecked: 'red', checked: 'green' }}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">checkedEnhancer and uncheckedEnhancer</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      return (
+        <div style={styles}>
+          <Switch
+            size="large"
+            id="chk-28"
+            checkedEnhancer={RocketIcon}
+            uncheckedEnhancer={ArrowRightIcon}
+            checked={checked}
+            handleChange={setChecked}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>

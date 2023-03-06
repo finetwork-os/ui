@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Ring } from '@uiball/loaders'
 
 import {
+  StyledEnhancerContainer,
   StyledInput,
   StyledLoadingContainer,
   StyledSlider,
@@ -9,6 +10,7 @@ import {
 } from './styled'
 
 import { SwitchComponent } from './types'
+import { RenderEnhancer } from '@finetwork:ui/src/utils'
 
 export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
   (
@@ -21,12 +23,55 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
       loadingSpeed = 2,
       kind = 'primary',
       type,
+      disabled,
       handleChange,
+      sliderColor,
+      switchBackgroundColor,
+      checkedEnhancer,
+      uncheckedEnhancer,
+      ...props
     },
     ref
   ) => {
+    const [switchStyles, setSwitchStyles] = React.useState({
+      slider: {},
+      switch: {},
+      input: {},
+    })
     const [isFirstChecked, setIsFirstChecked] = React.useState(true)
     const loadingSize = size === 'large' ? 21 : 16
+
+    React.useEffect(() => {
+      let css = { slider: {}, switch: {}, input: {} }
+      if (sliderColor) {
+        css = {
+          ...css,
+          slider: {
+            ...css.slider,
+            backgroundColor: sliderColor,
+          },
+        }
+      }
+
+      if (switchBackgroundColor?.checked && switchBackgroundColor?.unchecked) {
+        css = {
+          ...css,
+          switch: {
+            ...css.switch,
+            backgroundColor: `${switchBackgroundColor.unchecked} !important`,
+          },
+          input: {
+            [`&:checked ~ ${StyledSwitch}`]: {
+              backgroundColor: `${switchBackgroundColor.checked} !important`,
+            },
+          },
+        }
+      }
+
+      setSwitchStyles(css)
+    }, [])
+
+    console.log({ disabled })
 
     return (
       <div>
@@ -40,14 +85,23 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
           id={id}
           size={size}
           isFirstChecked={isFirstChecked}
+          disabled={disabled}
           onChange={(e) => {
             if (isFirstChecked) setIsFirstChecked(false)
-            if (handleChange && !isLoading) {
+            if (handleChange && !isLoading && !disabled) {
               handleChange(e.target.checked)
             }
           }}
+          css={{ ...switchStyles.input }}
+          {...props}
         />
-        <StyledSwitch htmlFor={id} size={size} type={type ? type : undefined}>
+        <StyledSwitch
+          htmlFor={id}
+          size={size}
+          type={type ? type : undefined}
+          disabled={disabled}
+          css={{ ...switchStyles.switch }}
+        >
           {isLoading ? (
             <StyledLoadingContainer>
               <Ring
@@ -58,7 +112,23 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
               />
             </StyledLoadingContainer>
           ) : (
-            <StyledSlider size={size}></StyledSlider>
+            <StyledSlider
+              size={size}
+              css={{ ...switchStyles.slider }}
+              disabled={disabled}
+            >
+              {checkedEnhancer && checked && (
+                <StyledEnhancerContainer>
+                  <RenderEnhancer Enhancer={checkedEnhancer} />
+                </StyledEnhancerContainer>
+              )}
+
+              {uncheckedEnhancer && !checked && (
+                <StyledEnhancerContainer>
+                  <RenderEnhancer Enhancer={uncheckedEnhancer} />
+                </StyledEnhancerContainer>
+              )}
+            </StyledSlider>
           )}
         </StyledSwitch>
       </div>
