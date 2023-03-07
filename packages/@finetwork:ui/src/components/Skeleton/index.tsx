@@ -12,7 +12,7 @@ export const Skeleton: SkeletonComponent = ({
   css = {},
   backgroundColor = '$secondary300',
   animationColor = '$secondary200',
-  borderRadius,
+  borderRadius = '5px',
   chart,
 }) => {
   const stylesRow: any = {
