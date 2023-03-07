@@ -195,7 +195,7 @@ export const horizontalStyles = {
 <Paragraph4>Possible values are primary, secondary, tertiary</Paragraph4>
 
 <Playground>
-  <div style={styles}>
+  <div style={{ ...styles, maxHeigh: 'unset', gap: '0.5rem' }}>
     <Switch id="chk-20" type="standard" />
     <Switch id="chk-21" type="success" />
     <Switch id="chk-23" type="warning" />
@@ -232,7 +232,7 @@ export const horizontalStyles = {
 </Playground>
 
 <div>
-  <H4 font="secondary">checkedEnhancer and uncheckedEnhancer</H4>
+  <H4 font="secondary">enhancerIcons</H4>
 </div>
 
 <Playground>
@@ -244,8 +244,7 @@ export const horizontalStyles = {
           <Switch
             size="large"
             id="chk-28"
-            checkedEnhancer={RocketIcon}
-            uncheckedEnhancer={ArrowRightIcon}
+            enhancerIcons={{ checked: RocketIcon, unchecked: ArrowRightIcon }}
             checked={checked}
             handleChange={setChecked}
           />

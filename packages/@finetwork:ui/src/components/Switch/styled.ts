@@ -47,35 +47,35 @@ export const StyledSwitch = styled('label', {
     },
     type: {
       standard: {
-        background: 'rgb(244, 238, 255) !important',
+        background: '#ceb3ff !important',
         '&:focus-visible': {
           outline: 'none',
           boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(95, 10, 255)',
         },
       },
       success: {
-        background: 'rgb(218, 252, 236) !important',
+        background: '#a6f8d1 !important',
         '&:focus-visible': {
           outline: 'none',
           boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(0, 109, 57)',
         },
       },
       warning: {
-        background: '#F7F4CD !important',
+        background: '#f0ea9e !important',
         '&:focus-visible': {
           outline: 'none',
           boxShadow: '0 0 0 2px #fff, 0 0 0 4px #D0C100',
         },
       },
       error: {
-        background: '#F7CDCD !important',
+        background: '#f09e9e !important',
         '&:focus-visible': {
           outline: 'none',
           boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error',
         },
       },
       disabled: {
-        background: '#E9E9E9 !important',
+        background: '#cdcdcd !important',
         '&:focus-visible': {
           outline: 'none',
           boxShadow: '0 0 0 2px #fff, 0 0 0 4px #8E8E8E',
@@ -95,7 +95,7 @@ export const StyledSlider = styled('span', {
   position: 'absolute',
   backgroundColor: '#FFF',
   borderRadius: '50%',
-  transition: 'all 0.5s ease-in-out',
+  transition: 'all 0.35s ease-in-out',
   variants: {
     size: {
       medium: {
@@ -187,12 +187,12 @@ export const StyledInput = styled('input', {
           transform: 'translateX(20px)',
           animation: `${
             switchFunction('medium').switchAnimationForwards
-          } 0.5s ease-in-out forwards`,
+          } 0.35s ease-in-out forwards`,
         },
         [`&:not(:checked) ~ ${StyledSwitch} ${StyledSlider}`]: {
           animation: `${
             switchFunction('medium').switchAnimationBackwards
-          } 0.5s ease-in-out forwards`,
+          } 0.35s ease-in-out forwards`,
         },
       },
     },
@@ -204,12 +204,12 @@ export const StyledInput = styled('input', {
           transform: 'translateX(25px)',
           animation: `${
             switchFunction('large').switchAnimationForwards
-          } 0.5s ease-in-out forwards`,
+          } 0.35s ease-in-out forwards`,
         },
         [`&:not(:checked) ~ ${StyledSwitch} ${StyledSlider}`]: {
           animation: `${
             switchFunction('large').switchAnimationBackwards
-          } 0.5s ease-in-out forwards`,
+          } 0.35s ease-in-out forwards`,
         },
       },
     },

@@ -16,6 +16,5 @@ export type SwitchComponent = {
   switchBackgroundColor?: { checked: string; unchecked: string }
   focusOutlineColor?: string
   sliderColor?: string
-  checkedEnhancer: Enhancer
-  uncheckedEnhancer: Enhancer
+  enhancerIcons?: { checked: Enhancer; unchecked: Enhancer }
 }

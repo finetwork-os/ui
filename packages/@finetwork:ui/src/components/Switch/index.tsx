@@ -27,8 +27,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
       handleChange,
       sliderColor,
       switchBackgroundColor,
-      checkedEnhancer,
-      uncheckedEnhancer,
+      enhancerIcons,
       focusOutlineColor,
       ...props
     },
@@ -119,7 +118,6 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
             if (e.key !== 'Enter') return
             if (isFirstChecked) setIsFirstChecked(false)
             if (handleChange && !isLoading && !disabled) {
-              console.log(!checked)
               handleChange(!checked)
             }
           }}
@@ -139,15 +137,15 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
               css={{ ...switchStyles.slider }}
               disabled={disabled}
             >
-              {checkedEnhancer && checked && (
+              {enhancerIcons?.checked && checked && (
                 <StyledEnhancerContainer>
-                  <RenderEnhancer Enhancer={checkedEnhancer} />
+                  <RenderEnhancer Enhancer={enhancerIcons.checked} />
                 </StyledEnhancerContainer>
               )}
 
-              {uncheckedEnhancer && !checked && (
+              {enhancerIcons?.unchecked && !checked && (
                 <StyledEnhancerContainer>
-                  <RenderEnhancer Enhancer={uncheckedEnhancer} />
+                  <RenderEnhancer Enhancer={enhancerIcons.unchecked} />
                 </StyledEnhancerContainer>
               )}
             </StyledSlider>
