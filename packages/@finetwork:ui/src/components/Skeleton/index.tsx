@@ -1,3 +1,4 @@
+import { borderRadius } from 'polished'
 import * as React from 'react'
 
 import { StyledRoot, StyledRow, getAnimationColor } from './styled'
@@ -9,8 +10,10 @@ export const Skeleton: SkeletonComponent = ({
   width,
   height,
   css = {},
-  backgroundColor = 'rgb(238, 238, 238)',
-  animationColor = 'rgb(246, 246, 246)',
+  backgroundColor = '$secondary300',
+  animationColor = '$secondary200',
+  borderRadius,
+  chart,
 }) => {
   const stylesRow: any = {
     ...css,
@@ -21,14 +24,20 @@ export const Skeleton: SkeletonComponent = ({
           height,
         }),
     backgroundImage: getAnimationColor(backgroundColor, animationColor),
+    borderRadius: borderRadius,
   }
   if (rows && rows > 0) {
     return (
-      <StyledRoot hasRows={true} css={{ width, height }}>
+      <StyledRoot chart={chart} hasRows={true} css={{ width, height }}>
         {Array(rows)
           .fill('')
           .map((item, index) => (
-            <StyledRow key={index} isFirstRow={index === 0} css={stylesRow} />
+            <StyledRow
+              key={index}
+              chart={chart}
+              isFirstRow={index === 0}
+              css={stylesRow}
+            />
           ))}
       </StyledRoot>
     )

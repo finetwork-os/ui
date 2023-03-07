@@ -3,13 +3,15 @@ name: Skeleton
 ---
 
 import { Playground } from 'dokz'
-import { Skeleton, H2, Paragraph4 } from '@finetwork/ui'
+import { Skeleton, H2, H3, Paragraph4 } from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
   padding: '2em',
   display: 'flex',
   justifyContent: 'center',
+  gap: '2rem',
+  alignItems: 'center',
 }
 
 <div />
@@ -17,10 +19,88 @@ export const styles = {
   <H2 font="secondary">Skeleton</H2>
 </div>
 
-<Paragraph4>Skeleton loader</Paragraph4>
+<Paragraph4>
+  This component is an implementation of a custom skeleton loader
+</Paragraph4>
+
+<div>
+  <H3 font="secondary">Width and Height</H3>
+</div>
 
 <Playground>
   <div style={styles}>
     <Skeleton rows={2} height="2rem" width="100%" />
   </div>
 </Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton rows={1} height="10px" width="100px" borderRadius="15px" />
+    <Skeleton rows={1} height="50px" width="50px" borderRadius="50%" />
+    <Skeleton rows={1} height="50px" width="50px" borderRadius="5px" />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Chart</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton rows={1} height="50px" width="50px" chart={true} />
+  </div>
+</Playground>
+
+<H4>Skeleton Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rows</td>
+      <td>number</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined rows amount</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>number | string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Set defined width component</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>number | string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Set defined height component</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined border radius style</td>
+    </tr>
+    <tr>
+      <td>chart</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined shape of chart</td>
+    </tr>
+  </tbody>
+</table>

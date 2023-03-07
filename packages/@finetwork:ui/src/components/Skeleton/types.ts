@@ -8,6 +8,8 @@ type SkeletonProps = Omit<ComponentProps<typeof StyledRoot>, 'hasRows'> & {
   height: number | string
   backgroundColor?: string
   animationColor?: string
+  borderRadius?: string
+  chart?: boolean
 }
 
 export type SkeletonComponent = FC<SkeletonProps>
