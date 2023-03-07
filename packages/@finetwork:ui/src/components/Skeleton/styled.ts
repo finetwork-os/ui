@@ -42,6 +42,7 @@ export const StyledRoot = styled('div', {
         height: '100px',
         borderRadius: '50%',
         padding: '2rem',
+        margin: '2rem',
       },
     },
     hasRows: {
@@ -63,15 +64,16 @@ export const StyledRow = styled('div', {
   variants: {
     chart: {
       true: {
-        '&::before': {
+        background: 'transparent !important',
+        '&:before': {
           content: '',
           position: 'absolute',
-          zIndex: '-2',
-          left: '-50%',
-          top: '-50%',
-          width: '200%',
-          height: '200%',
-          borderRadius: '50%',
+          zIndex: '-2 ',
+          left: '-38%',
+          top: '-44%',
+          width: '180%',
+          height: '180%',
+          borderRadius: '100%',
           backgroundColor: '#D5CCFA',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 100%, 50% 50%',
@@ -80,16 +82,16 @@ export const StyledRow = styled('div', {
             'linear-gradient(135deg, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #E6E1FA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA)',
           ...animationStyle,
         },
-        '&::after': {
+        '&:after': {
           content: '',
           position: 'absolute',
           zIndex: '-1',
-          left: '-16px',
-          top: '-16px',
-          width: 'calc(170% - 12px)',
-          height: 'calc(170% - 12px)',
+          left: '-23px',
+          top: '-29px',
+          width: '151%',
+          height: '151%',
           background: 'white',
-          borderRadius: '50%',
+          borderRadius: '100%',
         },
       },
     },

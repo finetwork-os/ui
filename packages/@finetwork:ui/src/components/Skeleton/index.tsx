@@ -42,5 +42,5 @@ export const Skeleton: SkeletonComponent = ({
       </StyledRoot>
     )
   }
-  return <StyledRoot hasRows={false} css={stylesRow} />
+  return <StyledRoot chart={chart} hasRows={false} css={stylesRow} />
 }

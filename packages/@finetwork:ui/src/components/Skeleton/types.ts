@@ -4,8 +4,8 @@ import { StyledRoot } from './styled'
 
 type SkeletonProps = Omit<ComponentProps<typeof StyledRoot>, 'hasRows'> & {
   rows?: number
-  width: number | string
-  height: number | string
+  width?: number | string
+  height?: number | string
   backgroundColor?: string
   animationColor?: string
   borderRadius?: string
