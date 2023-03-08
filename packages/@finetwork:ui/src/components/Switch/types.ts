@@ -1,7 +1,18 @@
-import { ComponentProps, FC } from 'react'
+import { Enhancer, KINDS } from '@finetwork:ui/src/types'
 
-import { Root } from '@radix-ui/react-switch'
-import { StyledSwitch } from './styled'
-
-type SwitchVariants = ComponentProps<typeof StyledSwitch>
-export type SwitchComponent = FC<ComponentProps<typeof Root> & SwitchVariants>
+export type SwitchComponent = {
+  size?: 'medium' | 'large'
+  kind?: KINDS
+  id: string
+  isLoading?: boolean
+  checked?: boolean
+  disabled?: boolean
+  loadingColor?: string
+  loadingSpeed?: number
+  type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
+  handleChange?: (value: boolean) => void
+  switchBackgroundColor?: { checked: string; unchecked: string }
+  focusOutlineColor?: string
+  sliderColor?: string
+  enhancerIcons?: { checked: Enhancer; unchecked: Enhancer }
+}

@@ -115,3 +115,67 @@ export const animationSelectMobile = keyframes({
   '0%': { transform: 'translateY(100%)' },
   '100%': { transform: 'translateY(0)' },
 })
+
+export function switchFunction(size: 'large' | 'medium') {
+  switch (size) {
+    case 'medium':
+      return {
+        switchAnimationForwards: keyframes({
+          '0%': { width: '16px', height: '16px' },
+          '15%': { width: '17px', height: '15px' },
+          '40%': { width: '18px', height: '14px' },
+          '50%': { width: '19px', height: '13px' },
+          '60%': { width: '18px', height: '15px' },
+          '70%': { width: '16px', height: '16px' },
+        }),
+        switchAnimationBackwards: keyframes({
+          '100%': { width: '16px', height: '16px' },
+          '70%': { width: '17px', height: '15px' },
+          '60%': { width: '18px', height: '14px' },
+          '50%': { width: '19px', height: '13px' },
+          '40%': { width: '18px', height: '15px' },
+          '15%': { width: '16px', height: '16px' },
+        }),
+      }
+    case 'large': {
+      return {
+        switchAnimationForwards: keyframes({
+          '0%': { width: '21px', height: '21px' },
+          '15%': { width: '22px', height: '20px' },
+          '40%': { width: '23px', height: '19px' },
+          '50%': { width: '24px', height: '18px' },
+          '60%': { width: '23px', height: '19px' },
+          '70%': { width: '21px', height: '21px' },
+        }),
+        switchAnimationBackwards: keyframes({
+          '100%': { width: '21px', height: '21px' },
+          '70%': { width: '22px', height: '20px' },
+          '60%': { width: '23px', height: '19px' },
+          '50%': { width: '24px', height: '18px' },
+          '40%': { width: '23px', height: '19px' },
+          '15%': { width: '21px', height: '21px' },
+        }),
+      }
+    }
+  }
+}
+
+export const switchAnimation = keyframes({
+  '0%': { width: '16px', height: '16px' },
+  '15%': { width: '17px', height: '15px' },
+  '40%': { width: '18px', height: '14px' },
+  '50%': { width: '19px', height: '13px' },
+  '60%': { width: '18px', height: '15px' },
+  // '70%': { width: '17px', height: '14px' },
+  '70%': { width: '16px', height: '16px' },
+})
+
+export const switchAnimationBackwards = keyframes({
+  '100%': { width: '16px', height: '16px' },
+  '70%': { width: '17px', height: '15px' },
+  '60%': { width: '18px', height: '14px' },
+  '50%': { width: '19px', height: '13px' },
+  '40%': { width: '18px', height: '15px' },
+  // '70%': { width: '17px', height: '14px' },
+  '15%': { width: '16px', height: '16px' },
+})
