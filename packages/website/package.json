@@ -26,6 +26,6 @@
   "devDependencies": {
     "@types/react": "^17.0.3",
     "compose-function": "^3.0.3",
-    "typescript": "4.8.4"
+    "typescript": "4.9.5"
   }
 }
