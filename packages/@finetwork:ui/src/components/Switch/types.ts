@@ -1,10 +1,8 @@
 import { Enhancer, KINDS, SIZE } from '@finetwork:ui/src/types'
-import { ComponentProps, FC } from 'react'
-import { StyledSwitch } from './styled'
 
 export type SwitchComponent = {
   size?: 'medium' | 'large'
-  kind: KINDS
+  kind?: KINDS
   id: string
   isLoading?: boolean
   checked?: boolean

@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { Ring } from '@uiball/loaders'
-
 import {
   StyledEnhancerContainer,
   StyledInput,
@@ -8,9 +6,9 @@ import {
   StyledSlider,
   StyledSwitch,
 } from './styled'
-
 import { SwitchComponent } from './types'
 import { RenderEnhancer } from '@finetwork:ui/src/utils'
+import { Loading } from '../Loading'
 
 export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
   (
@@ -20,7 +18,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
       isLoading,
       checked,
       loadingColor = '#fff',
-      loadingSpeed = 2,
+      loadingSpeed = 1,
       kind = 'primary',
       type,
       disabled,
@@ -39,7 +37,6 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
       input: {},
     })
     const [isFirstChecked, setIsFirstChecked] = React.useState(true)
-    const loadingSize = size === 'large' ? 21 : 16
 
     React.useEffect(() => {
       let css = { slider: {}, switch: {}, input: {} }
@@ -124,11 +121,10 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchComponent>(
         >
           {isLoading ? (
             <StyledLoadingContainer>
-              <Ring
-                size={loadingSize}
-                lineWeight={5}
-                speed={loadingSpeed}
+              <Loading
+                size={size === 'large' ? 20 : 15}
                 color={loadingColor}
+                speed={loadingSpeed}
               />
             </StyledLoadingContainer>
           ) : (

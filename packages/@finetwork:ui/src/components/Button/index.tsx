@@ -7,7 +7,6 @@ import {
   StyledEndEnhancer,
   StyledStartEnhancer,
 } from './styled'
-import { Ring } from '@uiball/loaders'
 
 import { Loading } from '../Loading'
 import { RenderEnhancer } from '../../utils'
@@ -52,8 +51,7 @@ export const Button: ButtonComponent = React.forwardRef(
         {isLoading ? (
           <>
             <ChildrenLoading>{children}</ChildrenLoading>
-
-            <Ring size={sizeLoading} speed={2} color="#FFF" />
+            <Loading />
           </>
         ) : (
           <>

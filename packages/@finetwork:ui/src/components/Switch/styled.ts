@@ -1,8 +1,4 @@
-import {
-  switchAnimation,
-  switchAnimationBackwards,
-  switchFunction,
-} from '@finetwork:ui/src/animations'
+import { switchFunction } from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 
 export const StyledSwitch = styled('label', {
