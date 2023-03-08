@@ -62,6 +62,13 @@ export const StyledRow = styled('div', {
   height: '100%',
   ...animationStyle,
   variants: {
+    isChildren: {
+      true: {
+        ...animationStyle,
+        '-webkit-text-fill-color': 'transparent',
+        '-webkit-background-clip': 'text',
+      },
+    },
     chart: {
       true: {
         background: 'transparent !important',

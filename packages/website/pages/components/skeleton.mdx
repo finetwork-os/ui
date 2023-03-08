@@ -12,6 +12,7 @@ export const styles = {
   justifyContent: 'center',
   gap: '2rem',
   alignItems: 'center',
+  fontSize: '2rem',
 }
 
 <div />
@@ -52,6 +53,16 @@ export const styles = {
 <Playground>
   <div style={styles}>
     <Skeleton rows={1} chart={true} />
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Children</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton rows={1}>Hello</Skeleton>
   </div>
 </Playground>
 

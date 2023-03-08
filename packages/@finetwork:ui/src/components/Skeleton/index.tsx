@@ -14,6 +14,7 @@ export const Skeleton: SkeletonComponent = ({
   animationColor = '$secondary200',
   borderRadius = '5px',
   chart,
+  children,
 }) => {
   const stylesRow: any = {
     ...css,
@@ -36,8 +37,11 @@ export const Skeleton: SkeletonComponent = ({
               key={index}
               chart={chart}
               isFirstRow={index === 0}
+              isChildren={children ? true : false}
               css={stylesRow}
-            />
+            >
+              {children}
+            </StyledRow>
           ))}
       </StyledRoot>
     )
