@@ -1,4 +1,4 @@
-import { Enhancer, KINDS, SIZE } from '@finetwork:ui/src/types'
+import { Enhancer, KINDS } from '@finetwork:ui/src/types'
 
 export type SwitchComponent = {
   size?: 'medium' | 'large'
