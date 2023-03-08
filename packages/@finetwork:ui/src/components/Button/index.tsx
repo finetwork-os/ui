@@ -51,12 +51,7 @@ export const Button: ButtonComponent = React.forwardRef(
         {isLoading ? (
           <>
             <ChildrenLoading>{children}</ChildrenLoading>
-            <Loading
-              size={sizeLoading}
-              kind={kind}
-              disabled={disabled}
-              {...loadingProps}
-            />
+            <Loading />
           </>
         ) : (
           <>

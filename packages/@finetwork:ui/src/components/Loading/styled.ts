@@ -1,29 +1,11 @@
 import { spin } from '../../animations'
 import { styled } from '../../stitches.config'
 
-export const getComputedStyles = ({
-  size,
-  kind = 'primary',
-  disabled,
-}: {
-  size: number
-  kind: string
-  disabled: boolean
-}) => {
-  return {
-    width: size,
-    height: size,
-    borderColor: disabled ? '#eee' : `$${kind}200`,
-    borderTopColor: disabled ? '#aaa' : `$${kind}400`,
-    borderStyle: 'solid',
-  }
-}
-
-export const StyledLoading = styled('div', {
-  borderWidth: '2px',
-  borderColor: '$primary200',
-  borderTopColor: '$primary400',
+export const StyledSpinner = styled('div', {
+  // border: '2px solid #fff',
+  animation: `${spin} 1s linear infinite`,
+  width: '36px',
+  height: '36px',
   borderRadius: '50%',
-  animation: `${spin} .8s linear infinite`,
-  backgroundColor: 'transparent',
+  borderLeftColor: 'transparent',
 })

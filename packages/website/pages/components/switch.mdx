@@ -3,7 +3,15 @@ name: Switch
 ---
 
 import { Playground } from 'dokz'
-import { Switch, H2, Paragraph4, H3, Link } from '@finetwork/ui'
+import {
+  Switch,
+  H4,
+  Paragraph4,
+  H3,
+  Link,
+  RocketIcon,
+  ArrowRightIcon,
+} from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
@@ -27,7 +35,7 @@ export const horizontalStyles = {
 
 <div />
 <div>
-  <H2 font="secondary">Switch</H2>
+  <H3 font="secondary">Switch</H3>
 </div>
 
 <Paragraph4>
@@ -44,15 +52,316 @@ export const horizontalStyles = {
 </Paragraph4>
 
 <div>
-  <H3 font="secondary">Kind</H3>
+  <H4 font="secondary">Size</H4>
 </div>
 
-<Paragraph4>Possible values primary, secondary, tertiary</Paragraph4>
+<Paragraph4>Possible values are medium, large</Paragraph4>
 
 <Playground>
   <div style={styles}>
-    <Switch size="small" />
-    <Switch size="medium" />
-    <Switch size="large" />
+    <Switch size="medium" id="chk-1" />
+    <Switch size="large" id="chk-2" />
   </div>
 </Playground>
+
+<div>
+  <H4 font="secondary">Kind</H4>
+</div>
+
+<Paragraph4>Possible values are primary, secondary, tertiary</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-3" kind="primary" />
+    <Switch id="chk-4" kind="secondary" />
+    <Switch id="chk-5" kind="tertiary" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Disabled</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-30" disabled />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">isLoading</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      const [checked2, setChecked2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <Switch
+            size="medium"
+            id="chk-6"
+            isLoading
+            checked={checked}
+            handleChange={setChecked}
+          />
+          <Switch
+            size="large"
+            id="chk-7"
+            isLoading
+            checked={checked2}
+            handleChange={setChecked2}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">loadingColor</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      const [checked2, setChecked2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <Switch
+            size="medium"
+            id="chk-8"
+            isLoading
+            loadingColor="black"
+            checked={checked}
+            handleChange={setChecked}
+          />
+          <Switch
+            size="large"
+            id="chk-9"
+            isLoading
+            loadingColor="#5F3DFF"
+            checked={checked2}
+            handleChange={setChecked2}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">loadingSpeed</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      const [checked2, setChecked2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <Switch
+            size="medium"
+            id="chk-10"
+            isLoading
+            loadingSpeed={1}
+            checked={checked}
+            handleChange={setChecked}
+          />
+          <Switch
+            size="large"
+            id="chk-11"
+            isLoading
+            loadingSpeed={4}
+            checked={checked2}
+            handleChange={setChecked2}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Type</H4>
+</div>
+
+<Paragraph4>Possible values are primary, secondary, tertiary</Paragraph4>
+
+<Playground>
+  <div style={{ ...styles, maxHeigh: 'unset', gap: '0.5rem' }}>
+    <Switch id="chk-20" type="standard" />
+    <Switch id="chk-21" type="success" />
+    <Switch id="chk-23" type="warning" />
+    <Switch id="chk-24" type="error" />
+    <Switch id="chk-25" type="disabled" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">sliderColor</H4>
+</div>
+
+<Paragraph4>Color of circle inside switch</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-26" sliderColor="yellow" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">switchBackgroundColor</H4>
+</div>
+
+<Paragraph4>Object that needs a checked and unckecked color</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch
+      id="chk-27"
+      switchBackgroundColor={{ unchecked: 'red', checked: 'green' }}
+    />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">enhancerIcons</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [checked, setChecked] = React.useState(true)
+      return (
+        <div style={styles}>
+          <Switch
+            size="large"
+            id="chk-28"
+            enhancerIcons={{ checked: RocketIcon, unchecked: ArrowRightIcon }}
+            checked={checked}
+            handleChange={setChecked}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">focusOutlineColor</H4>
+</div>
+
+<Paragraph4>Color of the outline when is focused</Paragraph4>
+
+<Playground>
+  <div style={styles}>
+    <Switch id="chk-31" focusOutlineColor="red" />
+  </div>
+</Playground>
+
+<h2>Select Props</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>Yes</td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>handleChange</td>
+      <td>function</td>
+      <td></td>
+      <td>No</td>
+      <td>Function that allows to handle when switch is clicked</td>
+    </tr>
+    <tr>
+      <td>isLoading</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Shows a spinner while you are fecthing data</td>
+    </tr>
+    <tr>
+      <td>loadingColor</td>
+      <td>string</td>
+      <td>white</td>
+      <td>No</td>
+      <td>Spinner color</td>
+    </tr>
+    <tr>
+      <td>loadingSpeed</td>
+      <td>number</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Duration of the spinner animation</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td>primary | secondary | tertiary</td>
+      <td>primary</td>
+      <td>No</td>
+      <td>Set defined styles of the component</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>standard | success | warning | error | disabled</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the style depending on the type</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Set input to disabled mode</td>
+    </tr>
+    <tr>
+      <td>sliderColor</td>
+      <td>string</td>
+      <td>white</td>
+      <td>No</td>
+      <td>Set the color of circle inside switch</td>
+    </tr>
+    <tr>
+      <td>switchBackgroundColor</td>
+      <td>checked: string; unchecked: string</td>
+      <td></td>
+      <td>No</td>
+      <td>Color of checked and unchecked background</td>
+    </tr>
+    <tr>
+      <td>enhancerIcons</td>
+      <td>checked: ReactNode; unchecked: ReactNode</td>
+      <td></td>
+      <td>No</td>
+      <td>Images that are rendered inside slider depending on current state</td>
+    </tr>
+    <tr>
+      <td>focusOutlineColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set color of the outline when switch is focused using Tab key</td>
+    </tr>
+  </tbody>
+</table>

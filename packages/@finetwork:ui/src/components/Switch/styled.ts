@@ -1,104 +1,227 @@
-import { KINDS, SIZES } from '../../types'
-import { Root, Thumb } from '@radix-ui/react-switch'
-
-import { StyledComponent } from '@stitches/react/types/styled-component'
+import { switchFunction } from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
 
-export const StyledSwitch: StyledComponent<
-  typeof Root,
-  {
-    size?: SIZES
-    kind?: KINDS
-  }
-> = styled(Root, {
-  appearance: 'none',
-  border: 'none',
-  padding: 2,
-  borderRadius: 15,
+export const StyledSwitch = styled('label', {
   position: 'relative',
-  transition: 'all .3s ease',
+  backgroundColor: '$colors$disabled',
+  borderRadius: '40px',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '2px',
+  transition: 'all .5s ease-in-out',
+  cursor: 'pointer',
   variants: {
     size: {
-      small: {
-        width: 30,
-        height: 15,
-      },
       medium: {
-        width: 40,
-        height: 20,
+        width: '40px',
+        height: '20px',
       },
       large: {
-        width: 50,
-        height: 25,
+        width: '50px',
+        height: '25px',
       },
     },
     kind: {
       primary: {
-        backgroundColor: '$primary200',
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$primary300',
-        },
-        '&[data-state="checked"]': {
-          backgroundColor: '$primary',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$primary',
         },
       },
       secondary: {
-        backgroundColor: '$secondary200',
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$secondary300',
-        },
-        '&[data-state="checked"]': {
-          backgroundColor: '$secondary',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$secondary',
         },
       },
       tertiary: {
-        backgroundColor: '$tertiary200',
-        '&:focus': {
-          boxShadow: '0 0 0 2px $colors$tertiary300',
-        },
-        '&[data-state="checked"]': {
-          backgroundColor: '$tertiary',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$tertiary',
         },
       },
     },
-  },
-  defaultVariants: {
-    size: 'medium',
-    kind: 'primary',
+    type: {
+      standard: {
+        background: '#ceb3ff !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(95, 10, 255)',
+        },
+      },
+      success: {
+        background: '#a6f8d1 !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(0, 109, 57)',
+        },
+      },
+      warning: {
+        background: '#f0ea9e !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px #D0C100',
+        },
+      },
+      error: {
+        background: '#f09e9e !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error',
+        },
+      },
+      disabled: {
+        background: '#cdcdcd !important',
+        '&:focus-visible': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px #8E8E8E',
+        },
+      },
+    },
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+        background: '#E9E9E9 !important',
+      },
+    },
   },
 })
 
-export const StyledThumb = styled(Thumb, {
-  display: 'block',
-  backgroundColor: 'white',
+export const StyledSlider = styled('span', {
+  position: 'absolute',
+  backgroundColor: '#FFF',
   borderRadius: '50%',
-  height: '100%',
-  boxShadow: 'rgba(0, 0, 0, 0.3) 0px 0px 2px',
-  transition: 'transform .3s ease',
-  willChange: 'transform',
+  transition: 'all 0.35s ease-in-out',
   variants: {
     size: {
-      small: {
-        width: 'calc(100% - 15px)',
-        '&[data-state="checked"]': {
-          transform: 'translateX(calc(100% + 4px))',
-        },
-      },
       medium: {
-        width: 'calc(100% - 20px)',
-        '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 4px))',
+        width: '16px',
+        height: '16px',
+      },
+      large: {
+        width: '21px',
+        height: '21px',
+      },
+    },
+    disabled: {
+      true: {
+        backgroundColor: '$colors$disabled !important',
+      },
+    },
+  },
+})
+
+export const StyledInput = styled('input', {
+  display: 'none',
+  variants: {
+    size: {
+      medium: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(20px)',
         },
       },
       large: {
-        width: 'calc(100% - 26px)',
-        '&[data-state="checked"]': {
-          transform: 'translate(calc(100% + 5px))',
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(25px)',
+        },
+      },
+    },
+    isFirstChecked: {
+      false: {},
+    },
+    kind: {
+      primary: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$colors$primary',
+        },
+      },
+      secondary: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$colors$secondary',
+        },
+      },
+      tertiary: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$colors$tertiary',
+        },
+      },
+    },
+    switchType: {
+      standard: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: 'rgb(95, 10, 255) !important',
+        },
+      },
+      success: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: 'rgb(0, 109, 57) !important',
+        },
+      },
+      warning: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '#D0C100 !important',
+        },
+      },
+      error: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '$error !important',
+        },
+      },
+      disabled: {
+        [`&:checked ~ ${StyledSwitch}`]: {
+          background: '#8E8E8E !important',
         },
       },
     },
   },
-  defaultVariants: {
-    size: 'medium',
-  },
+  compoundVariants: [
+    {
+      size: 'medium',
+      isFirstChecked: 'false',
+      css: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(20px)',
+          animation: `${
+            switchFunction('medium').switchAnimationForwards
+          } 0.35s ease-in-out forwards`,
+        },
+        [`&:not(:checked) ~ ${StyledSwitch} ${StyledSlider}`]: {
+          animation: `${
+            switchFunction('medium').switchAnimationBackwards
+          } 0.35s ease-in-out forwards`,
+        },
+      },
+    },
+    {
+      size: 'large',
+      isFirstChecked: 'false',
+      css: {
+        [`&:checked ~ ${StyledSwitch} ${StyledSlider}`]: {
+          transform: 'translateX(25px)',
+          animation: `${
+            switchFunction('large').switchAnimationForwards
+          } 0.35s ease-in-out forwards`,
+        },
+        [`&:not(:checked) ~ ${StyledSwitch} ${StyledSlider}`]: {
+          animation: `${
+            switchFunction('large').switchAnimationBackwards
+          } 0.35s ease-in-out forwards`,
+        },
+      },
+    },
+  ],
+})
+
+export const StyledLoadingContainer = styled('div', {
+  display: 'grid',
+  justifyContent: 'center',
+  alignContent: 'center',
+  width: '100%',
+})
+
+export const StyledEnhancerContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
 })
