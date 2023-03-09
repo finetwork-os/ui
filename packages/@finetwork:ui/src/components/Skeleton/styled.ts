@@ -1,6 +1,15 @@
 import { keyframes, styled } from '../../stitches.config'
 
-export const getAnimationColor = (background: string, animation: string) => {
+export const getAnimationColor = (
+  kind: 'primary' | 'secondary',
+  background: string,
+  animation: string
+) => {
+  if (kind === 'secondary') {
+    background = '$secondary300'
+    animation = '$secondary200'
+  }
+
   return `linear-gradient(135deg,
     ${background},
     ${background},
@@ -32,19 +41,25 @@ const animationStyle = {
   backgroundSize: '400% 100%',
 }
 
-export const StyledRoot = styled('div', {
+export const StyledGroup = styled('div', {
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'center',
   variants: {
-    chart: {
-      true: {
-        position: 'relative',
-        zIndex: 0,
-        width: '100px',
-        height: '100px',
-        borderRadius: '50%',
-        padding: '2rem',
-        margin: '2rem',
+    direction: {
+      vertical: {
+        flexDirection: 'column',
+      },
+      horizontal: {
+        flexDirection: 'row',
       },
     },
+  },
+})
+
+export const StyledRoot = styled('div', {
+  width: '100%',
+  variants: {
     hasRows: {
       true: {
         display: 'flex',
@@ -57,7 +72,7 @@ export const StyledRoot = styled('div', {
   },
 })
 
-export const StyledRow = styled('div', {
+export const StyledElement = styled('div', {
   width: '100%',
   height: '100%',
   ...animationStyle,
@@ -69,45 +84,52 @@ export const StyledRow = styled('div', {
         '-webkit-background-clip': 'text',
       },
     },
-    chart: {
-      true: {
-        background: 'transparent !important',
-        '&:before': {
-          content: '',
-          position: 'absolute',
-          zIndex: '-2 ',
-          left: '-38%',
-          top: '-44%',
-          width: '180%',
-          height: '180%',
-          borderRadius: '100%',
-          backgroundColor: '#D5CCFA',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '100% 100%, 50% 50%',
-          backgroundposition: '0 0, 100% 0, 100% 100%, 0 100%',
-          backgroundImage:
-            'linear-gradient(135deg, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #E6E1FA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA, #D5CCFA)',
-          ...animationStyle,
-        },
-        '&:after': {
-          content: '',
-          position: 'absolute',
-          zIndex: '-1',
-          left: '-23px',
-          top: '-29px',
-          width: '151%',
-          height: '151%',
-          background: 'white',
-          borderRadius: '100%',
-        },
+  },
+})
+
+export const StyledOuterCircle = styled('div', {
+  borderRadius: '50%',
+  ...animationStyle,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  variants: {
+    size: {
+      small: {
+        width: '120px',
+        height: '120px',
+      },
+      medium: {
+        width: '140px',
+        height: '140px',
+      },
+      large: {
+        width: '153px',
+        height: '153px',
       },
     },
-    isFirstRow: {
-      true: {
-        marginTop: 0,
+  },
+  defaultVariants: {
+    size: 'medium',
+  },
+})
+
+export const StyledInnerCircle = styled('div', {
+  borderRadius: '50%',
+  background: '#fff',
+  variants: {
+    size: {
+      small: {
+        width: '102px',
+        height: '102px',
       },
-      false: {
-        marginTop: '10px',
+      medium: {
+        width: '122px',
+        height: '122px',
+      },
+      large: {
+        width: '135px',
+        height: '135px',
       },
     },
   },
