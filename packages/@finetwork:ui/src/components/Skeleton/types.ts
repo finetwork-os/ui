@@ -1,6 +1,5 @@
 import { SIZES } from '@finetwork:ui/src/types'
 import { ComponentProps, FC } from 'react'
-
 import { StyledRoot } from './styled'
 
 type SkeletonProps = Omit<ComponentProps<typeof StyledRoot>, 'hasRows'> & {

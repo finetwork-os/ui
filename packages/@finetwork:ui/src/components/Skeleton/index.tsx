@@ -45,7 +45,6 @@ export const Skeleton: SkeletonComponent = ({
         },
       }
     }
-    console.log({ css })
     setStyles(css)
   }, [chart])
 
@@ -91,8 +90,6 @@ export const Skeleton: SkeletonComponent = ({
   }
 
   if (chart) {
-    console.log(chart?.size ? chart.size : 'medium')
-    console.log({ ...cssStyles, borderRadius: '50%' })
     return (
       <StyledOuterCircle
         size={chart?.size ? chart.size : 'medium'}
