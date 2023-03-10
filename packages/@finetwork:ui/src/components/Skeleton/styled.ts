@@ -60,7 +60,6 @@ export const StyledGroup = styled('div', {
 export const StyledRoot = styled('div', {
   display: 'flex',
   width: '100%',
-  justifyContent: 'center',
   variants: {
     hasRows: {
       true: {
