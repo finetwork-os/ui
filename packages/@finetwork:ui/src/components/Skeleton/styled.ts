@@ -95,7 +95,6 @@ export const StyledOuterCircle = styled('div', {
   borderRadius: '50%',
   ...animationStyle,
   display: 'flex',
-  justifyContent: 'center',
   alignItems: 'center',
   variants: {
     size: {
