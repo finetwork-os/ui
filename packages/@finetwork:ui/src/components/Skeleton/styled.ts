@@ -1,6 +1,15 @@
 import { keyframes, styled } from '../../stitches.config'
 
-export const getAnimationColor = (background: string, animation: string) => {
+export const getAnimationColor = (
+  kind: 'primary' | 'secondary',
+  background: string,
+  animation: string
+) => {
+  if (kind === 'secondary') {
+    background = '$secondary300'
+    animation = '$secondary200'
+  }
+
   return `linear-gradient(135deg,
     ${background},
     ${background},
@@ -26,13 +35,30 @@ const animationStyle = {
       backgroundPosition: '0% 50%',
     },
   })}`,
-  animationTimingFunction: 'ease-out',
+  animationTimingFunction: 'linear',
   animationDuration: '1.5s',
   animationIterationCount: 'infinite',
   backgroundSize: '400% 100%',
 }
 
+export const StyledGroup = styled('div', {
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'center',
+  variants: {
+    direction: {
+      vertical: {
+        flexDirection: 'column',
+      },
+      horizontal: {
+        flexDirection: 'row',
+      },
+    },
+  },
+})
+
 export const StyledRoot = styled('div', {
+  width: '100%',
   variants: {
     hasRows: {
       true: {
@@ -46,17 +72,64 @@ export const StyledRoot = styled('div', {
   },
 })
 
-export const StyledRow = styled('div', {
+export const StyledElement = styled('div', {
   width: '100%',
-  height: '15px',
+  height: '100%',
   ...animationStyle,
   variants: {
-    isFirstRow: {
+    isChildren: {
       true: {
-        marginTop: 0,
+        ...animationStyle,
+        '-webkit-text-fill-color': 'transparent',
+        '-webkit-background-clip': 'text',
       },
-      false: {
-        marginTop: '10px',
+    },
+  },
+})
+
+export const StyledOuterCircle = styled('div', {
+  borderRadius: '50%',
+  ...animationStyle,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  variants: {
+    size: {
+      small: {
+        width: '120px',
+        height: '120px',
+      },
+      medium: {
+        width: '140px',
+        height: '140px',
+      },
+      large: {
+        width: '153px',
+        height: '153px',
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'medium',
+  },
+})
+
+export const StyledInnerCircle = styled('div', {
+  borderRadius: '50%',
+  background: '#fff',
+  variants: {
+    size: {
+      small: {
+        width: '102px',
+        height: '102px',
+      },
+      medium: {
+        width: '122px',
+        height: '122px',
+      },
+      large: {
+        width: '135px',
+        height: '135px',
       },
     },
   },

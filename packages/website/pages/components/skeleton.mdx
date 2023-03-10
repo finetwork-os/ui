@@ -3,24 +3,181 @@ name: Skeleton
 ---
 
 import { Playground } from 'dokz'
-import { Skeleton, H2, Paragraph4 } from '@finetwork/ui'
+import { Skeleton, H3, Paragraph4, H1, H4 } from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
   padding: '2em',
   display: 'flex',
   justifyContent: 'center',
+  gap: '2rem',
+  alignItems: 'center',
+  fontSize: '2rem',
 }
 
 <div />
 <div>
-  <H2 font="secondary">Skeleton</H2>
+  <H3 font="secondary">Skeleton</H3>
 </div>
 
-<Paragraph4>Skeleton loader</Paragraph4>
+<Paragraph4>
+  This component is an implementation of a custom skeleton loader
+</Paragraph4>
+
+<div>
+  <H4 font="secondary">Width and Height</H4>
+</div>
 
 <Playground>
   <div style={styles}>
-    <Skeleton rows={2} height="2rem" width="100%" />
+    <Skeleton height="2rem" width="100%" />
   </div>
 </Playground>
+
+<div>
+  <H4 font="secondary">Kind</H4>
+</div>
+
+<Playground>
+  <div style={{ ...styles, flexDirection: 'column' }}>
+    <Skeleton height="2rem" width="100%" kind="primary" />
+    <Skeleton height="2rem" width="100%" kind="secondary" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">BackgroundColor and AnimationColor</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton
+      height="2rem"
+      width="100%"
+      backgroundColor="#6dfffa"
+      animationColor="#febfff"
+    />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Group</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton
+      group={{ direction: 'vertical', repeat: 5, gap: '0.5rem' }}
+      height="2rem"
+      width="100%"
+    />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Border Radius</H4>
+</div>
+
+<Playground>
+  <div style={{ ...styles, flexDirection: 'column' }}>
+    <Skeleton height="10px" width="100px" borderRadius="0px" />
+    <Skeleton height="50px" width="50px" borderRadius="5px" />
+    <Skeleton height="50px" width="50px" borderRadius="50%" />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Chart</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton chart={{ size: 'small' }} kind="secondary" />
+    <Skeleton chart />
+    <Skeleton chart={{ size: 'large', backgroundInnerCircle: 'royalBlue' }} />
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Children</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Skeleton kind="secondary">Hello</Skeleton>
+  </div>
+</Playground>
+
+<H4>Skeleton Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>backgroundColor</td>
+      <td>string</td>
+      <td>rgb(238, 238, 238)</td>
+      <td>No</td>
+      <td>Color of background</td>
+    </tr>
+    <tr>
+      <td>animationColor</td>
+      <td>string</td>
+      <td>rgb(246, 246, 246)</td>
+      <td>No</td>
+      <td>Color of animation</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>number | string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined width component</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>number | string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined height component</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td>'primary' | 'secondary'</td>
+      <td>primary</td>
+      <td>No</td>
+      <td>Set style depending on kind</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td>5px</td>
+      <td>No</td>
+      <td>Set defined border radius style</td>
+    </tr>
+    <tr>
+      <td>group</td>
+      <td>direction: 'vertical' | 'horizontal'; repeat: number; gap: string</td>
+      <td></td>
+      <td>No</td>
+      <td>
+        Allows to repeat one element multiple times and display using rows or
+        columns
+      </td>
+    </tr>
+    <tr>
+      <td>chart</td>
+      <td>size: 'small' | 'medium' | 'large'; backgroundInnerCircle: string</td>
+      <td>small && '#fff'</td>
+      <td>No</td>
+      <td>Set size and inner background of chart</td>
+    </tr>
+  </tbody>
+</table>
