@@ -78,7 +78,6 @@ export const StyledElement = styled('div', {
   width: '100%',
   height: '100%',
   display: 'flex',
-  justifyContent: 'center',
   ...animationStyle,
   variants: {
     isChildren: {
@@ -95,6 +94,7 @@ export const StyledOuterCircle = styled('div', {
   borderRadius: '50%',
   ...animationStyle,
   display: 'flex',
+  justifyContent: 'center',
   alignItems: 'center',
   variants: {
     size: {
