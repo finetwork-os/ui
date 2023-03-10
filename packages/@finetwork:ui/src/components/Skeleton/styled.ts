@@ -58,7 +58,9 @@ export const StyledGroup = styled('div', {
 })
 
 export const StyledRoot = styled('div', {
+  display: 'flex',
   width: '100%',
+  justifyContent: 'center',
   variants: {
     hasRows: {
       true: {
@@ -75,6 +77,8 @@ export const StyledRoot = styled('div', {
 export const StyledElement = styled('div', {
   width: '100%',
   height: '100%',
+  display: 'flex',
+  justifyContent: 'center',
   ...animationStyle,
   variants: {
     isChildren: {
@@ -117,6 +121,7 @@ export const StyledOuterCircle = styled('div', {
 export const StyledInnerCircle = styled('div', {
   borderRadius: '50%',
   background: '#fff',
+  display: 'flex',
   variants: {
     size: {
       small: {
@@ -133,4 +138,14 @@ export const StyledInnerCircle = styled('div', {
       },
     },
   },
+})
+
+export const StyledChildrenContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  ...animationStyle,
+  '-webkit-text-fill-color': 'transparent',
+  '-webkit-background-clip': 'text',
 })

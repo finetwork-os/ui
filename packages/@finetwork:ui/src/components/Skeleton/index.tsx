@@ -7,6 +7,7 @@ import {
   StyledInnerCircle,
   StyledOuterCircle,
   StyledGroup,
+  StyledChildrenContainer,
 } from './styled'
 
 import { SkeletonComponent } from './types'
@@ -21,6 +22,7 @@ export const Skeleton: SkeletonComponent = ({
   children,
   chart,
   group,
+  ...props
 }) => {
   const [styles, setStyles] = React.useState({
     chart: {},
@@ -50,7 +52,11 @@ export const Skeleton: SkeletonComponent = ({
 
   if (group) {
     return (
-      <StyledGroup direction={group.direction} css={{ gap: group.gap }}>
+      <StyledGroup
+        direction={group.direction}
+        css={{ gap: group.gap }}
+        {...props}
+      >
         {Array(group.repeat)
           .fill('')
           .map((_, index) => {
@@ -94,19 +100,34 @@ export const Skeleton: SkeletonComponent = ({
       <StyledOuterCircle
         size={chart?.size ? chart.size : 'medium'}
         css={{ ...cssStyles, borderRadius: '50%' }}
+        {...props}
       >
         <StyledInnerCircle
           size={chart?.size ? chart.size : 'medium'}
           css={{
             ...styles.chart,
           }}
-        />
+        >
+          {children && (
+            <StyledChildrenContainer
+              css={{
+                backgroundImage: getAnimationColor(
+                  kind,
+                  backgroundColor,
+                  animationColor
+                ),
+              }}
+            >
+              {children}
+            </StyledChildrenContainer>
+          )}
+        </StyledInnerCircle>
       </StyledOuterCircle>
     )
   }
 
   return (
-    <StyledRoot hasRows={false}>
+    <StyledRoot hasRows={false} {...props}>
       <StyledElement isChildren={children ? true : false} css={cssStyles}>
         {children}
       </StyledElement>
