@@ -55,6 +55,7 @@ export const Skeleton: SkeletonComponent = ({
     return (
       <StyledGroup
         direction={group.direction}
+        align={align}
         css={{ gap: group.gap }}
         {...props}
       >
@@ -64,7 +65,6 @@ export const Skeleton: SkeletonComponent = ({
             if (!chart) {
               return (
                 <StyledElement
-                  align={align}
                   key={index}
                   isChildren={children ? true : false}
                   css={cssStyles}
@@ -129,12 +129,8 @@ export const Skeleton: SkeletonComponent = ({
   }
 
   return (
-    <StyledRoot align={align} hasRows={false} {...props}>
-      <StyledElement
-        align={align}
-        isChildren={children ? true : false}
-        css={cssStyles}
-      >
+    <StyledRoot align={align} {...props}>
+      <StyledElement isChildren={children ? true : false} css={cssStyles}>
         {children}
       </StyledElement>
     </StyledRoot>
