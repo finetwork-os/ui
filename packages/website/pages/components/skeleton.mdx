@@ -15,7 +15,6 @@ export const styles = {
   fontSize: '2rem',
 }
 
-<div />
 <div>
   <H3 font="secondary">Skeleton</H3>
 </div>
@@ -87,12 +86,26 @@ export const styles = {
 </Playground>
 
 <div>
+  <H4 font="secondary">Align</H4>
+</div>
+
+<Playground>
+  <div style={{ ...styles, flexDirection: 'column' }}>
+    <Skeleton align="start" height="10px" width="100px" />
+    <Skeleton align="center" height="50px" width="50px" />
+    <Skeleton align="end" height="50px" width="50px" />
+  </div>
+</Playground>
+
+<div>
   <H4 font="secondary">Chart</H4>
 </div>
 
 <Playground>
   <div style={styles}>
-    <Skeleton chart={{ size: 'small' }} kind="secondary" />
+    <Skeleton chart={{ size: 'small' }} kind="secondary">
+      20GB
+    </Skeleton>
     <Skeleton chart />
     <Skeleton chart={{ size: 'large', backgroundInnerCircle: 'royalBlue' }} />
   </div>
@@ -161,6 +174,13 @@ export const styles = {
       <td>5px</td>
       <td>No</td>
       <td>Set defined border radius style</td>
+    </tr>
+    <tr>
+      <td>Align</td>
+      <td>string</td>
+      <td>start</td>
+      <td>No</td>
+      <td>Set defined justify-content</td>
     </tr>
     <tr>
       <td>group</td>

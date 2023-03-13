@@ -44,29 +44,83 @@ const animationStyle = {
 export const StyledGroup = styled('div', {
   display: 'flex',
   width: '100%',
-  justifyContent: 'center',
   variants: {
+    align: {
+      start: {},
+      center: {},
+      end: {},
+    },
     direction: {
-      vertical: {
+      vertical: {},
+      horizontal: {},
+    },
+  },
+  compoundVariants: [
+    {
+      direction: 'vertical',
+      align: 'start',
+      css: {
+        alignItems: 'start',
         flexDirection: 'column',
       },
-      horizontal: {
+    },
+    {
+      direction: 'vertical',
+      align: 'center',
+      css: {
+        alignItems: 'center',
+        flexDirection: 'column',
+      },
+    },
+    {
+      direction: 'vertical',
+      align: 'end',
+      css: {
+        alignItems: 'end',
+        flexDirection: 'column',
+      },
+    },
+    {
+      direction: 'horizontal',
+      align: 'start',
+      css: {
+        justifyContent: 'start',
         flexDirection: 'row',
       },
     },
-  },
+    {
+      direction: 'horizontal',
+      align: 'center',
+      css: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+      },
+    },
+    {
+      direction: 'horizontal',
+      align: 'end',
+      css: {
+        justifyContent: 'end',
+        flexDirection: 'row',
+      },
+    },
+  ],
 })
 
 export const StyledRoot = styled('div', {
+  display: 'flex',
   width: '100%',
+  ...animationStyle,
   variants: {
-    hasRows: {
-      true: {
-        display: 'flex',
-        flexDirection: 'column',
+    align: {
+      start: {
+        justifyContent: 'start',
       },
-      false: {
-        ...animationStyle,
+      center: {
+        justifyContent: 'center',
+      },
+      end: {
+        justifyContent: 'end',
       },
     },
   },
@@ -75,6 +129,7 @@ export const StyledRoot = styled('div', {
 export const StyledElement = styled('div', {
   width: '100%',
   height: '100%',
+  display: 'flex',
   ...animationStyle,
   variants: {
     isChildren: {
@@ -117,6 +172,7 @@ export const StyledOuterCircle = styled('div', {
 export const StyledInnerCircle = styled('div', {
   borderRadius: '50%',
   background: '#fff',
+  display: 'flex',
   variants: {
     size: {
       small: {
@@ -133,4 +189,14 @@ export const StyledInnerCircle = styled('div', {
       },
     },
   },
+})
+
+export const StyledChildrenContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  ...animationStyle,
+  '-webkit-text-fill-color': 'transparent',
+  '-webkit-background-clip': 'text',
 })
