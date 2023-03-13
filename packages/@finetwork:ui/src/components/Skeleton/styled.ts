@@ -61,6 +61,17 @@ export const StyledRoot = styled('div', {
   display: 'flex',
   width: '100%',
   variants: {
+    align: {
+      start: {
+        justifyContent: 'start',
+      },
+      center: {
+        justifyContent: 'center',
+      },
+      end: {
+        justifyContent: 'end',
+      },
+    },
     hasRows: {
       true: {
         display: 'flex',
@@ -79,6 +90,17 @@ export const StyledElement = styled('div', {
   display: 'flex',
   ...animationStyle,
   variants: {
+    align: {
+      start: {
+        justifyContent: 'start',
+      },
+      center: {
+        justifyContent: 'center',
+      },
+      end: {
+        justifyContent: 'end',
+      },
+    },
     isChildren: {
       true: {
         ...animationStyle,

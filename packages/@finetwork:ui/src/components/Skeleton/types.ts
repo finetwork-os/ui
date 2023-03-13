@@ -18,6 +18,7 @@ type SkeletonProps = Omit<ComponentProps<typeof StyledRoot>, 'hasRows'> & {
     repeat: number
     gap: string
   }
+  align?: 'start' | 'center' | 'end'
 }
 
 export type SkeletonComponent = FC<SkeletonProps>

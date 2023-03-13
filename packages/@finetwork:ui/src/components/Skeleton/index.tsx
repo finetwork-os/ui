@@ -22,6 +22,7 @@ export const Skeleton: SkeletonComponent = ({
   children,
   chart,
   group,
+  align = 'start',
   ...props
 }) => {
   const [styles, setStyles] = React.useState({
@@ -63,6 +64,7 @@ export const Skeleton: SkeletonComponent = ({
             if (!chart) {
               return (
                 <StyledElement
+                  align={align}
                   key={index}
                   isChildren={children ? true : false}
                   css={cssStyles}
@@ -127,8 +129,12 @@ export const Skeleton: SkeletonComponent = ({
   }
 
   return (
-    <StyledRoot hasRows={false} {...props}>
-      <StyledElement isChildren={children ? true : false} css={cssStyles}>
+    <StyledRoot align={align} hasRows={false} {...props}>
+      <StyledElement
+        align={align}
+        isChildren={children ? true : false}
+        css={cssStyles}
+      >
         {children}
       </StyledElement>
     </StyledRoot>
