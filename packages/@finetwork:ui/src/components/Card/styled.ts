@@ -69,6 +69,7 @@ export const StyledCard = styled('article', {
   backgroundColor: '#fff',
   color: '#000',
   transition: 'all .3s ease',
+  borderRadius: '5px',
   variants: {
     kind: {
       primary: {},
