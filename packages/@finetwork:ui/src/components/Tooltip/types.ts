@@ -1,12 +1,23 @@
-import { ComponentProps, FC } from 'react'
+import { ComponentProps, ReactNode } from 'react'
+import { CSS } from '@stitches/react/types/css-util'
+import { StyledTooltip } from './styled'
+import { KINDS } from '../../types'
 
-import { Root } from '@radix-ui/react-tooltip'
-import { StyledContent } from './styled'
-
-type TooltipContentProps = ComponentProps<typeof StyledContent> & {
-  withArrow?: boolean
+type TooltipComponentOwnProps = {
+  css?: CSS
+  id?: string
+  kind?: KINDS
+  type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
+  backgroundColor?: string
+  colorText?: string
+  width?: string
+  height?: string
+  position?: 'top' | 'right' | 'bottom' | 'left'
+  borderRadius?: string
+  disabled?: boolean
+  content?: string | ReactNode
+  arrow?: boolean
 }
-type TooltipProps = ComponentProps<typeof Root>
 
-export type TooltipContentComponent = FC<TooltipContentProps>
-export type TooltipComponent = FC<TooltipProps>
+export type TooltipProps = ComponentProps<typeof StyledTooltip> &
+  TooltipComponentOwnProps

@@ -8,32 +8,163 @@ import {
   TooltipTrigger,
   TooltipContent,
   H2,
+  H3,
   Paragraph4,
   Link,
 } from '@finetwork/ui'
+
+export const styles = {
+  margin: '2rem 0',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '5rem',
+}
 
 <div />
 <div>
   <H2 font="secondary">Tooltip</H2>
 </div>
 
-<Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/tooltip"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Tooltip component
-  </Link>{' '}
-  from radix-ui.
-</Paragraph4>
+<Paragraph4>This component is an implementation of a custom tooltip</Paragraph4>
+
+<div>
+  <H3 font="secondary">Type</H3>
+</div>
 
 <Playground>
-  <div>
-    <Tooltip>
-      <TooltipTrigger as="button">Hover me!</TooltipTrigger>
-      <TooltipContent sideOffset={5}>Add to library</TooltipContent>
+  <div style={styles}>
+    <Tooltip type="standard" content="Standard style">
+      Standard
+    </Tooltip>
+    <Tooltip type="success" content="Success style">
+      Success
+    </Tooltip>
+    <Tooltip type="warning" content="Warning style">
+      Warning
+    </Tooltip>
+    <Tooltip type="error" content="Error style">
+      Error
+    </Tooltip>
+    <Tooltip type="disabled" content="Disabled style">
+      Disabled
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Kind</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip kind="primary" content="Primary style">
+      Primary
+    </Tooltip>
+    <Tooltip kind="secondary" content="Secondary style">
+      Secodnary
+    </Tooltip>
+    <Tooltip kind="tertiary" content="Tertiary style">
+      Tertiary
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Disabled</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip disabled={true} content="disabled style">
+      Disabled
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Position</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip position="top" content="To the top">
+      Top
+    </Tooltip>
+    <Tooltip position="right" content="To the right">
+      Right
+    </Tooltip>
+    <Tooltip position="bottom" content="To the bottom">
+      Bottom
+    </Tooltip>
+    <Tooltip position="left" content="To the left">
+      Left
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Width And Height</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip width="200px" content="custom width">
+      Width
+    </Tooltip>
+    <Tooltip height="80px" content="custom height">
+      Height
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip borderRadius="0px" content="custom border radius">
+      Border Radius - 0px
+    </Tooltip>
+    <Tooltip borderRadius="10px" content="custom border radius">
+      Border Radius - 10px
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Background Color</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip backgroundColor="#EFD3D3" content="custom background color">
+      Background Color
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Color Text</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip colorText="coral" content="custom color text">
+      Color Text
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Arrow</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip arrow content="With arrow style">
+      Arrow
     </Tooltip>
   </div>
 </Playground>
