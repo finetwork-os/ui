@@ -126,8 +126,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                 position: 'absolute',
                 border: '10px solid transparent',
                 borderTopColor: arrowColor,
-                inset: 'auto auto -20px auto',
-                transform: '50%',
+                inset: 'auto auto -20px 15px',
               },
             },
           }
@@ -157,7 +156,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                 position: 'absolute',
                 border: '10px solid transparent',
                 borderBottomColor: arrowColor,
-                inset: '-20px auto auto auto',
+                inset: '-20px auto auto 15px',
               },
             },
           }
@@ -192,16 +191,15 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           onMouseLeave={() => setShow(false)}
           {...props}
         >
-          {show && !disabled && (
-            <StyledTooltip
-              kind={kind}
-              type={type}
-              position={position}
-              css={customStyle.tooltip}
-            >
-              {content}
-            </StyledTooltip>
-          )}
+          <StyledTooltip
+            show={show && !disabled ? 'true' : 'false'}
+            kind={kind}
+            type={type}
+            position={position}
+            css={customStyle.tooltip}
+          >
+            {content}
+          </StyledTooltip>
           {children}
         </Container>
       </div>

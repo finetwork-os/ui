@@ -1,4 +1,8 @@
 import {
+  fadeIn,
+  fadeOut,
+  scaleUpAnimation,
+  scaleDownAnimation,
   slideDownAndFade,
   slideLeftAndFade,
   slideRightAndFade,
@@ -29,43 +33,65 @@ import { styled } from '../../stitches.config'
 // })
 export const Container = styled('div', {
   cursor: 'default',
+  position: 'relative',
+  display: 'inline-block',
 })
 
 export const StyledTooltip = styled('div', {
   position: 'absolute',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  //inset: '20px auto auto 0px',
   margin: '0 auto',
   padding: '0.5rem',
   transition: 'all 0.5s ease-in-out',
   overflowWrap: 'break-word',
-  width: 'fit-content',
-  // transition:
-  //   'backgroundColor 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, boxShadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, borderColor 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  width: 'max-content',
+  zIndex: 9,
   variants: {
+    show: {
+      true: {
+        animation: `${fadeIn} 0.25s ease-in-out forwards, ${scaleUpAnimation} 0.25s ease-in-out forwards`,
+      },
+      false: {
+        //animation: `${fadeOut} 0.5s ease-in-out forwards, ${scaleDownAnimation} 0.25s ease-in-out forwards`,
+        display: 'none',
+      },
+    },
     position: {
       top: {
         // top: '10%',
         // left: '50%',
         // inset: '30px auto auto auto',
-        top: '40px',
-        left: 0,
-        right: 0,
+        bottom: '140%',
+        margin: '0 auto',
         textAlign: 'center',
       },
       right: {
-        top: '50%',
-        left: '61.5%',
+        // top: '50%',
+        // left: '61.5%',
+        //top: '40px',
+        // left: '200px',
+        // right: 0,
+        // textAlign: 'center',
+        top: '-50%',
+        bottom: '-50%',
+        margin: 'auto 0',
+        left: '130%',
+        textAlign: 'center',
       },
       bottom: {
-        top: '90%',
-        left: '50%',
+        // top: '90%',
+        // left: '50%',
+        top: '140%',
+        margin: '0 auto',
+        textAlign: 'center',
       },
       left: {
-        top: '50%',
-        left: '38.5%',
+        // top: '50%',
+        // left: '38.5%',
+        top: '-50%',
+        bottom: '-50%',
+        margin: 'auto 0',
+        right: '130%',
+        textAlign: 'center',
       },
     },
     kind: {
