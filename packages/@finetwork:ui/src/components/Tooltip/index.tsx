@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Container, StyledTooltip, TooltipContainer } from './styled'
+import { Container, Content, StyledTooltip, TooltipContainer } from './styled'
 import { TooltipProps } from './types'
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
@@ -118,7 +118,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               ...css,
               containerTooltip: {
                 ...css.containerTooltip,
-                marginBottom: '0',
+                marginBottom: '0 !important',
                 paddingBottom: '0.5rem',
               },
             }
@@ -133,7 +133,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   position: 'absolute',
                   border: '10px solid transparent',
                   borderTopColor: arrowColor,
-                  inset: 'auto auto -20px 15px',
+                  top: '100%',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
                 },
               },
             }
@@ -169,7 +171,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   position: 'absolute',
                   border: '10px solid transparent',
                   borderRightColor: arrowColor,
-                  inset: 'auto auto auto -20px',
+                  right: '100%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
                 },
               },
             }
@@ -205,7 +209,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   position: 'absolute',
                   border: '10px solid transparent',
                   borderBottomColor: arrowColor,
-                  inset: '-20px auto auto 15px',
+                  bottom: '100%',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
                 },
               },
             }
@@ -241,7 +247,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   position: 'absolute',
                   border: '10px solid transparent',
                   borderLeftColor: arrowColor,
-                  inset: 'auto -20px auto auto',
+                  left: '100%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
                 },
               },
             }
@@ -255,8 +263,8 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     const [show, setShow] = React.useState<boolean>(false)
 
     return (
-      <div>
-        <Container
+      <Container>
+        <Content
           id={id}
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
@@ -264,21 +272,23 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           onTouchEnd={() => setShow(false)}
           {...props}
         >
-          <TooltipContainer
-            position={position}
-            css={customStyle.containerTooltip}
-          >
-            <StyledTooltip
-              show={show && !disabled}
-              type={type}
-              css={customStyle.tooltip}
-            >
-              {content}
-            </StyledTooltip>
-          </TooltipContainer>
           {children}
-        </Container>
-      </div>
+        </Content>
+        <TooltipContainer
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+          position={position}
+          css={customStyle.containerTooltip}
+        >
+          <StyledTooltip
+            show={show && !disabled}
+            type={type}
+            css={customStyle.tooltip}
+          >
+            {content}
+          </StyledTooltip>
+        </TooltipContainer>
+      </Container>
     )
   }
 )

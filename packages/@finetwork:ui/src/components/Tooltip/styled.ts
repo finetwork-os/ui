@@ -1,19 +1,21 @@
 import { fadeIn, scaleUpAnimation } from '../../animations'
 import { styled } from '../../stitches.config'
 
-export const Container = styled('div', {
+export const Content = styled('div', {
   cursor: 'default',
   position: 'relative',
   display: 'inline-block',
 })
 
 export const StyledTooltip = styled('div', {
-  margin: '0 auto',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   padding: '0.5rem',
   transition: 'all 0.5s ease-in-out',
   overflowWrap: 'break-word',
   width: 'max-content',
-  zIndex: 9,
+  zIndex: 10,
   background: '#6f6f6f',
   color: '#FFF',
   variants: {
@@ -52,6 +54,7 @@ export const StyledTooltip = styled('div', {
 
 export const TooltipContainer = styled('div', {
   position: 'absolute',
+  display: 'flex',
   variants: {
     position: {
       top: {
@@ -72,4 +75,12 @@ export const TooltipContainer = styled('div', {
       },
     },
   },
+})
+
+export const Container = styled('div', {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
 })
