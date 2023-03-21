@@ -7,8 +7,8 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  H2,
   H3,
+  H4,
   Paragraph4,
   Link,
 } from '@finetwork/ui'
@@ -23,13 +23,23 @@ export const styles = {
 
 <div />
 <div>
-  <H2 font="secondary">Tooltip</H2>
+  <H3 font="secondary">Tooltip</H3>
 </div>
 
 <Paragraph4>This component is an implementation of a custom tooltip</Paragraph4>
 
 <div>
-  <H3 font="secondary">Type</H3>
+  <H4 font="secondary">Default</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip content="default style">Default</Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Type</H4>
 </div>
 
 <Playground>
@@ -53,25 +63,7 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Kind</H3>
-</div>
-
-<Playground>
-  <div style={styles}>
-    <Tooltip kind="primary" content="Primary style">
-      Primary
-    </Tooltip>
-    <Tooltip kind="secondary" content="Secondary style">
-      Secodnary
-    </Tooltip>
-    <Tooltip kind="tertiary" content="Tertiary style">
-      Tertiary
-    </Tooltip>
-  </div>
-</Playground>
-
-<div>
-  <H3 font="secondary">Disabled</H3>
+  <H4 font="secondary">Disabled</H4>
 </div>
 
 <Playground>
@@ -83,7 +75,7 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Position</H3>
+  <H4 font="secondary">Position</H4>
 </div>
 
 <Playground>
@@ -104,7 +96,7 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Width And Height</H3>
+  <H4 font="secondary">Width And Height</H4>
 </div>
 
 <Playground>
@@ -119,7 +111,22 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Border Radius</H3>
+  <H4 font="secondary">Max Width</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip
+      maxWidth="200px"
+      content="custom max width, this text is a test to check the size"
+    >
+      Width
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Border Radius</H4>
 </div>
 
 <Playground>
@@ -134,7 +141,7 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Background Color</H3>
+  <H4 font="secondary">Background Color</H4>
 </div>
 
 <Playground>
@@ -146,7 +153,7 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Color Text</H3>
+  <H4 font="secondary">Color Text</H4>
 </div>
 
 <Playground>
@@ -158,7 +165,22 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Arrow</H3>
+  <H4 font="secondary">Interactive</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip
+      interactive={true}
+      content="It is now possible to interact with the tooltip"
+    >
+      Interactive
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
+  <H4 font="secondary">Arrow</H4>
 </div>
 
 <Playground>
@@ -168,3 +190,128 @@ export const styles = {
     </Tooltip>
   </div>
 </Playground>
+
+<div>
+  <H4 font="secondary">Gap</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip gap="1.3rem" content="You can custmize the gap">
+      Gap
+    </Tooltip>
+  </div>
+</Playground>
+
+<H4>Tooltip Props</H4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>content</td>
+      <td>string | React Node</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Define the content of tooltip</td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>standard | success | warning | error | disabled</td>
+      <td></td>
+      <td>No</td>
+      <td>Define the style of the tooltip</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Set if tooltip shold be show or not</td>
+    </tr>
+    <tr>
+      <td>position</td>
+      <td>top | right | bottom | left</td>
+      <td>top</td>
+      <td>No</td>
+      <td>Define the positon of the tooltip</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set width size</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set height size</td>
+    </tr>
+    <tr>
+      <td>maxWidth</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set max width size</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>string</td>
+      <td>5px</td>
+      <td>No</td>
+      <td>Set border radius</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>string</td>
+      <td>#6f6f6f</td>
+      <td>No</td>
+      <td>Set tooltip background color</td>
+    </tr>
+    <tr>
+      <td>colorText</td>
+      <td>string</td>
+      <td>#FFF</td>
+      <td>No</td>
+      <td>Set tooltip text color</td>
+    </tr>
+    <tr>
+      <td>interactive</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Set if the tooltip is accessible or not</td>
+    </tr>
+    <tr>
+      <td>arrow</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Define if tooltip container has arrow</td>
+    </tr>
+    <tr>
+      <td>gap</td>
+      <td>string</td>
+      <td>0.5rem</td>
+      <td>No</td>
+      <td>Set the gap between tooltip and component</td>
+    </tr>
+  </tbody>
+</table>

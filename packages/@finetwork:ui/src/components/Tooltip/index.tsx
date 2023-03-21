@@ -1,35 +1,12 @@
 import * as React from 'react'
-import { Container, StyledTooltip } from './styled'
+import { Container, StyledTooltip, TooltipContainer } from './styled'
 import { TooltipProps } from './types'
-
-// export const Tooltip: TooltipComponent = ({
-//   children,
-//   delayDuration = 200,
-//   ...props
-// }) => (
-//   <Root delayDuration={delayDuration} {...props}>
-//     {children}
-//   </Root>
-// )
-// export const TooltipTrigger = Trigger
-// export const TooltipContent: TooltipContentComponent = ({
-//   children,
-//   withArrow = false,
-//   side = 'top',
-//   ...props
-// }) => (
-//   <StyledContent side={side} data-fi="tooltip" {...props}>
-//     {children}
-//     {withArrow && <StyledTooltipArrow />}
-//   </StyledContent>
-// )
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (
     {
       id,
-      kind,
-      type = 'standard',
+      type,
       backgroundColor,
       colorText,
       width,
@@ -38,13 +15,17 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       borderRadius = '5px',
       disabled,
       arrow,
+      interactive,
+      maxWidth,
+      gap,
       children,
       content,
       ...props
     },
     ref
   ) => {
-    var arrowColor = ''
+    var arrowColor = '#6f6f6f'
+    if (backgroundColor) arrowColor = backgroundColor
     if (type) {
       if (type === 'standard') arrowColor = 'rgb(244, 238, 255)'
       if (type === 'success') arrowColor = 'rgb(218, 252, 236)'
@@ -52,18 +33,14 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       if (type === 'error') arrowColor = '#F7CDCD'
       if (type === 'disabled') arrowColor = '#E9E9E9'
     }
-    if (kind) {
-      if (kind === 'primary') arrowColor = '$primary100'
-      if (kind === 'secondary') arrowColor = '$secondary100'
-      if (kind === 'tertiary') arrowColor = '$tertiary100'
-    }
-    if (backgroundColor) arrowColor = backgroundColor
     const [customStyle, setCustomStyle] = React.useState({
       tooltip: {},
+      containerTooltip: {},
     })
     React.useEffect(() => {
       let css = {
         tooltip: {},
+        containerTooltip: {},
       }
 
       if (backgroundColor) {
@@ -105,6 +82,16 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
         }
       }
 
+      if (maxWidth) {
+        css = {
+          ...css,
+          tooltip: {
+            ...css.tooltip,
+            maxWidth: maxWidth,
+          },
+        }
+      }
+
       if (borderRadius) {
         css = {
           ...css,
@@ -115,65 +102,149 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
         }
       }
 
-      if (arrow) {
+      if (arrow || interactive || gap) {
         if (position === 'top') {
-          css = {
-            ...css,
-            tooltip: {
-              ...css.tooltip,
-              '&:after': {
-                content: '',
-                position: 'absolute',
-                border: '10px solid transparent',
-                borderTopColor: arrowColor,
-                inset: 'auto auto -20px 15px',
+          if (gap) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginBottom: `${gap} !important`,
               },
-            },
+            }
+          }
+          if (interactive) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginBottom: '0',
+                paddingBottom: '0.5rem',
+              },
+            }
+          }
+          if (arrow) {
+            css = {
+              ...css,
+              tooltip: {
+                ...css.tooltip,
+                '&:after': {
+                  content: '',
+                  position: 'absolute',
+                  border: '10px solid transparent',
+                  borderTopColor: arrowColor,
+                  inset: 'auto auto -20px 15px',
+                },
+              },
+            }
           }
         }
         if (position === 'right') {
-          css = {
-            ...css,
-            tooltip: {
-              ...css.tooltip,
-              '&:after': {
-                content: '',
-                position: 'absolute',
-                border: '10px solid transparent',
-                borderRightColor: arrowColor,
-                inset: 'auto auto auto -20px',
+          if (gap) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginLeft: `${gap} !important`,
               },
-            },
+            }
+          }
+          if (interactive) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginLeft: '0',
+                paddingLeft: '0.8rem',
+              },
+            }
+          }
+          if (arrow) {
+            css = {
+              ...css,
+              tooltip: {
+                ...css.tooltip,
+                '&:after': {
+                  content: '',
+                  position: 'absolute',
+                  border: '10px solid transparent',
+                  borderRightColor: arrowColor,
+                  inset: 'auto auto auto -20px',
+                },
+              },
+            }
           }
         }
         if (position === 'bottom') {
-          css = {
-            ...css,
-            tooltip: {
-              ...css.tooltip,
-              '&:after': {
-                content: '',
-                position: 'absolute',
-                border: '10px solid transparent',
-                borderBottomColor: arrowColor,
-                inset: '-20px auto auto 15px',
+          if (gap) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginTop: `${gap} !important`,
               },
-            },
+            }
+          }
+          if (interactive) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginTop: '0',
+                paddingTop: '0.5rem',
+              },
+            }
+          }
+          if (arrow) {
+            css = {
+              ...css,
+              tooltip: {
+                ...css.tooltip,
+                '&:after': {
+                  content: '',
+                  position: 'absolute',
+                  border: '10px solid transparent',
+                  borderBottomColor: arrowColor,
+                  inset: '-20px auto auto 15px',
+                },
+              },
+            }
           }
         }
         if (position === 'left') {
-          css = {
-            ...css,
-            tooltip: {
-              ...css.tooltip,
-              '&:after': {
-                content: '',
-                position: 'absolute',
-                border: '10px solid transparent',
-                borderLeftColor: arrowColor,
-                inset: 'auto -20px auto auto',
+          if (gap) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginRight: `${gap} !important`,
               },
-            },
+            }
+          }
+          if (interactive) {
+            css = {
+              ...css,
+              containerTooltip: {
+                ...css.containerTooltip,
+                marginRight: '0',
+                paddingRight: '0.8rem',
+              },
+            }
+          }
+          if (arrow) {
+            css = {
+              ...css,
+              tooltip: {
+                ...css.tooltip,
+                '&:after': {
+                  content: '',
+                  position: 'absolute',
+                  border: '10px solid transparent',
+                  borderLeftColor: arrowColor,
+                  inset: 'auto -20px auto auto',
+                },
+              },
+            }
           }
         }
       }
@@ -189,17 +260,22 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           id={id}
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
+          onTouchStart={() => setShow(true)}
+          onTouchEnd={() => setShow(false)}
           {...props}
         >
-          <StyledTooltip
-            show={show && !disabled ? 'true' : 'false'}
-            kind={kind}
-            type={type}
+          <TooltipContainer
             position={position}
-            css={customStyle.tooltip}
+            css={customStyle.containerTooltip}
           >
-            {content}
-          </StyledTooltip>
+            <StyledTooltip
+              show={show && !disabled}
+              type={type}
+              css={customStyle.tooltip}
+            >
+              {content}
+            </StyledTooltip>
+          </TooltipContainer>
           {children}
         </Container>
       </div>
