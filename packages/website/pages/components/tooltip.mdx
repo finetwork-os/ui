@@ -96,6 +96,24 @@ export const styles = {
 </Playground>
 
 <div>
+  <H4 font="secondary">Align</H4>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Tooltip align="start" content="To the start">
+      Start
+    </Tooltip>
+    <Tooltip align="center" content="To the center">
+      Center
+    </Tooltip>
+    <Tooltip align="end" content="To the end">
+      End
+    </Tooltip>
+  </div>
+</Playground>
+
+<div>
   <H4 font="secondary">Width And Height</H4>
 </div>
 
@@ -249,6 +267,13 @@ export const styles = {
       <td>top</td>
       <td>No</td>
       <td>Define the positon of the tooltip</td>
+    </tr>
+    <tr>
+      <td>align</td>
+      <td>start | center | end</td>
+      <td>center</td>
+      <td>No</td>
+      <td>Define the align of the tooltip</td>
     </tr>
     <tr>
       <td>width</td>

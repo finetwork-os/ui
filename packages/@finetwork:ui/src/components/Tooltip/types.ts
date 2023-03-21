@@ -18,6 +18,7 @@ type TooltipComponentOwnProps = {
   maxWidth?: string
   interactive?: boolean
   gap?: string
+  align?: 'start' | 'center' | 'end'
 }
 
 export type TooltipProps = ComponentProps<typeof StyledTooltip> &

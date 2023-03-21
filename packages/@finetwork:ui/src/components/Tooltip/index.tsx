@@ -18,6 +18,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       interactive,
       maxWidth,
       gap,
+      align = 'center',
       children,
       content,
       ...props
@@ -263,7 +264,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     const [show, setShow] = React.useState<boolean>(false)
 
     return (
-      <Container>
+      <Container align={align}>
         <Content
           id={id}
           onMouseEnter={() => setShow(true)}

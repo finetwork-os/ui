@@ -80,7 +80,21 @@ export const TooltipContainer = styled('div', {
 export const Container = styled('div', {
   position: 'relative',
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   textAlign: 'center',
+  variants: {
+    align: {
+      start: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+      },
+      center: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      end: {
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+      },
+    },
+  },
 })
