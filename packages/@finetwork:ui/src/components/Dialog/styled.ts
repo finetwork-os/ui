@@ -12,6 +12,29 @@ import { DIALOG_SIZES } from '../../types'
 import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
 
+export const StyledDialog = styled('div', {
+  display: 'flex',
+  zIndex: '9999',
+  position: 'absolute',
+  margin: '0 auto',
+  background: '#FFF',
+  borderRadius: '5px',
+  boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1)',
+  variants: {
+    open: {
+      false: {
+        display: 'none',
+      },
+    },
+    fullSize: {
+      true: {
+        height: '100vh',
+        width: '100vw',
+      },
+    },
+  },
+})
+
 export const CloseButton = styled('button', {
   all: 'unset',
   fontFamily: 'inherit',
