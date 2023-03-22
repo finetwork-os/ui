@@ -29,24 +29,24 @@ export const StyledTooltip = styled('div', {
     },
     type: {
       standard: {
-        background: 'rgb(244, 238, 255)',
-        color: 'rgb(95, 10, 255)',
+        background: 'rgb(244, 238, 255) !important',
+        color: 'rgb(95, 10, 255) !important',
       },
       success: {
-        background: 'rgb(218, 252, 236)',
-        color: 'rgb(0, 109, 57)',
+        background: 'rgb(218, 252, 236) !important',
+        color: 'rgb(0, 109, 57) !important',
       },
       warning: {
-        background: '#F7F4CD',
-        color: '#D0C100',
+        background: '#F7F4CD !important',
+        color: '#D0C100 !important',
       },
       error: {
-        background: '#F7CDCD',
-        color: '$error',
+        background: '#F7CDCD !important',
+        color: '$error !important',
       },
       disabled: {
-        background: '#E9E9E9',
-        color: '#8E8E8E',
+        background: '#E9E9E9 !important',
+        color: '#8E8E8E !important',
       },
     },
   },

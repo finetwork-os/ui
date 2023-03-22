@@ -25,15 +25,18 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     },
     ref
   ) => {
-    var arrowColor = '#6f6f6f'
-    if (backgroundColor) arrowColor = backgroundColor
-    if (type) {
-      if (type === 'standard') arrowColor = 'rgb(244, 238, 255)'
-      if (type === 'success') arrowColor = 'rgb(218, 252, 236)'
-      if (type === 'warning') arrowColor = '#F7F4CD'
-      if (type === 'error') arrowColor = '#F7CDCD'
-      if (type === 'disabled') arrowColor = '#E9E9E9'
+    function arrowColor() {
+      if (backgroundColor) return backgroundColor
+      if (type) {
+        if (type === 'standard') return 'rgb(244, 238, 255)'
+        if (type === 'success') return 'rgb(218, 252, 236)'
+        if (type === 'warning') return '#F7F4CD'
+        if (type === 'error') return '#F7CDCD'
+        if (type === 'disabled') return '#E9E9E9'
+      }
+      return '#6f6f6f'
     }
+
     const [customStyle, setCustomStyle] = React.useState({
       tooltip: {},
       containerTooltip: {},
@@ -133,7 +136,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   content: '',
                   position: 'absolute',
                   border: '10px solid transparent',
-                  borderTopColor: arrowColor,
+                  borderTopColor: arrowColor(),
                   top: '100%',
                   left: '50%',
                   transform: 'translateX(-50%)',
@@ -171,7 +174,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   content: '',
                   position: 'absolute',
                   border: '10px solid transparent',
-                  borderRightColor: arrowColor,
+                  borderRightColor: arrowColor(),
                   right: '100%',
                   top: '50%',
                   transform: 'translateY(-50%)',
@@ -209,7 +212,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   content: '',
                   position: 'absolute',
                   border: '10px solid transparent',
-                  borderBottomColor: arrowColor,
+                  borderBottomColor: arrowColor(),
                   bottom: '100%',
                   left: '50%',
                   transform: 'translateX(-50%)',
@@ -247,7 +250,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                   content: '',
                   position: 'absolute',
                   border: '10px solid transparent',
-                  borderLeftColor: arrowColor,
+                  borderLeftColor: arrowColor(),
                   left: '100%',
                   top: '50%',
                   transform: 'translateY(-50%)',

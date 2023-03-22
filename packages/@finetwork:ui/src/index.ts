@@ -50,7 +50,7 @@ export {
   ToastProvider,
   ToastTitle,
 } from './components/Toast'
-export { Tooltip, TooltipContent, TooltipTrigger } from './components/Tooltip'
+export { Tooltip } from './components/Tooltip'
 export {
   H1,
   H2,
