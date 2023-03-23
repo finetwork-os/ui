@@ -15,12 +15,12 @@ type DialogComponentOwnProps = {
   css?: CSS
   id?: string
   overlay?: boolean
-  width?: string
-  height?: string
-  size?: 'default' | 'auto' | 'fullSize'
-  isOpen?: boolean
+  width?: 'full' | 'auto' | string
+  fullSize?: boolean
+  disabledScroll?: boolean
   borderRadius?: string
-  onClose?: () => void
+  closeButton?: boolean
+  closeButtonSize?: string
   content: string | ReactNode
 }
 export type DialogProps = ComponentProps<typeof StyledDialog> &

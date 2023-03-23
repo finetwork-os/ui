@@ -1,85 +1,123 @@
-import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import * as React from 'react'
-import { StyledDialog } from './styled'
+import { DOMEvent } from '../Select/types'
+import {
+  ButtonChildren,
+  CloseButton,
+  CloseButtonIcon,
+  Overlay,
+  StyledDialog,
+} from './styled'
 import { DialogProps } from './types'
-
-// import * as DialogPrimitive from '@radix-ui/react-dialog'
-// import * as React from 'react'
-// import {
-//   CloseButton,
-//   StyledContent,
-//   StyledDescription,
-//   StyledOverlay,
-//   StyledTitle,
-// } from './styled'
-// import { DialogContentProps, DialogProps } from './types'
-
-// import { DIALOG_SIZE } from '../../types'
-// import { Cross1Icon } from '../icons'
-
-// export const Dialog: React.FC<DialogProps> = ({
-//   children,
-//   overlayProps = {},
-//   ...props
-// }) => {
-//   return (
-//     <DialogPrimitive.Root {...props}>
-//       <StyledOverlay {...overlayProps} />
-//       {children}
-//     </DialogPrimitive.Root>
-//   )
-// }
-
-// export const DialogContent: React.FC<DialogContentProps> = ({
-//   children,
-//   size = DIALOG_SIZE.auto,
-//   dialogRef,
-//   ...props
-// }) => (
-//   <StyledContent size={size} ref={dialogRef} data-fi="dialog" {...props}>
-//     {children}
-//   </StyledContent>
-// )
-
-// export const DialogTrigger = DialogPrimitive.Trigger
-// export const DialogTitle = StyledTitle
-// export const DialogDescription = StyledDescription
-// export const DialogClose: React.FC<React.ComponentProps<typeof CloseButton>> = (
-//   props
-// ) => (
-//   <DialogPrimitive.Close asChild>
-//     <CloseButton {...props}>
-//       <Cross1Icon />
-//     </CloseButton>
-//   </DialogPrimitive.Close>
-// )
 
 export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
   (
     {
       children,
       id,
-      overlay,
-      //width,
-      height,
+      overlay = true,
+      width = 'auto',
+      disabledScroll = true,
       borderRadius,
-      size,
-      onClose,
+      fullSize,
+      closeButton = true,
+      closeButtonSize = '15px',
       content,
     },
     ref
   ) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
-    const { width } = useWindowSize()
+    const dialogRef = React.useRef<HTMLDivElement>(null)
+    const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-    if (size === 'auto') {
+    const [customStyle, setCustomStyle] = React.useState({
+      dialog: {},
+      closeButton: {},
+    })
+
+    React.useEffect(() => {
+      let css = {
+        dialog: {},
+        closeButton: {},
+      }
+      if (borderRadius) {
+        css = {
+          ...css,
+          dialog: {
+            borderRadius: borderRadius,
+          },
+        }
+      }
+      if (closeButtonSize) {
+        css = {
+          ...css,
+          closeButton: {
+            width: closeButtonSize,
+            height: closeButtonSize,
+          },
+        }
+      }
+
+      if (width !== 'full' && width !== 'auto') {
+        css = {
+          ...css,
+          dialog: {
+            width: width,
+          },
+        }
+      }
+
+      setCustomStyle(css)
+    }, [])
+
+    React.useEffect(() => {
+      if (isOpen) {
+        document.addEventListener('click', handleOutsideClick, true)
+        document.addEventListener('keydown', handleKeyPress, true)
+      } else {
+        document.removeEventListener('click', handleOutsideClick, true)
+        document.removeEventListener('keydown', handleKeyPress, true)
+      }
+      if (disabledScroll) {
+        document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
+      } else {
+        document.documentElement.style.overflow = 'unset'
+      }
+    }, [isOpen])
+
+    function handleOutsideClick(e: DOMEvent<HTMLInputElement>) {
+      if (!dialogRef.current?.contains(e.target)) {
+        return setIsOpen(false)
+      }
+    }
+    function handleKeyPress(e) {
+      if (e.code === 'Escape') {
+        buttonRef.current.blur()
+        return setIsOpen(false)
+      }
     }
 
     return (
       <>
-        <button onClick={() => setIsOpen(true)}>{children}</button>
-        <StyledDialog id={id} open={isOpen} /*size={size}*/>
+        <Overlay open={overlay ? isOpen : false} />
+        <ButtonChildren onClick={() => setIsOpen(true)}>
+          {children}
+        </ButtonChildren>
+        <StyledDialog
+          css={customStyle.dialog}
+          ref={dialogRef}
+          id={id}
+          open={isOpen}
+          fullSize={width === 'full'}
+        >
+          {closeButton && (
+            <CloseButton
+              css={customStyle.closeButton}
+              onClick={() => setIsOpen(false)}
+            >
+              <CloseButtonIcon />
+            </CloseButton>
+          )}
           {content}
         </StyledDialog>
       </>

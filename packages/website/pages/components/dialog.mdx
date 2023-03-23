@@ -12,6 +12,7 @@ import {
   Button,
   H2,
   H3,
+  H4,
   Paragraph4,
   Link,
 } from '@finetwork/ui'
@@ -20,8 +21,16 @@ export const styles = {
   maxWidth: '1000px',
   padding: '2em',
   display: 'flex',
-  justifyContent: 'center',
   alignItems: 'center',
+  justifyContent: 'center',
+  gap: '2rem',
+}
+
+export const styleContainer = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+  padding: '4rem',
 }
 
 <div />
@@ -37,6 +46,272 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Dialog content="This is the content of the dialog">Open Dialog</Dialog>
+    <Dialog
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Open Dialog
+    </Dialog>
   </div>
 </Playground>
+
+<div>
+  <H3 font="secondary">Overlay</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Dialog
+      overlay={true}
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      With Overlay
+    </Dialog>
+    <Dialog
+      overlay={false}
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Without Overlay
+    </Dialog>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Width</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Dialog
+      width="full"
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Full Width
+    </Dialog>
+    <Dialog
+      width="auto"
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Auto Width
+    </Dialog>
+    <Dialog
+      width="50rem"
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Custom Width
+    </Dialog>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Close Button</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Dialog
+      closeButton={true}
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      With close button
+    </Dialog>
+    <Dialog
+      closeButton={false}
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Without close button
+    </Dialog>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Close Button Size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Dialog
+      closeButtonSize="25px"
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Close Button Size
+    </Dialog>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Disabled Scroll</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Dialog
+      disabledScroll={false}
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Able scroll
+    </Dialog>
+    <Dialog
+      disabledScroll={true}
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Disabled scroll
+    </Dialog>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <Dialog
+      borderRadius="0px"
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Border Radius - 0px
+    </Dialog>
+    <Dialog
+      borderRadius="10px"
+      content={
+        <div style={styleContainer}>
+          <H4>This is the title of the dialog</H4>
+          <Paragraph4>This is the content of the dialog</Paragraph4>
+        </div>
+      }
+    >
+      Border Radius - 10px
+    </Dialog>
+  </div>
+</Playground>
+
+<h2>Dialog Props</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>string | React Node</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Set the content of the dialog</td>
+    </tr>
+    <tr>
+      <td>overlay</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>No</td>
+      <td>Define if the overlay should be displayed </td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>full | auto | string</td>
+      <td>auto</td>
+      <td>No</td>
+      <td>Define the width of the dialog</td>
+    </tr>
+    <tr>
+      <td>disabledScroll</td>
+      <td>boolean</td>
+      <td>True</td>
+      <td>No</td>
+      <td>Define if scroll of document is able</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>boolean</td>
+      <td>5px</td>
+      <td>No</td>
+      <td>Set dialog border radius</td>
+    </tr>
+    <tr>
+      <td>closeButton</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>No</td>
+      <td>Define if there is a close button</td>
+    </tr>
+    <tr>
+      <td>closeButtonSize</td>
+      <td>string</td>
+      <td>20px</td>
+      <td>No</td>
+      <td>Set close button size</td>
+    </tr>
+  </tbody>
+</table>
