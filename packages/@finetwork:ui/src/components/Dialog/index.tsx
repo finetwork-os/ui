@@ -93,14 +93,14 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     function handleKeyPress(e) {
       if (e.code === 'Escape') {
         buttonRef.current.blur()
-        return setIsOpen(false)
+        setIsOpen(false)
       }
     }
 
     return (
       <>
         <Overlay open={overlay ? isOpen : false} />
-        <ButtonChildren onClick={() => setIsOpen(true)}>
+        <ButtonChildren ref={buttonRef} onClick={() => setIsOpen(true)}>
           {children}
         </ButtonChildren>
         <StyledDialog
