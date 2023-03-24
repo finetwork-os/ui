@@ -18,7 +18,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       width = 'auto',
       disabledScroll = true,
       borderRadius,
-      fullSize,
       closeButton = true,
       closeButtonSize = '15px',
       content,

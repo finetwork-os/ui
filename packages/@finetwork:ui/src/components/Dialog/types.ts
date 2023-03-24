@@ -3,14 +3,6 @@ import { CSS } from '@stitches/react/types/css-util'
 import { ReactNode } from 'react'
 import { StyledDialog } from './styled'
 
-// export type DialogProps = ComponentProps<typeof Root> & {
-//   overlayProps?: ComponentProps<typeof StyledOverlay>
-// }
-
-// export type DialogContentProps = ComponentProps<typeof StyledContent> & {
-//   dialogRef?: Ref<HTMLDivElement>
-// }
-
 type DialogComponentOwnProps = {
   css?: CSS
   id?: string

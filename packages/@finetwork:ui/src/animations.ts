@@ -185,7 +185,7 @@ export const dialogAnimationOpen = keyframes({
   '100%': { opacity: 1, transform: 'translate(-50%, -50%)' },
 })
 
-export const dialogAnimationClosed = keyframes({
-  '100%': { opacity: 1 },
-  '0%': { opacity: 0 },
+export const fullDialogAnimationOpen = keyframes({
+  '0%': { opacity: 0, top: '20' },
+  '100%': { opacity: 1, top: '0' },
 })

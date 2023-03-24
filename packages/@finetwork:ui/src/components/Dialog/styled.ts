@@ -1,4 +1,8 @@
-import { dialogAnimationOpen, fadeInBackground } from '../../animations'
+import {
+  dialogAnimationOpen,
+  fadeInBackground,
+  fullDialogAnimationOpen,
+} from '../../animations'
 import { styled } from '../../stitches.config'
 import { Cross1Icon } from '../icons'
 
@@ -14,7 +18,7 @@ export const ButtonChildren = styled('button', {
 
 export const StyledDialog = styled('div', {
   display: 'flex',
-  animation: `${dialogAnimationOpen} 0.3s ease-in-out forwards`,
+  animation: `${dialogAnimationOpen} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`,
   justifyContent: 'center',
   zIndex: '9999',
   position: 'fixed',
@@ -33,11 +37,13 @@ export const StyledDialog = styled('div', {
     },
     fullSize: {
       true: {
+        animation: `${fullDialogAnimationOpen} 0.3s ease forwards`,
         transform: 'unset',
-        top: '0',
+        //top: '0',
         bottom: '0',
         left: '0',
         right: '0',
+        borderRadius: 0,
       },
     },
   },
