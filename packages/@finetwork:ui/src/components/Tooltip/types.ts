@@ -5,6 +5,9 @@ import { StyledTooltip } from './styled'
 type TooltipComponentOwnProps = {
   css?: CSS
   id?: string
+  idContent?: string
+  contentWidth?: number
+  contentHeight?: number
   type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
   backgroundColor?: string
   colorText?: string

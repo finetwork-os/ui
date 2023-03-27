@@ -54,6 +54,7 @@ export const StyledTooltip = styled('div', {
 
 export const TooltipContainer = styled('div', {
   position: 'absolute',
+  zIndex: '99999',
   display: 'flex',
   variants: {
     position: {
