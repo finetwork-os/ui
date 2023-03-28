@@ -6,7 +6,7 @@ import {
 import { styled } from '../../stitches.config'
 import { Cross1Icon } from '../icons'
 
-export const ButtonChildren = styled('button', {
+export const StyledDialogTrigger = styled('button', {
   padding: '3px',
   transition: 'all .5s ease-in-out',
   borderRadius: '5px',
@@ -51,6 +51,7 @@ export const StyledDialog = styled('div', {
 
 export const CloseButton = styled('button', {
   all: 'unset',
+  marginBottom: '1rem',
   fontFamily: 'inherit',
   borderRadius: '100%',
   display: 'inline-flex',

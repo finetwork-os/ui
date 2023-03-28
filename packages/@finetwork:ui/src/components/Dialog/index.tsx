@@ -1,13 +1,24 @@
 import * as React from 'react'
 import { DOMEvent } from '../Select/types'
 import {
-  ButtonChildren,
   CloseButton,
   CloseButtonIcon,
   Overlay,
   StyledDialog,
+  StyledDialogTrigger,
 } from './styled'
-import { DialogProps } from './types'
+import { DialogProps, DialogTriggerProps } from './types'
+
+export const DialogTrigger = React.forwardRef<
+  HTMLButtonElement,
+  DialogTriggerProps
+>(({ children, id, setIsOpen, ...props }, ref) => {
+  return (
+    <StyledDialogTrigger id={id} onClick={() => setIsOpen(true)} {...props}>
+      {children}
+    </StyledDialogTrigger>
+  )
+})
 
 export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
   (
@@ -20,14 +31,13 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       borderRadius,
       closeButton = true,
       closeButtonSize = '15px',
-      content,
+      isOpen,
+      setIsOpen,
+      ...props
     },
     ref
   ) => {
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
-
     const dialogRef = React.useRef<HTMLDivElement>(null)
-    const buttonRef = React.useRef<HTMLButtonElement>(null)
 
     const [customStyle, setCustomStyle] = React.useState({
       dialog: {},
@@ -91,7 +101,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     }
     function handleKeyPress(e) {
       if (e.code === 'Escape') {
-        buttonRef.current.blur()
         setIsOpen(false)
       }
     }
@@ -99,15 +108,13 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     return (
       <>
         <Overlay open={overlay ? isOpen : false} />
-        <ButtonChildren ref={buttonRef} onClick={() => setIsOpen(true)}>
-          {children}
-        </ButtonChildren>
         <StyledDialog
           css={customStyle.dialog}
           ref={dialogRef}
           id={id}
           open={isOpen}
           fullSize={width === 'full'}
+          {...props}
         >
           {closeButton && (
             <CloseButton
@@ -117,7 +124,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
               <CloseButtonIcon />
             </CloseButton>
           )}
-          {content}
+          {children}
         </StyledDialog>
       </>
     )

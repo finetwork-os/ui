@@ -1,7 +1,15 @@
 import { ComponentProps } from '@stitches/react'
 import { CSS } from '@stitches/react/types/css-util'
-import { ReactNode } from 'react'
-import { StyledDialog } from './styled'
+import { StyledDialog, StyledDialogTrigger } from './styled'
+
+type DialogTriggerComponentOwnProps = {
+  css?: CSS
+  id?: string
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type DialogTriggerProps = ComponentProps<typeof StyledDialogTrigger> &
+  DialogTriggerComponentOwnProps
 
 type DialogComponentOwnProps = {
   css?: CSS
@@ -13,7 +21,8 @@ type DialogComponentOwnProps = {
   borderRadius?: string
   closeButton?: boolean
   closeButtonSize?: string
-  content: string | ReactNode
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 export type DialogProps = ComponentProps<typeof StyledDialog> &
   DialogComponentOwnProps
