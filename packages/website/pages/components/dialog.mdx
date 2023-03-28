@@ -3,7 +3,16 @@ name: Dialog
 ---
 
 import { Playground } from 'dokz'
-import { Dialog, Button, H2, H3, H4, Paragraph4, Link } from '@finetwork/ui'
+import {
+  Dialog,
+  DialogTrigger,
+  Button,
+  H2,
+  H3,
+  H4,
+  Paragraph4,
+  Link,
+} from '@finetwork/ui'
 
 export const styles = {
   maxWidth: '1000px',
@@ -33,18 +42,23 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen, setIsOpen] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen}>Open Dialog</DialogTrigger>
+          <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      Open Dialog
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -52,30 +66,31 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      overlay={true}
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>With Overlay</DialogTrigger>
+          <Dialog isOpen={isOpen1} setIsOpen={setIsOpen1} overlay={true}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>Without Overlay</DialogTrigger>
+          <Dialog isOpen={isOpen2} setIsOpen={setIsOpen2} overlay={false}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      With Overlay
-    </Dialog>
-    <Dialog
-      overlay={false}
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
-        </div>
-      }
-    >
-      Without Overlay
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -83,41 +98,39 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      width="full"
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      const [isOpen3, setIsOpen3] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>Full Width</DialogTrigger>
+          <Dialog isOpen={isOpen1} setIsOpen={setIsOpen1} width="full">
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>Auto Width</DialogTrigger>
+          <Dialog width="auto" isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen3}>Custom Width</DialogTrigger>
+          <Dialog width="50rem" isOpen={isOpen3} setIsOpen={setIsOpen3}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      Full Width
-    </Dialog>
-    <Dialog
-      width="auto"
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
-        </div>
-      }
-    >
-      Auto Width
-    </Dialog>
-    <Dialog
-      width="50rem"
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
-        </div>
-      }
-    >
-      Custom Width
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -125,30 +138,35 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      closeButton={true}
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>
+            With close button
+          </DialogTrigger>
+          <Dialog closeButton={true} isOpen={isOpen1} setIsOpen={setIsOpen1}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>
+            Without close button
+          </DialogTrigger>
+          <Dialog closeButton={false} isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      With close button
-    </Dialog>
-    <Dialog
-      closeButton={false}
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
-        </div>
-      }
-    >
-      Without close button
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -156,19 +174,23 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      closeButtonSize="25px"
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen, setIsOpen] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen}>Close Button Size</DialogTrigger>
+          <Dialog closeButtonSize="25px" isOpen={isOpen} setIsOpen={setIsOpen}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      Close Button Size
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -176,30 +198,35 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      disabledScroll={false}
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>Able scroll</DialogTrigger>
+          <Dialog
+            disabledScroll={false}
+            isOpen={isOpen1}
+            setIsOpen={setIsOpen1}
+          >
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>Disabled scroll</DialogTrigger>
+          <Dialog disabledScroll={true} isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      Able scroll
-    </Dialog>
-    <Dialog
-      disabledScroll={true}
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
-        </div>
-      }
-    >
-      Disabled scroll
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <div>
@@ -207,30 +234,35 @@ export const styleContainer = {
 </div>
 
 <Playground>
-  <div style={styles}>
-    <Dialog
-      borderRadius="0px"
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>
+            Border Radius - 0px
+          </DialogTrigger>
+          <Dialog borderRadius="0px" isOpen={isOpen1} setIsOpen={setIsOpen1}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>
+            Border Radius - 10px
+          </DialogTrigger>
+          <Dialog borderRadius="10px" isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
         </div>
-      }
-    >
-      Border Radius - 0px
-    </Dialog>
-    <Dialog
-      borderRadius="10px"
-      content={
-        <div style={styleContainer}>
-          <H4>This is the title of the dialog</H4>
-          <Paragraph4>This is the content of the dialog</Paragraph4>
-        </div>
-      }
-    >
-      Border Radius - 10px
-    </Dialog>
-  </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
 
 <h2>Dialog Props</h2>
