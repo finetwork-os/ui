@@ -25,7 +25,6 @@ export const StyledDialog = styled('div', {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  textAlign: 'center',
   background: '#FFF',
   borderRadius: '5px',
   boxShadow: '0px 10px 20px 7px rgba(0,0,0,0.1)',
