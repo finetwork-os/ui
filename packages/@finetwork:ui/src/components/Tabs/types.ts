@@ -21,7 +21,7 @@ export type TabsListComponentOwnProps = {
   gap?: string
   width?: string
   selectedValue?: string
-  setSelectedValue?: React.Dispatch<
+  handleChange?: React.Dispatch<
     React.SetStateAction<string | (readonly string[] & string)>
   >
 }
@@ -37,7 +37,7 @@ export type TabsTriggerComponentOwnProps = {
   disabled?: boolean
   width?: string
   selectedValue?: string
-  setSelectedValue?: React.Dispatch<
+  handleChange?: React.Dispatch<
     React.SetStateAction<string | (readonly string[] & string)>
   >
   startEnhancer?: ReactNode | string

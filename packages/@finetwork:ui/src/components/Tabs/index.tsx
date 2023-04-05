@@ -14,14 +14,14 @@ import {
   StyledTabsList,
   StyledTabsTrigger,
 } from './styled'
+import { TabsProvider, TabsContext } from './context'
 
 export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   (
     {
       type,
       direction,
-      selectedValue,
-      setSelectedValue,
+      handleChange,
       justifyContent,
       gap,
       width,
@@ -86,8 +86,6 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
           if (!React.isValidElement(child)) return null
           return React.cloneElement(child, {
             ...child.props,
-            selectedValue,
-            setSelectedValue,
             type,
           })
         })}
@@ -108,13 +106,13 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
       disabled,
       children,
       width,
-      selectedValue,
-      setSelectedValue,
+
       bold = false,
       ...props
     },
     ref
   ) => {
+    const { selectedValue, setSelectedValue } = React.useContext(TabsContext)
     const [customStyle, setCustomStyle] = React.useState({
       divTrigger: {},
       textTrigger: {},
@@ -180,7 +178,8 @@ export const TabsTrigger = React.forwardRef<HTMLDivElement, TabsTriggerProps>(
 )
 
 export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  ({ children, value, selectedValue, ...props }, ref) => {
+  ({ children, value, ...props }, ref) => {
+    const { selectedValue } = React.useContext(TabsContext)
     return (
       <StyledTabsContent isShow={value === selectedValue} {...props}>
         {React.Children.map(children, (child) => {
@@ -245,21 +244,19 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       setCustomStyle(css)
     }, [borderRadius, width, height])
 
-    const [selectedValue, setSelectedValue] = React.useState(defaultValue)
-
     return (
-      <StyledTabs direction={direction} css={customStyle.tab} {...props}>
-        {React.Children.map(children, (child) => {
-          if (!React.isValidElement(child)) return null
-          return React.cloneElement(child, {
-            ...child.props,
-            selectedValue,
-            setSelectedValue,
-            type,
-            direction,
-          })
-        })}
-      </StyledTabs>
+      <TabsProvider defaultValue={defaultValue}>
+        <StyledTabs direction={direction} css={customStyle.tab} {...props}>
+          {React.Children.map(children, (child) => {
+            if (!React.isValidElement(child)) return null
+            return React.cloneElement(child, {
+              ...child.props,
+              type,
+              direction,
+            })
+          })}
+        </StyledTabs>
+      </TabsProvider>
     )
   }
 )

@@ -87,10 +87,16 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         document.removeEventListener('click', handleOutsideClick, true)
         document.removeEventListener('keydown', handleKeyPress, true)
       }
+
       if (disabledScroll) {
         document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
       } else {
         document.documentElement.style.overflow = 'unset'
+      }
+
+      return () => {
+        document.removeEventListener('click', handleOutsideClick, true)
+        document.removeEventListener('keydown', handleKeyPress, true)
       }
     }, [isOpen])
 
@@ -107,7 +113,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
     return (
       <>
-        <Overlay open={overlay ? isOpen : false} />
+        <Overlay open={overlay && isOpen} />
         <StyledDialog
           css={customStyle.dialog}
           ref={dialogRef}
