@@ -179,3 +179,13 @@ export const switchAnimationBackwards = keyframes({
   // '70%': { width: '17px', height: '14px' },
   '15%': { width: '16px', height: '16px' },
 })
+
+export const dialogAnimationOpen = keyframes({
+  '0%': { opacity: 0, transform: 'translate(-50%, 20%)' },
+  '100%': { opacity: 1, transform: 'translate(-50%, -50%)' },
+})
+
+export const fullDialogAnimationOpen = keyframes({
+  '0%': { opacity: 0, top: '20' },
+  '100%': { opacity: 1, top: '0' },
+})

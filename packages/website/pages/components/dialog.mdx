@@ -6,52 +6,332 @@ import { Playground } from 'dokz'
 import {
   Dialog,
   DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
   Button,
   H2,
   H3,
+  H4,
   Paragraph4,
   Link,
 } from '@finetwork/ui'
+
+export const styles = {
+  maxWidth: '1000px',
+  padding: '2em',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '2rem',
+}
+
+export const styleContainer = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
+  padding: '4rem',
+}
 
 <div />
 <div>
   <H2 font="secondary">Dialog</H2>
 </div>
 
+<Paragraph4>This component is an implementation of custom dialog</Paragraph4>
+
 <div>
-  <Paragraph4>
-    Dialog component admit props such as open, onOpenChange, etc.
-  </Paragraph4>
-  <Paragraph4>And DialogContent admit props such as size, etc.</Paragraph4>
-  <Paragraph4>
-    You can customize your dialog whatever you want, even you can set <i>css</i>
-    property to override styles if you need.
-  </Paragraph4>
+  <H3 font="secondary">Default</H3>
 </div>
 
-<Paragraph4>
-  This component is an implementation of{' '}
-  <Link
-    href="https://www.radix-ui.com/docs/primitives/components/dialog"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Dialog component
-  </Link>{' '}
-  from radix-ui.
-</Paragraph4>
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen, setIsOpen] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen}>Open Dialog</DialogTrigger>
+          <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">Overlay</H3>
+</div>
 
 <Playground>
-  <Dialog>
-    <DialogTrigger as={Button}>Open dialog</DialogTrigger>
-    <DialogContent>
-      <DialogTitle>Title</DialogTitle>
-      <DialogDescription>
-        Make changes to your profile here. Click save when you're done.
-      </DialogDescription>
-    </DialogContent>
-  </Dialog>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>With Overlay</DialogTrigger>
+          <Dialog isOpen={isOpen1} setIsOpen={setIsOpen1} overlay={true}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>Without Overlay</DialogTrigger>
+          <Dialog isOpen={isOpen2} setIsOpen={setIsOpen2} overlay={false}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
 </Playground>
+
+<div>
+  <H3 font="secondary">Width</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      const [isOpen3, setIsOpen3] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>Full Width</DialogTrigger>
+          <Dialog isOpen={isOpen1} setIsOpen={setIsOpen1} width="full">
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>Auto Width</DialogTrigger>
+          <Dialog width="auto" isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen3}>Custom Width</DialogTrigger>
+          <Dialog width="50rem" isOpen={isOpen3} setIsOpen={setIsOpen3}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">Close Button</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>
+            With close button
+          </DialogTrigger>
+          <Dialog closeButton={true} isOpen={isOpen1} setIsOpen={setIsOpen1}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>
+            Without close button
+          </DialogTrigger>
+          <Dialog closeButton={false} isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">Close Button Size</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen, setIsOpen] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen}>Close Button Size</DialogTrigger>
+          <Dialog closeButtonSize="25px" isOpen={isOpen} setIsOpen={setIsOpen}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">Disabled Scroll</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>Able scroll</DialogTrigger>
+          <Dialog
+            disabledScroll={false}
+            isOpen={isOpen1}
+            setIsOpen={setIsOpen1}
+          >
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>Disabled scroll</DialogTrigger>
+          <Dialog disabledScroll={true} isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H3 font="secondary">Border Radius</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen1, setIsOpen1] = React.useState(false)
+      const [isOpen2, setIsOpen2] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen1}>
+            Border Radius - 0px
+          </DialogTrigger>
+          <Dialog borderRadius="0px" isOpen={isOpen1} setIsOpen={setIsOpen1}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+          <DialogTrigger setIsOpen={setIsOpen2}>
+            Border Radius - 10px
+          </DialogTrigger>
+          <Dialog borderRadius="10px" isOpen={isOpen2} setIsOpen={setIsOpen2}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<h2>Dialog Props</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>ID of the element</td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>string | React Node</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Set the content of the dialog</td>
+    </tr>
+    <tr>
+      <td>overlay</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>No</td>
+      <td>Define if the overlay should be displayed </td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>full | auto | string</td>
+      <td>auto</td>
+      <td>No</td>
+      <td>Define the width of the dialog</td>
+    </tr>
+    <tr>
+      <td>disabledScroll</td>
+      <td>boolean</td>
+      <td>True</td>
+      <td>No</td>
+      <td>Define if scroll of document is able</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>boolean</td>
+      <td>5px</td>
+      <td>No</td>
+      <td>Set dialog border radius</td>
+    </tr>
+    <tr>
+      <td>closeButton</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>No</td>
+      <td>Define if there is a close button</td>
+    </tr>
+    <tr>
+      <td>closeButtonSize</td>
+      <td>string</td>
+      <td>20px</td>
+      <td>No</td>
+      <td>Set close button size</td>
+    </tr>
+  </tbody>
+</table>

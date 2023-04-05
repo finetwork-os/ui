@@ -1,120 +1,97 @@
-import * as DialogPrimitive from '@radix-ui/react-dialog'
-
-import { blackA, mauve } from '@radix-ui/colors'
 import {
-  fadeIn,
-  fadeOut,
-  moveModalToBottom,
-  moveModalToTop,
+  dialogAnimationOpen,
+  fadeInBackground,
+  fullDialogAnimationOpen,
 } from '../../animations'
-
-import { DIALOG_SIZES } from '../../types'
-import { StyledComponent } from '@stitches/react/types/styled-component'
 import { styled } from '../../stitches.config'
+import { Cross1Icon } from '../icons'
 
-export const CloseButton = styled('button', {
-  all: 'unset',
-  fontFamily: 'inherit',
-  borderRadius: '100%',
-  height: 25,
-  width: 25,
-  display: 'inline-flex',
-  alignItems: 'center',
+export const StyledDialogTrigger = styled('button', {
+  padding: '3px',
+  transition: 'all .5s ease-in-out',
+  borderRadius: '5px',
+  '&:focus-visible': {
+    outline: 'none',
+    boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(95, 10, 255)',
+  },
+})
+
+export const StyledDialog = styled('div', {
+  display: 'flex',
+  animation: `${dialogAnimationOpen} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`,
   justifyContent: 'center',
-  position: 'absolute',
-  top: 10,
-  right: 10,
-  cursor: 'pointer',
-  color: mauve.mauve11,
-})
-
-export const StyledTitle = styled(DialogPrimitive.Title, {
-  margin: 0,
-  fontWeight: 500,
-  fontSize: 17,
-  color: '#000',
-  variants: {
-    font: {
-      primary: {
-        fontFamily: '$primary',
-      },
-      secondary: {
-        fontFamily: '$secondary',
-      },
-    },
-  },
-  defaultVariants: {
-    font: 'primary',
-  },
-})
-
-export const StyledDescription = styled(DialogPrimitive.Description, {
-  margin: '.5rem 0 1.3rem',
-  color: mauve.mauve11,
-  fontSize: 15,
-  lineHeight: 1.5,
-})
-
-export const StyledContent: StyledComponent<
-  typeof DialogPrimitive.Content,
-  { size?: DIALOG_SIZES }
-> = styled(DialogPrimitive.Content, {
-  backgroundColor: 'white',
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+  zIndex: '9999',
   position: 'fixed',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  padding: '1.5rem',
-  zIndex: 9999,
-  '&[data-state="open"]': {
-    '@media (prefers-reduced-motion: no-preference)': {
-      animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1), ${moveModalToTop} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
-      willChange: 'transform',
-    },
-  },
-  '&[data-state="closed"]': {
-    '@media (prefers-reduced-motion: no-preference)': {
-      animation: `${fadeOut} 300ms cubic-bezier(0.16, 1, 0.3, 1), ${moveModalToBottom} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
-      willChange: 'transform',
-    },
-  },
-  '&:focus': { outline: 'none' },
+  background: '#FFF',
+  borderRadius: '5px',
+  boxShadow: '0px 10px 20px 7px rgba(0,0,0,0.1)',
   variants: {
-    size: {
-      auto: {
-        width: 'auto',
-      },
-      default: {
-        width: '1000px',
-        maxWidth: '100%',
-      },
-      full: {
-        margin: 0,
-        width: '100%',
-        height: '100%',
+    open: {
+      false: {
+        display: 'none',
       },
     },
-  },
-  defaultVariants: {
-    size: 'auto',
+    fullSize: {
+      true: {
+        animation: `${fullDialogAnimationOpen} 0.3s ease forwards`,
+        transform: 'unset',
+        //top: '0',
+        bottom: '0',
+        left: '0',
+        right: '0',
+        borderRadius: 0,
+      },
+    },
   },
 })
 
-export const StyledOverlay = styled(DialogPrimitive.Overlay, {
-  backgroundColor: blackA.blackA9,
-  position: 'fixed',
-  inset: 0,
-  zIndex: 999,
-  '&[data-state="open"]': {
-    '@media (prefers-reduced-motion: no-preference)': {
-      animation: `${fadeIn} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
-    },
+export const CloseButton = styled('button', {
+  all: 'unset',
+  marginBottom: '1rem',
+  fontFamily: 'inherit',
+  borderRadius: '100%',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'absolute',
+  top: 15,
+  right: 15,
+  padding: '0.5rem',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s linear',
+  '&:hover': {
+    borderRadius: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
   },
-  '&[data-state="closed"]': {
-    '@media (prefers-reduced-motion: no-preference)': {
-      animation: `${fadeOut} 300ms cubic-bezier(0.16, 1, 0.3, 1)`,
+})
+
+export const CloseButtonIcon = styled(Cross1Icon, {
+  fontFamily: 'inherit',
+  borderRadius: '100%',
+  height: 'inherit',
+  width: 'inherit',
+  position: 'relative',
+  color: 'black',
+})
+
+export const Overlay = styled('div', {
+  display: 'none',
+  height: '100%',
+  zIndex: 9999,
+  position: 'fixed',
+  left: 0,
+  right: 0,
+  bottom: 0,
+  margin: '0 auto',
+  animation: `${fadeInBackground} .7s forwards`,
+  variants: {
+    open: {
+      true: {
+        display: 'block !important',
+      },
     },
   },
 })

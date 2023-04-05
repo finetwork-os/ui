@@ -1,12 +1,28 @@
 import { ComponentProps } from '@stitches/react'
-import { Ref } from 'react'
-import { Root } from '@radix-ui/react-dialog'
-import { StyledContent, StyledOverlay } from './styled'
+import { CSS } from '@stitches/react/types/css-util'
+import { StyledDialog, StyledDialogTrigger } from './styled'
 
-export type DialogProps = ComponentProps<typeof Root> & {
-  overlayProps?: ComponentProps<typeof StyledOverlay>
+type DialogTriggerComponentOwnProps = {
+  css?: CSS
+  id?: string
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export type DialogContentProps = ComponentProps<typeof StyledContent> & {
-  dialogRef?: Ref<HTMLDivElement>
+export type DialogTriggerProps = ComponentProps<typeof StyledDialogTrigger> &
+  DialogTriggerComponentOwnProps
+
+type DialogComponentOwnProps = {
+  css?: CSS
+  id?: string
+  overlay?: boolean
+  width?: 'full' | 'auto' | string
+  fullSize?: boolean
+  disabledScroll?: boolean
+  borderRadius?: string
+  closeButton?: boolean
+  closeButtonSize?: string
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
+export type DialogProps = ComponentProps<typeof StyledDialog> &
+  DialogComponentOwnProps

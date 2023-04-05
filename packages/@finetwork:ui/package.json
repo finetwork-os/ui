@@ -1,6 +1,6 @@
 {
   "name": "@finetwork/ui",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "source": "src/index.ts",
   "typings": "src/index.ts",
   "main": "src/index.ts",
@@ -14,14 +14,12 @@
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-accordion": "^0.1.5",
-    "@radix-ui/react-dialog": "^0.1.5",
     "@radix-ui/react-dropdown-menu": "^0.1.4",
     "@radix-ui/react-id": "^0.1.4",
     "@radix-ui/react-label": "^0.1.4",
     "@radix-ui/react-menu": "^0.1.4",
     "@radix-ui/react-polymorphic": "^0.0.14",
     "@radix-ui/react-popover": "^0.1.4",
-    "@radix-ui/react-switch": "^0.1.4",
     "@radix-ui/react-toast": "^0.1.1",
     "@radix-ui/react-tooltip": "^0.1.6",
     "@stitches/react": "1.2.8",
