@@ -284,6 +284,20 @@ export const Options: React.FC<OptionsProps> = ({
       <StyledOptionsGroup
         css={{
           ...customStyle.optionsGroup,
+          '& div div div label': {
+            width: '100%',
+          },
+          '& div div div': {
+            marginLeft: '0px',
+            gap: '0',
+            '&:hover': {
+              background: '$secondary100',
+              cursor: 'pointer',
+              '& label li': {
+                color: '$primary',
+              },
+            },
+          },
           '&::-webkit-scrollbar-thumb': {
             backgroundColor: `hsl(${scrollbarColor}, 60%) !important`,
           },
@@ -325,6 +339,8 @@ export const Options: React.FC<OptionsProps> = ({
                     css={{
                       ...customStyle.options,
                       color: `${chosenOptionColor(option.value)}`,
+                      marginTop: 0,
+                      marginBottom: 0,
                       '&:after': {
                         boxShadow: `inset 14px 14px ${chosenOptionColor(
                           option.value
