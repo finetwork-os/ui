@@ -8,8 +8,9 @@ import {
   StyledOptionsGroup,
   StyledTitle,
 } from './styled'
-import { OptionsProps, TypeOptions, Value } from './types'
-import { Radio, RadioGroup } from '@finetwork/ui'
+import { OptionsProps, Value } from './types'
+import { Radio, RadioGroup } from '../Radio'
+
 export const Options: React.FC<OptionsProps> = ({
   allPosibleOptions,
   optionRef,
@@ -81,14 +82,11 @@ export const Options: React.FC<OptionsProps> = ({
               <StyledTitle>{optionGroup.title}</StyledTitle>
             )}
             {optionGroup.options.map((option, i) => (
-              <>
+              <div key={`${id}_optionWithTitle_${option.value}`}>
                 {option.label === 'No encontrado' ? (
-                  <NotFoundMessage key={`${id}_optionWithTitle_Not-Found_${i}`}>
-                    No encontrado
-                  </NotFoundMessage>
+                  <NotFoundMessage>No encontrado</NotFoundMessage>
                 ) : (
                   <StyledOptionItem
-                    key={`${id}_optionWithTitle_${option.value}`}
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
                     onClick={() =>
@@ -120,7 +118,7 @@ export const Options: React.FC<OptionsProps> = ({
                     {option.label}
                   </StyledOptionItem>
                 )}
-              </>
+              </div>
             ))}
           </div>
         ))}
@@ -218,16 +216,11 @@ export const Options: React.FC<OptionsProps> = ({
               <StyledTitle>{optionGroup.title}</StyledTitle>
             )}
             {optionGroup.options.map((option, i) => (
-              <>
+              <div key={`${id}_optionMultipleWithTitle_${option.value}`}>
                 {option.label === 'No encontrado' ? (
-                  <NotFoundMessage
-                    key={`${id}_optionMultipleWithTitle_Not-Found_${i}`}
-                  >
-                    No encontrado
-                  </NotFoundMessage>
+                  <NotFoundMessage>No encontrado</NotFoundMessage>
                 ) : (
                   <MultipleContainer
-                    key={`${id}_optionMultipleWithTitle_${option.value}`}
                     chosen={
                       Array.isArray(value) &&
                       value?.includes(option) &&
@@ -272,13 +265,12 @@ export const Options: React.FC<OptionsProps> = ({
                     />
                   </MultipleContainer>
                 )}
-              </>
+              </div>
             ))}
           </div>
         ))}
       </StyledOptionsGroup>
     )
-
   if (radio)
     return (
       <StyledOptionsGroup
@@ -308,56 +300,54 @@ export const Options: React.FC<OptionsProps> = ({
         kind={kind}
       >
         <RadioGroup direction="vertical" name="select-radio">
-          {allPosibleOptions.map((option, i) =>
-            option.label === 'No encontrado' ? (
-              <NotFoundMessage key={`${id}_option_${option.value}`}>
-                No encontrado
-              </NotFoundMessage>
-            ) : (
+          {allPosibleOptions.map((option, i) => (
+            <div key={`${id}_option_radio_${option.value}`}>
               <Radio
-                key={`${id}_option_${option.value}`}
                 onClick={() => !option.disabled && optionHasBeenChosen(option)}
                 value={`${id}_option_value_${option.value}`}
                 id={`${id}_option_id_${option.value}`}
                 label={
-                  <StyledOptionItem
-                    tabIndex={0}
-                    ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-                    kind={kind}
-                    withoutCheck={withoutCheck}
-                    onKeyDown={(e) =>
-                      e.code === 'Enter' &&
-                      !option.disabled &&
-                      optionHasBeenChosen(option)
-                    }
-                    chosen={
-                      !Array.isArray(value) &&
-                      option.value === value.value &&
-                      !option.disabled
-                    }
-                    isDisabled={option.disabled}
-                    css={{
-                      ...customStyle.options,
-                      color: `${chosenOptionColor(option.value)}`,
-                      marginTop: 0,
-                      marginBottom: 0,
-                      '&:after': {
-                        boxShadow: `inset 14px 14px ${chosenOptionColor(
-                          option.value
-                        )} !important`,
-                      },
-                    }}
-                  >
-                    {option.label}
-                  </StyledOptionItem>
+                  option.label === 'No encontrado' ? (
+                    <NotFoundMessage>No encontrado</NotFoundMessage>
+                  ) : (
+                    <StyledOptionItem
+                      tabIndex={0}
+                      ref={optionRef as React.MutableRefObject<HTMLLIElement>}
+                      kind={kind}
+                      withoutCheck={withoutCheck}
+                      onKeyDown={(e) =>
+                        e.code === 'Enter' &&
+                        !option.disabled &&
+                        optionHasBeenChosen(option)
+                      }
+                      chosen={
+                        !Array.isArray(value) &&
+                        option.value === value.value &&
+                        !option.disabled
+                      }
+                      isDisabled={option.disabled}
+                      css={{
+                        ...customStyle.options,
+                        color: `${chosenOptionColor(option.value)}`,
+                        marginTop: 0,
+                        marginBottom: 0,
+                        '&:after': {
+                          boxShadow: `inset 14px 14px ${chosenOptionColor(
+                            option.value
+                          )} !important`,
+                        },
+                      }}
+                    >
+                      {option.label}
+                    </StyledOptionItem>
+                  )
                 }
               />
-            )
-          )}
+            </div>
+          ))}
         </RadioGroup>
       </StyledOptionsGroup>
     )
-
   return (
     <StyledOptionsGroup
       css={{

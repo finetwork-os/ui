@@ -6,7 +6,6 @@ import {
 import { styled } from '../../stitches.config'
 import { ChevronDownIcon, Loupe } from '../icons'
 import { Paragraph5 } from '../Typography'
-import { Radio, RadioGroup } from '@finetwork/ui'
 
 export const MainContainer = styled('div', {
   display: 'flex',

@@ -19,7 +19,6 @@ import {
   StyledSelect,
 } from './styled'
 import { DOMEvent, SelectProps, SelectState } from './types'
-import { RadioGroup } from '@finetwork/ui'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
