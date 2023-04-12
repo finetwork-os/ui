@@ -19,6 +19,7 @@ import {
   StyledSelect,
 } from './styled'
 import { DOMEvent, SelectProps, SelectState } from './types'
+import { RadioGroup } from '@finetwork/ui'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
@@ -49,6 +50,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       scrollbarColor,
       onChange,
       grouping,
+      radio,
       notFoundText,
       searchText,
       ...props
@@ -420,6 +422,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   value={value}
                   isMultiple={isMultiple}
                   grouping={grouping}
+                  radio={radio}
                 />
               </Content>
             </Overlay>
@@ -469,6 +472,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 value={value}
                 isMultiple={isMultiple}
                 grouping={grouping}
+                radio={radio}
               />
             </Content>
           )}

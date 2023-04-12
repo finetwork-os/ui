@@ -34,6 +34,7 @@ type Shared = {
   optionTextColor?: string
   value: Value
   grouping?: boolean
+  radio?: boolean
 }
 
 export type SelectProps = {

@@ -9,7 +9,7 @@ import {
   StyledTitle,
 } from './styled'
 import { OptionsProps, TypeOptions, Value } from './types'
-
+import { Radio, RadioGroup } from '@finetwork/ui'
 export const Options: React.FC<OptionsProps> = ({
   allPosibleOptions,
   optionRef,
@@ -25,6 +25,7 @@ export const Options: React.FC<OptionsProps> = ({
   value,
   isMultiple,
   grouping,
+  radio,
 }) => {
   function optionHasBeenChosen(option) {
     if (!Array.isArray(value)) {
@@ -275,6 +276,69 @@ export const Options: React.FC<OptionsProps> = ({
             ))}
           </div>
         ))}
+      </StyledOptionsGroup>
+    )
+
+  if (radio)
+    return (
+      <StyledOptionsGroup
+        css={{
+          ...customStyle.optionsGroup,
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: `hsl(${scrollbarColor}, 60%) !important`,
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: `hsl(${scrollbarColor}) !important`,
+          },
+        }}
+        kind={kind}
+      >
+        <RadioGroup direction="vertical" name="select-radio">
+          {allPosibleOptions.map((option, i) =>
+            option.label === 'No encontrado' ? (
+              <NotFoundMessage key={`${id}_option_${option.value}`}>
+                No encontrado
+              </NotFoundMessage>
+            ) : (
+              <Radio
+                key={`${id}_option_${option.value}`}
+                onClick={() => !option.disabled && optionHasBeenChosen(option)}
+                value={`${id}_option_value_${option.value}`}
+                id={`${id}_option_id_${option.value}`}
+                label={
+                  <StyledOptionItem
+                    tabIndex={0}
+                    ref={optionRef as React.MutableRefObject<HTMLLIElement>}
+                    kind={kind}
+                    withoutCheck={withoutCheck}
+                    onKeyDown={(e) =>
+                      e.code === 'Enter' &&
+                      !option.disabled &&
+                      optionHasBeenChosen(option)
+                    }
+                    chosen={
+                      !Array.isArray(value) &&
+                      option.value === value.value &&
+                      !option.disabled
+                    }
+                    isDisabled={option.disabled}
+                    css={{
+                      ...customStyle.options,
+                      color: `${chosenOptionColor(option.value)}`,
+                      '&:after': {
+                        boxShadow: `inset 14px 14px ${chosenOptionColor(
+                          option.value
+                        )} !important`,
+                      },
+                    }}
+                  >
+                    {option.label}
+                  </StyledOptionItem>
+                }
+              />
+            )
+          )}
+        </RadioGroup>
       </StyledOptionsGroup>
     )
 
