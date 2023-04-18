@@ -301,49 +301,48 @@ export const Options: React.FC<OptionsProps> = ({
       >
         <RadioGroup direction="vertical" name="select-radio">
           {allPosibleOptions.map((option, i) => (
-            <div key={`${id}_option_radio_${option.value}`}>
-              <Radio
-                onClick={() => !option.disabled && optionHasBeenChosen(option)}
-                value={`${id}_option_value_${option.value}`}
-                id={`${id}_option_id_${option.value}`}
-                label={
-                  option.label === 'No encontrado' ? (
-                    <NotFoundMessage>No encontrado</NotFoundMessage>
-                  ) : (
-                    <StyledOptionItem
-                      tabIndex={0}
-                      ref={optionRef as React.MutableRefObject<HTMLLIElement>}
-                      kind={kind}
-                      withoutCheck={withoutCheck}
-                      onKeyDown={(e) =>
-                        e.code === 'Enter' &&
-                        !option.disabled &&
-                        optionHasBeenChosen(option)
-                      }
-                      chosen={
-                        !Array.isArray(value) &&
-                        option.value === value.value &&
-                        !option.disabled
-                      }
-                      isDisabled={option.disabled}
-                      css={{
-                        ...customStyle.options,
-                        color: `${chosenOptionColor(option.value)}`,
-                        marginTop: 0,
-                        marginBottom: 0,
-                        '&:after': {
-                          boxShadow: `inset 14px 14px ${chosenOptionColor(
-                            option.value
-                          )} !important`,
-                        },
-                      }}
-                    >
-                      {option.label}
-                    </StyledOptionItem>
-                  )
-                }
-              />
-            </div>
+            <Radio
+              onClick={() => !option.disabled && optionHasBeenChosen(option)}
+              value={`${id}_option_value_${option.value}`}
+              key={`${id}_option_radio_${option.value}`}
+              id={`${id}_option_id_${option.value}`}
+              label={
+                option.label === 'No encontrado' ? (
+                  <NotFoundMessage>No encontrado</NotFoundMessage>
+                ) : (
+                  <StyledOptionItem
+                    tabIndex={0}
+                    ref={optionRef as React.MutableRefObject<HTMLLIElement>}
+                    kind={kind}
+                    withoutCheck={withoutCheck}
+                    onKeyDown={(e) =>
+                      e.code === 'Enter' &&
+                      !option.disabled &&
+                      optionHasBeenChosen(option)
+                    }
+                    chosen={
+                      !Array.isArray(value) &&
+                      option.value === value.value &&
+                      !option.disabled
+                    }
+                    isDisabled={option.disabled}
+                    css={{
+                      ...customStyle.options,
+                      color: `${chosenOptionColor(option.value)}`,
+                      marginTop: 0,
+                      marginBottom: 0,
+                      '&:after': {
+                        boxShadow: `inset 14px 14px ${chosenOptionColor(
+                          option.value
+                        )} !important`,
+                      },
+                    }}
+                  >
+                    {option.label}
+                  </StyledOptionItem>
+                )
+              }
+            />
           ))}
         </RadioGroup>
       </StyledOptionsGroup>
