@@ -314,7 +314,7 @@ export const Options: React.FC<OptionsProps> = ({
                     tabIndex={0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
                     kind={kind}
-                    withoutCheck={withoutCheck}
+                    withoutCheck
                     onKeyDown={(e) =>
                       e.code === 'Enter' &&
                       !option.disabled &&
