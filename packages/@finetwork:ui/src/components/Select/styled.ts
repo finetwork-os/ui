@@ -48,11 +48,9 @@ export const SelectContainer = styled('div', {
   width: '150px',
   maring: '85px auto 0',
   fontSize: '1rem',
-  '&:focus': {
-    outline: '2px solid $primary',
-  },
   '&:hover': {
-    outline: '2px solid $primary !important',
+    outline: 'none',
+    boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$primary',
   },
   variants: {
     isDisabled: {
@@ -60,25 +58,33 @@ export const SelectContainer = styled('div', {
         outline: '1px solid $disabled !important',
         color: '$disabled',
         '&:hover': {
-          outline: '1px solid $disabled !important',
+          outline: 'none',
+          boxShadow: 'none',
           cursor: 'not-allowed',
+        },
+        '&:focus': {
+          outline: 'none',
+          boxShadow: 'none',
         },
       },
     },
     kind: {
       primary: {
         '&:hover': {
-          outline: '2px solid $primary !important',
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$primary',
         },
       },
       secondary: {
         '&:hover': {
-          outline: '2px solid $secondary !important',
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$secondary',
         },
       },
       tertiary: {
         '&:hover': {
-          outline: '2px solid $tertiary !important',
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$tertiary',
         },
       },
     },
@@ -99,8 +105,13 @@ export const StyledSelect = styled('div', {
   padding: '0 15px',
   background: '#fff',
   justifyContent: 'space-between',
+  transition: 'all 0.35s ease-in-out',
   '&:hover': {
     cursor: 'pointer',
+  },
+  '&:focus': {
+    outline: 'none',
+    boxShadow: '0 0 0 2px #fff, 0 0 0 4px rgb(95, 10, 255)',
   },
   variants: {
     isDisabled: {
@@ -108,8 +119,33 @@ export const StyledSelect = styled('div', {
         outline: '1px solid $disabled !important',
         color: '$disabled',
         '&:hover': {
-          outline: '1px solid $disabled !important',
+          outline: 'none',
+          boxShadow: 'none',
           cursor: 'not-allowed',
+        },
+        '&:focus': {
+          outline: 'none',
+          boxShadow: 'none',
+        },
+      },
+    },
+    kind: {
+      primary: {
+        '&:focus': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$primary',
+        },
+      },
+      secondary: {
+        '&:focus': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$secondary',
+        },
+      },
+      tertiary: {
+        '&:focus': {
+          outline: 'none',
+          boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$tertiary',
         },
       },
     },
@@ -307,12 +343,20 @@ export const StyledOptionItem = styled('li', {
           color: '$primary',
           background: '$primary100 !important',
         },
+        '&:focus': {
+          outline: '1px solid $primary',
+          background: '$primary100',
+        },
       },
       secondary: {
         scrollbarColor: '$secondary',
         '&:hover': {
           color: '$secondary',
           background: '$secondary100 !important',
+        },
+        '&:focus': {
+          outline: '1px solid $secondary',
+          background: '$secondary100',
         },
         '&:after': {
           boxShadow: 'inset 14px 14px $colors$secondary !important',
@@ -322,6 +366,10 @@ export const StyledOptionItem = styled('li', {
         '&:hover': {
           color: '$tertiary',
           background: '$tertiary100 !important',
+        },
+        '&:focus': {
+          outline: '1px solid $tertiary',
+          background: '$tertiary100',
         },
         '&:after': {
           boxShadow: 'inset 14px 14px $colors$tertiary !important',
@@ -365,6 +413,16 @@ export const SearchInput = styled('input', {
 
 export const MultipleContainer = styled('div', {
   display: 'flex',
+  '& input': {
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  '& div div': {
+    '&:hover': {
+      background: 'none !important',
+    },
+  },
   '&:hover': {
     background: '$secondary100',
     cursor: 'pointer',

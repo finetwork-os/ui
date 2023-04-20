@@ -110,10 +110,16 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (hoverBorderColor) {
         css = {
           ...css,
+          select: {
+            ...css.select,
+            '&:focus': {
+              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+            },
+          },
           container: {
             ...css.container,
             '&:hover': {
-              outline: `2px solid ${hoverBorderColor} !important`,
+              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
             },
           },
         }
@@ -133,9 +139,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           container: {
             ...css.container,
             outline: `1px solid ${borderColor} !important`,
-            '&:hover': {
-              outline: `2px solid ${borderColor} !important`,
-            },
           },
         }
       }
@@ -146,11 +149,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             ...css.label,
             color: '$error !important',
           },
+          select: {
+            ...css.select,
+            outline: '1px solid $error !important',
+            '&:focus': {
+              boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error !important',
+            },
+          },
           container: {
             ...css.container,
-            outline: '1px solid $error !important',
             '&:hover': {
-              outline: '2px solid $error !important',
+              boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error !important',
             },
           },
         }
@@ -355,8 +364,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           css={customStyle.container}
         >
           <StyledSelect
+            tabIndex={disabled ? -1 : 0}
             id={id}
-            tabIndex={0}
             ref={inputRef}
             onKeyDown={(e) => {
               if (e.code === 'Enter' || e.code === 'Space') {
@@ -367,6 +376,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               if (!disabled) setIsOpen(!isOpen)
             }}
             isDisabled={disabled}
+            kind={kind}
             css={customStyle.select}
             {...props}
           >

@@ -63,6 +63,7 @@ export const Options: React.FC<OptionsProps> = ({
   if (!isMultiple && grouping)
     return (
       <StyledOptionsGroup
+        tabIndex={-1}
         css={{
           ...customStyle.optionsGroup,
           '&::-webkit-scrollbar-thumb': {
@@ -87,7 +88,7 @@ export const Options: React.FC<OptionsProps> = ({
                   <NotFoundMessage>No encontrado</NotFoundMessage>
                 ) : (
                   <StyledOptionItem
-                    tabIndex={0}
+                    tabIndex={option.disabled ? -1 : 0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
                     onClick={() =>
                       !option.disabled && optionHasBeenChosen(option)
@@ -127,6 +128,7 @@ export const Options: React.FC<OptionsProps> = ({
   if (isMultiple && !grouping)
     return (
       <StyledOptionsGroup
+        tabIndex={-1}
         css={{
           ...customStyle.optionsGroup,
           '&::-webkit-scrollbar-thumb': {
@@ -160,10 +162,11 @@ export const Options: React.FC<OptionsProps> = ({
                 }
                 isDisabled={option.disabled}
                 kind={kind}
-                tabIndex={0}
+                tabIndex={option.disabled ? -1 : 0}
                 ref={optionRef as React.MutableRefObject<HTMLDivElement>}
               >
                 <Checkbox
+                  tabIndex={-1}
                   checked={
                     Array.isArray(value) &&
                     value?.includes(option) &&
@@ -197,6 +200,7 @@ export const Options: React.FC<OptionsProps> = ({
   if (isMultiple && grouping)
     return (
       <StyledOptionsGroup
+        tabIndex={-1}
         css={{
           ...customStyle.optionsGroup,
           '&::-webkit-scrollbar-thumb': {
@@ -236,10 +240,11 @@ export const Options: React.FC<OptionsProps> = ({
                     }
                     isDisabled={option.disabled}
                     kind={kind}
-                    tabIndex={0}
+                    tabIndex={option.disabled ? -1 : 0}
                     ref={optionRef as React.MutableRefObject<HTMLDivElement>}
                   >
                     <Checkbox
+                      tabIndex={-1}
                       checked={
                         Array.isArray(value) &&
                         value?.includes(option) &&
@@ -274,6 +279,7 @@ export const Options: React.FC<OptionsProps> = ({
   if (radio)
     return (
       <StyledOptionsGroup
+        tabIndex={-1}
         css={{
           ...customStyle.optionsGroup,
           '& div div div label': {
@@ -302,16 +308,22 @@ export const Options: React.FC<OptionsProps> = ({
         <RadioGroup direction="vertical" name="select-radio">
           {allPosibleOptions.map((option, i) => (
             <Radio
+              tabIndex={-1}
               onClick={() => !option.disabled && optionHasBeenChosen(option)}
               value={`${id}_option_value_${option.value}`}
               key={`${id}_option_radio_${option.value}`}
               id={`${id}_option_id_${option.value}`}
+              checked={
+                !Array.isArray(value) &&
+                option.value === value.value &&
+                !option.disabled
+              }
               label={
                 option.label === 'No encontrado' ? (
                   <NotFoundMessage>No encontrado</NotFoundMessage>
                 ) : (
                   <StyledOptionItem
-                    tabIndex={0}
+                    tabIndex={option.disabled ? -1 : 0}
                     ref={optionRef as React.MutableRefObject<HTMLLIElement>}
                     kind={kind}
                     withoutCheck
@@ -349,6 +361,7 @@ export const Options: React.FC<OptionsProps> = ({
     )
   return (
     <StyledOptionsGroup
+      tabIndex={-1}
       css={{
         ...customStyle.optionsGroup,
         '&::-webkit-scrollbar-thumb': {
@@ -366,7 +379,7 @@ export const Options: React.FC<OptionsProps> = ({
             <NotFoundMessage>No encontrado</NotFoundMessage>
           ) : (
             <StyledOptionItem
-              tabIndex={0}
+              tabIndex={option.disabled ? -1 : 0}
               ref={optionRef as React.MutableRefObject<HTMLLIElement>}
               onClick={() => !option.disabled && optionHasBeenChosen(option)}
               kind={kind}
