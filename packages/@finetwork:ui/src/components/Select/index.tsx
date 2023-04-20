@@ -246,7 +246,19 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         }
       }
       setCustomStyle(css)
-    }, [])
+    }, [
+      width,
+      borderRadius,
+      optionContainerHeight,
+      hoverBackgroundOptionColor,
+      hoverOptionTextColor,
+      labelSize,
+      optionTextColor,
+      error,
+      borderColor,
+      labelColor,
+      hoverBorderColor,
+    ])
 
     React.useEffect(() => {
       document.addEventListener('click', handleOutsideClick, true)

@@ -313,6 +313,7 @@ export const Options: React.FC<OptionsProps> = ({
               value={`${id}_option_value_${option.value}`}
               key={`${id}_option_radio_${option.value}`}
               id={`${id}_option_id_${option.value}`}
+              onChange={() => {}}
               checked={
                 !Array.isArray(value) &&
                 option.value === value.value &&
