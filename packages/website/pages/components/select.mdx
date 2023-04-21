@@ -298,6 +298,36 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Radio</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="search"
+            value={value}
+            label="Fruits"
+            options={options}
+            onChange={onChange}
+            radio
+            notFoundText="Option not found"
+            width="200px"
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Kind</H4>
 </div>
 

@@ -49,6 +49,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       scrollbarColor,
       onChange,
       grouping,
+      radio,
       notFoundText,
       searchText,
       ...props
@@ -109,10 +110,16 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       if (hoverBorderColor) {
         css = {
           ...css,
+          select: {
+            ...css.select,
+            '&:focus': {
+              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+            },
+          },
           container: {
             ...css.container,
             '&:hover': {
-              outline: `2px solid ${hoverBorderColor} !important`,
+              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
             },
           },
         }
@@ -132,9 +139,6 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           container: {
             ...css.container,
             outline: `1px solid ${borderColor} !important`,
-            '&:hover': {
-              outline: `2px solid ${borderColor} !important`,
-            },
           },
         }
       }
@@ -145,11 +149,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             ...css.label,
             color: '$error !important',
           },
+          select: {
+            ...css.select,
+            outline: '1px solid $error !important',
+            '&:focus': {
+              boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error !important',
+            },
+          },
           container: {
             ...css.container,
-            outline: '1px solid $error !important',
             '&:hover': {
-              outline: '2px solid $error !important',
+              boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$error !important',
             },
           },
         }
@@ -236,10 +246,26 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         }
       }
       setCustomStyle(css)
-    }, [])
+    }, [
+      width,
+      borderRadius,
+      optionContainerHeight,
+      hoverBackgroundOptionColor,
+      hoverOptionTextColor,
+      labelSize,
+      optionTextColor,
+      error,
+      borderColor,
+      labelColor,
+      hoverBorderColor,
+    ])
 
     React.useEffect(() => {
       document.addEventListener('click', handleOutsideClick, true)
+
+      return () => {
+        document.removeEventListener('click', handleOutsideClick)
+      }
     }, [])
 
     React.useEffect(() => {
@@ -354,8 +380,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           css={customStyle.container}
         >
           <StyledSelect
+            tabIndex={disabled ? -1 : 0}
             id={id}
-            tabIndex={0}
             ref={inputRef}
             onKeyDown={(e) => {
               if (e.code === 'Enter' || e.code === 'Space') {
@@ -366,6 +392,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               if (!disabled) setIsOpen(!isOpen)
             }}
             isDisabled={disabled}
+            kind={kind}
             css={customStyle.select}
             {...props}
           >
@@ -420,6 +447,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   value={value}
                   isMultiple={isMultiple}
                   grouping={grouping}
+                  radio={radio}
                 />
               </Content>
             </Overlay>
@@ -469,6 +497,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 value={value}
                 isMultiple={isMultiple}
                 grouping={grouping}
+                radio={radio}
               />
             </Content>
           )}
