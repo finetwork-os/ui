@@ -262,6 +262,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       document.addEventListener('click', handleOutsideClick, true)
+
+      return () => {
+        document.removeEventListener('click', handleOutsideClick)
+      }
     }, [])
 
     React.useEffect(() => {
