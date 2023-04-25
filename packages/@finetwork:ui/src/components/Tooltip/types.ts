@@ -11,7 +11,7 @@ type TooltipComponentOwnProps = {
   type?: 'standard' | 'success' | 'warning' | 'error' | 'disabled'
   backgroundColor?: string
   colorText?: string
-  width?: string
+  width?: number
   height?: string
   position?: 'top' | 'right' | 'bottom' | 'left'
   borderRadius?: string

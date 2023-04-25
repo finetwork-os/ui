@@ -4,7 +4,9 @@ import { styled } from '../../stitches.config'
 export const Content = styled('div', {
   cursor: 'default',
   position: 'relative',
-  display: 'inline-block',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 })
 
 export const StyledTooltip = styled('div', {

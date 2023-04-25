@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Container, Content, StyledTooltip, TooltipContainer } from './styled'
 import { TooltipProps } from './types'
+import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (
@@ -32,9 +33,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       'top' | 'right' | 'bottom' | 'left'
     >(position)
 
-    React.useEffect(() => {
-      console.log(autoPosition)
-    }, [autoPosition])
+    const size = useWindowSize()
 
     function arrowColor() {
       if (backgroundColor) return backgroundColor
@@ -48,92 +47,108 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       return '#6f6f6f'
     }
 
-    if (autoPosition === 'left') {
-      if (
-        document.getElementById(id)?.getBoundingClientRect().left <=
-        document.getElementById(idContent)?.getBoundingClientRect().width * 2
-      ) {
-        if (
-          document.getElementById(id)?.getBoundingClientRect().right >
-          document.getElementById(idContent)?.getBoundingClientRect().width * 2
-        ) {
-          setAutoPosition('right')
-        } else if (
-          document.getElementById(id)?.getBoundingClientRect().top >
-          document.getElementById(idContent)?.getBoundingClientRect().height *
-            1.5
-        ) {
-          setAutoPosition('top')
-        } else {
-          setAutoPosition('bottom')
-        }
+    function getDistances(el) {
+      var rect = el?.getBoundingClientRect()
+      return {
+        bottom: window.innerHeight - rect.bottom,
+        height: rect.height,
+        left: rect.left,
+        right: window.innerWidth - rect.right,
+        top: rect.top,
+        width: rect.width,
       }
     }
-    if (autoPosition === 'right') {
-      if (
-        document.getElementById(id)?.getBoundingClientRect().right <=
-        document.getElementById(idContent)?.getBoundingClientRect().width * 2
-      ) {
-        if (
-          document.getElementById(id)?.getBoundingClientRect().left >
-          document.getElementById(idContent)?.getBoundingClientRect().width * 2
-        ) {
-          setAutoPosition('left')
-        } else if (
-          document.getElementById(id)?.getBoundingClientRect().top >
-          document.getElementById(idContent)?.getBoundingClientRect().height *
-            1.5
-        ) {
-          setAutoPosition('top')
-        } else {
-          setAutoPosition('bottom')
+
+    React.useEffect(() => {
+      if (id) {
+        const contentWidth = width + 25
+        const parentRect = getDistances(document?.getElementById(id))
+        console.log(parentRect)
+
+        if (autoPosition === 'left') {
+          if (parentRect.left <= contentWidth) {
+            if (parentRect.right > contentWidth) {
+              setAutoPosition('right')
+            } else if (
+              document.getElementById(id)?.getBoundingClientRect().top >
+              document.getElementById(idContent)?.getBoundingClientRect()
+                .height *
+                1.5
+            ) {
+              setAutoPosition('top')
+            } else {
+              setAutoPosition('bottom')
+            }
+          }
+        }
+        if (autoPosition === 'right') {
+          if (parentRect.right <= contentWidth) {
+            if (parentRect.left > contentWidth) {
+              setAutoPosition('left')
+            } else if (
+              document.getElementById(id)?.getBoundingClientRect().top >
+              document.getElementById(idContent)?.getBoundingClientRect()
+                .height *
+                1.5
+            ) {
+              setAutoPosition('top')
+            } else {
+              setAutoPosition('bottom')
+            }
+          }
+        }
+        if (autoPosition === 'top') {
+          if (
+            document.getElementById(id)?.getBoundingClientRect().top <=
+            document.getElementById(idContent)?.getBoundingClientRect().height *
+              1.5
+          ) {
+            if (
+              document.getElementById(id)?.getBoundingClientRect().bottom >
+              document.getElementById(idContent)?.getBoundingClientRect()
+                .width *
+                1.5
+            ) {
+              setAutoPosition('bottom')
+            } else if (
+              document.getElementById(id)?.getBoundingClientRect().left >
+              document.getElementById(idContent)?.getBoundingClientRect()
+                .height *
+                1.5
+            ) {
+              setAutoPosition('left')
+            } else {
+              setAutoPosition('right')
+            }
+          }
+        }
+        if (autoPosition === 'bottom') {
+          if (
+            document.getElementById(id)?.getBoundingClientRect().bottom <=
+            document.getElementById(idContent)?.getBoundingClientRect().height *
+              1.5
+          ) {
+            if (
+              document.getElementById(id)?.getBoundingClientRect().top >
+              document.getElementById(idContent)?.getBoundingClientRect()
+                .width *
+                1.5
+            ) {
+              setAutoPosition('top')
+            } else if (
+              document.getElementById(id)?.getBoundingClientRect().left >
+              document.getElementById(idContent)?.getBoundingClientRect()
+                .height *
+                1.5
+            ) {
+              setAutoPosition('left')
+            } else {
+              setAutoPosition('right')
+            }
+          }
         }
       }
-    }
-    if (autoPosition === 'top') {
-      if (
-        document.getElementById(id)?.getBoundingClientRect().top <=
-        document.getElementById(idContent)?.getBoundingClientRect().height * 1.5
-      ) {
-        if (
-          document.getElementById(id)?.getBoundingClientRect().bottom >
-          document.getElementById(idContent)?.getBoundingClientRect().width *
-            1.5
-        ) {
-          setAutoPosition('bottom')
-        } else if (
-          document.getElementById(id)?.getBoundingClientRect().left >
-          document.getElementById(idContent)?.getBoundingClientRect().height *
-            1.5
-        ) {
-          setAutoPosition('left')
-        } else {
-          setAutoPosition('right')
-        }
-      }
-    }
-    if (autoPosition === 'bottom') {
-      if (
-        document.getElementById(id)?.getBoundingClientRect().bottom <=
-        document.getElementById(idContent)?.getBoundingClientRect().height * 1.5
-      ) {
-        if (
-          document.getElementById(id)?.getBoundingClientRect().top >
-          document.getElementById(idContent)?.getBoundingClientRect().width *
-            1.5
-        ) {
-          setAutoPosition('top')
-        } else if (
-          document.getElementById(id)?.getBoundingClientRect().left >
-          document.getElementById(idContent)?.getBoundingClientRect().height *
-            1.5
-        ) {
-          setAutoPosition('left')
-        } else {
-          setAutoPosition('right')
-        }
-      }
-    }
+    }, [size, position])
 
     const [customStyle, setCustomStyle] = React.useState({
       tooltip: {},
@@ -169,7 +184,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           ...css,
           tooltip: {
             ...css.tooltip,
-            width: width,
+            width: `${width}px`,
           },
         }
       }
@@ -370,13 +385,25 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       }
 
       setCustomStyle(css)
-    }, [])
+    }, [
+      arrow,
+      interactive,
+      gap,
+      contentWidth,
+      borderRadius,
+      maxWidth,
+      height,
+      width,
+      colorText,
+      backgroundColor,
+    ])
 
     const [show, setShow] = React.useState<boolean>(false)
 
     return (
-      <Container id={id} align={align}>
+      <Container align={align}>
         <Content
+          id={id}
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
           onTouchStart={() => setShow(true)}
@@ -384,22 +411,22 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           {...props}
         >
           {children}
-        </Content>
-        <TooltipContainer
-          id={idContent}
-          onMouseEnter={() => setShow(true)}
-          onMouseLeave={() => setShow(false)}
-          position={autoPosition}
-          css={customStyle.containerTooltip}
-        >
-          <StyledTooltip
-            show={show && !disabled}
-            type={type}
-            css={customStyle.tooltip}
+          <TooltipContainer
+            onMouseEnter={() => setShow(true)}
+            onMouseLeave={() => setShow(false)}
+            position={autoPosition}
+            css={customStyle.containerTooltip}
           >
-            {content}
-          </StyledTooltip>
-        </TooltipContainer>
+            <StyledTooltip
+              id={idContent}
+              show={show && !disabled}
+              type={type}
+              css={customStyle.tooltip}
+            >
+              {content}
+            </StyledTooltip>
+          </TooltipContainer>
+        </Content>
       </Container>
     )
   }
