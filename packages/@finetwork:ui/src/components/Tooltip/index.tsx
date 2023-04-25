@@ -29,9 +29,15 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     },
     ref
   ) => {
+    const [show, setShow] = React.useState<boolean>(false)
     const [autoPosition, setAutoPosition] = React.useState<
       'top' | 'right' | 'bottom' | 'left'
     >(position)
+    const [tooltipHeight, setTootipHeight] = React.useState(0)
+    const [customStyle, setCustomStyle] = React.useState({
+      tooltip: {},
+      containerTooltip: {},
+    })
 
     const size = useWindowSize()
 
@@ -60,100 +66,47 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     }
 
     React.useEffect(() => {
-      if (id) {
-        const contentWidth = width + 25
-        const parentRect = getDistances(document?.getElementById(id))
-        console.log(parentRect)
+      if (!show) return setTootipHeight(0)
+      return setTootipHeight(document.getElementById(idContent)?.offsetHeight)
+    }, [show])
 
-        if (autoPosition === 'left') {
-          if (parentRect.left <= contentWidth) {
-            if (parentRect.right > contentWidth) {
-              setAutoPosition('right')
-            } else if (
-              document.getElementById(id)?.getBoundingClientRect().top >
-              document.getElementById(idContent)?.getBoundingClientRect()
-                .height *
-                1.5
-            ) {
-              setAutoPosition('top')
-            } else {
-              setAutoPosition('bottom')
-            }
-          }
-        }
-        if (autoPosition === 'right') {
-          if (parentRect.right <= contentWidth) {
-            if (parentRect.left > contentWidth) {
-              setAutoPosition('left')
-            } else if (
-              document.getElementById(id)?.getBoundingClientRect().top >
-              document.getElementById(idContent)?.getBoundingClientRect()
-                .height *
-                1.5
-            ) {
-              setAutoPosition('top')
-            } else {
-              setAutoPosition('bottom')
-            }
-          }
-        }
-        if (autoPosition === 'top') {
-          if (
-            document.getElementById(id)?.getBoundingClientRect().top <=
-            document.getElementById(idContent)?.getBoundingClientRect().height *
-              1.5
-          ) {
-            if (
-              document.getElementById(id)?.getBoundingClientRect().bottom >
-              document.getElementById(idContent)?.getBoundingClientRect()
-                .width *
-                1.5
-            ) {
-              setAutoPosition('bottom')
-            } else if (
-              document.getElementById(id)?.getBoundingClientRect().left >
-              document.getElementById(idContent)?.getBoundingClientRect()
-                .height *
-                1.5
-            ) {
-              setAutoPosition('left')
-            } else {
-              setAutoPosition('right')
-            }
-          }
-        }
-        if (autoPosition === 'bottom') {
-          if (
-            document.getElementById(id)?.getBoundingClientRect().bottom <=
-            document.getElementById(idContent)?.getBoundingClientRect().height *
-              1.5
-          ) {
-            if (
-              document.getElementById(id)?.getBoundingClientRect().top >
-              document.getElementById(idContent)?.getBoundingClientRect()
-                .width *
-                1.5
-            ) {
-              setAutoPosition('top')
-            } else if (
-              document.getElementById(id)?.getBoundingClientRect().left >
-              document.getElementById(idContent)?.getBoundingClientRect()
-                .height *
-                1.5
-            ) {
-              setAutoPosition('left')
-            } else {
-              setAutoPosition('right')
-            }
-          }
-        }
+    React.useEffect(() => {
+      if (!tooltipHeight) return
+      if (!id) return
+
+      const contentWidth = width + 25
+      const contentHeight = tooltipHeight
+      const parentRect = getDistances(document?.getElementById(id))
+
+      console.log(contentWidth, contentHeight)
+
+      if (position === 'right') {
+        if (parentRect.right >= contentWidth) return setAutoPosition('right')
+        if (parentRect.left >= contentWidth) return setAutoPosition('left')
+        if (parentRect.top >= contentHeight) return setAutoPosition('top')
+        if (parentRect.bottom >= contentHeight) return setAutoPosition('bottom')
       }
-    }, [size, position])
 
-    const [customStyle, setCustomStyle] = React.useState({
-      tooltip: {},
-      containerTooltip: {},
-    })
+      if (position === 'left') {
+        if (parentRect.left >= contentWidth) return setAutoPosition('left')
+        if (parentRect.right >= contentWidth) return setAutoPosition('right')
+        if (parentRect.top >= contentHeight) return setAutoPosition('top')
+        if (parentRect.bottom >= contentHeight) return setAutoPosition('bottom')
+      }
+
+      if (position === 'top') {
+        if (parentRect.top >= contentHeight) return setAutoPosition('top')
+        if (parentRect.bottom >= contentHeight) return setAutoPosition('bottom')
+        if (parentRect.left >= contentWidth) return setAutoPosition('left')
+        if (parentRect.right >= contentWidth) return setAutoPosition('right')
+      }
+
+      if (parentRect.bottom >= contentHeight) return setAutoPosition('bottom')
+      if (parentRect.top >= contentHeight) return setAutoPosition('top')
+      if (parentRect.left >= contentWidth) return setAutoPosition('left')
+      if (parentRect.right >= contentWidth) return setAutoPosition('right')
+    }, [size, position, idContent, tooltipHeight])
+
     React.useEffect(() => {
       let css = {
         tooltip: {},
@@ -397,8 +350,6 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       colorText,
       backgroundColor,
     ])
-
-    const [show, setShow] = React.useState<boolean>(false)
 
     return (
       <Container align={align}>
