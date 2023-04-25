@@ -29,11 +29,16 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     },
     ref
   ) => {
+    const parentRef = React.useRef(null)
+    const tooltipRef = React.useRef(null)
     const [show, setShow] = React.useState<boolean>(false)
     const [autoPosition, setAutoPosition] = React.useState<
       'top' | 'right' | 'bottom' | 'left'
     >(position)
-    const [tooltipHeight, setTootipHeight] = React.useState(0)
+    const [tooltipSize, setTooltipSize] = React.useState({
+      height: 0,
+      width: 0,
+    })
     const [customStyle, setCustomStyle] = React.useState({
       tooltip: {},
       containerTooltip: {},
@@ -54,7 +59,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     }
 
     function getDistances(el) {
-      var rect = el?.getBoundingClientRect()
+      var rect = el?.current?.getBoundingClientRect()
       return {
         bottom: window.innerHeight - rect.bottom,
         height: rect.height,
@@ -66,19 +71,20 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     }
 
     React.useEffect(() => {
-      if (!show) return setTootipHeight(0)
-      return setTootipHeight(document.getElementById(idContent)?.offsetHeight)
+      if (!show) return setTooltipSize({ height: 0, width: 0 })
+      return setTooltipSize({
+        height: tooltipRef?.current.offsetHeight,
+        width: tooltipRef?.current.offsetWidth,
+      })
     }, [show])
 
     React.useEffect(() => {
-      if (!tooltipHeight) return
+      if (!tooltipSize.height || !tooltipSize.width) return
       if (!id) return
 
-      const contentWidth = width + 25
-      const contentHeight = tooltipHeight
-      const parentRect = getDistances(document?.getElementById(id))
-
-      console.log(contentWidth, contentHeight)
+      const contentWidth = width ? width + 25 : tooltipSize.width + 25
+      const contentHeight = tooltipSize.height
+      const parentRect = getDistances(parentRef)
 
       if (position === 'right') {
         if (parentRect.right >= contentWidth) return setAutoPosition('right')
@@ -105,7 +111,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       if (parentRect.top >= contentHeight) return setAutoPosition('top')
       if (parentRect.left >= contentWidth) return setAutoPosition('left')
       if (parentRect.right >= contentWidth) return setAutoPosition('right')
-    }, [size, position, idContent, tooltipHeight])
+    }, [size, position, idContent, tooltipSize])
 
     React.useEffect(() => {
       let css = {
@@ -354,6 +360,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <Container align={align}>
         <Content
+          ref={parentRef}
           id={id}
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
@@ -369,6 +376,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
             css={customStyle.containerTooltip}
           >
             <StyledTooltip
+              ref={tooltipRef}
               id={idContent}
               show={show && !disabled}
               type={type}
