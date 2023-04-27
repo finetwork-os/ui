@@ -3,7 +3,6 @@ import { styled } from '../../stitches.config'
 
 export const Content = styled('div', {
   cursor: 'default',
-  position: 'relative',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -17,7 +16,7 @@ export const StyledTooltip = styled('div', {
   transition: 'all 0.5s ease-in-out',
   overflowWrap: 'break-word',
   width: 'max-content',
-  zIndex: 10,
+  zIndex: 9999,
   background: '#6f6f6f',
   color: '#FFF',
   variants: {
@@ -56,7 +55,6 @@ export const StyledTooltip = styled('div', {
 
 export const TooltipContainer = styled('div', {
   position: 'absolute',
-  zIndex: '99999',
   display: 'flex',
   variants: {
     position: {

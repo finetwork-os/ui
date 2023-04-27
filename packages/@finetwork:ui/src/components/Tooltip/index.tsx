@@ -368,23 +368,23 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           {...props}
         >
           {children}
-          <TooltipContainer
-            onMouseEnter={() => setShow(true)}
-            onMouseLeave={() => setShow(false)}
-            position={autoPosition}
-            css={customStyle.containerTooltip}
-          >
-            <StyledTooltip
-              ref={tooltipRef}
-              id={idContent}
-              show={show && !disabled}
-              type={type}
-              css={customStyle.tooltip}
-            >
-              {content}
-            </StyledTooltip>
-          </TooltipContainer>
         </Content>
+        <TooltipContainer
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+          position={autoPosition}
+          css={customStyle.containerTooltip}
+        >
+          <StyledTooltip
+            ref={tooltipRef}
+            id={idContent}
+            show={show && !disabled}
+            type={type}
+            css={customStyle.tooltip}
+          >
+            {content}
+          </StyledTooltip>
+        </TooltipContainer>
       </Container>
     )
   }
