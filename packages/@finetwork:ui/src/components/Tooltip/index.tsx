@@ -80,7 +80,6 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
 
     React.useEffect(() => {
       if (!tooltipSize.height || !tooltipSize.width) return
-      if (!id) return
 
       const contentWidth = width ? width + 25 : tooltipSize.width + 25
       const contentHeight = tooltipSize.height
@@ -111,7 +110,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       if (parentRect.top >= contentHeight) return setAutoPosition('top')
       if (parentRect.left >= contentWidth) return setAutoPosition('left')
       if (parentRect.right >= contentWidth) return setAutoPosition('right')
-    }, [size, position, idContent, tooltipSize])
+    }, [size, position, tooltipSize])
 
     React.useEffect(() => {
       let css = {
