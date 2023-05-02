@@ -88,11 +88,11 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         document.removeEventListener('keydown', handleKeyPress, true)
       }
 
-      if (disabledScroll) {
-        document.documentElement.style.overflow = isOpen ? 'hidden' : 'auto'
-      } else {
-        document.documentElement.style.overflow = 'unset'
-      }
+      document.body.style.cssText = isOpen ? `
+          position: fixed;
+          inline-size: 100%;
+          overflow-y: scroll;
+        ` : ''
 
       return () => {
         document.removeEventListener('click', handleOutsideClick, true)
