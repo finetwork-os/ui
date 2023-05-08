@@ -1,4 +1,5 @@
 import {
+  dialogAnimationClose,
   dialogAnimationOpen,
   fadeInBackground,
   fullDialogAnimationOpen,
@@ -17,8 +18,7 @@ export const StyledDialogTrigger = styled('button', {
 })
 
 export const StyledDialog = styled('div', {
-  display: 'flex',
-  animation: `${dialogAnimationOpen} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`,
+  display: 'none',
   justifyContent: 'center',
   zIndex: '9999',
   position: 'fixed',
@@ -29,11 +29,6 @@ export const StyledDialog = styled('div', {
   borderRadius: '5px',
   boxShadow: '0px 10px 20px 7px rgba(0,0,0,0.1)',
   variants: {
-    open: {
-      false: {
-        display: 'none',
-      },
-    },
     fullSize: {
       true: {
         animation: `${fullDialogAnimationOpen} 0.3s ease forwards`,
@@ -86,12 +81,4 @@ export const Overlay = styled('div', {
   right: 0,
   bottom: 0,
   margin: '0 auto',
-  animation: `${fadeInBackground} .7s forwards`,
-  variants: {
-    open: {
-      true: {
-        display: 'block !important',
-      },
-    },
-  },
 })

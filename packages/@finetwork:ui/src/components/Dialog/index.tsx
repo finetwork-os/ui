@@ -8,6 +8,12 @@ import {
   StyledDialogTrigger,
 } from './styled'
 import { DialogProps, DialogTriggerProps } from './types'
+import {
+  dialogAnimationClose,
+  dialogAnimationOpen,
+  fadeInBackground,
+  fadeOutBackground,
+} from '@finetwork:ui/src/animations'
 
 export const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -38,11 +44,37 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     ref
   ) => {
     const dialogRef = React.useRef<HTMLDivElement>(null)
+    const overlayRef = React.useRef<HTMLDivElement>(null)
 
     const [customStyle, setCustomStyle] = React.useState({
       dialog: {},
       closeButton: {},
     })
+    React.useEffect(() => {
+      console.log(overlay)
+      if (isOpen === true) {
+        const dialogElement = dialogRef.current
+        const overlayElement = overlayRef.current
+        dialogElement.style.display = 'flex'
+        overlayElement.style.display = 'block'
+        dialogElement.style.animation = `${dialogAnimationOpen} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        if (overlay === true) {
+          overlayElement.style.animation = `${fadeInBackground} 0.4s forwards`
+        }
+      }
+      if (isOpen === false) {
+        const dialogElement = dialogRef.current
+        const overlayElement = overlayRef.current
+        dialogElement.style.animation = `${dialogAnimationClose} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        if (overlay) {
+          overlayElement.style.animation = `${fadeOutBackground} 0.4s forwards`
+        }
+        setTimeout(() => {
+          dialogElement.style.display = 'none'
+          overlayElement.style.display = 'none'
+        }, 400)
+      }
+    }, [isOpen])
 
     React.useEffect(() => {
       let css = {
@@ -88,11 +120,13 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         document.removeEventListener('keydown', handleKeyPress, true)
       }
 
-      document.body.style.cssText = isOpen ? `
+      document.body.style.cssText = isOpen
+        ? `
           position: fixed;
           inline-size: 100%;
           overflow-y: scroll;
-        ` : ''
+        `
+        : ''
 
       return () => {
         document.removeEventListener('click', handleOutsideClick, true)
@@ -113,12 +147,12 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
     return (
       <>
-        <Overlay open={overlay && isOpen} />
+        <Overlay ref={overlayRef} />
         <StyledDialog
           css={customStyle.dialog}
           ref={dialogRef}
           id={id}
-          open={isOpen}
+          //open={isOpen}
           fullSize={width === 'full'}
           {...props}
         >
