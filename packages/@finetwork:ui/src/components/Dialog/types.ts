@@ -21,6 +21,7 @@ type DialogComponentOwnProps = {
   borderRadius?: string
   closeButton?: boolean
   closeButtonSize?: string
+  buttomSheet?: boolean
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }

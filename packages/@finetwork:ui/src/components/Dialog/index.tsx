@@ -9,10 +9,14 @@ import {
 } from './styled'
 import { DialogProps, DialogTriggerProps } from './types'
 import {
+  animationCloseSelectMobile,
+  animationSelectMobile,
   dialogAnimationClose,
   dialogAnimationOpen,
   fadeInBackground,
   fadeOutBackground,
+  fullDialogAnimationClose,
+  fullDialogAnimationOpen,
 } from '@finetwork:ui/src/animations'
 
 export const DialogTrigger = React.forwardRef<
@@ -37,6 +41,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       borderRadius,
       closeButton = true,
       closeButtonSize = '15px',
+      buttomSheet = false,
       isOpen,
       setIsOpen,
       ...props
@@ -51,13 +56,20 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       closeButton: {},
     })
     React.useEffect(() => {
-      console.log(overlay)
       if (isOpen === true) {
         const dialogElement = dialogRef.current
         const overlayElement = overlayRef.current
-        dialogElement.style.display = 'flex'
+        dialogElement.style.display = 'block'
         overlayElement.style.display = 'block'
-        dialogElement.style.animation = `${dialogAnimationOpen} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        if (!buttomSheet && width !== 'full') {
+          dialogElement.style.animation = `${dialogAnimationOpen} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        }
+        if (buttomSheet) {
+          dialogElement.style.animation = `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01) 0.25s forwards`
+        }
+        if (width === 'full') {
+          dialogElement.style.animation = `${fullDialogAnimationOpen} 0.4s ease forwards`
+        }
         if (overlay === true) {
           overlayElement.style.animation = `${fadeInBackground} 0.4s forwards`
         }
@@ -65,7 +77,15 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       if (isOpen === false) {
         const dialogElement = dialogRef.current
         const overlayElement = overlayRef.current
-        dialogElement.style.animation = `${dialogAnimationClose} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        if (!buttomSheet && width !== 'full') {
+          dialogElement.style.animation = `${dialogAnimationClose} 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        }
+        if (buttomSheet) {
+          dialogElement.style.animation = `${animationCloseSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01) 0.25s forwards`
+        }
+        if (width === 'full') {
+          dialogElement.style.animation = `${fullDialogAnimationClose} 0.4s ease forwards`
+        }
         if (overlay) {
           overlayElement.style.animation = `${fadeOutBackground} 0.4s forwards`
         }
@@ -152,8 +172,8 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           css={customStyle.dialog}
           ref={dialogRef}
           id={id}
-          //open={isOpen}
           fullSize={width === 'full'}
+          buttomSheet={buttomSheet}
           {...props}
         >
           {closeButton && (

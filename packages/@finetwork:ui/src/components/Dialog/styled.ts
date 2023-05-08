@@ -1,4 +1,5 @@
 import {
+  animationSelectMobile,
   dialogAnimationClose,
   dialogAnimationOpen,
   fadeInBackground,
@@ -24,16 +25,26 @@ export const StyledDialog = styled('div', {
   position: 'fixed',
   top: '50%',
   left: '50%',
-  transform: 'translate(-50%, -50%)',
   background: '#FFF',
   borderRadius: '5px',
   boxShadow: '0px 10px 20px 7px rgba(0,0,0,0.1)',
   variants: {
+    buttomSheet: {
+      true: {
+        position: 'fixed',
+        top: 'unset',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        margin: '0 auto',
+        transition:
+          'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+      },
+    },
     fullSize: {
       true: {
-        animation: `${fullDialogAnimationOpen} 0.3s ease forwards`,
         transform: 'unset',
-        //top: '0',
         bottom: '0',
         left: '0',
         right: '0',
@@ -45,6 +56,7 @@ export const StyledDialog = styled('div', {
 
 export const CloseButton = styled('button', {
   all: 'unset',
+  zIndex: 10,
   marginBottom: '1rem',
   fontFamily: 'inherit',
   borderRadius: '100%',

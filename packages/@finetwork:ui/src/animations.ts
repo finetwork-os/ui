@@ -116,6 +116,11 @@ export const animationSelectMobile = keyframes({
   '100%': { transform: 'translateY(0)' },
 })
 
+export const animationCloseSelectMobile = keyframes({
+  '0%': { transform: 'translateY(0)' },
+  '100%': { transform: 'translateY(100%)' },
+})
+
 export function switchFunction(size: 'large' | 'medium') {
   switch (size) {
     case 'medium':
@@ -193,4 +198,8 @@ export const dialogAnimationClose = keyframes({
 export const fullDialogAnimationOpen = keyframes({
   '0%': { opacity: 0, top: '20' },
   '100%': { opacity: 1, top: '0' },
+})
+export const fullDialogAnimationClose = keyframes({
+  '0%': { opacity: 1, top: '0' },
+  '100%': { opacity: 0, top: '20' },
 })

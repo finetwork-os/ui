@@ -134,6 +134,30 @@ export const styleContainer = {
 </Playground>
 
 <div>
+  <H3 font="secondary">Bottom Sheet</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [isOpen, setIsOpen] = React.useState(false)
+      return (
+        <div style={styles}>
+          <DialogTrigger setIsOpen={setIsOpen}>Bottom Sheet</DialogTrigger>
+          <Dialog buttomSheet={true} isOpen={isOpen} setIsOpen={setIsOpen}>
+            <div style={styleContainer}>
+              <H4>This is the title of the dialog</H4>
+              <Paragraph4>This is the content of the dialog</Paragraph4>
+            </div>
+          </Dialog>
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H3 font="secondary">Close Button</H3>
 </div>
 
