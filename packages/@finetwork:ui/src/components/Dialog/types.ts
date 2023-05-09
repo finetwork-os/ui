@@ -17,10 +17,10 @@ type DialogComponentOwnProps = {
   overlay?: boolean
   width?: 'full' | 'auto' | string
   fullSize?: boolean
-  disabledScroll?: boolean
   borderRadius?: string
   closeButton?: boolean
   closeButtonSize?: string
+  bottomSheet?: boolean
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
