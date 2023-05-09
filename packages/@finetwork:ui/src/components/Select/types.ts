@@ -19,6 +19,7 @@ export type TypeOptions =
       options: Array<TypeOption>
       disabled?: boolean
     }>
+  | any
 
 export interface DOMEvent<T extends EventTarget> extends Event {
   readonly target: T
