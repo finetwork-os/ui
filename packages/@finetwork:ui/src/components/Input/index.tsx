@@ -33,13 +33,7 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
           type="button"
         >
           <RenderEnhancer
-            Enhancer={
-              visiblePassword ? (
-                <EyeClosedIcon width={20} />
-              ) : (
-                <EyeOpenIcon width={20} />
-              )
-            }
+            Enhancer={visiblePassword ? <EyeClosedIcon /> : <EyeOpenIcon />}
           />
         </StyledEyeButton>
       </StyledContainerInputPassword>
