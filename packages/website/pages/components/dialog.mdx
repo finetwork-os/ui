@@ -144,7 +144,7 @@ export const styleContainer = {
       return (
         <div style={styles}>
           <DialogTrigger setIsOpen={setIsOpen}>Bottom Sheet</DialogTrigger>
-          <Dialog buttomSheet={true} isOpen={isOpen} setIsOpen={setIsOpen}>
+          <Dialog bottomSheet={true} isOpen={isOpen} setIsOpen={setIsOpen}>
             <div style={styleContainer}>
               <H4>This is the title of the dialog</H4>
               <Paragraph4>This is the content of the dialog</Paragraph4>
@@ -205,42 +205,6 @@ export const styleContainer = {
         <div style={styles}>
           <DialogTrigger setIsOpen={setIsOpen}>Close Button Size</DialogTrigger>
           <Dialog closeButtonSize="25px" isOpen={isOpen} setIsOpen={setIsOpen}>
-            <div style={styleContainer}>
-              <H4>This is the title of the dialog</H4>
-              <Paragraph4>This is the content of the dialog</Paragraph4>
-            </div>
-          </Dialog>
-        </div>
-      )
-    }
-    return <App />
-  }}
-</Playground>
-
-<div>
-  <H3 font="secondary">Disabled Scroll</H3>
-</div>
-
-<Playground>
-  {() => {
-    const App = () => {
-      const [isOpen1, setIsOpen1] = React.useState(false)
-      const [isOpen2, setIsOpen2] = React.useState(false)
-      return (
-        <div style={styles}>
-          <DialogTrigger setIsOpen={setIsOpen1}>Able scroll</DialogTrigger>
-          <Dialog
-            disabledScroll={false}
-            isOpen={isOpen1}
-            setIsOpen={setIsOpen1}
-          >
-            <div style={styleContainer}>
-              <H4>This is the title of the dialog</H4>
-              <Paragraph4>This is the content of the dialog</Paragraph4>
-            </div>
-          </Dialog>
-          <DialogTrigger setIsOpen={setIsOpen2}>Disabled scroll</DialogTrigger>
-          <Dialog disabledScroll={true} isOpen={isOpen2} setIsOpen={setIsOpen2}>
             <div style={styleContainer}>
               <H4>This is the title of the dialog</H4>
               <Paragraph4>This is the content of the dialog</Paragraph4>

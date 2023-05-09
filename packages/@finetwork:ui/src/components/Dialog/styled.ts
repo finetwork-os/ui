@@ -29,7 +29,7 @@ export const StyledDialog = styled('div', {
   borderRadius: '5px',
   boxShadow: '0px 10px 20px 7px rgba(0,0,0,0.1)',
   variants: {
-    buttomSheet: {
+    bottomSheet: {
       true: {
         position: 'fixed',
         top: 'unset',
