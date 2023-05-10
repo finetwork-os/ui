@@ -18,7 +18,6 @@ import {
   fullDialogAnimationClose,
   fullDialogAnimationOpen,
 } from '@finetwork:ui/src/animations'
-import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import { handleDialogCssProps } from './utils'
 
 export const DialogTrigger = React.forwardRef<
@@ -49,7 +48,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     },
     ref
   ) => {
-    const { width: windowWidth } = useWindowSize()
     const dialogRef = React.useRef<HTMLDivElement>(null)
     const overlayRef = React.useRef<HTMLDivElement>(null)
 
@@ -74,6 +72,16 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       const dialogElement = dialogRef.current
       const overlayElement = overlayRef.current
 
+      dialogElement.addEventListener('animationend', () => {
+        if (isOpen) {
+          overlayElement.style.display = 'block'
+          dialogElement.style.display = 'block'
+        } else {
+          overlayElement.style.display = 'none'
+          dialogElement.style.display = 'none'
+        }
+      })
+
       if (isOpen) {
         dialogElement.style.display = 'block'
         overlayElement.style.display = 'block'
@@ -94,16 +102,11 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       if (overlay) {
         overlayElement.style.animation = `${isOpen ? fadeInBackground : fadeOutBackground} 0.4s forwards`
       }
-
-      if (!isOpen) setTimeout(() => {
-        dialogElement.style.display = 'none'
-        overlayElement.style.display = 'none'
-      }, 400)
     }
 
     React.useEffect(() => {
       handleDialogAnimation()
-    }, [isOpen, windowWidth])
+    }, [isOpen])
 
     React.useEffect(() => {
       setCustomStyle(handleDialogCssProps(borderRadius, closeButtonSize, width))
