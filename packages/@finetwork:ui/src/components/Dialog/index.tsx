@@ -18,7 +18,6 @@ import {
   fullDialogAnimationClose,
   fullDialogAnimationOpen,
 } from '@finetwork:ui/src/animations'
-import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import { handleDialogCssProps } from './utils'
 
 export const DialogTrigger = React.forwardRef<
@@ -49,8 +48,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     },
     ref
   ) => {
-    let timeoutId;
-    const { width: windowWidth } = useWindowSize()
     const dialogRef = React.useRef<HTMLDivElement>(null)
     const overlayRef = React.useRef<HTMLDivElement>(null)
 

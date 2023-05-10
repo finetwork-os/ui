@@ -18,7 +18,8 @@ import {
   StyledLabel,
   StyledSelect,
 } from './styled'
-import { DOMEvent, SelectProps, SelectState } from './types'
+import { DOMEvent, SelectProps, SelectState, TypeOption } from './types'
+import { Paragraph4 } from '../Typography'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
@@ -95,6 +96,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     const searchInputRef = React.useRef<HTMLInputElement>(null)
 
     const { width: displayWidth } = useWindowSize()
+
+    function isTypeOption(option: any): option is TypeOption {
+      return (option as TypeOption).label !== undefined;
+    }
 
     React.useEffect(() => {
       let css = {
@@ -312,6 +317,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     }, [search, isOpen])
 
     React.useEffect(() => {
+      if (options.length === 1) {
+        const option = options[0] as TypeOption
+        if (options[0])
+          onChange({ value: option.value, label: option.label })
+      }
+
       updateState({
         allPosibleOptions: options,
       })
@@ -372,47 +383,102 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {label}
           </StyledLabel>
         )}
-        <SelectContainer
-          id={`container-${id}`}
-          isDisabled={disabled}
-          kind={kind}
-          search={search}
-          css={customStyle.container}
-        >
-          <StyledSelect
-            tabIndex={disabled ? -1 : 0}
-            id={id}
-            ref={inputRef}
-            onKeyDown={(e) => {
-              if (e.code === 'Enter' || e.code === 'Space') {
-                setIsOpen(!isOpen)
-              }
-            }}
-            onClick={() => {
-              if (!disabled) setIsOpen(!isOpen)
-            }}
+        {options.length === 1 && isTypeOption(options[0]) ? (
+          <Paragraph4 css={{ fontWeight: 'bold' }}>
+            {options[0].label}
+          </Paragraph4>
+        ) : (
+          <SelectContainer
+            id={`container-${id}`}
             isDisabled={disabled}
             kind={kind}
-            css={customStyle.select}
-            {...props}
+            search={search}
+            css={customStyle.container}
           >
-            <ShowChosenOptions>
-              {isMultiple
-                ? selectLabelToMultipleOption()
-                : !Array.isArray(value) && value.label}
-            </ShowChosenOptions>
-            <Arrow isOpen={isOpen} />
-          </StyledSelect>
-          {displayWidth < mediaQuery.tablet ? (
-            <Overlay isMobile={isOverlay}>
+            <StyledSelect
+              tabIndex={disabled ? -1 : 0}
+              id={id}
+              ref={inputRef}
+              onKeyDown={(e) => {
+                if (e.code === 'Enter' || e.code === 'Space') {
+                  setIsOpen(!isOpen)
+                }
+              }}
+              onClick={() => {
+                if (!disabled) setIsOpen(!isOpen)
+              }}
+              isDisabled={disabled}
+              kind={kind}
+              css={customStyle.select}
+              {...props}
+            >
+              <ShowChosenOptions>
+                {isMultiple
+                  ? selectLabelToMultipleOption()
+                  : !Array.isArray(value) && value.label}
+              </ShowChosenOptions>
+              <Arrow isOpen={isOpen} />
+            </StyledSelect>
+            {displayWidth < mediaQuery.tablet ? (
+              <Overlay isMobile={isOverlay}>
+                <Content
+                  ref={optionGroupRef}
+                  isOpen={isOpen}
+                  css={customStyle.optionsContainer}
+                >
+                  {optionContainerTitle && (
+                    <div style={{ width: '100%', marginBottom: '0.5rem' }}>
+                      <MainTitle css={{ padding: '0.7rem 0' }}>
+                        {optionContainerTitle}
+                      </MainTitle>
+                      <Separator />
+                    </div>
+                  )}
+                  {search && (
+                    <SearchContainer>
+                      <SearchIcon />
+                      <SearchInput
+                        type="text"
+                        autoFocus
+                        placeholder={searchText}
+                        id="seachInput"
+                        value={searchValue}
+                        ref={searchInputRef}
+                        onChange={handleChangeInputValue}
+                      />
+                    </SearchContainer>
+                  )}
+                  <Options
+                    allPosibleOptions={allPosibleOptions}
+                    optionRef={optionRef}
+                    id={id}
+                    onChange={onChange}
+                    setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
+                    kind={kind}
+                    scrollbarColor={scrollbarColor}
+                    withoutCheck={withoutCheck}
+                    customStyle={customStyle}
+                    selectedOptionColor={selectedOptionColor}
+                    optionTextColor={optionTextColor}
+                    value={value}
+                    isMultiple={isMultiple}
+                    grouping={grouping}
+                    radio={radio}
+                  />
+                </Content>
+              </Overlay>
+            ) : (
               <Content
                 ref={optionGroupRef}
                 isOpen={isOpen}
-                css={customStyle.optionsContainer}
+                css={{
+                  ...customStyle.optionsContainer,
+                  width: `${getSelectWidth()}px !important`,
+                }}
               >
                 {optionContainerTitle && (
-                  <div style={{ width: '100%', marginBottom: '0.5rem' }}>
-                    <MainTitle css={{ padding: '0.7rem 0' }}>
+                  <div style={{ width: '100%', marginBottom: '0.2rem' }}>
+                    <MainTitle css={{ padding: '0.5rem 0' }}>
                       {optionContainerTitle}
                     </MainTitle>
                     <Separator />
@@ -427,8 +493,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                       placeholder={searchText}
                       id="seachInput"
                       value={searchValue}
-                      ref={searchInputRef}
                       onChange={handleChangeInputValue}
+                      ref={searchInputRef}
                     />
                   </SearchContainer>
                 )}
@@ -450,58 +516,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                   radio={radio}
                 />
               </Content>
-            </Overlay>
-          ) : (
-            <Content
-              ref={optionGroupRef}
-              isOpen={isOpen}
-              css={{
-                ...customStyle.optionsContainer,
-                width: `${getSelectWidth()}px !important`,
-              }}
-            >
-              {optionContainerTitle && (
-                <div style={{ width: '100%', marginBottom: '0.2rem' }}>
-                  <MainTitle css={{ padding: '0.5rem 0' }}>
-                    {optionContainerTitle}
-                  </MainTitle>
-                  <Separator />
-                </div>
-              )}
-              {search && (
-                <SearchContainer>
-                  <SearchIcon />
-                  <SearchInput
-                    type="text"
-                    autoFocus
-                    placeholder={searchText}
-                    id="seachInput"
-                    value={searchValue}
-                    onChange={handleChangeInputValue}
-                    ref={searchInputRef}
-                  />
-                </SearchContainer>
-              )}
-              <Options
-                allPosibleOptions={allPosibleOptions}
-                optionRef={optionRef}
-                id={id}
-                onChange={onChange}
-                setIsOpen={(isOpen: boolean) => updateState({ isOpen })}
-                kind={kind}
-                scrollbarColor={scrollbarColor}
-                withoutCheck={withoutCheck}
-                customStyle={customStyle}
-                selectedOptionColor={selectedOptionColor}
-                optionTextColor={optionTextColor}
-                value={value}
-                isMultiple={isMultiple}
-                grouping={grouping}
-                radio={radio}
-              />
-            </Content>
-          )}
-        </SelectContainer>
+            )}
+          </SelectContainer>
+        )}
+
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </MainContainer>
     )
