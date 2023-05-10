@@ -97,6 +97,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     const { width: displayWidth } = useWindowSize()
 
+    function isTypeOption(option: any): option is TypeOption {
+      return (option as TypeOption).label !== undefined;
+    }
+
     React.useEffect(() => {
       let css = {
         select: {},
@@ -314,7 +318,9 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
 
     React.useEffect(() => {
       if (options.length === 1) {
-        onChange({ value: options[0].value, label: options[0].label })
+        const option = options[0] as TypeOption
+        if (options[0])
+          onChange({ value: option.value, label: option.label })
       }
 
       updateState({
@@ -377,7 +383,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             {label}
           </StyledLabel>
         )}
-        {options.length === 1 ? (
+        {options.length === 1 && isTypeOption(options[0]) ? (
           <Paragraph4 css={{ fontWeight: 'bold' }}>
             {options[0].label}
           </Paragraph4>
