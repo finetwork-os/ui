@@ -10,14 +10,7 @@ export { Card, CardBody, CardFooter, CardHeader } from './components/Card'
 export { Input } from './components/Input'
 export { Link } from './components/Link'
 export { Loading } from './components/Loading'
-export {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from './components/Dialog'
+export { Dialog, DialogTrigger } from './components/Dialog'
 export {
   DropdownMenu,
   DropdownMenuTrigger,

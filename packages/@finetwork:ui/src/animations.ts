@@ -102,7 +102,7 @@ export const fadeInBackground = keyframes({
 })
 
 export const fadeOutBackground = keyframes({
-  '0%': { backgroundColor: 'rgba(0,0,0,0)' },
+  '0%': { backgroundColor: 'rgba(0,0,0,0.5)' },
   '100%': { backgroundColor: 'rgba(0,0,0,0)' },
 })
 
@@ -114,6 +114,11 @@ export const animationSelect = keyframes({
 export const animationSelectMobile = keyframes({
   '0%': { transform: 'translateY(100%)' },
   '100%': { transform: 'translateY(0)' },
+})
+
+export const animationCloseSelectMobile = keyframes({
+  '0%': { transform: 'translateY(0)' },
+  '100%': { transform: 'translateY(100%)' },
 })
 
 export function switchFunction(size: 'large' | 'medium') {
@@ -178,4 +183,23 @@ export const switchAnimationBackwards = keyframes({
   '40%': { width: '18px', height: '15px' },
   // '70%': { width: '17px', height: '14px' },
   '15%': { width: '16px', height: '16px' },
+})
+
+export const dialogAnimationOpen = keyframes({
+  '0%': { opacity: 0, transform: 'translate(-50%, 20%)' },
+  '100%': { opacity: 1, transform: 'translate(-50%, -50%)' },
+})
+
+export const dialogAnimationClose = keyframes({
+  '0%': { opacity: 1, transform: 'translate(-50%, -50%)' },
+  '100%': { opacity: 0, transform: 'translate(-50%, 20%)' },
+})
+
+export const fullDialogAnimationOpen = keyframes({
+  '0%': { opacity: 0, top: '20' },
+  '100%': { opacity: 1, top: '0' },
+})
+export const fullDialogAnimationClose = keyframes({
+  '0%': { opacity: 1, top: '0' },
+  '100%': { opacity: 0, top: '20' },
 })

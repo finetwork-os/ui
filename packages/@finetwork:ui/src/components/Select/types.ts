@@ -12,13 +12,13 @@ export type TypeOption = {
   disabled?: boolean
 }
 
-export type TypeOptions =
-  | Array<TypeOption>
-  | Array<{
-      title: string | number
-      options: Array<TypeOption>
-      disabled?: boolean
-    }>
+type OptionsWithTitle = {
+  title: string | number
+  options: Array<TypeOption>
+  disabled?: boolean
+}
+
+export type TypeOptions = Array<TypeOption> | Array<OptionsWithTitle>
 
 export interface DOMEvent<T extends EventTarget> extends Event {
   readonly target: T
@@ -34,6 +34,7 @@ type Shared = {
   optionTextColor?: string
   value: Value
   grouping?: boolean
+  radio?: boolean
 }
 
 export type SelectProps = {
