@@ -22,7 +22,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       textColor,
       hoverColor,
       id,
-      align,
+      align = 'center',
       borderRadius,
       error,
       borderColor,
