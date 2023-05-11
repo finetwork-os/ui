@@ -18,7 +18,6 @@ import {
   fullDialogAnimationClose,
   fullDialogAnimationOpen,
 } from '@finetwork:ui/src/animations'
-import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import { handleDialogCssProps } from './utils'
 
 export const DialogTrigger = React.forwardRef<
@@ -49,7 +48,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     },
     ref
   ) => {
-    const { width: windowWidth } = useWindowSize()
     const dialogRef = React.useRef<HTMLDivElement>(null)
     const overlayRef = React.useRef<HTMLDivElement>(null)
 
@@ -74,47 +72,47 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       const dialogElement = dialogRef.current
       const overlayElement = overlayRef.current
 
+      dialogElement.addEventListener('animationend', () => {
+        if (isOpen) {
+          overlayElement.style.display = 'block'
+          dialogElement.style.display = 'block'
+        } else {
+          overlayElement.style.display = 'none'
+          dialogElement.style.display = 'none'
+        }
+      })
+
       if (isOpen) {
         dialogElement.style.display = 'block'
         overlayElement.style.display = 'block'
       }
 
       if (!bottomSheet && width !== 'full') {
-        dialogElement.style.animation = `${
-          isOpen ? dialogAnimationOpen : dialogAnimationClose
-        } 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
+        dialogElement.style.animation = `${isOpen ? dialogAnimationOpen : dialogAnimationClose
+          } 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
       }
 
       if (bottomSheet) {
-        dialogElement.style.animation = `${
-          isOpen
+        dialogElement.style.animation = `${isOpen
             ? `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01)`
             : `${animationCloseSelectMobile} linear`
-        } 0.25s forwards`
+          } 0.25s forwards`
       }
 
       if (width === 'full') {
-        dialogElement.style.animation = `${
-          isOpen ? fullDialogAnimationOpen : fullDialogAnimationClose
-        } 0.4s ease forwards`
+        dialogElement.style.animation = `${isOpen ? fullDialogAnimationOpen : fullDialogAnimationClose
+          } 0.4s ease forwards`
       }
 
       if (overlay) {
-        overlayElement.style.animation = `${
-          isOpen ? fadeInBackground : fadeOutBackground
-        } 0.4s forwards`
+        overlayElement.style.animation = `${isOpen ? fadeInBackground : fadeOutBackground
+          } 0.4s forwards`
       }
-
-      if (!isOpen)
-        setTimeout(() => {
-          dialogElement.style.display = 'none'
-          overlayElement.style.display = 'none'
-        }, 400)
     }
 
     React.useEffect(() => {
       handleDialogAnimation()
-    }, [isOpen, windowWidth])
+    }, [isOpen])
 
     React.useEffect(() => {
       setCustomStyle(handleDialogCssProps(borderRadius, closeButtonSize, width))
@@ -130,7 +128,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     }
 
     function enableScroll() {
-      window.onscroll = function () {}
+      window.onscroll = function () { }
     }
 
     React.useEffect(() => {
