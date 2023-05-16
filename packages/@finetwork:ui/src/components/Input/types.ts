@@ -1,4 +1,4 @@
-import { ComponentProps, FC, ReactNode } from 'react'
+import { ComponentProps, FC, ReactNode, SetStateAction } from 'react'
 import { Enhancer, KINDS, SIZES } from '../../types'
 import {
   StyledContainer,
@@ -25,6 +25,8 @@ type InputProps = Omit<
   success?: boolean
   labelProps?: ComponentProps<typeof StyledLabel>
   enhancerProps?: ComponentProps<typeof StyledEnhancer>
+  value?: string
+  action?: (value: SetStateAction<string>) => void
 }
 
 type InputPasswordProps = Omit<

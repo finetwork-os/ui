@@ -13,7 +13,11 @@ import {
   StyledSuccessIcon,
 } from './styled'
 
-import { RenderEnhancer } from '../../utils'
+import {
+  RenderEnhancer,
+  formatPhoneNumber,
+  removeFormatPhoneNumber,
+} from '../../utils'
 import { EyeClosedIcon, EyeOpenIcon } from '../icons'
 
 const InputPassword: InputPasswordComponent = React.forwardRef(
@@ -58,6 +62,8 @@ export const Input: InputComponent = React.forwardRef(
       id,
       labelProps = {},
       enhancerProps = {},
+      value,
+      action,
       ...props
     },
     ref
@@ -69,6 +75,65 @@ export const Input: InputComponent = React.forwardRef(
         )
       }
     }, [])
+
+    const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const {
+        target: { value },
+      } = e
+      action(removeFormatPhoneNumber(value))
+    }
+
+    function getTypeInput() {
+      if (type === 'password') {
+        return (
+          <InputPassword
+            {...props}
+            size={size}
+            ref={ref}
+            kind={kind}
+            id={id}
+            startEnhancer={!!startEnhancer}
+            isDisabled={props.disabled}
+          />
+        )
+      } else if (type === 'telf') {
+        return (
+          <StyledInput
+            {...props}
+            size={size}
+            maxLength={11}
+            minLength={11}
+            pattern="^[6-9]{1}[0-9][0-9 ]+[0-9][0-9][0-9 ]+[0-9][0-9][0-9]$"
+            ref={ref}
+            id={id}
+            kind={kind}
+            startEnhancer={!!startEnhancer}
+            onChange={handleChangeNumber}
+            type={type}
+            isDisabled={props.disabled}
+            value={
+              isNaN(Number(value))
+                ? ''
+                : formatPhoneNumber(value?.toString()) || ''
+            }
+          />
+        )
+      } else {
+        return (
+          <StyledInput
+            {...props}
+            size={size}
+            ref={ref}
+            id={id}
+            kind={kind}
+            startEnhancer={!!startEnhancer}
+            type={type}
+            isDisabled={props.disabled}
+          />
+        )
+      }
+    }
+
     return (
       <StyledContainer data-fi="input" {...containerProps}>
         {label && (
@@ -97,28 +162,7 @@ export const Input: InputComponent = React.forwardRef(
               <RenderEnhancer Enhancer={startEnhancer} />
             </StyledEnhancer>
           )}
-          {type === 'password' ? (
-            <InputPassword
-              {...props}
-              size={size}
-              ref={ref}
-              kind={kind}
-              id={id}
-              startEnhancer={!!startEnhancer}
-              isDisabled={props.disabled}
-            />
-          ) : (
-            <StyledInput
-              {...props}
-              size={size}
-              ref={ref}
-              id={id}
-              kind={kind}
-              startEnhancer={!!startEnhancer}
-              type={type}
-              isDisabled={props.disabled}
-            />
-          )}
+          {getTypeInput()}
           {success && !error && (
             <StyledEnhancer success={success} {...enhancerProps}>
               <RenderEnhancer Enhancer={<StyledSuccessIcon />} />

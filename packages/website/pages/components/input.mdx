@@ -117,6 +117,24 @@ export const styles = {
 </Playground>
 
 <div>
+  <H3 font="secondary">Type telf</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState('666666666')
+      return (
+        <div style={styles}>
+          <Input type="telf" value={value} action={setValue} />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H3 font="secondary">Disabled</H3>
 </div>
 
