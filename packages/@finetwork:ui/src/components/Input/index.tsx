@@ -76,13 +76,6 @@ export const Input: InputComponent = React.forwardRef(
       }
     }, [])
 
-    const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const {
-        target: { value },
-      } = e
-      action(removeFormatPhoneNumber(value))
-    }
-
     function getTypeInput() {
       if (type === 'password') {
         return (
@@ -108,14 +101,13 @@ export const Input: InputComponent = React.forwardRef(
             id={id}
             kind={kind}
             startEnhancer={!!startEnhancer}
-            onChange={handleChangeNumber}
+            onChange={(e) =>
+              !isNaN(Number(removeFormatPhoneNumber(e.target.value))) &&
+              action(removeFormatPhoneNumber(e.target.value))
+            }
             type={type}
             isDisabled={props.disabled}
-            value={
-              isNaN(Number(value))
-                ? ''
-                : formatPhoneNumber(value?.toString()) || ''
-            }
+            value={formatPhoneNumber(value?.toString())}
           />
         )
       } else {
