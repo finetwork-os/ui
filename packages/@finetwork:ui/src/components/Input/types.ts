@@ -1,4 +1,4 @@
-import { ComponentProps, FC, ReactNode } from 'react'
+import { ComponentProps, FC, ReactNode, SetStateAction } from 'react'
 import { Enhancer, KINDS, SIZES } from '../../types'
 import {
   StyledContainer,
@@ -8,7 +8,7 @@ import {
   StyledLabel,
 } from './styled'
 
-type InputProps = Omit<
+export type InputProps = Omit<
   Omit<ComponentProps<typeof StyledInput>, 'startEnhancer'>,
   'size'
 > & {
@@ -20,11 +20,14 @@ type InputProps = Omit<
   isDisabled?: boolean
   startEnhancer?: Enhancer
   endEnhancer?: Enhancer
-  error?: ReactNode | string
+  error?: string
   info?: ReactNode | string
   success?: boolean
+  handleClear?: () => any
   labelProps?: ComponentProps<typeof StyledLabel>
   enhancerProps?: ComponentProps<typeof StyledEnhancer>
+  value?: string
+  handleChange?: (value: string) => void
 }
 
 type InputPasswordProps = Omit<
@@ -34,6 +37,8 @@ type InputPasswordProps = Omit<
   size?: SIZES
   kind?: KINDS
   isDisabled?: boolean
+  handleClear?: () => any
+  error: string
 }
 
 export type InputComponent = FC<InputProps>

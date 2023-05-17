@@ -134,3 +134,27 @@ export const getCoords = (elem: Element | HTMLElement) => {
     width: Math.round(width),
   }
 }
+
+export const isValidPhoneNumber = (phoneNumber: string): boolean => {
+  const phoneLineRegex = new RegExp(/^\+?(6\d{2}|7[1-9]\d{1})\d{6}/)
+  return phoneLineRegex.test(phoneNumber)
+}
+
+export const formatPhoneNumber = (phoneNumber: string): string => {
+  try {
+    return phoneNumber
+      ?.replace(/\s/g, '')
+      .replace(/([0-9]{3})/g, '$1 ')
+      .trim()
+  } catch (error) {
+    return phoneNumber
+  }
+}
+
+export const removeFormatPhoneNumber = (phoneNumber: string): string => {
+  try {
+    return phoneNumber.replace(/ /g, '')
+  } catch (error) {
+    return phoneNumber
+  }
+}

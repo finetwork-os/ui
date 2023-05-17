@@ -92,6 +92,17 @@ export const StyledLabel: StyledComponent<
     font: 'primary',
   },
 })
+
+export const StyledMessageContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '0.3rem',
+  flexWrap: 'nowrap',
+  alignItems: 'center',
+  '& svg path': {
+    fill: '$error',
+  },
+})
 export const StyledMessage = styled('span', {
   ...stylesMessage,
   color: '#aaa',
@@ -151,7 +162,7 @@ export const StyledContainerInput = styled('div', {
         },
       },
       secondary: {
-        borderColor: '$secondaryText',
+        borderColor: '$primaryText',
         '&:focus-within': {
           borderColor: '$secondary',
         },
@@ -235,8 +246,14 @@ export const StyledEnhancer = styled('div', {
         paddingRight: '14px',
       },
     },
+    isAnotherEnhancer: {
+      true: {
+        padding: '0',
+      },
+    },
   },
 })
+
 export const StyledSuccessIcon = styled(CheckIcon, {
   color: '$success',
 })
@@ -281,7 +298,7 @@ export const StyledInput: StyledComponent<
         color: '$primaryText',
       },
       secondary: {
-        color: '$secondaryText',
+        color: '$primaryText',
       },
       tertiary: {
         color: '$tertiaryText',
