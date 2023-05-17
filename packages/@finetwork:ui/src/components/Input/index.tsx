@@ -66,6 +66,11 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
                 <RenderEnhancer Enhancer={<CloseIcon height={15} width={15} />} />
               </StyledEnhancer>
             </button>
+
+          if (error)
+            return <StyledEnhancer isAnotherEnhancer>
+              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
+            </StyledEnhancer>
         }
       }
     }
@@ -155,6 +160,11 @@ export const Input: InputComponent = React.forwardRef(
                 <RenderEnhancer Enhancer={<CloseIcon height={15} width={15} />} />
               </StyledEnhancer>
             </button>
+
+          if (error)
+            return <StyledEnhancer success={success} {...enhancerProps}>
+              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
+            </StyledEnhancer>
         }
       }
     }
