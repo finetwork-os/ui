@@ -63,7 +63,7 @@ export const Input: InputComponent = React.forwardRef(
       labelProps = {},
       enhancerProps = {},
       value,
-      action,
+      handleChange,
       ...props
     },
     ref
@@ -89,7 +89,7 @@ export const Input: InputComponent = React.forwardRef(
             isDisabled={props.disabled}
           />
         )
-      } else if (type === 'telf') {
+      } else if (type === 'tel') {
         return (
           <StyledInput
             {...props}
@@ -103,7 +103,7 @@ export const Input: InputComponent = React.forwardRef(
             startEnhancer={!!startEnhancer}
             onChange={(e) =>
               !isNaN(Number(removeFormatPhoneNumber(e.target.value))) &&
-              action(removeFormatPhoneNumber(e.target.value))
+              handleChange(removeFormatPhoneNumber(e.target.value))
             }
             type={type}
             isDisabled={props.disabled}

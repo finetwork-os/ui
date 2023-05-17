@@ -117,7 +117,7 @@ export const styles = {
 </Playground>
 
 <div>
-  <H3 font="secondary">Type telf</H3>
+  <H3 font="secondary">Type tel</H3>
 </div>
 
 <Playground>
@@ -126,7 +126,7 @@ export const styles = {
       const [value, setValue] = React.useState('666666666')
       return (
         <div style={styles}>
-          <Input type="telf" value={value} action={setValue} />
+          <Input type="tel" value={value} handleChange={setValue} />
         </div>
       )
     }

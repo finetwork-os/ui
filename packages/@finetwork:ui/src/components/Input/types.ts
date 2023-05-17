@@ -26,7 +26,7 @@ type InputProps = Omit<
   labelProps?: ComponentProps<typeof StyledLabel>
   enhancerProps?: ComponentProps<typeof StyledEnhancer>
   value?: string
-  action?: (value: SetStateAction<string>) => void
+  handleChange?: (value: string) => void
 }
 
 type InputPasswordProps = Omit<
