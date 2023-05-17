@@ -20,13 +20,12 @@ export type InputProps = Omit<
   isDisabled?: boolean
   startEnhancer?: Enhancer
   endEnhancer?: Enhancer
-  error?: string
+  error?: string | number | boolean
   info?: ReactNode | string
   success?: boolean
   handleClear?: () => any
   labelProps?: ComponentProps<typeof StyledLabel>
   enhancerProps?: ComponentProps<typeof StyledEnhancer>
-  value?: string
   handleChange?: (value: string) => void
 }
 
@@ -38,7 +37,7 @@ type InputPasswordProps = Omit<
   kind?: KINDS
   isDisabled?: boolean
   handleClear?: () => any
-  error: string
+  error: string | number | boolean
 }
 
 export type InputComponent = FC<InputProps>
