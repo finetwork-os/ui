@@ -15,7 +15,7 @@ export const EyeClosedIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
       <path
         d="M5.85522 18L18.3552 6"
         stroke="#5F0AFF"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <mask id="path-2-inside-1_1765_60679" fill="white">
         <path d="M9.97559 16.7011C10.6308 16.9046 11.3135 17.0055 11.9996 17.0004C14.7329 17.0464 17.5049 15.1251 19.2156 13.2424C19.399 13.0388 19.5005 12.7745 19.5005 12.5004C19.5005 12.2264 19.399 11.962 19.2156 11.7584C18.5959 11.0786 17.9093 10.4628 17.1663 9.92041" />
