@@ -177,3 +177,38 @@ export const styles = {
     <Input label="Email" success={true} defaultValue="email@test.com" />
   </div>
 </Playground>
+
+<div>
+  <H3 font="secondary">HandleClear</H3>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, setValue] = React.useState('sant@gmail')
+      const inputRef = React.useRef(null)
+      const inputRef2 = React.useRef(null)
+      function handleChange(e) {
+        setValue(e.target.value)
+      }
+      function handleClear() {
+        setValue('')
+        if (inputRef) inputRef.current.focus()
+      }
+      return (
+        <div style={styles}>
+          <Input
+            type="password"
+            error="Invalid email"
+            ref={inputRef}
+            label="Email"
+            value={value}
+            onChange={handleChange}
+            handleClear={handleClear}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
