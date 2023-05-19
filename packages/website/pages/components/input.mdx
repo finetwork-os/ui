@@ -164,7 +164,12 @@ export const styles = {
 
 <Playground>
   <div style={styles}>
-    <Input label="Email" error="Email exists" defaultValue="email@test.com" />
+    <Input
+      label="Email"
+      isError
+      errorMessage="Email exists"
+      defaultValue="email@test.com"
+    />
   </div>
 </Playground>
 
@@ -199,9 +204,9 @@ export const styles = {
         <div style={styles}>
           <Input
             type="password"
-            error="Invalid email"
+            isError
             ref={inputRef}
-            label="Email"
+            label="Password"
             value={value}
             onChange={handleChange}
             handleClear={handleClear}
