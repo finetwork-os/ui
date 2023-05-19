@@ -233,22 +233,25 @@ export const StyledEyeButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   background: 'none',
-  padding: '0 14px',
+  transition: 'all .5s ease-in-out',
+  '&:focus-visible': {
+    outline: 'none',
+    boxShadow: '0 0 0 2px #fff, 0 0 0 4px $colors$primary',
+  },
 })
 export const StyledEnhancer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   color: '#aaa ',
-  padding: '0 14px',
   variants: {
-    success: {
-      true: {
-        paddingRight: '14px',
-      },
-    },
     isAnotherEnhancer: {
       true: {
         padding: '0',
+      },
+    },
+    isStartEnhancer: {
+      true: {
+        padding: '0 14px',
       },
     },
   },
@@ -256,6 +259,15 @@ export const StyledEnhancer = styled('div', {
 
 export const StyledSuccessIcon = styled(CheckIcon, {
   color: '$success',
+})
+
+export const IconsContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '1rem',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0 14px',
 })
 export const StyledInput: StyledComponent<
   'input',
