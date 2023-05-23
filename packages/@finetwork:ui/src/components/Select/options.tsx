@@ -3,6 +3,7 @@ import * as React from 'react'
 import {
   MultipleContainer,
   NotFoundMessage,
+  StyledDisplayTable,
   StyledOptionItem,
   StyledOptionMultiple,
   StyledOptionsGroup,
@@ -80,10 +81,12 @@ export const Options: React.FC<OptionsProps> = ({
             key={`${id}_optionWithTitle_${optionGroup.title}_${optionGroup.options.value}`}
           >
             {optionGroup.title && (
-              <StyledTitle>{optionGroup.title}</StyledTitle>
+              <StyledDisplayTable>
+                <StyledTitle>{optionGroup.title}</StyledTitle>
+              </StyledDisplayTable>
             )}
             {optionGroup.options.map((option, i) => (
-              <div key={`${id}_optionWithTitle_${option.value}`}>
+              <StyledDisplayTable key={`${id}_optionWithTitle_${option.value}`}>
                 {option.label === 'No encontrado' ? (
                   <NotFoundMessage>No encontrado</NotFoundMessage>
                 ) : (
@@ -119,7 +122,7 @@ export const Options: React.FC<OptionsProps> = ({
                     {option.label}
                   </StyledOptionItem>
                 )}
-              </div>
+              </StyledDisplayTable>
             ))}
           </div>
         ))}
@@ -141,7 +144,7 @@ export const Options: React.FC<OptionsProps> = ({
         kind={kind}
       >
         {allPosibleOptions.map((option, i) => (
-          <div key={`${id}_optionMultiple_${option.value}`}>
+          <StyledDisplayTable key={`${id}_optionMultiple_${option.value}`}>
             {option.label === 'No encontrado' ? (
               <NotFoundMessage>No encontrado</NotFoundMessage>
             ) : (
@@ -193,7 +196,7 @@ export const Options: React.FC<OptionsProps> = ({
                 />
               </MultipleContainer>
             )}
-          </div>
+          </StyledDisplayTable>
         ))}
       </StyledOptionsGroup>
     )
@@ -217,7 +220,9 @@ export const Options: React.FC<OptionsProps> = ({
             key={`${id}_optionMultipleWithTitle_${optionGroup.title}_${optionGroup.options.value}`}
           >
             {optionGroup.title && (
-              <StyledTitle>{optionGroup.title}</StyledTitle>
+              <StyledDisplayTable>
+                <StyledTitle>{optionGroup.title}</StyledTitle>
+              </StyledDisplayTable>
             )}
             {optionGroup.options.map((option, i) => (
               <div key={`${id}_optionMultipleWithTitle_${option.value}`}>
@@ -375,7 +380,7 @@ export const Options: React.FC<OptionsProps> = ({
       kind={kind}
     >
       {allPosibleOptions.map((option, i) => (
-        <div key={`${id}_option_${option.value}`}>
+        <StyledDisplayTable key={`${id}_option_${option.value}`}>
           {option.label === 'No encontrado' ? (
             <NotFoundMessage>No encontrado</NotFoundMessage>
           ) : (
@@ -409,7 +414,7 @@ export const Options: React.FC<OptionsProps> = ({
               {option.label}
             </StyledOptionItem>
           )}
-        </div>
+        </StyledDisplayTable>
       ))}
     </StyledOptionsGroup>
   )

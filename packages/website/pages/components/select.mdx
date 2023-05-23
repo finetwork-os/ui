@@ -666,6 +666,34 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Background Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            backgroundColor="$secondary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Hover Border Color</H4>
 </div>
 

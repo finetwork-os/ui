@@ -224,6 +224,7 @@ export const StyledOptionsGroup = styled('ul', {
   maxHeight: '200px',
   textAlign: 'left !important',
   overflowY: 'auto',
+  overflowX: 'hidden',
   padding: '0 7px',
   scrollbarColor: '$secondary',
   '&:hover': {
@@ -276,19 +277,32 @@ export const StyledOptionsGroup = styled('ul', {
   },
 })
 
+export const StyledDisplayTable = styled('div', {
+  width: '100%',
+  display: 'table',
+  height: '40px',
+  tableLayout: 'fixed',
+})
+
 export const StyledOptionItem = styled('li', {
-  display: 'flex',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
   height: '40px',
   padding: '0 13px',
   marginTop: '10px',
   marginBottom: '10px',
   listStyle: 'none',
   alignItems: 'center',
+  width: '100%',
   '&:focus': {
     outline: '1px solid $primary',
     background: '$secondary100',
   },
   '&:after': {
+    display: 'inline-block',
     transformOrigin: 'bottom left',
     clipPath: 'polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)',
     content: '',
@@ -423,6 +437,12 @@ export const MultipleContainer = styled('div', {
       background: 'none !important',
     },
   },
+  '& div label': {
+    width: '100%',
+    display: 'table',
+    height: '40px',
+    tableLayout: 'fixed',
+  },
   '&:hover': {
     background: '$secondary100',
     cursor: 'pointer',
@@ -481,15 +501,24 @@ export const MultipleContainer = styled('div', {
 })
 
 export const StyledTitle = styled('span', {
-  display: 'flex',
   height: '40px',
   marginRight: '1rem',
   alignItems: 'center',
   fontWeight: 'bold',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
 })
 
 export const StyledOptionMultiple = styled('li', {
-  display: 'flex',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  height: '40px',
   marginTop: '10px',
   marginBottom: '10px',
   listStyle: 'none',
