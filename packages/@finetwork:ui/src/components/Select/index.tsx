@@ -53,6 +53,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       radio,
       notFoundText,
       searchText,
+      backgroundColor,
       ...props
     },
     ref
@@ -98,7 +99,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     const { width: displayWidth } = useWindowSize()
 
     function isTypeOption(option: any): option is TypeOption {
-      return (option as TypeOption).label !== undefined;
+      return (option as TypeOption).label !== undefined
     }
 
     React.useEffect(() => {
@@ -220,11 +221,24 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
+      if (backgroundColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            backgroundColor: backgroundColor,
+          },
+          optionsContainer: {
+            ...css.optionsContainer,
+            backgroundColor: `${backgroundColor} !important`,
+          },
+        }
+      }
       if (optionContainerHeight) {
         css = {
           ...css,
-          optionsContainer: {
-            ...css.optionsContainer,
+          container: {
+            ...css.container,
             height: `${optionContainerHeight}`,
           },
           optionsGroup: {
@@ -263,6 +277,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       borderColor,
       labelColor,
       hoverBorderColor,
+      backgroundColor,
     ])
 
     React.useEffect(() => {
@@ -319,8 +334,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     React.useEffect(() => {
       if (options.length === 1) {
         const option = options[0] as TypeOption
-        if (options[0])
-          onChange({ value: option.value, label: option.label })
+        if (options[0]) onChange({ value: option.value, label: option.label })
       }
 
       updateState({

@@ -58,6 +58,7 @@ export type SelectProps = {
   options: TypeOptions
   notFoundText?: string
   searchText?: string
+  backgroundColor?: string
 } & Shared
 
 export type SelectState = {
