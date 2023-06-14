@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { InputComponent, InputPasswordComponent, InputProps } from './types'
 import {
   IconsContainer,
   StyledContainer,
@@ -14,13 +13,14 @@ import {
   StyledMessageContainer,
   StyledSuccessIcon,
 } from './styled'
+import { InputComponent, InputPasswordComponent } from './types'
 
 import {
+  RenderEnhancer,
   formatPhoneNumber,
   removeFormatPhoneNumber,
 } from '../../utils'
-import { RenderEnhancer } from '../../utils'
-import { EyeClosedIcon, EyeOpenIcon, ErrorIcon, CloseIcon } from '../icons'
+import { CloseIcon, ErrorIcon, EyeClosedIcon, EyeOpenIcon } from '../icons'
 
 const useFocus = () => {
   const [isFocused, setIsFocused] = React.useState(false)
@@ -48,30 +48,44 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
       const { value } = props
       if (!handleClear) {
         if (isError) {
-          return <StyledEnhancer isAnotherEnhancer>
-            <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
-          </StyledEnhancer>
+          return (
+            <StyledEnhancer isAnotherEnhancer>
+              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
+            </StyledEnhancer>
+          )
         }
         return <></>
       } else {
         if (!isFocused) {
           if (isError) {
-            return <StyledEnhancer isAnotherEnhancer>
-              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
-            </StyledEnhancer>
+            return (
+              <StyledEnhancer isAnotherEnhancer>
+                <RenderEnhancer
+                  Enhancer={<ErrorIcon height={15} width={15} />}
+                />
+              </StyledEnhancer>
+            )
           }
         } else {
           if (value !== undefined && value !== null && value !== '')
-            return <button onClick={handleClear} tabIndex={-1}>
-              <StyledEnhancer isAnotherEnhancer>
-                <RenderEnhancer Enhancer={<CloseIcon height={15} width={15} />} />
-              </StyledEnhancer>
-            </button>
+            return (
+              <button type="button" onClick={handleClear} tabIndex={-1}>
+                <StyledEnhancer isAnotherEnhancer>
+                  <RenderEnhancer
+                    Enhancer={<CloseIcon height={15} width={15} />}
+                  />
+                </StyledEnhancer>
+              </button>
+            )
 
           if (isError)
-            return <StyledEnhancer isAnotherEnhancer>
-              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
-            </StyledEnhancer>
+            return (
+              <StyledEnhancer isAnotherEnhancer>
+                <RenderEnhancer
+                  Enhancer={<ErrorIcon height={15} width={15} />}
+                />
+              </StyledEnhancer>
+            )
         }
       }
     }
@@ -88,9 +102,7 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
           onBlur={() => handleBlur(ref)}
         />
         <IconsContainer>
-          {
-            chooseIconToShow()
-          }
+          {chooseIconToShow()}
           <StyledEyeButton
             onClick={() => {
               setVisiblePassword(!visiblePassword)
@@ -141,40 +153,62 @@ export const Input: InputComponent = React.forwardRef(
       if (type === 'password') return null
       if (!handleClear) {
         if (isError) {
-          return <StyledEnhancer {...enhancerProps}>
-            <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
-          </StyledEnhancer>
+          return (
+            <StyledEnhancer {...enhancerProps}>
+              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
+            </StyledEnhancer>
+          )
         }
         if (success) {
-          return <StyledEnhancer {...enhancerProps}>
-            <RenderEnhancer Enhancer={<StyledSuccessIcon height={15} width={15} />} />
-          </StyledEnhancer>
+          return (
+            <StyledEnhancer {...enhancerProps}>
+              <RenderEnhancer
+                Enhancer={<StyledSuccessIcon height={15} width={15} />}
+              />
+            </StyledEnhancer>
+          )
         }
         return null
       } else {
         if (!isFocused) {
           if (isError) {
-            return <StyledEnhancer {...enhancerProps}>
-              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
-            </StyledEnhancer>
+            return (
+              <StyledEnhancer {...enhancerProps}>
+                <RenderEnhancer
+                  Enhancer={<ErrorIcon height={15} width={15} />}
+                />
+              </StyledEnhancer>
+            )
           }
           if (success) {
-            return <StyledEnhancer {...enhancerProps}>
-              <RenderEnhancer Enhancer={<StyledSuccessIcon height={15} width={15} />} />
-            </StyledEnhancer>
+            return (
+              <StyledEnhancer {...enhancerProps}>
+                <RenderEnhancer
+                  Enhancer={<StyledSuccessIcon height={15} width={15} />}
+                />
+              </StyledEnhancer>
+            )
           }
         } else {
           if (value !== undefined && value !== null && value !== '')
-            return <button onClick={handleClear} tabIndex={-1}>
-              <StyledEnhancer {...enhancerProps}>
-                <RenderEnhancer Enhancer={<CloseIcon height={15} width={15} />} />
-              </StyledEnhancer>
-            </button>
+            return (
+              <button type="button" onClick={handleClear} tabIndex={-1}>
+                <StyledEnhancer {...enhancerProps}>
+                  <RenderEnhancer
+                    Enhancer={<CloseIcon height={15} width={15} />}
+                  />
+                </StyledEnhancer>
+              </button>
+            )
 
           if (isError)
-            return <StyledEnhancer {...enhancerProps}>
-              <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
-            </StyledEnhancer>
+            return (
+              <StyledEnhancer {...enhancerProps}>
+                <RenderEnhancer
+                  Enhancer={<ErrorIcon height={15} width={15} />}
+                />
+              </StyledEnhancer>
+            )
         }
       }
     }
@@ -272,33 +306,36 @@ export const Input: InputComponent = React.forwardRef(
             </StyledEnhancer>
           )}
           {getTypeInput()}
-          {
-            type !== 'password' && (chooseIconToShow() || endEnhancer) && <IconsContainer>
+          {type !== 'password' && (chooseIconToShow() || endEnhancer) && (
+            <IconsContainer>
               {chooseIconToShow()}
-              {
-                endEnhancer && (
-                  <StyledEnhancer {...enhancerProps}>
-                    <RenderEnhancer Enhancer={endEnhancer} />
-                  </StyledEnhancer>
-                )
-              }
+              {endEnhancer && (
+                <StyledEnhancer {...enhancerProps}>
+                  <RenderEnhancer Enhancer={endEnhancer} />
+                </StyledEnhancer>
+              )}
             </IconsContainer>
-          }
-
-        </StyledContainerInput >
+          )}
+        </StyledContainerInput>
         {(info || (isError && errorMessage)) && (
           <StyledMessageContainer>
             <>
-              {
-                isError && <RenderEnhancer Enhancer={<ErrorIcon height={12} width={12} />} />
-              }
-              <StyledMessage size={size} error={!!isError} disabled={props.disabled}>
+              {isError && (
+                <RenderEnhancer
+                  Enhancer={<ErrorIcon height={12} width={12} />}
+                />
+              )}
+              <StyledMessage
+                size={size}
+                error={!!isError}
+                disabled={props.disabled}
+              >
                 <RenderEnhancer Enhancer={errorMessage || info} />
               </StyledMessage>
             </>
           </StyledMessageContainer>
         )}
-      </StyledContainer >
+      </StyledContainer>
     )
   }
 )
