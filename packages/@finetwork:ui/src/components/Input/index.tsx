@@ -106,7 +106,6 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
           <StyledEyeButton
             onClick={() => {
               setVisiblePassword(!visiblePassword)
-              console.log({ ref })
               if (ref === null || typeof ref === 'function') return
               ref.current.focus()
             }}

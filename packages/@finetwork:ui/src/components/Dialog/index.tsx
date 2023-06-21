@@ -94,8 +94,8 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
       if (bottomSheet) {
         dialogElement.style.animation = `${isOpen
-            ? `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01)`
-            : `${animationCloseSelectMobile} linear`
+          ? `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01)`
+          : `${animationCloseSelectMobile} linear`
           } 0.25s forwards`
       }
 
@@ -137,6 +137,12 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         document.addEventListener('click', handleOutsideClick, true)
         document.addEventListener('keydown', handleKeyPress, true)
       } else {
+        enableScroll()
+        document.removeEventListener('click', handleOutsideClick, true)
+        document.removeEventListener('keydown', handleKeyPress, true)
+      }
+
+      return () => {
         enableScroll()
         document.removeEventListener('click', handleOutsideClick, true)
         document.removeEventListener('keydown', handleKeyPress, true)
