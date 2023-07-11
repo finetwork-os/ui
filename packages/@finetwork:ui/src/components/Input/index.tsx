@@ -54,7 +54,7 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
             </StyledEnhancer>
           )
         }
-        return <></>
+        return null
       } else {
         if (!isFocused) {
           if (isError) {
