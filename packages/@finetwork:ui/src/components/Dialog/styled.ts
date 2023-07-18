@@ -1,10 +1,3 @@
-import {
-  animationSelectMobile,
-  dialogAnimationClose,
-  dialogAnimationOpen,
-  fadeInBackground,
-  fullDialogAnimationOpen,
-} from '../../animations'
 import { styled } from '../../stitches.config'
 import { Cross1Icon } from '../icons'
 
@@ -23,6 +16,7 @@ export const StyledDialog = styled('div', {
   justifyContent: 'center',
   zIndex: '9999',
   position: 'fixed',
+  overflow: 'auto',
   top: '50%',
   left: '50%',
   background: '#FFF',

@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { darken, lighten } from 'polished'
 
-import { Colors } from './components/Theme/types'
 import { isValidElementType } from 'react-is'
+import { Colors } from './components/Theme/types'
 
 export const RenderEnhancer: React.FC<{ Enhancer: any }> = ({ Enhancer }) => {
   if (typeof Enhancer === 'string') {
@@ -156,5 +156,100 @@ export const removeFormatPhoneNumber = (phoneNumber: string): string => {
     return phoneNumber.replace(/ /g, '')
   } catch (error) {
     return phoneNumber
+  }
+}
+
+export const controllScroll = ({
+  prevent,
+  allowInSpecificComponent,
+}: {
+  prevent: boolean
+  allowInSpecificComponent?: React.MutableRefObject<HTMLDivElement>
+}) => {
+  const keys = { 37: 1, 38: 1, 39: 1, 40: 1 }
+
+  function preventDefault(e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  function preventPropagation(e) {
+    e.stopPropagation()
+  }
+
+  function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+      preventDefault(e)
+      return false
+    }
+  }
+
+  var supportsPassive = false
+  try {
+    window.addEventListener(
+      'test',
+      null,
+      Object.defineProperty({}, 'passive', {
+        get: function () {
+          supportsPassive = true
+        },
+      })
+    )
+  } catch (e) {}
+
+  var wheelOpt = supportsPassive ? { passive: false } : false
+  var wheelEvent =
+    'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel'
+
+  if (prevent) {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop)
+    }
+    window.addEventListener('DOMMouseScroll', preventDefault, false)
+    window.addEventListener(wheelEvent, preventDefault, wheelOpt)
+    window.addEventListener('touchmove', preventDefault, wheelOpt)
+    window.addEventListener('scroll', preventDefault, wheelOpt)
+    window.addEventListener('keydown', preventDefaultForScrollKeys, false)
+  } else {
+    window.onscroll = function () {}
+    window.removeEventListener('DOMMouseScroll', preventDefault, false)
+    window.removeEventListener(wheelEvent, preventDefault, false)
+    window.removeEventListener('touchmove', preventDefault, false)
+    window.removeEventListener('scroll', preventDefault, false)
+    window.removeEventListener('keydown', preventDefaultForScrollKeys, false)
+  }
+
+  if (allowInSpecificComponent) {
+    if (
+      allowInSpecificComponent?.current.clientHeight <
+      allowInSpecificComponent?.current.scrollHeight
+    ) {
+      allowInSpecificComponent?.current?.addEventListener(
+        'DOMMouseScroll',
+        preventPropagation,
+        false
+      )
+      allowInSpecificComponent?.current?.addEventListener(
+        wheelEvent,
+        preventPropagation,
+        {
+          passive: true,
+        }
+      )
+      allowInSpecificComponent?.current?.addEventListener(
+        'touchmove',
+        preventPropagation,
+        {
+          passive: true,
+        }
+      )
+      allowInSpecificComponent?.current?.addEventListener(
+        'keydown',
+        preventDefaultForScrollKeys,
+        false
+      )
+    }
   }
 }

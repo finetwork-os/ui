@@ -120,7 +120,13 @@ export const styleContainer = {
             </div>
           </Dialog>
           <DialogTrigger setIsOpen={setIsOpen3}>Custom Width</DialogTrigger>
-          <Dialog width="50rem" isOpen={isOpen3} setIsOpen={setIsOpen3}>
+          <Dialog
+            width="12rem"
+            isOpen={isOpen3}
+            setIsOpen={setIsOpen3}
+            css={{ height: '12rem' }}
+            id="scrollable"
+          >
             <div style={styleContainer}>
               <H4>This is the title of the dialog</H4>
               <Paragraph4>This is the content of the dialog</Paragraph4>
