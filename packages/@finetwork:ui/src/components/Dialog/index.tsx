@@ -8,7 +8,7 @@ import {
   fullDialogAnimationClose,
   fullDialogAnimationOpen,
 } from '@finetwork:ui/src/animations'
-import { useControllScroll } from '@finetwork:ui/src/hooks/useWindowSize'
+import { useControllScroll } from '@finetwork:ui/src/hooks/useControllScroll'
 import * as React from 'react'
 import { DOMEvent } from '../Select/types'
 import {
