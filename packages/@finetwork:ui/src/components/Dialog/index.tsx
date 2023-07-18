@@ -139,9 +139,9 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       }
 
       return () => {
-        // allowScroll()
-        // document.removeEventListener('click', handleOutsideClick, true)
-        // document.removeEventListener('keydown', handleKeyPress, true)
+        allowScroll()
+        document.removeEventListener('click', handleOutsideClick, true)
+        document.removeEventListener('keydown', handleKeyPress, true)
       }
     }, [isOpen])
 

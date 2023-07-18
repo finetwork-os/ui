@@ -1,12 +1,12 @@
 export const useControllScroll = () => {
-  const keys = { 37: 1, 38: 1, 39: 1, 40: 1 }
-
-  function preventScroll(e) {
-    e.preventDefault()
-  }
+  var keys = { 37: 1, 38: 1, 39: 1, 40: 1 }
 
   function preventDefault(e) {
     e.preventDefault()
+    e.stopPropagation()
+  }
+
+  function preventScroll(e) {
     e.stopPropagation()
   }
 
@@ -40,9 +40,9 @@ export const useControllScroll = () => {
     window.onscroll = function () {
       window.scrollTo(scrollLeft, scrollTop)
     }
-    window.addEventListener('DOMMouseScroll', preventDefault, false) // older FF
-    window.addEventListener(wheelEvent, preventDefault, wheelOpt) // modern desktop
-    window.addEventListener('touchmove', preventDefault, wheelOpt) // mobile
+    window.addEventListener('DOMMouseScroll', preventDefault, false)
+    window.addEventListener(wheelEvent, preventDefault, wheelOpt)
+    window.addEventListener('touchmove', preventDefault, wheelOpt)
     window.addEventListener('keydown', preventDefaultForScrollKeys, false)
   }
   const allowScroll = () => {
@@ -56,7 +56,7 @@ export const useControllScroll = () => {
     ref: React.MutableRefObject<HTMLDivElement>
   ) => {
     if (ref?.current.clientHeight < ref?.current.scrollHeight) {
-      ref?.current?.addEventListener('DOMMouseScroll', preventScroll, false)
+      ref?.current?.addEventListener('DOMMouseScroll', preventScroll, false) // older FF
       ref?.current?.addEventListener(wheelEvent, preventScroll, {
         passive: false,
       })
@@ -70,24 +70,7 @@ export const useControllScroll = () => {
       )
     }
   }
-  // const disableScrollInSpecificComponent = (
-  //   ref: React.MutableRefObject<HTMLDivElement>
-  // ) => {
-  //   if (ref?.current.clientHeight < ref?.current.scrollHeight) {
-  //     ref?.current?.addEventListener('DOMMouseScroll', preventScroll, false)
-  //     ref?.current?.addEventListener(wheelEvent, preventScroll, {
-  //       passive: false,
-  //     })
-  //     ref?.current?.addEventListener('touchmove', preventScroll, {
-  //       passive: false,
-  //     })
-  //     ref?.current?.addEventListener(
-  //       'keydown',
-  //       preventDefaultForScrollKeys,
-  //       false
-  //     )
-  //   }
-  // }
+
   return {
     disableScroll,
     allowScroll,
