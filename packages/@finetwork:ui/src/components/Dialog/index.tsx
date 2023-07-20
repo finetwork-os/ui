@@ -19,7 +19,6 @@ import {
   StyledDialogTrigger,
 } from './styled'
 import { DialogProps, DialogTriggerProps } from './types'
-import { handleDialogCssProps } from './utils'
 
 export const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -72,6 +71,39 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       }
     }
 
+    React.useEffect(() => {
+      let css = {
+        dialog: {},
+        closeButton: {},
+      }
+      if (borderRadius) {
+        css = {
+          ...css,
+          dialog: {
+            borderRadius,
+          },
+        }
+      }
+      if (closeButtonSize) {
+        css = {
+          ...css,
+          closeButton: {
+            width: closeButtonSize,
+            height: closeButtonSize,
+          },
+        }
+      }
+      if (width !== 'full' && width !== 'auto') {
+        css = {
+          ...css,
+          dialog: {
+            width: width,
+          },
+        }
+      }
+      setCustomStyle(css)
+    }, [width, closeButtonSize, borderRadius])
+
     function handleDialogAnimation() {
       const dialogElement = dialogRef.current
       const overlayElement = overlayRef.current
@@ -120,11 +152,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
     React.useEffect(() => {
       handleDialogAnimation()
-    }, [isOpen])
-
-    React.useEffect(() => {
-      setCustomStyle(handleDialogCssProps(borderRadius, closeButtonSize, width))
-    }, [borderRadius, closeButtonSize, width])
+    }, [isOpen, width, bottomSheet])
 
     React.useEffect(() => {
       if (isOpen) {

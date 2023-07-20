@@ -186,13 +186,33 @@ export const switchAnimationBackwards = keyframes({
 })
 
 export const dialogAnimationOpen = keyframes({
-  '0%': { opacity: 0, transform: 'translate(-50%, 20%)' },
-  '100%': { opacity: 1, transform: 'translate(-50%, -50%)' },
+  '0%': {
+    opacity: 0,
+    top: '80%',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+  },
+  '100%': {
+    opacity: 1,
+    top: '40%',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+  },
 })
 
 export const dialogAnimationClose = keyframes({
-  '0%': { opacity: 1, transform: 'translate(-50%, -50%)' },
-  '100%': { opacity: 0, transform: 'translate(-50%, 20%)' },
+  '0%': {
+    opacity: 1,
+    top: '40%',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+  },
+  '100%': {
+    opacity: 0,
+    top: '80%',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+  },
 })
 
 export const fullDialogAnimationOpen = keyframes({
