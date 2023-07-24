@@ -56,7 +56,7 @@ export const useControllScroll = () => {
     ref: React.MutableRefObject<HTMLDivElement>
   ) => {
     if (ref?.current.clientHeight < ref?.current.scrollHeight) {
-      ref?.current?.addEventListener('DOMMouseScroll', preventScroll, false) // older FF
+      ref?.current?.addEventListener('DOMMouseScroll', preventScroll, false)
       ref?.current?.addEventListener('wheel', preventScroll, {
         passive: false,
       })

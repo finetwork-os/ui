@@ -126,7 +126,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       if (!bottomSheet && width !== 'full') {
         dialogElement.style.animation = `${
           isOpen ? dialogAnimationOpen : dialogAnimationClose
-        } ease-in-out 0.25s forwards`
+        } linear 0.20s forwards`
       }
 
       if (bottomSheet) {
