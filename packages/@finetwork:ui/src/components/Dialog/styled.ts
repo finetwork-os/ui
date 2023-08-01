@@ -62,7 +62,7 @@ export const CloseButton = styled('button', {
   padding: '0.5rem',
   cursor: 'pointer',
   transition: 'background-color 0.3s linear',
-  '&:hover': {
+  '&:hover, &:focus': {
     borderRadius: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
   },

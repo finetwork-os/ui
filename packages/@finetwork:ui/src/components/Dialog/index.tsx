@@ -158,6 +158,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
     React.useEffect(() => {
       if (isOpen) {
+        dialogRef.current && dialogRef.current.focus()
         disableScroll()
         allowScrollInSpecificComponent(dialogRef)
         document.addEventListener('click', handleOutsideClick, true)
@@ -179,6 +180,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       <>
         <Overlay ref={overlayRef} />
         <StyledDialog
+          tabIndex={0}
           css={customStyle.dialog}
           ref={dialogRef}
           id={id}
@@ -189,6 +191,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           {closeButton && (
             <CloseButton
               css={customStyle.closeButton}
+              tabIndex={0}
               onClick={() => setIsOpen(false)}
             >
               <CloseButtonIcon />
