@@ -1,6 +1,6 @@
-export const useControllScroll = () => {
-  var keys = { 37: 1, 38: 1, 39: 1, 40: 1 }
+const KEYS = { 37: 1, 38: 1, 39: 1, 40: 1 }
 
+export const useControllScroll = () => {
   function preventDefault(e) {
     e.preventDefault()
     e.stopPropagation()
@@ -11,7 +11,7 @@ export const useControllScroll = () => {
   }
 
   function preventDefaultForScrollKeys(e) {
-    if (keys[e.keyCode]) {
+    if (KEYS[e.keyCode]) {
       preventDefault(e)
       return false
     }
@@ -30,7 +30,7 @@ export const useControllScroll = () => {
     )
   } catch (e) {}
 
-  var wheelOpt = supportsPassive ? { passive: false } : false
+  let wheelOpt = supportsPassive ? { passive: false } : false
   // var wheelEvent =
   //   'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel'
 
@@ -40,14 +40,12 @@ export const useControllScroll = () => {
     window.onscroll = function () {
       window.scrollTo(scrollLeft, scrollTop)
     }
-    window.addEventListener('DOMMouseScroll', preventDefault, false)
     window.addEventListener('wheel', preventDefault, wheelOpt)
     window.addEventListener('touchmove', preventDefault, wheelOpt)
     window.addEventListener('keydown', preventDefaultForScrollKeys, false)
   }
   const allowScroll = () => {
     window.onscroll = function () {}
-    window.removeEventListener('DOMMouseScroll', preventDefault, false)
     window.removeEventListener('wheel', preventDefault, false)
     window.removeEventListener('touchmove', preventDefault, false)
     window.removeEventListener('keydown', preventDefaultForScrollKeys, false)
@@ -56,7 +54,6 @@ export const useControllScroll = () => {
     ref: React.MutableRefObject<HTMLDivElement>
   ) => {
     if (ref?.current.clientHeight < ref?.current.scrollHeight) {
-      ref?.current?.addEventListener('DOMMouseScroll', preventScroll, false)
       ref?.current?.addEventListener('wheel', preventScroll, {
         passive: false,
       })

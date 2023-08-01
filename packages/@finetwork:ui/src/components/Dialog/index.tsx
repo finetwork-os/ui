@@ -80,7 +80,8 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         css = {
           ...css,
           dialog: {
-            borderRadius,
+            ...css.dialog,
+            borderRadius: borderRadius,
           },
         }
       }
@@ -97,6 +98,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         css = {
           ...css,
           dialog: {
+            ...css.dialog,
             width: width,
           },
         }
@@ -153,19 +155,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     React.useEffect(() => {
       handleDialogAnimation()
     }, [isOpen, width, bottomSheet])
-
-    // function disableScroll() {
-    //   const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-    //   const scrollLeft =
-    //     window.pageXOffset || document.documentElement.scrollLeft
-    //   window.onscroll = function () {
-    //     window.scrollTo(scrollLeft, scrollTop)
-    //   }
-    // }
-
-    // function enableScroll() {
-    //   window.onscroll = function () {}
-    // }
 
     React.useEffect(() => {
       if (isOpen) {
