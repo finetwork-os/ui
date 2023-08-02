@@ -134,7 +134,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       if (bottomSheet) {
         dialogElement.style.animation = `${
           isOpen
-            ? `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01)`
+            ? `${animationSelectMobile} linear`
             : `${animationCloseSelectMobile} linear`
         } 0.25s forwards`
       }

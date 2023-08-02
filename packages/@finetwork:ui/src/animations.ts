@@ -208,10 +208,10 @@ export const dialogAnimationClose = keyframes({
 })
 
 export const fullDialogAnimationOpen = keyframes({
-  '0%': { opacity: 0, top: '20' },
-  '100%': { opacity: 1, top: '0' },
+  '0%': { opacity: 0, top: 150 },
+  '100%': { opacity: 1, top: 0 },
 })
 export const fullDialogAnimationClose = keyframes({
-  '0%': { opacity: 1, top: '0' },
-  '100%': { opacity: 0, top: '20' },
+  '0%': { opacity: 1, top: 0 },
+  '100%': { opacity: 0, top: 150 },
 })
