@@ -1,13 +1,3 @@
-import {
-  animationCloseSelectMobile,
-  animationSelectMobile,
-  dialogAnimationClose,
-  dialogAnimationOpen,
-  fadeInBackground,
-  fadeOutBackground,
-  fullDialogAnimationClose,
-  fullDialogAnimationOpen,
-} from '@finetwork:ui/src/animations'
 import { useControllScroll } from '@finetwork:ui/src/hooks/useControllScroll'
 import * as React from 'react'
 import { DOMEvent } from '../Select/types'
@@ -19,6 +9,7 @@ import {
   StyledDialogTrigger,
 } from './styled'
 import { DialogProps, DialogTriggerProps } from './types'
+import { handleDialogAnimation } from './utils'
 
 export const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -106,54 +97,15 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       setCustomStyle(css)
     }, [width, closeButtonSize, borderRadius])
 
-    function handleDialogAnimation() {
-      const dialogElement = dialogRef.current
-      const overlayElement = overlayRef.current
-
-      dialogElement.addEventListener('animationend', () => {
-        if (isOpen) {
-          overlayElement.style.display = 'block'
-          dialogElement.style.display = 'block'
-        } else {
-          overlayElement.style.display = 'none'
-          dialogElement.style.display = 'none'
-        }
-      })
-
-      if (isOpen) {
-        dialogElement.style.display = 'block'
-        overlayElement.style.display = 'block'
-      }
-
-      if (!bottomSheet && width !== 'full') {
-        dialogElement.style.animation = `${
-          isOpen ? dialogAnimationOpen : dialogAnimationClose
-        } linear 0.20s forwards`
-      }
-
-      if (bottomSheet) {
-        dialogElement.style.animation = `${
-          isOpen
-            ? `${animationSelectMobile} linear`
-            : `${animationCloseSelectMobile} linear`
-        } 0.25s forwards`
-      }
-
-      if (width === 'full') {
-        dialogElement.style.animation = `${
-          isOpen ? fullDialogAnimationOpen : fullDialogAnimationClose
-        } 0.4s ease forwards`
-      }
-
-      if (overlay) {
-        overlayElement.style.animation = `${
-          isOpen ? fadeInBackground : fadeOutBackground
-        } 0.4s forwards`
-      }
-    }
-
     React.useEffect(() => {
-      handleDialogAnimation()
+      handleDialogAnimation({
+        dialogElement: dialogRef.current,
+        overlayElement: overlayRef.current,
+        isOpen: isOpen,
+        hasBottomSheet: bottomSheet,
+        hasOverlay: overlay,
+        width: width,
+      })
     }, [isOpen, width, bottomSheet])
 
     React.useEffect(() => {
