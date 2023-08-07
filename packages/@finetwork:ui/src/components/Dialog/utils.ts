@@ -67,7 +67,7 @@ export const handleDialogAnimation = ({
     setElementAnimation({
       element: dialogElement,
       animationName: isOpen ? dialogAnimationOpen : dialogAnimationClose,
-      animationConfig: 'linear 0.20s forwards',
+      animationConfig: 'linear 0.25s forwards',
     })
   }
 
@@ -87,7 +87,7 @@ export const handleDialogAnimation = ({
       animationName: isOpen
         ? fullDialogAnimationOpen
         : fullDialogAnimationClose,
-      animationConfig: '0.4s ease forwards',
+      animationConfig: '0.3s ease forwards',
     })
   }
 
@@ -95,7 +95,7 @@ export const handleDialogAnimation = ({
     setElementAnimation({
       element: overlayElement,
       animationName: isOpen ? fadeInBackground : fadeOutBackground,
-      animationConfig: '0.4s forwards',
+      animationConfig: '0.3s forwards',
     })
   }
 }
