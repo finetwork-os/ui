@@ -1,3 +1,4 @@
+import { useControllScroll } from '@finetwork:ui/src/hooks/useControllScroll'
 import * as React from 'react'
 import { DOMEvent } from '../Select/types'
 import {
@@ -8,17 +9,7 @@ import {
   StyledDialogTrigger,
 } from './styled'
 import { DialogProps, DialogTriggerProps } from './types'
-import {
-  animationCloseSelectMobile,
-  animationSelectMobile,
-  dialogAnimationClose,
-  dialogAnimationOpen,
-  fadeInBackground,
-  fadeOutBackground,
-  fullDialogAnimationClose,
-  fullDialogAnimationOpen,
-} from '@finetwork:ui/src/animations'
-import { handleDialogCssProps } from './utils'
+import { handleDialogAnimation } from './utils'
 
 export const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -68,82 +59,70 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       }
     }
 
-    function handleDialogAnimation() {
-      const dialogElement = dialogRef.current
-      const overlayElement = overlayRef.current
+    const { disableScroll, allowScroll, allowScrollInSpecificComponent } =
+      useControllScroll()
 
-      dialogElement.addEventListener('animationend', () => {
-        if (isOpen) {
-          overlayElement.style.display = 'block'
-          dialogElement.style.display = 'block'
-        } else {
-          overlayElement.style.display = 'none'
-          dialogElement.style.display = 'none'
+    React.useEffect(() => {
+      let css = {
+        dialog: {},
+        closeButton: {},
+      }
+      if (borderRadius) {
+        css = {
+          ...css,
+          dialog: {
+            ...css.dialog,
+            borderRadius: borderRadius,
+          },
         }
+      }
+      if (closeButtonSize) {
+        css = {
+          ...css,
+          closeButton: {
+            width: closeButtonSize,
+            height: closeButtonSize,
+          },
+        }
+      }
+      if (width !== 'full' && width !== 'auto') {
+        css = {
+          ...css,
+          dialog: {
+            ...css.dialog,
+            width: width,
+          },
+        }
+      }
+      setCustomStyle(css)
+    }, [width, closeButtonSize, borderRadius])
+
+    React.useEffect(() => {
+      handleDialogAnimation({
+        dialogElement: dialogRef.current,
+        overlayElement: overlayRef.current,
+        isOpen: isOpen,
+        hasBottomSheet: bottomSheet,
+        hasOverlay: overlay,
+        width: width,
       })
-
-      if (isOpen) {
-        dialogElement.style.display = 'block'
-        overlayElement.style.display = 'block'
-      }
-
-      if (!bottomSheet && width !== 'full') {
-        dialogElement.style.animation = `${isOpen ? dialogAnimationOpen : dialogAnimationClose
-          } 0.4s cubic-bezier(0.69,-0.37,0.24,1.48) forwards`
-      }
-
-      if (bottomSheet) {
-        dialogElement.style.animation = `${isOpen
-          ? `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01)`
-          : `${animationCloseSelectMobile} linear`
-          } 0.25s forwards`
-      }
-
-      if (width === 'full') {
-        dialogElement.style.animation = `${isOpen ? fullDialogAnimationOpen : fullDialogAnimationClose
-          } 0.4s ease forwards`
-      }
-
-      if (overlay) {
-        overlayElement.style.animation = `${isOpen ? fadeInBackground : fadeOutBackground
-          } 0.4s forwards`
-      }
-    }
-
-    React.useEffect(() => {
-      handleDialogAnimation()
-    }, [isOpen])
-
-    React.useEffect(() => {
-      setCustomStyle(handleDialogCssProps(borderRadius, closeButtonSize, width))
-    }, [borderRadius, closeButtonSize, width])
-
-    function disableScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-      const scrollLeft =
-        window.pageXOffset || document.documentElement.scrollLeft
-      window.onscroll = function () {
-        window.scrollTo(scrollLeft, scrollTop)
-      }
-    }
-
-    function enableScroll() {
-      window.onscroll = function () { }
-    }
+    }, [isOpen, width, bottomSheet])
 
     React.useEffect(() => {
       if (isOpen) {
+        dialogRef.current && dialogRef.current.focus()
         disableScroll()
+        allowScrollInSpecificComponent(dialogRef)
         document.addEventListener('click', handleOutsideClick, true)
         document.addEventListener('keydown', handleKeyPress, true)
       } else {
-        enableScroll()
+        allowScroll()
         document.removeEventListener('click', handleOutsideClick, true)
         document.removeEventListener('keydown', handleKeyPress, true)
       }
 
       return () => {
-        enableScroll()
+        allowScroll()
         document.removeEventListener('click', handleOutsideClick, true)
         document.removeEventListener('keydown', handleKeyPress, true)
       }
@@ -153,6 +132,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       <>
         <Overlay ref={overlayRef} />
         <StyledDialog
+          tabIndex={0}
           css={customStyle.dialog}
           ref={dialogRef}
           id={id}
@@ -163,6 +143,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           {closeButton && (
             <CloseButton
               css={customStyle.closeButton}
+              tabIndex={0}
               onClick={() => setIsOpen(false)}
             >
               <CloseButtonIcon />
