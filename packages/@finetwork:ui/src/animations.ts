@@ -198,11 +198,11 @@ export const dialogAnimationOpen = keyframes({
 
 export const dialogAnimationClose = keyframes({
   '0%': {
-    //opacity: '100%',
+    opacity: 1,
     transform: 'translate(calc(-50% + 0.5px), calc(-50% + 0.5px))',
   },
   '100%': {
-    //opacity: '0%',
+    opacity: 0,
     transform: 'translate(calc(-50% + 0.5px), calc(-20% + 0.5px))',
   },
 })
