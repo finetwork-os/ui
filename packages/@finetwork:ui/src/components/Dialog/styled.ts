@@ -33,6 +33,7 @@ export const StyledDialog = styled('div', {
         transition:
           'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+        borderRadius: '5px 5px 0 0',
       },
     },
     fullSize: {
