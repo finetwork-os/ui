@@ -65,6 +65,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       dotHover,
       borderColor,
       id,
+      fontSize,
       ...props
     },
     ref
@@ -176,7 +177,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         </StyledInputContainer>
         <StyledText
           css={customStyle.text}
-          size={size}
+          fontSize={fontSize ?? size}
           htmlFor={id}
           isDisabled={disabled}
         >
