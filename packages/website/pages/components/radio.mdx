@@ -142,7 +142,7 @@ import { styles } from '../../styles.ts'
 </Playground>
 
 <div>
-  <H3 font="secondary">Sizes</H3>
+  <H3 font="secondary">Size</H3>
 </div>
 
 <Playground>
@@ -156,6 +156,36 @@ import { styles } from '../../styles.ts'
         defaultChecked
       />
       <Radio value="option2" id="opt14" label="Medium" size="medium" />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Font size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="sizes" title={'Radio example title'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt15"
+        label="Small by size"
+        size="small"
+        defaultChecked
+      />
+      <Radio
+        value="option1"
+        id="opt16"
+        label="Small by fontSize"
+        fontSize="small"
+      />
+      <Radio
+        value="option1"
+        id="opt17"
+        label="Default"
+        fontSize="medium"
+      />
     </RadioGroup>
   </div>
 </Playground>
@@ -363,10 +393,16 @@ import { styles } from '../../styles.ts'
       <td>Set defined styles of the component</td>
     </tr>
     <tr>
-      <td>sizes</td>
+      <td>size</td>
       <td>small | medium</td>
       <td>medium</td>
       <td>Input and text size of the component</td>
+    </tr>
+    <tr>
+      <td>fontSize</td>
+      <td>small | medium</td>
+      <td>medium</td>
+      <td>Text size of the component</td>
     </tr>
     <tr>
       <td>dotColor</td>

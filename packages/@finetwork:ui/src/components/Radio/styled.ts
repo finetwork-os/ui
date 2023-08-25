@@ -60,7 +60,7 @@ export const StyledText = styled('label', {
   fontSize: '16px',
   cursor: 'pointer',
   variants: {
-    size: {
+    fontSize: {
       small: {
         fontSize: '12px',
       },
@@ -76,7 +76,7 @@ export const StyledText = styled('label', {
     },
   },
   defaultVariants: {
-    size: 'medium',
+    fontSize: 'medium',
   },
 })
 

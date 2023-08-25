@@ -3,6 +3,8 @@ import { CSS } from '@stitches/react/types/css-util'
 import { Enhancer, KINDS } from '../../types'
 import { StyledInput } from './styled'
 
+type RadioSize = 'small' | 'medium'
+
 export type RadioGroupComponentProps = {
   direction?: 'vertical' | 'horizontal'
   name?: string
@@ -15,7 +17,7 @@ export type RadioGroupComponentProps = {
 type RadioComponentOwnProps = {
   css?: CSS
   kind?: KINDS
-  size?: 'small' | 'medium'
+  size?: RadioSize
   label?: string | ReactNode
   disabled?: boolean
   value?: string | number
@@ -27,6 +29,7 @@ type RadioComponentOwnProps = {
   borderColor?: string
   id?: string
   checked?: boolean
+  fontSize?: RadioSize
 }
 export type RadioProps = ComponentProps<typeof StyledInput> &
   RadioComponentOwnProps
