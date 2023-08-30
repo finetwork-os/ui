@@ -26,7 +26,7 @@ export const StyledRadioGroupContainer = styled('div', {
 export const StyledRadioContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '0.5em',
+  gap: '0.3em',
   padding: '0.3rem 0.5rem',
   borderRadius: '10px',
   cursor: 'pointer',
@@ -165,13 +165,17 @@ export const StyledInput = styled('input', {
   variants: {
     size: {
       small: {
+        width: '1.063rem',
+        height: '1.063rem',
         border: '1px solid #000',
         '&:before': {
-          width: '8px',
-          height: '8px',
+          width: '7px',
+          height: '7px',
         },
       },
       medium: {
+        width: '1.5rem',
+        height: '1.5rem',
         border: '1px solid #000',
         '&:before': {
           width: '10px',

@@ -1,18 +1,18 @@
 import * as React from 'react'
 
 import {
+  StyledContainer,
+  StyledErrorText,
   StyledInput,
   StyledInputContainer,
   StyledRadioContainer,
-  StyledContainer,
   StyledRadioGroupContainer,
   StyledText,
   StyledTitle,
-  StyledErrorText,
 } from './styled'
 
-import { RadioGroupComponentProps, RadioProps } from './types'
 import { RenderEnhancer } from '../../utils'
+import { RadioGroupComponentProps, RadioProps } from './types'
 
 export const RadioGroup = React.forwardRef<
   HTMLDivElement,
@@ -55,6 +55,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     {
       kind,
       size,
+      fontSize,
+      inputSize,
       label,
       disabled,
       value,
@@ -119,12 +121,29 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           },
         }
       }
+
       if (borderColor) {
         css = {
           ...css,
           input: {
             ...css.input,
             borderColor,
+          },
+        }
+      }
+
+      if (inputSize) {
+        css = {
+          ...css,
+          input: {
+            ...css.input,
+            width: inputSize,
+            height: inputSize,
+          },
+          inputContainer: {
+            ...css.inputContainer,
+            width: inputSize,
+            height: inputSize,
           },
         }
       }
@@ -144,13 +163,32 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         css = {
           ...css,
           text: {
+            ...css.text,
             color: textColor,
           },
         }
       }
 
+      if (fontSize) {
+        css = {
+          ...css,
+          text: {
+            ...css.text,
+            fontSize: fontSize,
+          },
+        }
+      }
+
       setCustomStyle(css)
-    }, [])
+    }, [
+      textColor,
+      dotHover,
+      borderColor,
+      dotSize,
+      dotColor,
+      fontSize,
+      inputSize,
+    ])
 
     return (
       <StyledRadioContainer size={size} isDisabled={disabled}>

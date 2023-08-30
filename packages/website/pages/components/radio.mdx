@@ -161,6 +161,42 @@ import { styles } from '../../styles.ts'
 </Playground>
 
 <div>
+  <H3 font="secondary">Font size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="fontSize" title={'Font size'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt53"
+        label="13px"
+        fontSize="13px"
+        defaultChecked
+      />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
+  <H3 font="secondary">Input size</H3>
+</div>
+
+<Playground>
+  <div style={styles}>
+    <RadioGroup name="inputSize" title={'Input size'} direction="vertical">
+      <Radio
+        value="option1"
+        id="opt54"
+        label="Custom input size"
+        inputSize="1rem"
+        defaultChecked
+      />
+    </RadioGroup>
+  </div>
+</Playground>
+
+<div>
   <H3 font="secondary">No label</H3>
 </div>
 
@@ -367,6 +403,18 @@ import { styles } from '../../styles.ts'
       <td>small | medium</td>
       <td>medium</td>
       <td>Input and text size of the component</td>
+    </tr>
+    <tr>
+      <td>fontSize</td>
+      <td>string</td>
+      <td></td>
+      <td>Text size of the component</td>
+    </tr>
+    <tr>
+      <td>inputSize</td>
+      <td>string</td>
+      <td></td>
+      <td>Input size of the component</td>
     </tr>
     <tr>
       <td>dotColor</td>
