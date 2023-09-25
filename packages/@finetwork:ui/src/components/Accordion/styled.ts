@@ -51,14 +51,14 @@ export const StyledContent: StyledComponent<typeof Content> = styled(Content, {
 })
 
 export const StyledItem = styled(Item, {
-  paddingLeft: '1.2rem',
-  paddingRight: '1.2rem',
-  borderBottom: '1px solid #EFF2FC',
-  '&:focus-within': {
+  '&:has(:focus-visible)': {
     position: 'relative',
     zIndex: 1,
     boxShadow: `0 0 0 2px currentColor`,
   },
+  paddingLeft: '1.2rem',
+  paddingRight: '1.2rem',
+  borderBottom: '1px solid #EFF2FC',
 })
 
 export const StyledHeader = styled(Header, {
