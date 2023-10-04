@@ -12,7 +12,7 @@ export const StyledDialogTrigger = styled('button', {
 })
 
 export const StyledDialog = styled('div', {
-  display: 'none !important',
+  display: 'none',
   zIndex: '9999',
   position: 'fixed',
   top: '50%',
