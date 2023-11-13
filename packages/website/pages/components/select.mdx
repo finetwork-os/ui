@@ -2,18 +2,8 @@
 name: Select
 ---
 
+import { H3, H4, Paragraph4, Select } from '@finetwork/ui'
 import { Playground } from 'dokz'
-import {
-  H2,
-  H3,
-  H4,
-  Paragraph4,
-  Link,
-  Select,
-  OptionItem,
-  OptionGroup,
-  CheckIcon,
-} from '@finetwork/ui'
 import { Fragment } from 'react'
 
 export const styles = {
@@ -289,6 +279,42 @@ export const optionsWidthDisable = [
             onChange={onChangesWithTitle}
             options={allOptions}
             grouping
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Bottom Sheet</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="bottom-sheet-false"
+            value={value}
+            label="False"
+            options={options}
+            onChange={onChange}
+            bottomSheet={false}
+          />
+          <Select
+            id="bottom-sheet-true"
+            value={value}
+            label="True"
+            options={options}
+            onChange={onChange}
+            bottomSheet={true}
           />
         </div>
       )
@@ -610,6 +636,34 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Options size</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="options-size"
+            value={value}
+            label="Fruits"
+            optionsSize="20px"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Label size</H4>
 </div>
 
@@ -666,6 +720,34 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Container Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            containerColor="$primary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Background Color</H4>
 </div>
 
@@ -694,6 +776,62 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Container Background Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            containerBackgroundColor="$secondary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Options Background Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            optionsBackgroundColor="$secondary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Hover Border Color</H4>
 </div>
 
@@ -709,8 +847,16 @@ export const optionsWidthDisable = [
           <Select
             id="hover-color"
             value={value}
-            label="Fruits"
+            label="Color"
             hoverBorderColor="green"
+            options={options}
+            onChange={onChange}
+          />
+          <Select
+            id="hover-color-none"
+            value={value}
+            label="None"
+            hoverBorderColor="none"
             options={options}
             onChange={onChange}
           />
@@ -737,8 +883,16 @@ export const optionsWidthDisable = [
           <Select
             id="border-color"
             value={value}
-            label="Fruits"
+            label="Color"
             borderColor="green"
+            options={options}
+            onChange={onChange}
+          />
+          <Select
+            id="border-color-none"
+            value={value}
+            label="None"
+            borderColor="none"
             options={options}
             onChange={onChange}
           />
@@ -878,7 +1032,7 @@ export const optionsWidthDisable = [
             id="height"
             value={value}
             label="Fruits"
-            optionContainerHeight="50%"
+            optionContainerHeight="100px"
             type="StandardWithTitle"
             options={allOptions}
             onChange={onChange}
@@ -967,6 +1121,13 @@ export const optionsWidthDisable = [
       <td>Set defined the type of the component</td>
     </tr>
     <tr>
+      <td>buttomSheet</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined whether the options should always be displayed as bottomSheet or never.</td>
+    </tr>
+    <tr>
       <td>search</td>
       <td>boolean</td>
       <td></td>
@@ -988,6 +1149,13 @@ export const optionsWidthDisable = [
       <td>Define amount of border radius in select style</td>
     </tr>
     <tr>
+      <td>opitonsSize</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the size of the options</td>
+    </tr>
+    <tr>
       <td>labelSize</td>
       <td>string</td>
       <td></td>
@@ -1000,6 +1168,34 @@ export const optionsWidthDisable = [
       <td></td>
       <td>No</td>
       <td>Set the color of the select label</td>
+    </tr>
+    <tr>
+      <td>containerColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of the container text</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of full select</td>
+    </tr>
+    <tr>
+      <td>containerBackgroundColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of container select</td>
+    </tr>
+    <tr>
+      <td>optionsBackgroundColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of options select</td>
     </tr>
     <tr>
       <td>disabled</td>
@@ -1031,7 +1227,7 @@ export const optionsWidthDisable = [
     </tr>
     <tr>
       <td>hoverBorderColor</td>
-      <td>string</td>
+      <td>string | 'none'</td>
       <td></td>
       <td>No</td>
       <td>Defines the hover color of the select</td>
@@ -1045,7 +1241,7 @@ export const optionsWidthDisable = [
     </tr>
     <tr>
       <td>borderColor</td>
-      <td>string</td>
+      <td>string | 'none'</td>
       <td></td>
       <td>No</td>
       <td>Defines the border color of the select</td>

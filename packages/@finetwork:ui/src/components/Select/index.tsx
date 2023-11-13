@@ -2,6 +2,7 @@ import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import { mediaQuery } from '@finetwork:ui/src/types'
 import * as React from 'react'
 import { Separator } from '../Separator'
+import { Paragraph4 } from '../Typography'
 import { Options } from './options'
 import {
   Arrow,
@@ -19,7 +20,6 @@ import {
   StyledSelect,
 } from './styled'
 import { DOMEvent, SelectProps, SelectState, TypeOption } from './types'
-import { Paragraph4 } from '../Typography'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
@@ -54,6 +54,11 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       notFoundText,
       searchText,
       backgroundColor,
+      bottomSheet,
+      containerBackgroundColor,
+      optionsBackgroundColor,
+      containerColor,
+      optionsSize,
       ...props
     },
     ref
@@ -114,20 +119,38 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
 
       if (hoverBorderColor) {
-        css = {
-          ...css,
-          select: {
-            ...css.select,
-            '&:focus': {
-              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+        if (hoverBorderColor === 'none') {
+          css = {
+            ...css,
+            select: {
+              ...css.select,
+              '&:focus': {
+                boxShadow: 'none !important',
+              },
             },
-          },
-          container: {
-            ...css.container,
-            '&:hover': {
-              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+            container: {
+              ...css.container,
+              '&:hover': {
+                boxShadow: 'none !important',
+              },
             },
-          },
+          }
+        } else {
+          css = {
+            ...css,
+            select: {
+              ...css.select,
+              '&:focus': {
+                boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+              },
+            },
+            container: {
+              ...css.container,
+              '&:hover': {
+                boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+              },
+            },
+          }
         }
       }
       if (labelColor) {
@@ -140,12 +163,22 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         }
       }
       if (borderColor) {
-        css = {
-          ...css,
-          container: {
-            ...css.container,
-            outline: `1px solid ${borderColor} !important`,
-          },
+        if (borderColor === 'none') {
+          css = {
+            ...css,
+            container: {
+              ...css.container,
+              outline: 'none !important',
+            },
+          }
+        } else {
+          css = {
+            ...css,
+            container: {
+              ...css.container,
+              outline: `1px solid ${borderColor} !important`,
+            },
+          }
         }
       }
       if (error) {
@@ -187,6 +220,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           ...css,
           label: {
             fontSize: labelSize,
+          },
+        }
+      }
+      if (optionsSize) {
+        css = {
+          ...css,
+          optionsContainer: {
+            ...css.optionsContainer,
+            fontSize: optionsSize,
           },
         }
       }
@@ -234,11 +276,42 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
+      if (containerBackgroundColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            backgroundColor: `${containerBackgroundColor} !important`,
+          },
+        }
+      }
+      if (optionsBackgroundColor) {
+        css = {
+          ...css,
+          optionsContainer: {
+            ...css.optionsContainer,
+            backgroundColor: `${optionsBackgroundColor} !important`,
+          },
+        }
+      }
+      if (containerColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            color: `${containerColor} !important`,
+          },
+        }
+      }
       if (optionContainerHeight) {
         css = {
           ...css,
           container: {
             ...css.container,
+            height: `${optionContainerHeight}`,
+          },
+          select: {
+            ...css.select,
             height: `${optionContainerHeight}`,
           },
           optionsGroup: {
@@ -278,6 +351,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       labelColor,
       hoverBorderColor,
       backgroundColor,
+      containerBackgroundColor,
+      optionsBackgroundColor,
+      containerColor,
+      optionsSize,
     ])
 
     React.useEffect(() => {
@@ -289,7 +366,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     }, [])
 
     React.useEffect(() => {
-      if (displayWidth < mediaQuery.tablet && isOpen) {
+      if (
+        (displayWidth < mediaQuery.tablet && isOpen) ||
+        (isOpen && bottomSheet)
+      ) {
         document.body.style.overflow = 'hidden'
         return updateState({ isOverlay: true })
       }
@@ -383,6 +463,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       return selectWidth?.clientWidth
     }
 
+    function mustBeShownOverlay() {
+      if (bottomSheet !== undefined) {
+        if (bottomSheet) return true
+        return false
+      }
+      if (displayWidth < mediaQuery.tablet) return true
+      return false
+    }
+
     return (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
@@ -433,11 +522,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               </ShowChosenOptions>
               <Arrow isOpen={isOpen} />
             </StyledSelect>
-            {displayWidth < mediaQuery.tablet ? (
+            {mustBeShownOverlay() ? (
               <Overlay isMobile={isOverlay}>
                 <Content
                   ref={optionGroupRef}
                   isOpen={isOpen}
+                  bottomSheet={bottomSheet}
                   css={customStyle.optionsContainer}
                 >
                   {optionContainerTitle && (
@@ -485,6 +575,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               <Content
                 ref={optionGroupRef}
                 isOpen={isOpen}
+                bottomSheet={bottomSheet}
                 css={{
                   ...customStyle.optionsContainer,
                   width: `${getSelectWidth()}px !important`,

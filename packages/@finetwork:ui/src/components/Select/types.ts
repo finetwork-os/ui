@@ -44,9 +44,9 @@ export type SelectProps = {
   disabled?: boolean
   name?: string
   labelSize?: string
-  hoverBorderColor?: string
+  hoverBorderColor?: string | 'none'
   labelColor?: string
-  borderColor?: string
+  borderColor?: string | 'none'
   borderRadius?: string
   checkColor?: string
   hoverOptionTextColor?: string
@@ -59,6 +59,11 @@ export type SelectProps = {
   notFoundText?: string
   searchText?: string
   backgroundColor?: string
+  bottomSheet?: boolean
+  containerBackgroundColor?: string
+  optionsBackgroundColor?: string
+  containerColor?: string
+  optionsSize?: string
 } & Shared
 
 export type SelectState = {
