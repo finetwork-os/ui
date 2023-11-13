@@ -2,6 +2,7 @@ import { useWindowSize } from '@finetwork:ui/src/hooks/useWindowSize'
 import { mediaQuery } from '@finetwork:ui/src/types'
 import * as React from 'react'
 import { Separator } from '../Separator'
+import { Paragraph4 } from '../Typography'
 import { Options } from './options'
 import {
   Arrow,
@@ -19,7 +20,6 @@ import {
   StyledSelect,
 } from './styled'
 import { DOMEvent, SelectProps, SelectState, TypeOption } from './types'
-import { Paragraph4 } from '../Typography'
 
 export const Select = React.forwardRef<HTMLElement, SelectProps>(
   (
@@ -54,6 +54,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       notFoundText,
       searchText,
       backgroundColor,
+      bottomSheet,
       ...props
     },
     ref
@@ -289,7 +290,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
     }, [])
 
     React.useEffect(() => {
-      if (displayWidth < mediaQuery.tablet && isOpen) {
+      if (
+        (displayWidth < mediaQuery.tablet && isOpen) ||
+        (isOpen && bottomSheet)
+      ) {
         document.body.style.overflow = 'hidden'
         return updateState({ isOverlay: true })
       }
@@ -383,6 +387,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       return selectWidth?.clientWidth
     }
 
+    function mustBeShownOverlay() {
+      if (bottomSheet !== undefined) {
+        if (bottomSheet) return true
+        return false
+      }
+      if (displayWidth < mediaQuery.tablet) return true
+      return false
+    }
+
     return (
       <MainContainer
         onKeyDown={(e) => e.code === 'Escape' && setIsOpen(false)}
@@ -433,11 +446,12 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               </ShowChosenOptions>
               <Arrow isOpen={isOpen} />
             </StyledSelect>
-            {displayWidth < mediaQuery.tablet ? (
+            {mustBeShownOverlay() ? (
               <Overlay isMobile={isOverlay}>
                 <Content
                   ref={optionGroupRef}
                   isOpen={isOpen}
+                  bottomSheet={bottomSheet}
                   css={customStyle.optionsContainer}
                 >
                   {optionContainerTitle && (
@@ -485,6 +499,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
               <Content
                 ref={optionGroupRef}
                 isOpen={isOpen}
+                bottomSheet={bottomSheet}
                 css={{
                   ...customStyle.optionsContainer,
                   width: `${getSelectWidth()}px !important`,

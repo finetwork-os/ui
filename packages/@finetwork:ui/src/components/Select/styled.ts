@@ -4,8 +4,8 @@ import {
   fadeInBackground,
 } from '@finetwork:ui/src/animations'
 import { styled } from '../../stitches.config'
-import { ChevronDownIcon, Loupe } from '../icons'
 import { Paragraph5 } from '../Typography'
+import { ChevronDownIcon, Loupe } from '../icons'
 
 export const MainContainer = styled('div', {
   display: 'flex',
@@ -215,6 +215,25 @@ export const Content = styled('div', {
       },
       false: {
         display: 'none',
+      },
+    },
+    bottomSheet: {
+      true: {
+        position: 'fixed !important',
+        left: '0 !important',
+        right: '0 !important',
+        bottom: '0 !important',
+        margin: '0 auto !important',
+        animation: `${animationSelectMobile} cubic-bezier(0.72,-0.67,0.49,0.01) 0.25s forwards !important`,
+      },
+      false: {
+        left: 'unset !important',
+        right: 'unset !important',
+        bottom: 'unset !important',
+        width: 'inherit !important',
+        position: 'absolute !important',
+        borderRadius: 'unset !important',
+        animation: `${animationSelect} cubic-bezier(0.44,0.15,0.43,1.5) 0.3s forwards !important`,
       },
     },
   },

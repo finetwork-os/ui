@@ -59,6 +59,7 @@ export type SelectProps = {
   notFoundText?: string
   searchText?: string
   backgroundColor?: string
+  bottomSheet?: boolean
 } & Shared
 
 export type SelectState = {

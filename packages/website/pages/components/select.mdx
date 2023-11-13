@@ -2,18 +2,8 @@
 name: Select
 ---
 
+import { H3, H4, Paragraph4, Select } from '@finetwork/ui'
 import { Playground } from 'dokz'
-import {
-  H2,
-  H3,
-  H4,
-  Paragraph4,
-  Link,
-  Select,
-  OptionItem,
-  OptionGroup,
-  CheckIcon,
-} from '@finetwork/ui'
 import { Fragment } from 'react'
 
 export const styles = {
@@ -289,6 +279,42 @@ export const optionsWidthDisable = [
             onChange={onChangesWithTitle}
             options={allOptions}
             grouping
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Bottom Sheet</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="bottom-sheet-false"
+            value={value}
+            label="False"
+            options={options}
+            onChange={onChange}
+            bottomSheet={false}
+          />
+          <Select
+            id="bottom-sheet-true"
+            value={value}
+            label="True"
+            options={options}
+            onChange={onChange}
+            bottomSheet={true}
           />
         </div>
       )
