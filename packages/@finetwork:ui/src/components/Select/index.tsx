@@ -59,6 +59,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       optionsBackgroundColor,
       containerColor,
       optionsSize,
+      optionsPadding,
       ...props
     },
     ref
@@ -232,6 +233,17 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
+      if (optionsPadding) {
+        css = {
+          ...css,
+          optionsContainer: {
+            ...css.optionsContainer,
+            '& ul div li': {
+              padding: optionsPadding,
+            },
+          },
+        }
+      }
       if (width) {
         css = {
           ...css,
@@ -355,6 +367,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       optionsBackgroundColor,
       containerColor,
       optionsSize,
+      optionsPadding,
     ])
 
     React.useEffect(() => {
