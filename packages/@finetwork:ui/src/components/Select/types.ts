@@ -62,6 +62,7 @@ export type SelectProps = {
   bottomSheet?: boolean
   containerBackgroundColor?: string
   optionsBackgroundColor?: string
+  containerColor?: string
 } & Shared
 
 export type SelectState = {

@@ -57,6 +57,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       bottomSheet,
       containerBackgroundColor,
       optionsBackgroundColor,
+      containerColor,
       ...props
     },
     ref
@@ -255,6 +256,15 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
+      if (containerColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            color: `${containerColor} !important`,
+          },
+        }
+      }
       if (optionContainerHeight) {
         css = {
           ...css,
@@ -305,6 +315,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       backgroundColor,
       containerBackgroundColor,
       optionsBackgroundColor,
+      containerColor,
     ])
 
     React.useEffect(() => {

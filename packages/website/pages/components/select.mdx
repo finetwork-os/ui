@@ -692,6 +692,34 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Container Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            containerColor="$primary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Background Color</H4>
 </div>
 
@@ -1089,6 +1117,13 @@ export const optionsWidthDisable = [
       <td></td>
       <td>No</td>
       <td>Set the color of the select label</td>
+    </tr>
+    <tr>
+      <td>containerColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of the container text</td>
     </tr>
     <tr>
       <td>backgroundColor</td>
