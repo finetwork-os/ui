@@ -64,6 +64,7 @@ export type SelectProps = {
   optionsBackgroundColor?: string
   containerColor?: string
   optionsSize?: string
+  optionsPadding?: string
 } & Shared
 
 export type SelectState = {
