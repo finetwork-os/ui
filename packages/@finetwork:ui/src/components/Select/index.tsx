@@ -242,6 +242,10 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
             ...css.container,
             height: `${optionContainerHeight}`,
           },
+          select: {
+            ...css.select,
+            height: `${optionContainerHeight}`,
+          },
           optionsGroup: {
             maxHeight: 'none !important',
             height: '100%',
