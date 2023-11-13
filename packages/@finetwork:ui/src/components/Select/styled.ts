@@ -105,7 +105,7 @@ export const StyledSelect = styled('div', {
   padding: '0 15px',
   background: '#fff',
   justifyContent: 'space-between',
-  transition: 'all 0.35s ease-in-out',
+  //transition: 'all 0.35s ease-in-out',
   '&:hover': {
     cursor: 'pointer',
   },
@@ -230,10 +230,13 @@ export const Content = styled('div', {
         left: 'unset !important',
         right: 'unset !important',
         bottom: 'unset !important',
-        width: 'inherit !important',
+        width: 'initial !important',
         position: 'absolute !important',
         borderRadius: 'unset !important',
         animation: `${animationSelect} cubic-bezier(0.44,0.15,0.43,1.5) 0.3s forwards !important`,
+        '@tablet': {
+          width: 'inherit !important',
+        },
       },
     },
   },

@@ -591,7 +591,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
                 bottomSheet={bottomSheet}
                 css={{
                   ...customStyle.optionsContainer,
-                  width: `${getSelectWidth()}px !important`,
+                  width:
+                    bottomSheet !== false && `${getSelectWidth()}px !important`,
                 }}
               >
                 {optionContainerTitle && (
