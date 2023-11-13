@@ -118,20 +118,38 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       }
 
       if (hoverBorderColor) {
-        css = {
-          ...css,
-          select: {
-            ...css.select,
-            '&:focus': {
-              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+        if (hoverBorderColor === 'none') {
+          css = {
+            ...css,
+            select: {
+              ...css.select,
+              '&:focus': {
+                boxShadow: 'none !important',
+              },
             },
-          },
-          container: {
-            ...css.container,
-            '&:hover': {
-              boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+            container: {
+              ...css.container,
+              '&:hover': {
+                boxShadow: 'none !important',
+              },
             },
-          },
+          }
+        } else {
+          css = {
+            ...css,
+            select: {
+              ...css.select,
+              '&:focus': {
+                boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+              },
+            },
+            container: {
+              ...css.container,
+              '&:hover': {
+                boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${hoverBorderColor} !important`,
+              },
+            },
+          }
         }
       }
       if (labelColor) {
@@ -144,12 +162,22 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
         }
       }
       if (borderColor) {
-        css = {
-          ...css,
-          container: {
-            ...css.container,
-            outline: `1px solid ${borderColor} !important`,
-          },
+        if (borderColor === 'none') {
+          css = {
+            ...css,
+            container: {
+              ...css.container,
+              outline: 'none !important',
+            },
+          }
+        } else {
+          css = {
+            ...css,
+            container: {
+              ...css.container,
+              outline: `1px solid ${borderColor} !important`,
+            },
+          }
         }
       }
       if (error) {

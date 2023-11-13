@@ -819,8 +819,16 @@ export const optionsWidthDisable = [
           <Select
             id="hover-color"
             value={value}
-            label="Fruits"
+            label="Color"
             hoverBorderColor="green"
+            options={options}
+            onChange={onChange}
+          />
+          <Select
+            id="hover-color-none"
+            value={value}
+            label="None"
+            hoverBorderColor="none"
             options={options}
             onChange={onChange}
           />
@@ -847,8 +855,16 @@ export const optionsWidthDisable = [
           <Select
             id="border-color"
             value={value}
-            label="Fruits"
+            label="Color"
             borderColor="green"
+            options={options}
+            onChange={onChange}
+          />
+          <Select
+            id="border-color-none"
+            value={value}
+            label="None"
+            borderColor="none"
             options={options}
             onChange={onChange}
           />
@@ -1176,7 +1192,7 @@ export const optionsWidthDisable = [
     </tr>
     <tr>
       <td>hoverBorderColor</td>
-      <td>string</td>
+      <td>string | 'none'</td>
       <td></td>
       <td>No</td>
       <td>Defines the hover color of the select</td>
@@ -1190,7 +1206,7 @@ export const optionsWidthDisable = [
     </tr>
     <tr>
       <td>borderColor</td>
-      <td>string</td>
+      <td>string | 'none'</td>
       <td></td>
       <td>No</td>
       <td>Defines the border color of the select</td>
