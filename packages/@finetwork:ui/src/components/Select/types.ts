@@ -60,6 +60,8 @@ export type SelectProps = {
   searchText?: string
   backgroundColor?: string
   bottomSheet?: boolean
+  containerBackgroundColor?: string
+  optionsBackgroundColor?: string
 } & Shared
 
 export type SelectState = {

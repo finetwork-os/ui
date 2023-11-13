@@ -55,6 +55,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       searchText,
       backgroundColor,
       bottomSheet,
+      containerBackgroundColor,
+      optionsBackgroundColor,
       ...props
     },
     ref
@@ -235,6 +237,24 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
+      if (containerBackgroundColor) {
+        css = {
+          ...css,
+          select: {
+            ...css.select,
+            backgroundColor: `${containerBackgroundColor} !important`,
+          },
+        }
+      }
+      if (optionsBackgroundColor) {
+        css = {
+          ...css,
+          optionsContainer: {
+            ...css.optionsContainer,
+            backgroundColor: `${optionsBackgroundColor} !important`,
+          },
+        }
+      }
       if (optionContainerHeight) {
         css = {
           ...css,
@@ -283,6 +303,8 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       labelColor,
       hoverBorderColor,
       backgroundColor,
+      containerBackgroundColor,
+      optionsBackgroundColor,
     ])
 
     React.useEffect(() => {

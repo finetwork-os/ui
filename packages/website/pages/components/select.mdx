@@ -720,6 +720,62 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Container Background Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            containerBackgroundColor="$secondary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
+  <H4 font="secondary">Options Background Color</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="label-color"
+            value={value}
+            label="Fruits"
+            optionsBackgroundColor="$secondary"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Hover Border Color</H4>
 </div>
 
@@ -993,6 +1049,13 @@ export const optionsWidthDisable = [
       <td>Set defined the type of the component</td>
     </tr>
     <tr>
+      <td>buttomSheet</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Set defined whether the options should always be displayed as bottomSheet or never.</td>
+    </tr>
+    <tr>
       <td>search</td>
       <td>boolean</td>
       <td></td>
@@ -1026,6 +1089,27 @@ export const optionsWidthDisable = [
       <td></td>
       <td>No</td>
       <td>Set the color of the select label</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of full select</td>
+    </tr>
+    <tr>
+      <td>containerBackgroundColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of container select</td>
+    </tr>
+    <tr>
+      <td>optionsBackgroundColor</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the color of options select</td>
     </tr>
     <tr>
       <td>disabled</td>
