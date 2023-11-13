@@ -636,6 +636,34 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Options size</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="options-size"
+            value={value}
+            label="Fruits"
+            optionsSize="20px"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Label size</H4>
 </div>
 
@@ -1119,6 +1147,13 @@ export const optionsWidthDisable = [
       <td></td>
       <td>No</td>
       <td>Define amount of border radius in select style</td>
+    </tr>
+    <tr>
+      <td>opitonsSize</td>
+      <td>string</td>
+      <td></td>
+      <td>No</td>
+      <td>Set the size of the options</td>
     </tr>
     <tr>
       <td>labelSize</td>
