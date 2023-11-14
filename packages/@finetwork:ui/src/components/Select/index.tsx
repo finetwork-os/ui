@@ -60,6 +60,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       containerColor,
       optionsSize,
       optionsPadding,
+      separator,
       ...props
     },
     ref
@@ -244,6 +245,20 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
           },
         }
       }
+      if (separator) {
+        css = {
+          ...css,
+          optionsContainer: {
+            ...css.optionsContainer,
+            '& ul div li': {
+              borderBottom: `1px solid ${separator}`,
+            },
+            '& ul div:last-child li': {
+              borderBottom: 'none',
+            },
+          },
+        }
+      }
       if (width) {
         css = {
           ...css,
@@ -368,6 +383,7 @@ export const Select = React.forwardRef<HTMLElement, SelectProps>(
       containerColor,
       optionsSize,
       optionsPadding,
+      separator,
     ])
 
     React.useEffect(() => {

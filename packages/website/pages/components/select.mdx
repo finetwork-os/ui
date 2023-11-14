@@ -904,6 +904,34 @@ export const optionsWidthDisable = [
 </Playground>
 
 <div>
+  <H4 font="secondary">Separator</H4>
+</div>
+
+<Playground>
+  {() => {
+    const App = () => {
+      const [value, onChange] = React.useState({
+        value: 'choose',
+        label: 'Choose one...',
+      })
+      return (
+        <div style={styles}>
+          <Select
+            id="border-color"
+            value={value}
+            label="Color"
+            separator="#D8D8D8"
+            options={options}
+            onChange={onChange}
+          />
+        </div>
+      )
+    }
+    return <App />
+  }}
+</Playground>
+
+<div>
   <H4 font="secondary">Option Text Color</H4>
 </div>
 
@@ -1252,6 +1280,13 @@ export const optionsWidthDisable = [
       <td></td>
       <td>No</td>
       <td>Defines the border color of the select</td>
+    </tr>
+    <tr>
+      <td>Separator</td>
+      <td>boolean</td>
+      <td></td>
+      <td>No</td>
+      <td>Set separator between options</td>
     </tr>
     <tr>
       <td>hoverOptionTextColor</td>
