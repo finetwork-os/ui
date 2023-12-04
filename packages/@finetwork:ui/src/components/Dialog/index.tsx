@@ -143,6 +143,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           {closeButton && (
             <CloseButton
               css={customStyle.closeButton}
+              id={id && `${id}-close-button`}
               tabIndex={0}
               onClick={() => setIsOpen(false)}
             >
