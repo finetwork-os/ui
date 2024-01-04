@@ -1,16 +1,16 @@
+import { Close, Provider, ToastProviderProps } from '@radix-ui/react-toast'
 import * as React from 'react'
-import { Provider, Close, ToastProviderProps } from '@radix-ui/react-toast'
+import { KIND } from '../../types'
 import {
   ProgressBar,
   StyledAction,
+  StyledCloseButton,
   StyledDescription,
   StyledTitle,
   StyledToast,
   StyledViewport,
-  StyledCloseButton,
 } from './styled'
 import { DIRECTION, ToastComponent, ToastProviderComponent } from './types'
-import { KIND } from '../../types'
 
 import { Cross1Icon } from '../icons'
 
@@ -174,7 +174,7 @@ export const Toast: ToastComponent = ({
         />
       )}
       {closeable && (
-        <StyledCloseButton>
+        <StyledCloseButton data-pw="toast-close-button">
           <Cross1Icon />
         </StyledCloseButton>
       )}
