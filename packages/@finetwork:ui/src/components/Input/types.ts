@@ -28,6 +28,7 @@ export type InputProps = Omit<
   labelProps?: ComponentProps<typeof StyledLabel>
   enhancerProps?: ComponentProps<typeof StyledEnhancer>
   handleChange?: (value: string) => void
+  formattedPhoneNumber?: boolean
 }
 
 type InputPasswordProps = Omit<

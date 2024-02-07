@@ -141,6 +141,7 @@ export const Input: InputComponent = React.forwardRef(
       enhancerProps = {},
       handleChange,
       handleClear,
+      formattedPhoneNumber = true,
       ...props
     },
     ref
@@ -255,7 +256,11 @@ export const Input: InputComponent = React.forwardRef(
             }
             type={type}
             isDisabled={props.disabled}
-            value={formatPhoneNumber(props?.value?.toString())}
+            value={
+              formattedPhoneNumber
+                ? formatPhoneNumber(props?.value?.toString())
+                : props?.value?.toString()
+            }
           />
         )
       } else {
