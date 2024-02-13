@@ -40,7 +40,7 @@ const useFocus = () => {
 }
 
 const InputPassword: InputPasswordComponent = React.forwardRef(
-  ({ size, kind, handleClear, isError, ...props }, ref) => {
+  ({ size, kind, handleClear, isError, id, ...props }, ref) => {
     const { isFocused, focusInput, handleBlur } = useFocus()
     const [visiblePassword, setVisiblePassword] = React.useState(false)
 
@@ -49,7 +49,7 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
       if (!handleClear) {
         if (isError) {
           return (
-            <StyledEnhancer isAnotherEnhancer>
+            <StyledEnhancer isAnotherEnhancer id={id && `${id}-error-enhancer`}>
               <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
             </StyledEnhancer>
           )
@@ -59,7 +59,10 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
         if (!isFocused) {
           if (isError) {
             return (
-              <StyledEnhancer isAnotherEnhancer>
+              <StyledEnhancer
+                isAnotherEnhancer
+                id={id && `${id}-error-enhancer`}
+              >
                 <RenderEnhancer
                   Enhancer={<ErrorIcon height={15} width={15} />}
                 />
@@ -70,7 +73,10 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
           if (value !== undefined && value !== null && value !== '')
             return (
               <button type="button" onClick={handleClear} tabIndex={-1}>
-                <StyledEnhancer isAnotherEnhancer>
+                <StyledEnhancer
+                  isAnotherEnhancer
+                  id={id && `${id}-clear-enhancer`}
+                >
                   <RenderEnhancer
                     Enhancer={<CloseIcon height={15} width={15} />}
                   />
@@ -80,7 +86,10 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
 
           if (isError)
             return (
-              <StyledEnhancer isAnotherEnhancer>
+              <StyledEnhancer
+                isAnotherEnhancer
+                id={id && `${id}-error-enhancer`}
+              >
                 <RenderEnhancer
                   Enhancer={<ErrorIcon height={15} width={15} />}
                 />
@@ -100,10 +109,12 @@ const InputPassword: InputPasswordComponent = React.forwardRef(
           ref={ref}
           onFocus={focusInput}
           onBlur={() => handleBlur(ref)}
+          id={id}
         />
         <IconsContainer>
           {chooseIconToShow()}
           <StyledEyeButton
+            id={id && `${id}-show-password`}
             onClick={() => {
               setVisiblePassword(!visiblePassword)
               if (ref === null || typeof ref === 'function') return
@@ -154,14 +165,20 @@ export const Input: InputComponent = React.forwardRef(
       if (!handleClear) {
         if (isError) {
           return (
-            <StyledEnhancer {...enhancerProps}>
+            <StyledEnhancer
+              {...enhancerProps}
+              id={id && `${id}-error-enhancer`}
+            >
               <RenderEnhancer Enhancer={<ErrorIcon height={15} width={15} />} />
             </StyledEnhancer>
           )
         }
         if (success) {
           return (
-            <StyledEnhancer {...enhancerProps}>
+            <StyledEnhancer
+              {...enhancerProps}
+              id={id && `${id}-success-enhancer`}
+            >
               <RenderEnhancer
                 Enhancer={<StyledSuccessIcon height={15} width={15} />}
               />
@@ -173,7 +190,10 @@ export const Input: InputComponent = React.forwardRef(
         if (!isFocused) {
           if (isError) {
             return (
-              <StyledEnhancer {...enhancerProps}>
+              <StyledEnhancer
+                {...enhancerProps}
+                id={id && `${id}-error-enhancer`}
+              >
                 <RenderEnhancer
                   Enhancer={<ErrorIcon height={15} width={15} />}
                 />
@@ -182,7 +202,10 @@ export const Input: InputComponent = React.forwardRef(
           }
           if (success) {
             return (
-              <StyledEnhancer {...enhancerProps}>
+              <StyledEnhancer
+                {...enhancerProps}
+                id={id && `${id}-success-enhancer`}
+              >
                 <RenderEnhancer
                   Enhancer={<StyledSuccessIcon height={15} width={15} />}
                 />
@@ -193,7 +216,10 @@ export const Input: InputComponent = React.forwardRef(
           if (value !== undefined && value !== null && value !== '')
             return (
               <button type="button" onClick={handleClear} tabIndex={-1}>
-                <StyledEnhancer {...enhancerProps}>
+                <StyledEnhancer
+                  {...enhancerProps}
+                  id={id && `${id}-clear-enhancer`}
+                >
                   <RenderEnhancer
                     Enhancer={<CloseIcon height={15} width={15} />}
                   />
@@ -203,7 +229,10 @@ export const Input: InputComponent = React.forwardRef(
 
           if (isError)
             return (
-              <StyledEnhancer {...enhancerProps}>
+              <StyledEnhancer
+                {...enhancerProps}
+                id={id && `${id}-error-enhancer`}
+              >
                 <RenderEnhancer
                   Enhancer={<ErrorIcon height={15} width={15} />}
                 />
@@ -305,7 +334,11 @@ export const Input: InputComponent = React.forwardRef(
           success={success}
         >
           {startEnhancer && (
-            <StyledEnhancer {...enhancerProps} isStartEnhancer>
+            <StyledEnhancer
+              {...enhancerProps}
+              isStartEnhancer
+              id={id && `${id}-startEnhancer`}
+            >
               <RenderEnhancer Enhancer={startEnhancer} />
             </StyledEnhancer>
           )}
@@ -314,7 +347,10 @@ export const Input: InputComponent = React.forwardRef(
             <IconsContainer>
               {chooseIconToShow()}
               {endEnhancer && (
-                <StyledEnhancer {...enhancerProps}>
+                <StyledEnhancer
+                  {...enhancerProps}
+                  id={id && `${id}-endEnhancer`}
+                >
                   <RenderEnhancer Enhancer={endEnhancer} />
                 </StyledEnhancer>
               )}
@@ -322,7 +358,11 @@ export const Input: InputComponent = React.forwardRef(
           )}
         </StyledContainerInput>
         {(info || (isError && errorMessage)) && (
-          <StyledMessageContainer>
+          <StyledMessageContainer
+            id={
+              id && `${isError ? `${id}-message-error` : `${id}-message-info`}`
+            }
+          >
             <>
               {isError && (
                 <RenderEnhancer

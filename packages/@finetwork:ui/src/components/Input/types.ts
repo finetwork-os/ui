@@ -29,6 +29,7 @@ export type InputProps = Omit<
   enhancerProps?: ComponentProps<typeof StyledEnhancer>
   handleChange?: (value: string) => void
   formattedPhoneNumber?: boolean
+  id?: string
 }
 
 type InputPasswordProps = Omit<
